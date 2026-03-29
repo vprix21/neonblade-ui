@@ -1,0 +1,10 @@
+{
+  "name": "blur-text",
+  "files": [
+    {
+      "path": "components/ui/blur-text.tsx",
+      "url": "https://your-domain.com/registry/blur-text/blur-text.tsx"
+    }
+  ],
+  "dependencies": ["react-icons", "lucide-react"]
+}

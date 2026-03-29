@@ -1,0 +1,6 @@
+{
+  "name": "blur-text",
+  "dependencies": ["react-icons", "lucide-react"],
+  "files": ["BlurText.tsx"]
+}
+
