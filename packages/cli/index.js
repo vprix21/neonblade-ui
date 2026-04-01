@@ -2,7 +2,6 @@
 
 const fs = require("fs")
 const path = require("path")
-const axios = require("axios")
 const { execSync } = require("child_process")
 
 const BASE_URL = "https://neonbladeui-registry.vercel.app"
@@ -34,7 +33,8 @@ async function main() {
   logStep("Copying files...")
 
   for (const file of data.files) {
-    const fileRes = await axios.get(file.url)
+    const fileRes = await fetch(file.url)
+    const fileData = await fileRes.text()
 
     const targetPath = path.join(
       targetAppPath,
@@ -42,14 +42,24 @@ async function main() {
     )
 
     fs.mkdirSync(path.dirname(targetPath), { recursive: true })
-    fs.writeFileSync(targetPath, fileRes.data)
+    fs.writeFileSync(targetPath, fileData)
   }
+  const packageManager = detectPackageManager(targetAppPath)
 
   if (data.dependencies && data.dependencies.length > 0) {
-    logStep("Installing dependencies...")
+    logStep(`Installing dependencies using ${packageManager}...`)
+    let installCmd = ""
+
+    if (packageManager === "pnpm") {
+      installCmd = `pnpm add ${data.dependencies.join(" ")}`
+    } else if (packageManager === "yarn") {
+      installCmd = `yarn add ${data.dependencies.join(" ")}`
+    } else if (packageManager === "npm") {
+      installCmd = `npm install ${data.dependencies.join(" ")}`
+    }
 
     execSync(
-      `pnpm add ${data.dependencies.join(" ")}`,
+      installCmd,
       {
         stdio: "inherit",
         cwd: targetAppPath,
@@ -101,12 +111,30 @@ function logError(message) {
 
 async function fetchComponent(component) {
   try {
-    const res = await axios.get(
+    const res = await fetch(
       `${BASE_URL}/components/${component}/index.json`
     )
-    return res.data
+    if (!res.ok) throw new Error("Not found")
+    return await res.json()
   } catch (err) {
     logError(`Component "${component}" not found`)
     process.exit(1)
   }
+}
+
+
+function detectPackageManager(projectPath) {
+  if (fs.existsSync(path.join(projectPath, "pnpm-lock.yaml"))) {
+    return "pnpm"
+  }
+
+  if (fs.existsSync(path.join(projectPath, "yarn.lock"))) {
+    return "yarn"
+  }
+
+  if (fs.existsSync(path.join(projectPath, "package-lock.json"))) {
+    return "npm"
+  }
+
+  return "npm" // fallback
 }
