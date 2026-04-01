@@ -26,9 +26,9 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-[#00f3ff] corner-cut flex items-center justify-center text-black font-bold font-orbitron text-xl group-hover:box-glow-cyan transition-shadow">
+          {/* <div className="w-8 h-8 bg-[#00f3ff] corner-cut flex items-center justify-center text-black font-bold font-orbitron text-xl group-hover:box-glow-cyan transition-shadow">
             N
-          </div>
+          </div> */}
           <span className="font-orbitron font-bold text-xl tracking-wider text-white group-hover:text-glow-cyan transition-all">
             NeonBlade<span className="text-[#00f3ff]">UI</span>
           </span>
