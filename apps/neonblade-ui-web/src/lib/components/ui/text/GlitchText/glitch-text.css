@@ -1,0 +1,73 @@
+/* glitch.css */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+  font-weight: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+/* Pseudo-elements for the red/cyan offset glitches */
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: inherit;
+}
+
+.glitch-wrapper::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--neon-pink, #ff00ff);
+  /* Clip it completely by default to hide the text-shadow when not glitching */
+  clip-path: inset(50% 0 50% 0); 
+}
+
+.glitch-wrapper::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--neon-cyan, #00f3ff);
+  clip-path: inset(50% 0 50% 0);
+}
+
+/* Base keyframes for active glitching with a delay period (15% to 100%) */
+@keyframes glitch-anim-1 {
+  0%   { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  3%   { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  6%   { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  9%   { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  12%  { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 1px); }
+  15%  { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+  100% { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+}
+
+@keyframes glitch-anim-2 {
+  0%   { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+  3%   { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+  6%   { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+  9%   { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 1px); }
+  12%  { clip-path: inset(5% 0 80% 0); transform: translate(2px, -1px); }
+  15%  { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+  100% { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+}
+
+/* Active Mode: Always Glitching (but delayed via keyframes) */
+.activeglitch::before {
+  animation: glitch-anim-1 var(--glitch-duration, 4s) infinite linear;
+}
+
+.activeglitch::after {
+  animation: glitch-anim-2 calc(var(--glitch-duration, 4s) + 0.5s) infinite linear;
+}
+
+/* Hover Mode: Glitch heavily on hover with shorter loops and minor delays */
+.hoverglitch:hover::before {
+  animation: glitch-anim-1 1s infinite linear;
+}
+
+.hoverglitch:hover::after {
+  animation: glitch-anim-2 1.2s infinite linear;
+}

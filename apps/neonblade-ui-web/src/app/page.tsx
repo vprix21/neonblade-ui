@@ -1,13 +1,15 @@
-import Image from "next/image";
-import {BlurText} from "@repo/registry/components/blur-text/BlurText";
-import {RedText} from "@repo/registry/components/red-text/RedText";
+import { Navbar } from "../components/Navbar";
+import { Hero } from "../components/Hero";
+import { Features } from "../components/Features";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-black text-white">
-      <BlurText/>
-      <RedText/>
+    <main className="flex min-h-screen flex-col bg-black text-white selection:bg-[#00f3ff] selection:text-black">
+      <Navbar />
+      <Hero />
+      <Features />
+      <Footer />
     </main>
-  )
-    
+  );
 }

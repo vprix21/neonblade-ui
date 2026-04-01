@@ -1,0 +1,1 @@
+{ "name": "AccentFrame", "category": "frames", "dependencies": ["react", "tailwindcss"] }

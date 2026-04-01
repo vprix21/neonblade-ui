@@ -1,0 +1,220 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+
+export interface DatalinesWithGridProps {
+  lineColor?: string;
+  shadowColor?: string;
+  bgGridColor?: string;
+  cellSize?: number;
+  maxLines?: number;
+  baseSpeed?: number;
+  spawnProbability?: number;
+}
+
+function hexToRgbA(hex: string, alpha: number): string {
+  let c: any;
+  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+    c = hex.substring(1).split("");
+    if (c.length == 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c = "0x" + c.join("");
+    return "rgba(" + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") + "," + alpha + ")";
+  }
+  // Try mapping rgba replacement just in case user passed rgb or string
+  if (hex.startsWith('rgb')) {
+    return hex.replace("rgb", "rgba").replace(")", `, ${alpha})`).replace(",,", ",");
+  }
+  return hex; // if it's already a valid rgba or color name
+}
+
+function DatalinesCanvas({
+  lineColor = "#00f3ff",
+  shadowColor = "#00f3ff",
+  cellSize = 50,
+  maxLines = 15,
+  baseSpeed = 2,
+  spawnProbability = 0.1,
+}: Omit<DatalinesWithGridProps, 'bgGridColor'>) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    interface DataLine {
+      x: number;
+      y: number;
+      history: { x: number; y: number }[];
+      dx: number;
+      dy: number;
+      speed: number;
+      maxLength: number;
+    }
+
+    let lines: DataLine[] = [];
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (Math.random() < spawnProbability && lines.length < maxLines) {
+        lines.push({
+          x: Math.floor(Math.random() * (canvas.width / cellSize)) * cellSize,
+          y: -cellSize,
+          history: [],
+          dx: 0,
+          dy: 1,
+          speed: baseSpeed,
+          maxLength: Math.floor((Math.random() * 150 + 50) / 2),
+        });
+      }
+
+      lines.forEach((line) => {
+        line.history.push({ x: line.x, y: line.y });
+        if (line.history.length > line.maxLength) {
+          line.history.shift();
+        }
+
+        line.x += line.dx * line.speed;
+        line.y += line.dy * line.speed;
+
+        if (line.x % cellSize === 0 && line.y % cellSize === 0) {
+          const max_x = Math.floor(canvas.width / cellSize) * cellSize;
+          if (line.x <= 0 && line.dx === -1) {
+            line.dx = 0;
+            line.dy = 1;
+          } else if (line.x >= max_x && line.dx === 1) {
+            line.dx = 0;
+            line.dy = 1;
+          } else {
+            if (line.dy === 1) {
+              if (Math.random() < 0.3) {
+                line.dy = 0;
+                line.dx = Math.random() < 0.5 ? 1 : -1;
+              }
+            } else {
+              if (Math.random() < 0.6) {
+                line.dy = 1;
+                line.dx = 0;
+              }
+            }
+          }
+        }
+
+        ctx.lineCap = "round";
+        ctx.lineWidth = 1.5;
+
+        for (let i = 0; i < line.history.length - 1; i++) {
+          ctx.beginPath();
+          ctx.moveTo(line.history[i].x, line.history[i].y);
+          ctx.lineTo(line.history[i + 1].x, line.history[i + 1].y);
+          const alpha = (i / line.history.length) * 0.8;
+          ctx.strokeStyle = hexToRgbA(lineColor, alpha);
+
+          if (i > line.history.length - 3) {
+            ctx.shadowColor = shadowColor;
+            ctx.shadowBlur = 10;
+          } else {
+            ctx.shadowBlur = 0;
+          }
+          ctx.stroke();
+        }
+        ctx.shadowBlur = 0;
+      });
+
+      lines = lines.filter((line) => {
+        if (line.history.length === 0) return true;
+        const tail = line.history[0];
+        return tail.y < canvas.height + cellSize * 2;
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [lineColor, shadowColor, cellSize, maxLines, baseSpeed, spawnProbability]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none z-10"
+    />
+  );
+}
+
+export function DatalinesWithGrid({
+  lineColor = "#00f3ff",
+  shadowColor = "#00f3ff",
+  cellSize = 50,
+  maxLines = 15,
+  baseSpeed = 2,
+  spawnProbability = 0.1,
+  bgGridColor = "rgba(255,255,255,0.05)"
+}: DatalinesWithGridProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [tiles, setTiles] = useState(0);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const updateTiles = () => {
+      if (containerRef.current) {
+        const { clientWidth, clientHeight } = containerRef.current;
+        const columns = Math.ceil(clientWidth / cellSize);
+        // Add a few extra rows/cols to handle scrolling/resizing edges gracefully
+        const rows = Math.ceil(clientHeight / cellSize) + 1;
+        setTiles(columns * rows);
+      }
+    };
+
+    updateTiles();
+    
+    window.addEventListener("resize", updateTiles);
+    return () => window.removeEventListener("resize", updateTiles);
+  }, [cellSize]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="absolute inset-0 z-0 overflow-hidden flex flex-wrap"
+    >
+      <DatalinesCanvas 
+        lineColor={lineColor}
+        shadowColor={shadowColor}
+        cellSize={cellSize}
+        maxLines={maxLines}
+        baseSpeed={baseSpeed}
+        spawnProbability={spawnProbability}
+      />
+      {Array.from({ length: tiles }).map((_, i) => (
+        <div
+          key={i}
+          className="transition-none box-border"
+          style={{
+            width: `${cellSize}px`,
+            height: `${cellSize}px`,
+            border: `0.5px solid ${bgGridColor}`
+          }}
+        />
+      ))}
+    </div>
+  );
+}

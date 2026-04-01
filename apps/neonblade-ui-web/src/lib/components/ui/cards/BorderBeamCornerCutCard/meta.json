@@ -1,0 +1,1 @@
+{ "name": "BorderBeamCornerCutCard", "category": "cards", "dependencies": ["react", "tailwindcss"] }
