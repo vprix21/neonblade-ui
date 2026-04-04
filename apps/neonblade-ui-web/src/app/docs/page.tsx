@@ -21,6 +21,7 @@ import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
 import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Badge from "@/lib/components/ui/badges/Badge";
+import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("tsx", tsx);
@@ -396,11 +397,14 @@ export default function DocsPage() {
             </p>
             <Link
               href="/components"
-              className="inline-flex items-center gap-2 font-orbitron text-sm tracking-wide text-black bg-[#00f3ff] hover:bg-white px-5 py-3 transition-colors shadow-[0_0_20px_rgba(0,243,255,0.25)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+              //   className="inline-flex items-center gap-2 font-orbitron text-sm tracking-wide text-black bg-[#00f3ff] hover:bg-white px-5 py-3 transition-colors shadow-[0_0_20px_rgba(0,243,255,0.25)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]"
             >
-              <Terminal size={15} />
+              {/* <Terminal size={15} />
               View All Components
-              <ArrowRight size={14} />
+              <ArrowRight size={14} /> */}
+              <CornerCutButton variant="solid" color="cyan" showArrow={true}>
+                View All Components
+              </CornerCutButton>
             </Link>
           </motion.section>
 
