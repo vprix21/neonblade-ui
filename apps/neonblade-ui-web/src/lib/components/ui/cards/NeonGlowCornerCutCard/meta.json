@@ -1,0 +1,5 @@
+{
+  "name": "NeonGlowCornerCutCard",
+  "category": "cards",
+  "dependencies": ["react"]
+}

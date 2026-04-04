@@ -1,0 +1,14 @@
+{
+  "name": "border-beam-corner-cut-card",
+  "files": [
+    {
+      "path": "components/ui/border-beam-corner-cut-card/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/border-beam-corner-cut-card/index.tsx"
+    },
+    {
+      "path": "components/ui/border-beam-corner-cut-card/border-beam.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/border-beam-corner-cut-card/border-beam.css"
+    }
+  ],
+  "dependencies": []
+}

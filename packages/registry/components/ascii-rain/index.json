@@ -1,0 +1,10 @@
+{
+  "name": "ascii-rain",
+  "files": [
+    {
+      "path": "components/ui/ascii-rain/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/ascii-rain/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

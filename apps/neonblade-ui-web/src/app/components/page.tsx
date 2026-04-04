@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { categories } from "@/lib/docs/data";
 import AccentFrame from "@/lib/components/ui/frames/AccentFrame";
+import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
 
 export default function ComponentsLanding() {
   return (
@@ -10,8 +11,9 @@ export default function ComponentsLanding() {
           Component Library
         </h1>
         <p className="text-lg text-white/60 font-light max-w-2xl leading-relaxed">
-          Explore our collection of futuristic, cyberpunk-inspired React components. 
-          Built with Tailwind CSS for ultimate customization without hidden magic.
+          Explore our collection of modern and futuristic React components.
+          Built with Tailwind CSS for ultimate customization without hidden
+          magic.
         </p>
       </div>
 
@@ -23,23 +25,35 @@ export default function ComponentsLanding() {
             </h2>
             <div className="grid gap-4 mt-4">
               {category.components.map((c) => (
-                 <Link 
-                  href={`/components/${category.slug}/${c.slug}`} 
+                //            <NeonGlowCornerCutCard
+                //   title="CLI Installation"
+                //   description="Install components directly into your project via CLI."
+                //   colorA="cyan"
+                //   colorB="pink"
+                //   hoverEffect="gradient"
+                //   icon={<Terminal className="w-full h-full" />}
+                // />
+                <Link
+                  href={`/components/${category.slug}/${c.slug}`}
                   key={c.slug}
-                  className="block group"
-                 >
-                   <AccentFrame 
-                     color="#ff00ff" 
-                     className="bg-[#0a0a0a] border border-white/5 hover:bg-[#111] transition-colors p-6 flex flex-col h-full"
-                   >
-                     <h3 className="font-orbitron font-semibold text-white group-hover:text-glow-pink transition-all mb-2">
-                       {c.name}
-                     </h3>
-                     <p className="text-sm text-white/50 font-light flex-grow">
-                       {c.description || "A futuristic UI element for your digital interface."}
-                     </p>
-                   </AccentFrame>
-                 </Link>
+                  className=""
+                >
+                  <NeonGlowCornerCutCard
+                    title={c.name}
+                    description={c.description}
+                    colorA="cyan"
+                    colorB="cyan"
+                    hoverEffect="solid"
+                  />
+                  {/* <h3 className="font-orbitron font-semibold text-white group-hover:text-glow-pink transition-all mb-2">
+                    {c.name}
+                  </h3>
+                  <p className="text-sm text-white/50 font-light flex-grow">
+                    {c.description ||
+                      "A futuristic UI element for your digital interface."}
+                  </p> */}
+                  {/* </AccentFrame> */}
+                </Link>
               ))}
             </div>
           </div>

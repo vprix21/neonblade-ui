@@ -1,0 +1,242 @@
+/* ============================================================
+   CornerCutButton — corner-cut-button.css
+   All class names are prefixed with `ccb-` to avoid conflicts
+   with globals.css.
+   ============================================================ */
+
+/* ---- Clip paths ------------------------------------------- */
+
+.ccb-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ccb-corner-size, 20px)),
+    calc(100% - var(--ccb-corner-size, 20px)) 100%,
+    0 100%
+  );
+}
+
+.ccb-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--ccb-corner-size, 20px) 100%,
+    0 calc(100% - var(--ccb-corner-size, 20px))
+  );
+}
+
+.ccb-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ccb-corner-size, 20px)) 0,
+    100% var(--ccb-corner-size, 20px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.ccb-clip-tl {
+  clip-path: polygon(
+    var(--ccb-corner-size, 20px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--ccb-corner-size, 20px)
+  );
+}
+
+.ccb-clip-all {
+  clip-path: polygon(
+    var(--ccb-corner-size, 20px) 0,
+    100% 0,
+    100% calc(100% - var(--ccb-corner-size, 20px)),
+    calc(100% - var(--ccb-corner-size, 20px)) 100%,
+    0 100%,
+    0 var(--ccb-corner-size, 20px)
+  );
+}
+
+/* ---- Variants --------------------------------------------- */
+
+.ccb-solid {
+  background-color: var(--ccb-color);
+  color: #000000;
+}
+
+.ccb-outline {
+  background-color: transparent;
+  color: var(--ccb-color);
+  box-shadow: inset 0 0 0 1.5px var(--ccb-color);
+}
+
+.ccb-ghost {
+  background-color: color-mix(in srgb, var(--ccb-color) 12%, transparent);
+  color: var(--ccb-color);
+}
+
+/* ---- Hover: Glow ------------------------------------------ */
+
+.ccb-hover-glow:hover {
+  box-shadow:
+    0 0 var(--ccb-glow-size, 15px) var(--ccb-color),
+    inset 0 0 calc(var(--ccb-glow-size, 15px) * 0.6)
+      color-mix(in srgb, var(--ccb-color) 25%, transparent);
+}
+
+.ccb-solid.ccb-hover-glow:hover {
+  background-color: #ffffff;
+}
+
+.ccb-outline.ccb-hover-glow:hover {
+  background-color: color-mix(in srgb, var(--ccb-color) 15%, transparent);
+}
+
+.ccb-ghost.ccb-hover-glow:hover {
+  background-color: color-mix(in srgb, var(--ccb-color) 22%, transparent);
+}
+
+/* ---- Hover: Shift ----------------------------------------- */
+
+.ccb-solid.ccb-hover-shift:hover {
+  background-color: #ffffff;
+  box-shadow: 0 0 var(--ccb-glow-size, 15px) var(--ccb-color);
+}
+
+.ccb-outline.ccb-hover-shift:hover {
+  background-color: var(--ccb-color);
+  color: #000000;
+  box-shadow: 0 0 var(--ccb-glow-size, 15px) var(--ccb-color);
+}
+
+.ccb-ghost.ccb-hover-shift:hover {
+  background-color: color-mix(in srgb, var(--ccb-color) 28%, transparent);
+  box-shadow: 0 0 var(--ccb-glow-size, 15px)
+    color-mix(in srgb, var(--ccb-color) 55%, transparent);
+}
+
+/* ---- Hover: Pulse ----------------------------------------- */
+
+@keyframes ccb-pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 var(--ccb-glow-size, 15px) var(--ccb-color),
+      inset 0 0 var(--ccb-glow-size, 15px)
+        color-mix(in srgb, var(--ccb-color) 20%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 calc(var(--ccb-glow-size, 15px) * 2.5) var(--ccb-color),
+      inset 0 0 calc(var(--ccb-glow-size, 15px) * 1.5)
+        color-mix(in srgb, var(--ccb-color) 40%, transparent);
+  }
+}
+
+.ccb-hover-pulse:hover {
+  animation: ccb-pulse-glow 1.2s ease-in-out infinite;
+}
+
+/* ---- Hover: Shine (sweep) --------------------------------- */
+
+@keyframes ccb-shine-sweep {
+  0% {
+    transform: translateX(-220%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-20deg);
+  }
+}
+
+.ccb-shine-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ccb-shine-layer::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 35%;
+  height: 120%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, white 55%, transparent),
+    transparent
+  );
+  transform: translateX(-220%) skewX(-20deg);
+}
+
+.ccb-hover-shine:hover .ccb-shine-layer::after {
+  animation: ccb-shine-sweep 0.65s ease forwards;
+}
+
+/* ---- Hover: Scan ------------------------------------------ */
+
+@keyframes ccb-scan-line {
+  0% {
+    top: -2px;
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: calc(100% + 2px);
+    opacity: 0;
+  }
+}
+
+.ccb-scan-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, white 85%, transparent),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0;
+  top: -2px;
+  z-index: 1;
+}
+
+.ccb-hover-scan:hover .ccb-scan-layer {
+  opacity: 1;
+  animation: ccb-scan-line 1.1s linear infinite;
+}
+
+/* ---- Hover: Flicker --------------------------------------- */
+
+@keyframes ccb-flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.35;
+  }
+}
+
+.ccb-hover-flicker:hover {
+  animation: ccb-flicker 0.45s linear infinite;
+}

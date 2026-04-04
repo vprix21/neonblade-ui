@@ -1,0 +1,347 @@
+/* ================================================================
+   NeonGlowCornerCutCard — neonglow-cornercut-card.css
+   All class names are prefixed with `ngcc-` to avoid conflicts
+   with globals.css.
+   ================================================================
+
+   CSS custom properties driven by the component (set inline):
+     --ngcc-color-a    : accent / glow-start color
+     --ngcc-color-b    : gradient-end color
+     --ngcc-corner-size: diagonal cut depth in px
+     --ngcc-glow-size  : box-shadow spread radius
+     --ngcc-glow-blur  : backdrop filter blur radius
+================================================================ */
+
+/* ---- Clip-path variants (applied to inner card only) -------- */
+
+.ngcc-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ngcc-corner-size, 20px)),
+    calc(100% - var(--ngcc-corner-size, 20px)) 100%,
+    0 100%
+  );
+}
+
+.ngcc-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--ngcc-corner-size, 20px) 100%,
+    0 calc(100% - var(--ngcc-corner-size, 20px))
+  );
+}
+
+.ngcc-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ngcc-corner-size, 20px)) 0,
+    100% var(--ngcc-corner-size, 20px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.ngcc-clip-tl {
+  clip-path: polygon(
+    var(--ngcc-corner-size, 20px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--ngcc-corner-size, 20px)
+  );
+}
+
+.ngcc-clip-all {
+  clip-path: polygon(
+    var(--ngcc-corner-size, 20px) 0,
+    100% 0,
+    100% calc(100% - var(--ngcc-corner-size, 20px)),
+    calc(100% - var(--ngcc-corner-size, 20px)) 100%,
+    0 100%,
+    0 var(--ngcc-corner-size, 20px)
+  );
+}
+
+/* ---- Wrapper ----------------------------------------------- */
+
+.ngcc-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+/* ---- Gradient glow backdrop --------------------------------- */
+
+.ngcc-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 3px;
+  opacity: 0;
+  filter: blur(var(--ngcc-glow-blur, 7px));
+  transition: opacity 500ms ease;
+  background: linear-gradient(
+    135deg,
+    var(--ngcc-color-a, #00f3ff),
+    var(--ngcc-color-b, #ff00ff)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Inner card -------------------------------------------- */
+
+.ngcc-card {
+  position: relative;
+  height: 100%;
+  background-color: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+/* ---- Hover effects ----------------------------------------- */
+
+/* gradient — dual-color gradient backdrop (default, matches Features.tsx) */
+.ngcc-hover-gradient:hover .ngcc-glow {
+  opacity: 1;
+}
+.ngcc-hover-gradient:hover .ngcc-card {
+  border-color: transparent;
+}
+
+/* solid — single accent-color backdrop */
+.ngcc-hover-solid .ngcc-glow {
+  background: var(--ngcc-color-a, #00f3ff);
+}
+.ngcc-hover-solid:hover .ngcc-glow {
+  opacity: 0.75;
+}
+.ngcc-hover-solid:hover .ngcc-card {
+  border-color: transparent;
+}
+
+/* glow-only — box-shadow on the card, no backdrop div */
+.ngcc-hover-glow-only .ngcc-glow {
+  display: none;
+}
+.ngcc-hover-glow-only:hover .ngcc-card {
+  border-color: color-mix(
+    in srgb,
+    var(--ngcc-color-a, #00f3ff) 45%,
+    transparent
+  );
+  box-shadow:
+    0 0 var(--ngcc-glow-size, 15px)
+      color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 65%, transparent),
+    inset 0 0 calc(var(--ngcc-glow-size, 15px) * 0.6)
+      color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 20%, transparent);
+}
+
+/* pulse — continuously pulsing box-shadow while hovered */
+@keyframes ngcc-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 var(--ngcc-glow-size, 15px)
+        color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 55%, transparent),
+      inset 0 0 var(--ngcc-glow-size, 15px)
+        color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 15%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 calc(var(--ngcc-glow-size, 15px) * 2.2) var(--ngcc-color-a, #00f3ff),
+      inset 0 0 calc(var(--ngcc-glow-size, 15px) * 1.3)
+        color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 35%, transparent);
+  }
+}
+
+.ngcc-hover-pulse .ngcc-glow {
+  display: none;
+}
+.ngcc-hover-pulse:hover .ngcc-card {
+  border-color: color-mix(
+    in srgb,
+    var(--ngcc-color-a, #00f3ff) 40%,
+    transparent
+  );
+  animation: ngcc-pulse 1.4s ease-in-out infinite;
+}
+
+/* border-trace — animated gradient border that sweeps around */
+@keyframes ngcc-border-sweep {
+  0% {
+    opacity: 0.7;
+    filter: blur(var(--ngcc-glow-blur, 7px)) hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(calc(var(--ngcc-glow-blur, 7px) * 0.5)) hue-rotate(30deg);
+  }
+  100% {
+    opacity: 0.7;
+    filter: blur(var(--ngcc-glow-blur, 7px)) hue-rotate(0deg);
+  }
+}
+
+.ngcc-hover-trace:hover .ngcc-glow {
+  opacity: 1;
+  animation: ngcc-border-sweep 2s linear infinite;
+}
+.ngcc-hover-trace:hover .ngcc-card {
+  border-color: transparent;
+}
+
+/* none — no hover effect on glow (icon/title transitions still active) */
+.ngcc-hover-none .ngcc-glow {
+  display: none;
+}
+
+/* ---- Icon box ---------------------------------------------- */
+
+.ngcc-icon-box {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 1.5rem;
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.ngcc-wrapper:hover .ngcc-icon-box {
+  border-color: var(--ngcc-color-a, #00f3ff);
+  box-shadow:
+    0 0 var(--ngcc-glow-size, 15px)
+      color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 40%, transparent),
+    inset 0 0 calc(var(--ngcc-glow-size, 15px) * 0.5)
+      color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 20%, transparent);
+}
+
+/* ---- Icon -------------------------------------------------- */
+
+.ngcc-icon {
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 300ms ease;
+}
+
+.ngcc-wrapper:hover .ngcc-icon {
+  color: var(--ngcc-color-a, #00f3ff);
+}
+
+/* ---- Title ------------------------------------------------- */
+
+.ngcc-title {
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  transition: text-shadow 300ms ease;
+}
+
+.ngcc-wrapper:hover .ngcc-title {
+  text-shadow:
+    0 0 10px var(--ngcc-color-a, #00f3ff),
+    0 0 20px var(--ngcc-color-a, #00f3ff);
+}
+
+/* ---- Description ------------------------------------------- */
+
+.ngcc-description {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+/* ---- Size variants ----------------------------------------- */
+
+/* padding on the inner card */
+.ngcc-size-sm .ngcc-card {
+  padding: 1.25rem;
+}
+.ngcc-size-md .ngcc-card {
+  padding: 2rem;
+}
+.ngcc-size-lg .ngcc-card {
+  padding: 2.5rem;
+}
+.ngcc-size-xl .ngcc-card {
+  padding: 3rem;
+}
+
+/* icon box dimensions */
+.ngcc-size-sm .ngcc-icon-box {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.ngcc-size-md .ngcc-icon-box {
+  width: 3rem;
+  height: 3rem;
+}
+.ngcc-size-lg .ngcc-icon-box {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.ngcc-size-xl .ngcc-icon-box {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* icon SVG / inner element dimensions */
+.ngcc-size-sm .ngcc-icon {
+  width: 1rem;
+  height: 1rem;
+}
+.ngcc-size-md .ngcc-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.ngcc-size-lg .ngcc-icon {
+  width: 2rem;
+  height: 2rem;
+}
+.ngcc-size-xl .ngcc-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* title font size */
+.ngcc-size-sm .ngcc-title {
+  font-size: 0.875rem;
+}
+.ngcc-size-md .ngcc-title {
+  font-size: 1.125rem;
+}
+.ngcc-size-lg .ngcc-title {
+  font-size: 1.375rem;
+}
+.ngcc-size-xl .ngcc-title {
+  font-size: 1.625rem;
+}
+
+/* description font size */
+.ngcc-size-sm .ngcc-description {
+  font-size: 0.75rem;
+}
+.ngcc-size-md .ngcc-description {
+  font-size: 0.875rem;
+}
+.ngcc-size-lg .ngcc-description {
+  font-size: 1rem;
+}
+.ngcc-size-xl .ngcc-description {
+  font-size: 1.125rem;
+}

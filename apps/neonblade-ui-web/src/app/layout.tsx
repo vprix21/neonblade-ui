@@ -15,7 +15,7 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   title: "NeonBlade UI",
-  description: "Modern, futuristic, cyberpunk UI component library.",
+  description: "Modern and futuristic UI component library.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,10 @@ export default function RootLayout({
       className={`${rajdhani.variable} ${orbitron.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground dark" suppressHydrationWarning>
+      <body
+        className="min-h-full flex flex-col bg-background text-foreground dark"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

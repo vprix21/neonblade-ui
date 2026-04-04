@@ -1,0 +1,14 @@
+{
+  "name": "accent-frame",
+  "files": [
+    {
+      "path": "components/ui/accent-frame/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/accent-frame/index.tsx"
+    },
+    {
+      "path": "components/ui/accent-frame/accent-frame.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/accent-frame/accent-frame.css"
+    }
+  ],
+  "dependencies": []
+}

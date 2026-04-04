@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "name": "accent-frame",
+      "category": "frames",
+      "description": "Corner bracket accent frame for highlighting content"
+    },
+    {
+      "name": "ascii-rain",
+      "category": "backgrounds",
+      "description": "Animated Matrix-style ASCII rain background"
+    },
+    {
+      "name": "blur-text",
+      "category": "text",
+      "description": "Text with smooth blur-in reveal animation"
+    },
+    {
+      "name": "border-beam-corner-cut-card",
+      "category": "cards",
+      "description": "Corner-cut card with animated conic-gradient beam border"
+    },
+    {
+      "name": "corner-cut-button",
+      "category": "buttons",
+      "description": "Cyberpunk button with clipped polygon corner"
+    },
+    {
+      "name": "datalines-with-grid",
+      "category": "backgrounds",
+      "description": "Animated data lines and grid background"
+    },
+    {
+      "name": "glitch-text",
+      "category": "text",
+      "description": "RGB-split CSS glitch text with multiple intensities"
+    },
+    {
+      "name": "neon-glow-corner-cut-card",
+      "category": "cards",
+      "description": "Corner-cut card with neon gradient glow on hover"
+    }
+  ]
+}

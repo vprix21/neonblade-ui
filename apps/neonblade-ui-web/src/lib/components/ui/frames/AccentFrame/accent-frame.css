@@ -1,0 +1,227 @@
+/* ================================================================
+   AccentFrame — accent-frame.css
+   All class names are prefixed `af-` to avoid conflicts with
+   globals.css.
+   ================================================================
+
+   CSS custom properties set inline by the component:
+     --af-color-a       : primary corner accent color
+     --af-color-b       : secondary corner accent color
+     --af-corner-length : base arm length in px
+     --af-hover-length  : expanded arm length in px
+     --af-thickness     : stroke thickness in px
+     --af-duration      : transition/animation duration (with ms unit)
+     --af-glow-size     : glow blur/spread radius in px
+================================================================ */
+
+/* ---- Base corner piece ------------------------------------- */
+
+.af-corner {
+  position: absolute;
+  background-color: var(--af-color-a, #00f3ff);
+  transition-property: width, height, box-shadow, opacity;
+  transition-timing-function: ease;
+  transition-duration: var(--af-duration, 300ms);
+}
+
+/* Secondary color — applied to the opposite-diagonal pair */
+.af-corner-b {
+  background-color: var(--af-color-b, var(--af-color-a, #00f3ff));
+}
+
+/* ---- Rounded bracket tips ---------------------------------- */
+
+.af-rounded .af-corner {
+  border-radius: 2px;
+}
+
+/* ---- Glow intensity (sets --af-glow-size) ------------------ */
+
+.af-glow-low {
+  --af-glow-size: 5px;
+}
+.af-glow-medium {
+  --af-glow-size: 10px;
+}
+.af-glow-high {
+  --af-glow-size: 22px;
+}
+
+/* ---- Hover effect: glow ------------------------------------ */
+
+.af-hover-glow:hover .af-corner {
+  box-shadow:
+    0 0 var(--af-glow-size, 10px) var(--af-color-a, #00f3ff),
+    0 0 calc(var(--af-glow-size, 10px) * 2.2)
+      color-mix(in srgb, var(--af-color-a, #00f3ff) 40%, transparent);
+}
+
+.af-hover-glow:hover .af-corner-b {
+  box-shadow:
+    0 0 var(--af-glow-size, 10px) var(--af-color-b, var(--af-color-a, #00f3ff)),
+    0 0 calc(var(--af-glow-size, 10px) * 2.2)
+      color-mix(
+        in srgb,
+        var(--af-color-b, var(--af-color-a, #00f3ff)) 40%,
+        transparent
+      );
+}
+
+/* ---- Hover effect: pulse ------------------------------------ */
+
+@keyframes af-pulse-a {
+  0%,
+  100% {
+    box-shadow: 0 0 var(--af-glow-size, 10px) var(--af-color-a, #00f3ff);
+  }
+  50% {
+    box-shadow:
+      0 0 calc(var(--af-glow-size, 10px) * 2.5) var(--af-color-a, #00f3ff),
+      0 0 calc(var(--af-glow-size, 10px) * 4.5)
+        color-mix(in srgb, var(--af-color-a, #00f3ff) 30%, transparent);
+  }
+}
+
+@keyframes af-pulse-b {
+  0%,
+  100% {
+    box-shadow: 0 0 var(--af-glow-size, 10px)
+      var(--af-color-b, var(--af-color-a, #00f3ff));
+  }
+  50% {
+    box-shadow:
+      0 0 calc(var(--af-glow-size, 10px) * 2.5)
+        var(--af-color-b, var(--af-color-a, #00f3ff)),
+      0 0 calc(var(--af-glow-size, 10px) * 4.5)
+        color-mix(
+          in srgb,
+          var(--af-color-b, var(--af-color-a, #00f3ff)) 30%,
+          transparent
+        );
+  }
+}
+
+.af-hover-pulse:hover .af-corner {
+  animation: af-pulse-a 1.4s ease-in-out infinite;
+}
+.af-hover-pulse:hover .af-corner-b {
+  animation: af-pulse-b 1.4s ease-in-out infinite;
+}
+
+/* ---- Hover effect: flicker --------------------------------- */
+
+@keyframes af-flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.12;
+  }
+}
+
+.af-hover-flicker:hover .af-corner {
+  animation: af-flicker 0.45s linear infinite;
+}
+
+/* ---- Hover effect: trace ----------------------------------- */
+/*
+   A chasing highlight climbs each bracket arm on hover.
+   Implemented as a gradient sweep using background-position animation.
+*/
+
+@keyframes af-trace-h {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes af-trace-v {
+  0% {
+    background-position: 0 -100%;
+  }
+  100% {
+    background-position: 0 200%;
+  }
+}
+
+.af-hover-trace:hover .af-corner {
+  background-size: 200% 200%;
+  background-image: linear-gradient(
+    90deg,
+    var(--af-color-a, #00f3ff) 0%,
+    color-mix(in srgb, white 70%, var(--af-color-a, #00f3ff)) 50%,
+    var(--af-color-a, #00f3ff) 100%
+  );
+  animation: af-trace-h 1s linear infinite;
+}
+
+/* ---- Always-animated (animated=true) ----------------------- */
+
+.af-animated.af-hover-glow .af-corner {
+  box-shadow:
+    0 0 var(--af-glow-size, 10px) var(--af-color-a, #00f3ff),
+    0 0 calc(var(--af-glow-size, 10px) * 2.2)
+      color-mix(in srgb, var(--af-color-a, #00f3ff) 40%, transparent);
+}
+.af-animated.af-hover-glow .af-corner-b {
+  box-shadow:
+    0 0 var(--af-glow-size, 10px) var(--af-color-b, var(--af-color-a, #00f3ff)),
+    0 0 calc(var(--af-glow-size, 10px) * 2.2)
+      color-mix(
+        in srgb,
+        var(--af-color-b, var(--af-color-a, #00f3ff)) 40%,
+        transparent
+      );
+}
+
+.af-animated.af-hover-pulse .af-corner {
+  animation: af-pulse-a 1.4s ease-in-out infinite;
+}
+.af-animated.af-hover-pulse .af-corner-b {
+  animation: af-pulse-b 1.4s ease-in-out infinite;
+}
+
+.af-animated.af-hover-flicker .af-corner {
+  animation: af-flicker 0.45s linear infinite;
+}
+
+.af-animated.af-hover-trace:hover .af-corner,
+.af-animated.af-hover-trace .af-corner {
+  background-size: 200% 200%;
+  background-image: linear-gradient(
+    90deg,
+    var(--af-color-a, #00f3ff) 0%,
+    color-mix(in srgb, white 70%, var(--af-color-a, #00f3ff)) 50%,
+    var(--af-color-a, #00f3ff) 100%
+  );
+  animation: af-trace-h 1s linear infinite;
+}
+
+/* ---- Background variants ----------------------------------- */
+
+.af-bg-subtle {
+  background-color: color-mix(
+    in srgb,
+    var(--af-color-a, #00f3ff) 6%,
+    transparent
+  );
+}
+
+.af-bg-solid {
+  background-color: #0a0a0a;
+}

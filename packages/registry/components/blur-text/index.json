@@ -2,9 +2,9 @@
   "name": "blur-text",
   "files": [
     {
-      "path": "components/ui/blur-text.tsx",
-      "url": "https://your-domain.com/registry/blur-text/blur-text.tsx"
+      "path": "components/ui/blur-text/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/blur-text/BlurText.tsx"
     }
   ],
-  "dependencies": ["react-icons", "lucide-react"]
+  "dependencies": []
 }

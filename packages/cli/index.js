@@ -1,140 +1,220 @@
 #!/usr/bin/env node
 
-const fs = require("fs")
-const path = require("path")
-const { execSync } = require("child_process")
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
 
-const BASE_URL = "https://neonbladeui-registry.vercel.app"
+const BASE_URL = "https://neonbladeui-registry.vercel.app";
 
+// ── ANSI color helpers ─────────────────────────────────────────────────────────
+const c = {
+  cyan: (s) => `\x1b[36m${s}\x1b[0m`,
+  pink: (s) => `\x1b[35m${s}\x1b[0m`,
+  green: (s) => `\x1b[32m${s}\x1b[0m`,
+  yellow: (s) => `\x1b[33m${s}\x1b[0m`,
+  red: (s) => `\x1b[31m${s}\x1b[0m`,
+  white: (s) => `\x1b[97m${s}\x1b[0m`,
+  dim: (s) => `\x1b[2m${s}\x1b[0m`,
+  bold: (s) => `\x1b[1m${s}\x1b[0m`,
+};
+
+function banner() {
+  console.log();
+  console.log(
+    `  ${c.bold(c.white("NeonBlade"))}${c.bold(c.cyan("UI"))}  ${c.dim("CLI")}`,
+  );
+  console.log();
+}
+
+const log = {
+  step: (msg) => console.log(`  ${c.cyan("◆")}  ${msg}`),
+  file: (msg) => console.log(`     ${c.dim("→")} ${c.dim(msg)}`),
+  success: (msg) => console.log(`  ${c.green("✔")}  ${msg}`),
+  error: (msg) => console.log(`  ${c.red("✖")}  ${msg}`),
+  warn: (msg) => console.log(`  ${c.yellow("⚠")}  ${msg}`),
+  line: () => console.log(`  ${c.dim("─".repeat(46))}`),
+};
+
+// ── Entry point ────────────────────────────────────────────────────────────────
 async function main() {
-  const projectRoot = process.cwd()
-  const targetAppPath = findAppPath(projectRoot)
+  const [command, component] = process.argv.slice(2);
 
-  const args = process.argv.slice(2)
-  const command = args[0]
-  const component = args[1]
+  banner();
+
+  if (!command || command === "--help" || command === "-h") {
+    printHelp();
+    return;
+  }
 
   if (command !== "add") {
-    console.log("Usage: neonblade add <component>")
-    process.exit(1)
+    log.error(`Unknown command: ${c.yellow(`"${command}"`)}`);
+    console.log();
+    printHelp();
+    process.exit(1);
   }
 
+  // no component name → show available
   if (!component) {
-    console.log("Please provide a component name")
-    process.exit(1)
+    await listComponents();
+    return;
   }
 
-  console.log("\n⚡ NeonBlade UI\n")
-
-  logStep(`Adding ${component}...`)
-
-  const data = await fetchComponent(component)
-
-  logStep("Copying files...")
-
-  for (const file of data.files) {
-    const fileRes = await fetch(file.url)
-    const fileData = await fileRes.text()
-
-    const targetPath = path.join(
-      targetAppPath,
-      file.path
-    )
-
-    fs.mkdirSync(path.dirname(targetPath), { recursive: true })
-    fs.writeFileSync(targetPath, fileData)
-  }
-  const packageManager = detectPackageManager(targetAppPath)
-
-  if (data.dependencies && data.dependencies.length > 0) {
-    logStep(`Installing dependencies using ${packageManager}...`)
-    let installCmd = ""
-
-    if (packageManager === "pnpm") {
-      installCmd = `pnpm add ${data.dependencies.join(" ")}`
-    } else if (packageManager === "yarn") {
-      installCmd = `yarn add ${data.dependencies.join(" ")}`
-    } else if (packageManager === "npm") {
-      installCmd = `npm install ${data.dependencies.join(" ")}`
-    }
-
-    execSync(
-      installCmd,
-      {
-        stdio: "inherit",
-        cwd: targetAppPath,
-      }
-    )
-  }
-
-  logSuccess(`${component} added successfully`)
+  await addComponent(component);
 }
 
-main()
+// ── Add component ──────────────────────────────────────────────────────────────
+async function addComponent(component) {
+  const projectRoot = process.cwd();
+  const targetAppPath = findAppPath(projectRoot);
 
-// ---------------- HELPERS ----------------
+  log.step(`Adding ${c.cyan(component)} …`);
+  console.log();
+
+  const manifest = await fetchManifest(component);
+
+  log.step("Writing files");
+  for (const file of manifest.files) {
+    const res = await fetch(file.url);
+    if (!res.ok) {
+      log.error(`Failed to download: ${c.dim(file.url)}`);
+      process.exit(1);
+    }
+    const content = await res.text();
+    const dest = path.join(targetAppPath, file.path);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, content);
+    log.file(file.path);
+  }
+
+  const pm = detectPackageManager(targetAppPath);
+
+  if (manifest.dependencies && manifest.dependencies.length > 0) {
+    console.log();
+    log.step(`Installing dependencies via ${c.cyan(pm)}`);
+    console.log(`     ${c.dim(manifest.dependencies.join("  "))}`);
+    console.log();
+    const cmd = buildInstallCmd(pm, manifest.dependencies);
+    execSync(cmd, { stdio: "inherit", cwd: targetAppPath });
+  }
+
+  console.log();
+  log.line();
+  log.success(`${c.bold(c.cyan(component))} added successfully!`);
+  console.log(`       ${c.dim("location →")} ${c.dim(targetAppPath)}`);
+  console.log();
+}
+
+// ── List all available components ──────────────────────────────────────────────
+async function listComponents() {
+  let registry;
+  try {
+    const res = await fetch(`${BASE_URL}/registry.json`);
+    if (!res.ok) throw new Error();
+    registry = await res.json();
+  } catch {
+    log.error("Could not reach the registry.");
+    console.log(
+      `  ${c.dim("Check your internet connection or visit")} ${c.cyan("https://neonbladeui.com")}`,
+    );
+    console.log();
+    process.exit(1);
+  }
+
+  // Group components by category
+  const grouped = registry.components.reduce((acc, comp) => {
+    (acc[comp.category] ??= []).push(comp);
+    return acc;
+  }, {});
+
+  console.log(c.bold(c.white("  Available components")));
+  console.log();
+
+  for (const cat of Object.keys(grouped).sort()) {
+    console.log(`  ${c.cyan(cat)}`);
+    for (const comp of grouped[cat]) {
+      const namePad = comp.name.padEnd(34);
+      console.log(
+        `    ${c.yellow("›")} ${c.white(namePad)} ${c.dim(comp.description)}`,
+      );
+    }
+    console.log();
+  }
+
+  log.line();
+  console.log();
+  console.log(
+    `  ${c.bold("Usage  ")}  ${c.cyan("npx neonblade add")} ${c.yellow("<component-name>")}`,
+  );
+  console.log(
+    `  ${c.bold("Example")}  ${c.cyan("npx neonblade add")} ${c.yellow("ascii-rain")}`,
+  );
+  console.log();
+}
+
+// ── Help ───────────────────────────────────────────────────────────────────────
+function printHelp() {
+  console.log(`  ${c.bold("Commands")}`);
+  console.log();
+  console.log(
+    `    ${c.cyan("npx neonblade add")} ${c.yellow("<component>")}   Add a component to your project`,
+  );
+  console.log(
+    `    ${c.cyan("npx neonblade add")}                 List all available components`,
+  );
+  console.log();
+  console.log(`  ${c.dim("Docs → https://neonbladeui.com")}`);
+  console.log();
+}
+
+// ── Utilities ──────────────────────────────────────────────────────────────────
+async function fetchManifest(component) {
+  try {
+    const res = await fetch(`${BASE_URL}/components/${component}/index.json`);
+    if (!res.ok) throw new Error();
+    return await res.json();
+  } catch {
+    log.error(
+      `Component ${c.yellow(`"${component}"`)} not found in the registry.`,
+    );
+    console.log();
+    console.log(
+      `  Run ${c.cyan("npx neonblade add")} to see all available components.`,
+    );
+    console.log();
+    process.exit(1);
+  }
+}
+
+function buildInstallCmd(pm, deps) {
+  const pkg = deps.join(" ");
+  if (pm === "pnpm") return `pnpm add ${pkg}`;
+  if (pm === "yarn") return `yarn add ${pkg}`;
+  return `npm install ${pkg}`;
+}
 
 function findAppPath(root) {
-  const appsDir = path.join(root, "apps")
+  const appsDir = path.join(root, "apps");
+  if (!fs.existsSync(appsDir)) return root;
 
-  if (!fs.existsSync(appsDir)) return root
-
-  const apps = fs.readdirSync(appsDir)
-
-  for (const app of apps) {
-    const appPath = path.join(appsDir, app)
-    const pkgPath = path.join(appPath, "package.json")
-
+  for (const app of fs.readdirSync(appsDir)) {
+    const appPath = path.join(appsDir, app);
+    const pkgPath = path.join(appPath, "package.json");
     if (fs.existsSync(pkgPath)) {
-      const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"))
-
-      if (pkg.dependencies && pkg.dependencies.next) {
-        return appPath
-      }
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+      if (pkg.dependencies && pkg.dependencies.next) return appPath;
     }
   }
-
-  return root
+  return root;
 }
 
-function logStep(message) {
-  console.log(`📦 ${message}`)
+function detectPackageManager(dir) {
+  if (fs.existsSync(path.join(dir, "pnpm-lock.yaml"))) return "pnpm";
+  if (fs.existsSync(path.join(dir, "yarn.lock"))) return "yarn";
+  if (fs.existsSync(path.join(dir, "package-lock.json"))) return "npm";
+  return "npm";
 }
 
-function logSuccess(message) {
-  console.log(`✅ ${message}`)
-}
-
-function logError(message) {
-  console.log(`❌ ${message}`)
-}
-
-async function fetchComponent(component) {
-  try {
-    const res = await fetch(
-      `${BASE_URL}/components/${component}/index.json`
-    )
-    if (!res.ok) throw new Error("Not found")
-    return await res.json()
-  } catch (err) {
-    logError(`Component "${component}" not found`)
-    process.exit(1)
-  }
-}
-
-
-function detectPackageManager(projectPath) {
-  if (fs.existsSync(path.join(projectPath, "pnpm-lock.yaml"))) {
-    return "pnpm"
-  }
-
-  if (fs.existsSync(path.join(projectPath, "yarn.lock"))) {
-    return "yarn"
-  }
-
-  if (fs.existsSync(path.join(projectPath, "package-lock.json"))) {
-    return "npm"
-  }
-
-  return "npm" // fallback
-}
+main().catch((err) => {
+  console.error(c.red(`\n  ✖  ${err.message || String(err)}\n`));
+  process.exit(1);
+});

@@ -1,0 +1,14 @@
+{
+  "name": "neon-glow-corner-cut-card",
+  "files": [
+    {
+      "path": "components/ui/neon-glow-corner-cut-card/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-glow-corner-cut-card/index.tsx"
+    },
+    {
+      "path": "components/ui/neon-glow-corner-cut-card/neonglow-cornercut-card.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-glow-corner-cut-card/neonglow-cornercut-card.css"
+    }
+  ],
+  "dependencies": []
+}

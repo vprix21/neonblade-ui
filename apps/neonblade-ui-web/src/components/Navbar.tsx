@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { cn } from "../lib/utils";
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,37 +17,97 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMobileOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <nav
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 border-b border-white/5",
-        scrolled
-          ? "bg-black/80 backdrop-blur-md py-4"
-          : "bg-transparent py-6"
-      )}
-    >
-      <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          {/* <div className="w-8 h-8 bg-[#00f3ff] corner-cut flex items-center justify-center text-black font-bold font-orbitron text-xl group-hover:box-glow-cyan transition-shadow">
-            N
-          </div> */}
-          <span className="font-orbitron font-bold text-xl tracking-wider text-white group-hover:text-glow-cyan transition-all">
-            NeonBlade<span className="text-[#00f3ff]">UI</span>
-          </span>
-        </Link>
-        
-        <div className="hidden md:flex items-center gap-8 font-orbitron text-sm tracking-wide bg-gradient-to-r from-transparent to-transparent">
-          <Link href="/components" className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer">
-            Components
+    <>
+      <nav
+        className={cn(
+          "fixed top-0 w-full z-50 transition-all duration-300 border-b border-white/5",
+          scrolled || mobileOpen
+            ? "bg-black/95 backdrop-blur-md py-4"
+            : "bg-transparent py-6",
+        )}
+      >
+        <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-center gap-3 group"
+            onClick={() => setMobileOpen(false)}
+          >
+            <img
+              src="/neonblade_ui_logo.png"
+              alt="NeonBlade UI Logo"
+              className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
+            />
+            <span className="font-orbitron font-bold text-xl tracking-wider text-white group-hover:text-glow-cyan transition-all">
+              NeonBlade<span className="text-[#00f3ff]">UI</span>
+            </span>
           </Link>
-          <Link href="/docs" className="text-white/70 hover:text-[#ff00ff] hover:text-glow-pink transition-all cursor-pointer">
-            Docs
-          </Link>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="text-white/70 hover:text-white transition-all cursor-pointer">
-            GitHub
-          </a>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8 font-orbitron text-sm tracking-wide">
+            <Link
+              href="/components"
+              className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            >
+              Components
+            </Link>
+            <Link
+              href="/docs"
+              className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            >
+              Docs
+            </Link>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex items-center justify-center w-10 h-10 text-white/70 hover:text-[#00f3ff] transition-colors"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile dropdown */}
+        {mobileOpen && (
+          <div className="md:hidden border-t border-[#00f3ff]/20 bg-black/95 backdrop-blur-md">
+            <div className="container mx-auto px-6 max-w-7xl py-4 flex flex-col gap-1 font-orbitron text-sm tracking-wide">
+              <Link
+                href="/components"
+                className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+                onClick={() => setMobileOpen(false)}
+              >
+                Components
+              </Link>
+              <Link
+                href="/docs"
+                className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+                onClick={() => setMobileOpen(false)}
+              >
+                Docs
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Backdrop overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+    </>
   );
 }

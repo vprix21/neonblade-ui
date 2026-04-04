@@ -11,7 +11,7 @@ import AccentFrame from "../lib/components/ui/frames/AccentFrame";
 export function Hero() {
   const [copied, setCopied] = useState(false);
   const [bgType, setBgType] = useState<"grid" | "ascii">("grid");
-  
+
   const handleCopy = () => {
     const text = "npx neonblade add";
     if (navigator.clipboard && window.isSecureContext) {
@@ -24,7 +24,7 @@ export function Hero() {
       document.body.prepend(textArea);
       textArea.select();
       try {
-        document.execCommand('copy');
+        document.execCommand("copy");
       } catch (error) {
         console.error(error);
       } finally {
@@ -37,15 +37,15 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
-      {bgType === "grid" ? <DatalinesWithGrid /> : <AsciiRain />}
-      
+      {bgType === "grid" ? <DatalinesWithGrid overlay={true} /> : <AsciiRain />}
+
       {/* Background Toggle */}
       <div className="absolute top-24 right-4 md:right-8 z-30 flex items-center gap-1 p-1 bg-black/40 backdrop-blur-md border border-white/10 corner-cut">
         <button
           onClick={() => setBgType("grid")}
           className={`px-3 py-1.5 text-xs font-orbitron transition-all ${
-            bgType === "grid" 
-              ? "bg-[#00f3ff] text-black shadow-[0_0_10px_#00f3ff] font-bold" 
+            bgType === "grid"
+              ? "bg-[#00f3ff] text-black shadow-[0_0_10px_#00f3ff] font-bold"
               : "text-white/50 hover:text-white"
           }`}
         >
@@ -54,19 +54,15 @@ export function Hero() {
         <button
           onClick={() => setBgType("ascii")}
           className={`px-3 py-1.5 text-xs font-orbitron transition-all ${
-            bgType === "ascii" 
-              ? "bg-[#ff14ff] text-black shadow-[0_0_10px_#ff14ff] font-bold" 
+            bgType === "ascii"
+              ? "bg-[#ff14ff] text-black shadow-[0_0_10px_#ff14ff] font-bold"
               : "text-white/50 hover:text-white"
-          }`} 
+          }`}
         >
           MATRIX
         </button>
       </div>
 
-      {/* Radial gradient overlay to blend into the main background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_100%)] pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black pointer-events-none z-0" />
-      
       <div className="container relative z-10 mx-auto px-6 max-w-7xl flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,15 +73,17 @@ export function Hero() {
           <span className="w-2 h-2 rounded-full bg-[#00f3ff] animate-flicker" />
           The Future of UI is Here
         </motion.div>
-       
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold font-orbitron tracking-tighter mb-6 leading-tight max-w-4xl"
         >
-          Build future interfaces with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">NeonBlade</span>
+          Build future interfaces with{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
+            NeonBlade
+          </span>
         </motion.h1>
 
         <motion.p
@@ -94,8 +92,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-white/60 max-w-2xl mb-12 font-light"
         >
-          A highly customizable, futuristic React UI components library. 
-          Unique, high-end designs that propel your digital presence into the future.
+          A highly customizable, futuristic React UI components library. Unique,
+          high-end designs that propel your digital presence into the future.
         </motion.p>
 
         <motion.div
@@ -107,10 +105,12 @@ export function Hero() {
           <Link href="/components">
             <button className="corner-cut bg-[#00f3ff] text-black px-8 py-4 font-orbitron font-bold tracking-wider hover:bg-white hover:box-glow-cyan transition-all uppercase text-sm group flex items-center gap-2">
               Explore Components
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span className="group-hover:translate-x-1 transition-transform">
+                →
+              </span>
             </button>
           </Link>
-          
+
           <div className="relative group">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00f3ff] to-[#ff00ff] rounded blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
             <div className="relative flex items-center bg-black border border-white/10 p-1 corner-cut-bottom-left group-hover:bg-[#0a0a0a] transition-colors">
@@ -118,12 +118,16 @@ export function Hero() {
               <code className="pr-4 py-3 font-mono text-sm text-white/80">
                 npx neonblade add
               </code>
-              <button 
+              <button
                 onClick={handleCopy}
                 className="p-3 ml-2 hover:bg-white/10 transition-colors border-l border-white/10"
                 aria-label="Copy CLI command"
               >
-                {copied ? <Check className="w-4 h-4 text-[#39ff14]" /> : <Copy className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />}
+                {copied ? (
+                  <Check className="w-4 h-4 text-[#39ff14]" />
+                ) : (
+                  <Copy className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+                )}
               </button>
             </div>
           </div>

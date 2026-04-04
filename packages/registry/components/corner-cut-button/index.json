@@ -1,0 +1,14 @@
+{
+  "name": "corner-cut-button",
+  "files": [
+    {
+      "path": "components/ui/corner-cut-button/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/corner-cut-button/index.tsx"
+    },
+    {
+      "path": "components/ui/corner-cut-button/corner-cut-button.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/corner-cut-button/corner-cut-button.css"
+    }
+  ],
+  "dependencies": []
+}
