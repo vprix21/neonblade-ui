@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+const footerLinks = [
+  { label: "Components", href: "/components" },
+  { label: "Docs", href: "/docs" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black pt-12 pb-8 relative overflow-hidden">
@@ -15,16 +22,28 @@ export function Footer() {
             alt="NeonBlade UI Logo"
             className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
           />
-          <span className="font-orbitron font-bold text-lg tracking-wider text-white">
-            NeonBlade<span className="text-[#00f3ff]">UI</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff] font-orbitron font-bold text-lg tracking-wider">
+            NeonBlade UI
           </span>
         </Link>
 
-        <p className="text-sm text-white/40 mb-2 font-mono">
+        <p className="text-sm text-white/40 mb-6 font-mono">
           Engineered for the future of digital frontier.
         </p>
 
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6"></div>
+        <nav className="flex flex-wrap justify-center gap-6 mb-6">
+          {footerLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-xs font-orbitron tracking-widest text-white/40 hover:text-[#00f3ff] uppercase transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
         <p className="text-sm font-orbitron text-white/50 tracking-wider">
           Developed by{" "}

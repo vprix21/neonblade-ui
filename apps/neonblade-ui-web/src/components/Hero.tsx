@@ -7,6 +7,7 @@ import { Copy, Check } from "lucide-react";
 import { DatalinesWithGrid } from "../lib/components/ui/backgrounds/DatalinesWithGrid";
 import { AsciiRain } from "../lib/components/ui/backgrounds/AsciiRain";
 import AccentFrame from "../lib/components/ui/frames/AccentFrame";
+import GlitchText from "../../components/ui/glitch-text";
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
@@ -82,7 +83,7 @@ export function Hero() {
         >
           Build future interfaces with{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
-            NeonBlade
+            NeonBlade UI
           </span>
         </motion.h1>
 

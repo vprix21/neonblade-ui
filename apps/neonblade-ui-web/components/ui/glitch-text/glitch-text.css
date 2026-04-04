@@ -1,0 +1,615 @@
+/* ================================================================
+   GlitchText — glitch-text.css  (enhanced)
+   All new additions use the `gt-` prefix.
+   ================================================================
+
+   CSS custom properties set inline by the component:
+     --gt-color-a   : ::before channel color  (default #ff00ff)
+     --gt-color-b   : ::after channel color   (default #00f3ff)
+     --gt-offset    : horizontal split offset (default 2px)
+     --gt-speed     : primary animation duration (default 1s)
+     --gt-glow-color: neon text-shadow color  (default #00f3ff)
+================================================================ */
+
+/* ---- Base wrapper ------------------------------------------ */
+
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+  font-weight: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+/* Pseudo-elements for the RGB split channels */
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: inherit;
+}
+
+.glitch-wrapper::before {
+  left: var(--gt-offset, 2px);
+  text-shadow: -1px 0 var(--gt-color-a, #ff00ff);
+  clip-path: inset(50% 0 50% 0);
+}
+
+.glitch-wrapper::after {
+  left: calc(-1 * var(--gt-offset, 2px));
+  text-shadow: -1px 0 var(--gt-color-b, #00f3ff);
+  clip-path: inset(50% 0 50% 0);
+}
+
+/* ---- Neon glow add-on ------------------------------------- */
+
+.gt-neon {
+  text-shadow:
+    0 0 8px var(--gt-glow-color, #00f3ff),
+    0 0 20px var(--gt-glow-color, #00f3ff),
+    0 0 45px color-mix(in srgb, var(--gt-glow-color, #00f3ff) 45%, transparent);
+}
+
+@keyframes gt-neon-flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    text-shadow:
+      0 0 8px var(--gt-glow-color, #00f3ff),
+      0 0 20px var(--gt-glow-color, #00f3ff),
+      0 0 45px
+        color-mix(in srgb, var(--gt-glow-color, #00f3ff) 45%, transparent);
+    opacity: 1;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    text-shadow: none;
+    opacity: 0.25;
+  }
+}
+
+.gt-neon-flicker {
+  animation: gt-neon-flicker 4s linear infinite;
+}
+
+/* ---- Intensity: subtle keyframes -------------------------- */
+
+@keyframes gt-anim-1-subtle {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-1px, 0.5px);
+  }
+  3% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(1px, -0.5px);
+  }
+  6% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-1px, 1px);
+  }
+  9% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(1px, -1px);
+  }
+  12% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-1px, 0.5px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes gt-anim-2-subtle {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(1px, -0.5px);
+  }
+  3% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-1px, 1px);
+  }
+  6% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(1px, -1px);
+  }
+  9% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-1px, 0.5px);
+  }
+  12% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(1px, -0.5px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+/* ---- Intensity: normal keyframes (original, preserved) ---- */
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 1px);
+  }
+  3% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -1px);
+  }
+  6% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-2px, 2px);
+  }
+  9% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+  12% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 1px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -1px);
+  }
+  3% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-2px, 2px);
+  }
+  6% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(2px, -2px);
+  }
+  9% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-2px, 1px);
+  }
+  12% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(2px, -1px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+/* ---- Intensity: heavy keyframes --------------------------- */
+
+@keyframes gt-anim-1-heavy {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-4px, 2px);
+  }
+  3% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(4px, -2px);
+  }
+  6% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-4px, 4px);
+  }
+  9% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(4px, -4px);
+  }
+  12% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-4px, 2px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes gt-anim-2-heavy {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(4px, -2px);
+  }
+  3% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-4px, 4px);
+  }
+  6% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(4px, -4px);
+  }
+  9% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-4px, 2px);
+  }
+  12% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(4px, -2px);
+  }
+  15% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(50% 0 50% 0);
+    transform: translate(0);
+  }
+}
+
+/* ---- Intensity: chaos keyframes (full-cycle, skew) -------- */
+
+@keyframes gt-anim-1-chaos {
+  0% {
+    clip-path: inset(2% 0 90% 0);
+    transform: translate(-6px, 3px) skewX(-2deg);
+  }
+  5% {
+    clip-path: inset(65% 0 5% 0);
+    transform: translate(6px, -3px) skewX(3deg);
+  }
+  10% {
+    clip-path: inset(30% 0 45% 0);
+    transform: translate(-5px, 4px) skewX(0);
+  }
+  15% {
+    clip-path: inset(85% 0 2% 0);
+    transform: translate(5px, -4px) skewX(-3deg);
+  }
+  20% {
+    clip-path: inset(15% 0 65% 0);
+    transform: translate(-6px, 2px) skewX(2deg);
+  }
+  25% {
+    clip-path: inset(55% 0 25% 0);
+    transform: translate(4px, 0) skewX(0);
+  }
+  30% {
+    clip-path: inset(5% 0 75% 0);
+    transform: translate(-4px, 3px) skewX(-1deg);
+  }
+  35% {
+    clip-path: inset(75% 0 10% 0);
+    transform: translate(6px, -2px) skewX(2deg);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(-5px, 1px);
+  }
+  45% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(3px, -3px) skewX(-2deg);
+  }
+  50% {
+    clip-path: inset(22% 0 58% 0);
+    transform: translate(-6px, 2px) skewX(3deg);
+  }
+  55% {
+    clip-path: inset(70% 0 15% 0);
+    transform: translate(5px, -1px);
+  }
+  60% {
+    clip-path: inset(8% 0 82% 0);
+    transform: translate(-3px, 4px) skewX(-1deg);
+  }
+  65% {
+    clip-path: inset(48% 0 35% 0);
+    transform: translate(6px, -3px) skewX(1deg);
+  }
+  70% {
+    clip-path: inset(18% 0 62% 0);
+    transform: translate(-6px, 2px);
+  }
+  75% {
+    clip-path: inset(88% 0 3% 0);
+    transform: translate(4px, -4px) skewX(-2deg);
+  }
+  80% {
+    clip-path: inset(35% 0 48% 0);
+    transform: translate(-5px, 3px) skewX(2deg);
+  }
+  85% {
+    clip-path: inset(60% 0 22% 0);
+    transform: translate(6px, -2px);
+  }
+  90% {
+    clip-path: inset(12% 0 78% 0);
+    transform: translate(-4px, 4px) skewX(-3deg);
+  }
+  95% {
+    clip-path: inset(78% 0 8% 0);
+    transform: translate(5px, -3px) skewX(1deg);
+  }
+  100% {
+    clip-path: inset(2% 0 90% 0);
+    transform: translate(-6px, 3px) skewX(-2deg);
+  }
+}
+
+@keyframes gt-anim-2-chaos {
+  0% {
+    clip-path: inset(10% 0 55% 0);
+    transform: translate(5px, -2px) skewX(2deg);
+  }
+  5% {
+    clip-path: inset(75% 0 8% 0);
+    transform: translate(-5px, 3px) skewX(-3deg);
+  }
+  10% {
+    clip-path: inset(25% 0 38% 0);
+    transform: translate(6px, -4px);
+  }
+  15% {
+    clip-path: inset(50% 0 28% 0);
+    transform: translate(-6px, 2px) skewX(3deg);
+  }
+  20% {
+    clip-path: inset(3% 0 72% 0);
+    transform: translate(4px, -2px) skewX(-2deg);
+  }
+  25% {
+    clip-path: inset(62% 0 18% 0);
+    transform: translate(-4px, 4px);
+  }
+  30% {
+    clip-path: inset(44% 0 42% 0);
+    transform: translate(6px, -3px) skewX(1deg);
+  }
+  35% {
+    clip-path: inset(82% 0 4% 0);
+    transform: translate(-5px, 2px) skewX(-1deg);
+  }
+  40% {
+    clip-path: inset(14% 0 68% 0);
+    transform: translate(5px, -4px) skewX(2deg);
+  }
+  45% {
+    clip-path: inset(58% 0 24% 0);
+    transform: translate(-6px, 3px);
+  }
+  50% {
+    clip-path: inset(32% 0 50% 0);
+    transform: translate(4px, -2px) skewX(-3deg);
+  }
+  55% {
+    clip-path: inset(90% 0 2% 0);
+    transform: translate(-5px, 4px) skewX(2deg);
+  }
+  60% {
+    clip-path: inset(6% 0 80% 0);
+    transform: translate(6px, -3px);
+  }
+  65% {
+    clip-path: inset(68% 0 14% 0);
+    transform: translate(-4px, 2px) skewX(-2deg);
+  }
+  70% {
+    clip-path: inset(20% 0 62% 0);
+    transform: translate(5px, -4px) skewX(3deg);
+  }
+  75% {
+    clip-path: inset(38% 0 44% 0);
+    transform: translate(-6px, 3px);
+  }
+  80% {
+    clip-path: inset(72% 0 12% 0);
+    transform: translate(4px, -2px) skewX(-1deg);
+  }
+  85% {
+    clip-path: inset(16% 0 70% 0);
+    transform: translate(-5px, 4px) skewX(2deg);
+  }
+  90% {
+    clip-path: inset(85% 0 6% 0);
+    transform: translate(6px, -3px);
+  }
+  95% {
+    clip-path: inset(42% 0 38% 0);
+    transform: translate(-4px, 2px) skewX(-2deg);
+  }
+  100% {
+    clip-path: inset(10% 0 55% 0);
+    transform: translate(5px, -2px) skewX(2deg);
+  }
+}
+
+/* ---- Active / always-on mode (original keyframes kept) ---- */
+
+@keyframes glitch-active-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 1px);
+  }
+  10% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -1px);
+  }
+  20% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-2px, 2px);
+  }
+  30% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    clip-path: inset(55% 0 30% 0);
+    transform: translate(2px, 0);
+  }
+  60% {
+    clip-path: inset(5% 0 85% 0);
+    transform: translate(-1px, 2px);
+  }
+  70% {
+    clip-path: inset(70% 0 15% 0);
+    transform: translate(2px, -1px);
+  }
+  80% {
+    clip-path: inset(35% 0 45% 0);
+    transform: translate(-2px, 1px);
+  }
+  90% {
+    clip-path: inset(90% 0 2% 0);
+    transform: translate(1px, -2px);
+  }
+  100% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 1px);
+  }
+}
+
+@keyframes glitch-active-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -1px);
+  }
+  10% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(2px, -2px);
+  }
+  30% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(2px, -1px);
+  }
+  50% {
+    clip-path: inset(65% 0 20% 0);
+    transform: translate(-1px, 2px);
+  }
+  60% {
+    clip-path: inset(15% 0 75% 0);
+    transform: translate(2px, -2px);
+  }
+  70% {
+    clip-path: inset(45% 0 40% 0);
+    transform: translate(-2px, 1px);
+  }
+  80% {
+    clip-path: inset(2% 0 90% 0);
+    transform: translate(2px, -1px);
+  }
+  90% {
+    clip-path: inset(75% 0 10% 0);
+    transform: translate(-1px, 2px);
+  }
+  100% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -1px);
+  }
+}
+
+/* ================================================================
+   Animation application by mode × intensity
+   Formula: (mode) × (intensity)
+   Default (no intensity class) → normal keyframes
+================================================================ */
+
+/* ----------- hover mode, normal intensity (default) --------- */
+.hoverglitch:hover::before {
+  animation: glitch-anim-1 var(--gt-speed, 1s) infinite linear;
+}
+.hoverglitch:hover::after {
+  animation: glitch-anim-2 calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+
+/* ----------- active mode, normal intensity (default) -------- */
+.activeglitch::before {
+  animation: glitch-anim-1 var(--gt-speed, 1s) infinite linear;
+}
+.activeglitch::after {
+  animation: glitch-anim-2 calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+
+/* ----------- subtle ----------------------------------------- */
+.gt-subtle.hoverglitch:hover::before {
+  animation: gt-anim-1-subtle var(--gt-speed, 1s) infinite linear;
+}
+.gt-subtle.hoverglitch:hover::after {
+  animation: gt-anim-2-subtle calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+.gt-subtle.activeglitch::before {
+  animation: gt-anim-1-subtle var(--gt-speed, 1s) infinite linear;
+}
+.gt-subtle.activeglitch::after {
+  animation: gt-anim-2-subtle calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+
+/* ----------- heavy ------------------------------------------ */
+.gt-heavy.hoverglitch:hover::before {
+  animation: gt-anim-1-heavy var(--gt-speed, 1s) infinite linear;
+}
+.gt-heavy.hoverglitch:hover::after {
+  animation: gt-anim-2-heavy calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+.gt-heavy.activeglitch::before {
+  animation: gt-anim-1-heavy var(--gt-speed, 1s) infinite linear;
+}
+.gt-heavy.activeglitch::after {
+  animation: gt-anim-2-heavy calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+
+/* ----------- chaos ------------------------------------------ */
+.gt-chaos.hoverglitch:hover::before {
+  animation: gt-anim-1-chaos var(--gt-speed, 0.8s) infinite linear;
+}
+.gt-chaos.hoverglitch:hover::after {
+  animation: gt-anim-2-chaos calc(var(--gt-speed, 0.8s) * 1.1) infinite linear;
+}
+.gt-chaos.activeglitch::before {
+  animation: gt-anim-1-chaos var(--gt-speed, 0.8s) infinite linear;
+}
+.gt-chaos.activeglitch::after {
+  animation: gt-anim-2-chaos calc(var(--gt-speed, 0.8s) * 1.1) infinite linear;
+}

@@ -1,0 +1,227 @@
+/* ============================================================
+   Badge — badge.css
+   All class names are prefixed with `bdg-` to avoid conflicts
+   with globals.css.
+
+   CSS custom properties driven by the component (set inline):
+     --bdg-color       : accent color
+     --bdg-corner-size : diagonal cut depth in px (corner-cut only)
+============================================================ */
+
+/* ---- Clip paths (corner-cut shapes) ----------------------- */
+
+.bdg-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--bdg-corner-size, 8px)),
+    calc(100% - var(--bdg-corner-size, 8px)) 100%,
+    0 100%
+  );
+}
+
+.bdg-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--bdg-corner-size, 8px) 100%,
+    0 calc(100% - var(--bdg-corner-size, 8px))
+  );
+}
+
+.bdg-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--bdg-corner-size, 8px)) 0,
+    100% var(--bdg-corner-size, 8px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.bdg-clip-tl {
+  clip-path: polygon(
+    var(--bdg-corner-size, 8px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--bdg-corner-size, 8px)
+  );
+}
+
+.bdg-clip-all {
+  clip-path: polygon(
+    var(--bdg-corner-size, 8px) 0,
+    100% 0,
+    100% calc(100% - var(--bdg-corner-size, 8px)),
+    calc(100% - var(--bdg-corner-size, 8px)) 100%,
+    0 100%,
+    0 var(--bdg-corner-size, 8px)
+  );
+}
+
+/* ---- Shape border-radius ---------------------------------- */
+
+.bdg-shape-pill {
+  border-radius: 9999px;
+}
+
+.bdg-shape-rect {
+  border-radius: 0;
+}
+
+/* ---- Wrapper ----------------------------------------------- */
+
+.bdg-wrapper {
+  position: relative;
+  display: inline-flex;
+  /* 1px padding exposes the border-frame on all edges including the diagonal */
+  padding: 1px;
+  vertical-align: middle;
+}
+
+/* ---- Border frame — provides a 1px border on every edge,
+   including the diagonal corner where CSS border can't reach --- */
+
+.bdg-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Variant-specific border-frame colors */
+.bdg-variant-outline .bdg-frame {
+  background: var(--bdg-color);
+}
+
+.bdg-variant-solid .bdg-frame,
+.bdg-variant-ghost .bdg-frame {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Inner content ---------------------------------------- */
+
+.bdg-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-orbitron, "Orbitron", sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ---- Variants --------------------------------------------- */
+
+.bdg-variant-solid .bdg-inner {
+  background-color: var(--bdg-color);
+  color: #000;
+}
+
+.bdg-variant-outline .bdg-inner {
+  background-color: #000;
+  color: var(--bdg-color);
+}
+
+.bdg-variant-ghost .bdg-inner {
+  background-color: color-mix(in srgb, var(--bdg-color) 12%, #000);
+  color: var(--bdg-color);
+}
+
+/* ---- Sizes ------------------------------------------------- */
+
+.bdg-size-xs .bdg-inner {
+  padding: 2px 8px;
+  font-size: 9px;
+  gap: 4px;
+}
+
+.bdg-size-xs .bdg-dot {
+  width: 5px;
+  height: 5px;
+}
+
+.bdg-size-sm .bdg-inner {
+  padding: 4px 10px;
+  font-size: 10px;
+  gap: 5px;
+}
+
+.bdg-size-sm .bdg-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.bdg-size-md .bdg-inner {
+  padding: 5px 14px;
+  font-size: 11px;
+  gap: 6px;
+}
+
+.bdg-size-md .bdg-dot {
+  width: 7px;
+  height: 7px;
+}
+
+/* ---- Glow -------------------------------------------------- */
+
+.bdg-glow {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bdg-color) 65%, transparent);
+  text-shadow: 0 0 6px color-mix(in srgb, var(--bdg-color) 80%, transparent);
+}
+
+/* ---- Indicator dot ---------------------------------------- */
+
+.bdg-dot {
+  border-radius: 9999px;
+  background-color: var(--bdg-color);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* dot-solid: no animation */
+
+@keyframes bdg-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes bdg-flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.15;
+  }
+}
+
+.bdg-dot-pulse {
+  animation: bdg-pulse 1.5s ease-in-out infinite;
+}
+
+.bdg-dot-flicker {
+  animation: bdg-flicker 0.45s linear infinite;
+}

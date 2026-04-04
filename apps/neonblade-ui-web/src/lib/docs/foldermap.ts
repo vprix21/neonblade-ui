@@ -7,6 +7,7 @@ const folderMap: Record<string, string> = {
   "glitch-text": "GlitchText",
   "corner-cut-button": "CornerCutButton",
   "neon-glow-corner-cut-card": "NeonGlowCornerCutCard",
+  badge: "Badge",
 };
 
 export default folderMap;

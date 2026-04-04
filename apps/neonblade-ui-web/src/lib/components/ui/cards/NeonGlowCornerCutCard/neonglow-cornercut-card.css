@@ -70,6 +70,8 @@
 .ngcc-wrapper {
   position: relative;
   height: 100%;
+  /* 1px padding creates the inset for the border-frame to show through */
+  padding: 1px;
 }
 
 /* ---- Gradient glow backdrop --------------------------------- */
@@ -90,20 +92,32 @@
   z-index: 0;
 }
 
+/* ---- Border frame — sits between glow and card, handles all borders
+   including the clipped diagonal edge where CSS border can't reach ---- */
+
+.ngcc-border-frame {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 5;
+  pointer-events: none;
+  transition:
+    background 300ms ease,
+    opacity 300ms ease;
+}
+
 /* ---- Inner card -------------------------------------------- */
 
 .ngcc-card {
   position: relative;
   height: 100%;
   background-color: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* No CSS border — the border-frame layer behind handles all border rendering */
   display: flex;
   flex-direction: column;
   overflow: hidden;
   z-index: 10;
-  transition:
-    border-color 300ms ease,
-    box-shadow 300ms ease;
+  transition: box-shadow 300ms ease;
 }
 
 /* ---- Hover effects ----------------------------------------- */
@@ -112,8 +126,9 @@
 .ngcc-hover-gradient:hover .ngcc-glow {
   opacity: 1;
 }
-.ngcc-hover-gradient:hover .ngcc-card {
-  border-color: transparent;
+/* glow takes over — hide the static border frame so the glow rim shows cleanly */
+.ngcc-hover-gradient:hover .ngcc-border-frame {
+  opacity: 0;
 }
 
 /* solid — single accent-color backdrop */
@@ -123,20 +138,18 @@
 .ngcc-hover-solid:hover .ngcc-glow {
   opacity: 0.75;
 }
-.ngcc-hover-solid:hover .ngcc-card {
-  border-color: transparent;
+.ngcc-hover-solid:hover .ngcc-border-frame {
+  opacity: 0;
 }
 
-/* glow-only — box-shadow on the card, no backdrop div */
+/* glow-only — box-shadow on the card; border-frame glows to neon color */
 .ngcc-hover-glow-only .ngcc-glow {
   display: none;
 }
+.ngcc-hover-glow-only:hover .ngcc-border-frame {
+  background: color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 45%, transparent);
+}
 .ngcc-hover-glow-only:hover .ngcc-card {
-  border-color: color-mix(
-    in srgb,
-    var(--ngcc-color-a, #00f3ff) 45%,
-    transparent
-  );
   box-shadow:
     0 0 var(--ngcc-glow-size, 15px)
       color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 65%, transparent),
@@ -165,12 +178,10 @@
 .ngcc-hover-pulse .ngcc-glow {
   display: none;
 }
+.ngcc-hover-pulse:hover .ngcc-border-frame {
+  background: color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 40%, transparent);
+}
 .ngcc-hover-pulse:hover .ngcc-card {
-  border-color: color-mix(
-    in srgb,
-    var(--ngcc-color-a, #00f3ff) 40%,
-    transparent
-  );
   animation: ngcc-pulse 1.4s ease-in-out infinite;
 }
 
@@ -194,8 +205,8 @@
   opacity: 1;
   animation: ngcc-border-sweep 2s linear infinite;
 }
-.ngcc-hover-trace:hover .ngcc-card {
-  border-color: transparent;
+.ngcc-hover-trace:hover .ngcc-border-frame {
+  opacity: 0;
 }
 
 /* none — no hover effect on glow (icon/title transitions still active) */

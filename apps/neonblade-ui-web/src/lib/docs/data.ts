@@ -66,4 +66,16 @@ export const categories = [
       },
     ],
   },
+  {
+    name: "Badges",
+    slug: "badges",
+    components: [
+      {
+        name: "Badge",
+        slug: "badge",
+        description:
+          "Futuristic label badge with pill, rectangle, and corner-cut shapes, dot indicators, and glow.",
+      },
+    ],
+  },
 ];

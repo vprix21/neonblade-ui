@@ -161,20 +161,9 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
   const resolvedColor = COLOR_PRESETS[color] ?? color;
   const glowSize = GLOW_SIZES[glowIntensity];
 
-  const classes = [
-    "relative group font-orbitron font-bold tracking-wider uppercase transition-all overflow-hidden cursor-pointer",
-    SIZE_CLASSES[size],
-    CORNER_CLASSES[corner],
-    HOVER_CLASSES[hoverEffect],
-    `ccb-${variant}`,
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <button
-      className={classes}
+    <div
+      className={`ccb-wrapper ccb-wrapper-${variant} ${className}`}
       style={
         {
           "--ccb-color": resolvedColor,
@@ -183,31 +172,49 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           ...style,
         } as React.CSSProperties
       }
-      {...props}
     >
-      {/* Shine sweep layer — only rendered when needed */}
-      {hoverEffect === "shine" && (
-        <span className="ccb-shine-layer" aria-hidden="true" />
-      )}
+      {/* Border frame — same clip-path as button, provides the 1px diagonal border */}
+      <div
+        className={`ccb-border-frame ${CORNER_CLASSES[corner]}`}
+        aria-hidden="true"
+      />
 
-      {/* Scan line layer — only rendered when needed */}
-      {hoverEffect === "scan" && (
-        <span className="ccb-scan-layer" aria-hidden="true" />
-      )}
-
-      {/* Content sits above decorative layers */}
-      <span className="relative z-10 flex items-center gap-2">
-        {children}
-        {showArrow && (
-          <span
-            className="group-hover:translate-x-1 transition-transform inline-block"
-            aria-hidden="true"
-          >
-            →
-          </span>
+      <button
+        className={[
+          "ccb-btn relative group font-orbitron font-bold tracking-wider uppercase transition-all overflow-hidden cursor-pointer",
+          SIZE_CLASSES[size],
+          CORNER_CLASSES[corner],
+          HOVER_CLASSES[hoverEffect],
+          `ccb-${variant}`,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        {...props}
+      >
+        {/* Shine sweep layer — only rendered when needed */}
+        {hoverEffect === "shine" && (
+          <span className="ccb-shine-layer" aria-hidden="true" />
         )}
-      </span>
-    </button>
+
+        {/* Scan line layer — only rendered when needed */}
+        {hoverEffect === "scan" && (
+          <span className="ccb-scan-layer" aria-hidden="true" />
+        )}
+
+        {/* Content sits above decorative layers */}
+        <span className="relative z-10 flex items-center gap-2">
+          {children}
+          {showArrow && (
+            <span
+              className="group-hover:translate-x-1 transition-transform inline-block"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          )}
+        </span>
+      </button>
+    </div>
   );
 };
 

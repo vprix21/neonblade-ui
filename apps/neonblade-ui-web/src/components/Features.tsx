@@ -45,7 +45,6 @@ export function Features() {
             <span>
               {" "}
               <AccentFrame
-                edgeColor="bg-neon-cyan"
                 mode="duo"
                 className="inline-flex items-center gap-2 text-3xl md:text-5xl font-orbitron tracking-widest text-neon-cyan uppercase"
               >

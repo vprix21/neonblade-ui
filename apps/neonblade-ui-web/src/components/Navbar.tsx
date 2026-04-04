@@ -48,7 +48,10 @@ export function Navbar() {
               className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
             />
             <span className="font-orbitron font-bold text-xl tracking-wider text-white group-hover:text-glow-cyan transition-all">
-              NeonBlade<span className="text-[#00f3ff]">UI</span>
+              {/* NeonBlade<span className="text-[#00f3ff]">UI</span> */}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
+                NeonBlade UI
+              </span>
             </span>
           </Link>
 
@@ -65,6 +68,18 @@ export function Navbar() {
               className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
             >
               Docs
+            </Link>
+            <Link
+              href="/about"
+              className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            >
+              Contact
             </Link>
           </div>
 
@@ -95,6 +110,20 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 Docs
+              </Link>
+              <Link
+                href="/about"
+                className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+                onClick={() => setMobileOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+                onClick={() => setMobileOpen(false)}
+              >
+                Contact
               </Link>
             </div>
           </div>

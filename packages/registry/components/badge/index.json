@@ -1,0 +1,14 @@
+{
+  "name": "badge",
+  "files": [
+    {
+      "path": "components/ui/badge/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/badge/index.tsx"
+    },
+    {
+      "path": "components/ui/badge/badge.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/badge/badge.css"
+    }
+  ],
+  "dependencies": []
+}

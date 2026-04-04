@@ -11,6 +11,11 @@
       "description": "Animated Matrix-style ASCII rain background"
     },
     {
+      "name": "badge",
+      "category": "badges",
+      "description": "Futuristic label badge with pill, rectangle, and corner-cut shapes"
+    },
+    {
       "name": "blur-text",
       "category": "text",
       "description": "Text with smooth blur-in reveal animation"
