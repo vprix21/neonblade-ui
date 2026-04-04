@@ -57,6 +57,43 @@
   );
 }
 
+/* ---- Wrapper ---------------------------------------------- */
+
+.ccb-wrapper {
+  position: relative;
+  display: inline-flex;
+  /* 1px padding exposes the border-frame layer on all edges including diagonal */
+  padding: 1px;
+}
+
+/* ---- Border frame — same clip-path as button, 1px ring on all
+   edges including the diagonal where CSS border can't reach ------- */
+
+.ccb-border-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition:
+    background 300ms ease,
+    opacity 300ms ease;
+}
+
+/* Variant-specific border frame colours */
+.ccb-wrapper-outline .ccb-border-frame {
+  background: var(--ccb-color);
+}
+
+.ccb-wrapper-solid .ccb-border-frame,
+.ccb-wrapper-ghost .ccb-border-frame {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Button fills the wrapper interior */
+.ccb-btn {
+  flex: 1;
+}
+
 /* ---- Variants --------------------------------------------- */
 
 .ccb-solid {
@@ -65,13 +102,14 @@
 }
 
 .ccb-outline {
-  background-color: transparent;
+  background-color: #000;
   color: var(--ccb-color);
-  box-shadow: inset 0 0 0 1.5px var(--ccb-color);
+  /* Background is opaque #000 so the border-frame's accent fill doesn't bleed
+     through — visually identical to transparent on the dark site */
 }
 
 .ccb-ghost {
-  background-color: color-mix(in srgb, var(--ccb-color) 12%, transparent);
+  background-color: color-mix(in srgb, var(--ccb-color) 12%, #000);
   color: var(--ccb-color);
 }
 
@@ -89,11 +127,11 @@
 }
 
 .ccb-outline.ccb-hover-glow:hover {
-  background-color: color-mix(in srgb, var(--ccb-color) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ccb-color) 15%, #000);
 }
 
 .ccb-ghost.ccb-hover-glow:hover {
-  background-color: color-mix(in srgb, var(--ccb-color) 22%, transparent);
+  background-color: color-mix(in srgb, var(--ccb-color) 22%, #000);
 }
 
 /* ---- Hover: Shift ----------------------------------------- */
@@ -110,7 +148,7 @@
 }
 
 .ccb-ghost.ccb-hover-shift:hover {
-  background-color: color-mix(in srgb, var(--ccb-color) 28%, transparent);
+  background-color: color-mix(in srgb, var(--ccb-color) 28%, #000);
   box-shadow: 0 0 var(--ccb-glow-size, 15px)
     color-mix(in srgb, var(--ccb-color) 55%, transparent);
 }
@@ -237,6 +275,8 @@
   }
 }
 
-.ccb-hover-flicker:hover {
+/* Animate the whole wrapper so the border-frame and button flicker as one unit.
+   If the button alone flickered, the border-frame would bleed through at low opacity. */
+.ccb-wrapper:has(.ccb-hover-flicker:hover) {
   animation: ccb-flicker 0.45s linear infinite;
 }

@@ -188,6 +188,13 @@ export const NeonGlowCornerCutCard: React.FC<NeonGlowCornerCutCardProps> = ({
       {/* Gradient/solid glow backdrop — sits behind the clipped inner card */}
       <div className="ngcc-glow" aria-hidden="true" />
 
+      {/* Border frame — same clip-path as the card, 1px visible ring on all
+          edges including the diagonal (CSS border can't reach there) */}
+      <div
+        className={`ngcc-border-frame ${CORNER_CLASSES[corner]}`}
+        aria-hidden="true"
+      />
+
       {/* Inner card — receives the clip-path */}
       <div
         className={`ngcc-card ${CORNER_CLASSES[corner]}`}
