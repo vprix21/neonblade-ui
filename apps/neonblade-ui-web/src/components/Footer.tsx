@@ -3,7 +3,6 @@ import Link from "next/link";
 const footerLinks = [
   { label: "Components", href: "/components" },
   { label: "Docs", href: "/docs" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -27,9 +26,9 @@ export function Footer() {
           </span>
         </Link>
 
-        <p className="text-sm text-white/40 mb-6 font-mono">
+        {/* <p className="text-sm text-white/40 mb-6 font-mono">
           Engineered for the future of digital frontier.
-        </p>
+        </p> */}
 
         <nav className="flex flex-wrap justify-center gap-6 mb-6">
           {footerLinks.map((link) => (

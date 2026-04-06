@@ -115,7 +115,7 @@ export default function DocsPage() {
     <div className="flex flex-col min-h-screen bg-black text-white selection:bg-[#00f3ff] selection:text-black">
       <Navbar />
 
-      <main className="flex-1 pt-32 pb-24">
+      <main className="flex-1 pt-32 pb-12">
         <div className="container mx-auto px-6 max-w-3xl">
           {/* Header */}
           <motion.div
@@ -140,9 +140,8 @@ export default function DocsPage() {
               </span>
             </h1>
             <p className="text-white/50 text-xl leading-relaxed max-w-2xl">
-              A collection of futuristic, cyberpunk style copy-paste-ready React
-              components built on Tailwind CSS. No wrappers. Just code
-              that&apos;s yours.
+              A futuristic React component library with sci-fi aesthetics built
+              with Tailwind CSS. No wrappers. Just code that&apos;s yours.
             </p>
           </motion.div>
 
@@ -197,14 +196,14 @@ export default function DocsPage() {
               <span className="text-[#00f3ff] mr-2">02</span>Installing Tailwind
               CSS
             </h2>
-            <p className="text-white/55 leading-relaxed mb-5 ">
+            <p className="text-white/55 leading-relaxed mb-5">
               NeonBlade UI is built on top of{" "}
-              <span className="inline-flex items-center gap-1.5">
-                <SiTailwindcss className="text-[#38bdf8] inline" size={14} />
-                <span className="text-[#38bdf8] font-semibold">
-                  Tailwind CSS v4
-                </span>
-              </span>{" "}
+              {/* <span className="inline-flex items-center gap-1.5"> */}
+              <SiTailwindcss className="text-[#38bdf8] inline" size={14} />
+              <span className="text-[#38bdf8] font-semibold">
+                Tailwind CSS v4{" "}
+              </span>
+              {/* </span>{" "} */}
               as the primary styling engine. If you don&apos;t have it yet,
               here&apos;s how to get set up.
             </p>
@@ -255,11 +254,10 @@ export default function DocsPage() {
             </h2>
             <p className="text-white/55 leading-relaxed mb-4 ">
               NeonBlade UI ships its{" "}
-              <span className="text-white font-semibold">own CLI</span> — not a
-              wrapper around shadcn or any third-party tool. It&apos;s built
-              from scratch for NeonBlade and talks directly to our component
-              registry. No config files, no init steps. Run it anywhere in your
-              project.
+              <span className="text-white/50 font-semibold">own CLI</span>.
+              It&apos;s built from scratch for NeonBlade and talks directly to
+              our component registry. No config files, no init steps. Run it
+              anywhere in your project.
             </p>
 
             <p className="text-white/90 text-xs font-orbitron uppercase tracking-widest mb-2">
@@ -418,11 +416,11 @@ export default function DocsPage() {
             variants={fadeIn}
             className="text-center py-6"
           >
-            <p className="font-orbitron text-sm tracking-widest text-white/35 uppercase mb-3">
-              System Ready
-            </p>
+            <Badge color="green" size="md" dot="flicker" className="mb-4">
+              System ready
+            </Badge>
             <p className="text-2xl font-orbitron font-bold text-white/80 leading-snug">
-              Take your UI into the future with{" "}
+              Start building with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
                 NeonBlade UI
               </span>

@@ -70,12 +70,6 @@ export function Navbar() {
               Docs
             </Link>
             <Link
-              href="/about"
-              className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
-            >
-              About
-            </Link>
-            <Link
               href="/contact"
               className="text-white/70 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
             >
@@ -110,13 +104,6 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 Docs
-              </Link>
-              <Link
-                href="/about"
-                className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
-                onClick={() => setMobileOpen(false)}
-              >
-                About
               </Link>
               <Link
                 href="/contact"

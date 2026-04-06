@@ -72,7 +72,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-orbitron tracking-widest text-[#00f3ff] mb-8 uppercase"
         >
           <span className="w-2 h-2 rounded-full bg-[#00f3ff] animate-flicker" />
-          The Future of UI is Here
+          Futuristic Aesthetics, Now Live
         </motion.div>
 
         <motion.h1
@@ -81,7 +81,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold font-orbitron tracking-tighter mb-6 leading-tight max-w-4xl"
         >
-          Build future interfaces with{" "}
+          Build futuristic interfaces with{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
             NeonBlade UI
           </span>
@@ -93,8 +93,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-white/60 max-w-2xl mb-12 font-light"
         >
-          A highly customizable, futuristic React UI components library. Unique,
-          high-end designs that propel your digital presence into the future.
+          Not your typical UI library. NeonBlade delivers futuristic components
+          with neon aesthetics, sharp edges, and total design control.
         </motion.p>
 
         <motion.div

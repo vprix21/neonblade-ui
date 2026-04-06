@@ -38,13 +38,29 @@ async function getComponentFiles(category: string, folderName: string) {
       source = await fs.readFile(sourcePath, "utf-8");
     }
 
-    // Read meta
-    const metaPath = path.join(basePath, "meta.json");
-    const meta = JSON.parse(await fs.readFile(metaPath, "utf-8"));
+    let cssSource = "";
+    try {
+      const files = await fs.readdir(basePath);
+      const cssFile = files.find(f => f.endsWith('.css'));
+      if (cssFile) {
+        cssSource = await fs.readFile(path.join(basePath, cssFile), "utf-8");
+      }
+    } catch {
+       // Ignore if not found
+    }
 
-    return { source, meta };
+    // Read meta
+    let meta: { dependencies?: string[]; [key: string]: unknown } = { dependencies: [] };
+    try {
+      const metaPath = path.join(basePath, "meta.json");
+      meta = JSON.parse(await fs.readFile(metaPath, "utf-8"));
+    } catch {
+      // Ignore if not found
+    }
+
+    return { source, cssSource, meta };
   } catch (error) {
-    return { source: "", meta: {} };
+    return { source: "", cssSource: "", meta: { dependencies: [] } };
   }
 }
 
@@ -1601,7 +1617,7 @@ export default async function ComponentPage({
   if (!c) return notFound();
 
   const folderName = folderMap[slug];
-  const { source, meta } = await getComponentFiles(category, folderName);
+  const { source, cssSource, meta } = await getComponentFiles(category, folderName);
   const DemoComponent = demoMap[slug];
 
   return (
@@ -1626,6 +1642,7 @@ export default async function ComponentPage({
 
       <ComponentTabs
         source={source}
+        cssSource={cssSource}
         usage={usageMap[slug]}
         dependencies={meta.dependencies || []}
       >

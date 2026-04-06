@@ -16,6 +16,11 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   title: "NeonBlade UI",
   description: "Modern and futuristic UI component library.",
+  icons: {
+    icon: "/neonblade_ui_logo.png",
+    shortcut: "/neonblade_ui_logo.png",
+    apple: "/neonblade_ui_logo.png",
+  },
 };
 
 export default function RootLayout({

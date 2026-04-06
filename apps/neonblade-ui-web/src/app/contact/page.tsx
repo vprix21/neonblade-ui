@@ -61,7 +61,7 @@ export default function ContactPage() {
             <div className="w-full h-px bg-gradient-to-r from-[#00f3ff]/20 via-white/5 to-transparent mt-10 mb-8" />
 
             <p className="text-white/25 text-sm font-orbitron tracking-wide">
-              Built by{" "}
+              Developed by{" "}
               <a
                 href="https://neuronrush.com"
                 target="_blank"
