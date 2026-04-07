@@ -7,7 +7,6 @@ import { Copy, Check } from "lucide-react";
 import { DatalinesWithGrid } from "../lib/components/ui/backgrounds/DatalinesWithGrid";
 import { AsciiRain } from "../lib/components/ui/backgrounds/AsciiRain";
 import AccentFrame from "../lib/components/ui/frames/AccentFrame";
-import GlitchText from "../../components/ui/glitch-text";
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
