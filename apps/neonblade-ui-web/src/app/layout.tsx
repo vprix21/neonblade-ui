@@ -34,6 +34,12 @@ export default function RootLayout({
       className={`${rajdhani.variable} ${orbitron.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
+      <head>
+        <meta
+          name="google-site-verification"
+          content="QAD1AMG8SogfS8OcbMtSolJstIdF0EeBiDo6BSqqsHM"
+        />
+      </head>
       <body
         className="min-h-full flex flex-col bg-background text-foreground dark"
         suppressHydrationWarning
