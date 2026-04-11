@@ -1,0 +1,14 @@
+{
+  "name": "navbar",
+  "files": [
+    {
+      "path": "components/ui/navbar/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/navbar/index.tsx"
+    },
+    {
+      "path": "components/ui/navbar/navbar.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/navbar/navbar.css"
+    }
+  ],
+  "dependencies": []
+}

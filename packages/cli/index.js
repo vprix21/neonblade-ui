@@ -113,9 +113,7 @@ async function listComponents() {
     registry = await res.json();
   } catch {
     log.error("Could not reach the registry.");
-    console.log(
-      `  ${c.dim("Check your internet connection or visit")} ${c.cyan("https://neonbladeui.com")}`,
-    );
+    console.log(`  ${c.dim("Check your internet connection")}`);
     console.log();
     process.exit(1);
   }

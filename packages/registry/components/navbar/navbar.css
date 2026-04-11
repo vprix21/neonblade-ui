@@ -1,0 +1,756 @@
+/* ============================================================
+   NavBar — navbar.css
+   All class names are prefixed with `nbr-` to avoid conflicts
+   with globals.css.
+
+   CSS custom properties driven by the component (set inline):
+     --nbr-color  : accent color (e.g. #00f3ff)
+     --nbr-font   : font family (Orbitron, system-ui, sans-serif)
+============================================================ */
+
+/* ---- Root Variables -------------------------------------- */
+
+.nbr-root,
+.nbr-dock {
+  --nbr-font: "Orbitron", system-ui, sans-serif;
+  --nbr-transition: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  --nbr-border: rgba(255, 255, 255, 0.07);
+}
+
+/* ============================================================
+   STANDARD VARIANT
+============================================================ */
+
+/* ---- Root ------------------------------------------------ */
+
+.nbr-root {
+  width: 100%;
+  z-index: 100;
+  transition:
+    background var(--nbr-transition),
+    border-color var(--nbr-transition),
+    box-shadow var(--nbr-transition);
+  border-bottom: 1px solid var(--nbr-border);
+}
+
+/* ---- Position -------------------------------------------- */
+
+.nbr-root.nbr-pos-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.nbr-root.nbr-pos-sticky {
+  position: sticky;
+  top: 0;
+}
+.nbr-root.nbr-pos-static {
+  position: relative;
+  z-index: 100;
+}
+.nbr-root.nbr-pos-floating {
+  position: fixed;
+  top: 0.875rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: min(640px, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+  border: 1px solid color-mix(in srgb, var(--nbr-color) 22%, transparent);
+  border-radius: 0;
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.45),
+    0 0 24px color-mix(in srgb, var(--nbr-color) 8%, transparent);
+}
+
+/* ---- Backgrounds ----------------------------------------- */
+
+/*
+  Static navbars (used in demos / document flow) must NOT carry
+  backdrop-filter. backdrop-filter creates a CSS stacking context
+  even on position:static elements. In a page with multiple stacked
+  navbars this causes each subsequent navbar to paint over the previous
+  one's absolutely-positioned dropdown menu, making it invisible.
+  Real navbars (fixed / sticky / floating) keep the blur effect.
+*/
+.nbr-root.nbr-pos-static.nbr-bg-glass,
+.nbr-root.nbr-pos-static.nbr-bg-solid {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nbr-bg-transparent {
+  background: transparent;
+  border-color: transparent;
+}
+
+.nbr-bg-glass {
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: var(--nbr-border);
+}
+
+.nbr-bg-solid {
+  background: #0a0a0a;
+  border-color: var(--nbr-border);
+}
+
+/* Scroll-triggered transition: transparent → glass */
+.nbr-scrolled {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-color: var(--nbr-border) !important;
+}
+
+/* ---- Inner Layout ---------------------------------------- */
+
+.nbr-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+/* ---- Logo ------------------------------------------------ */
+
+.nbr-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nbr-logo-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 0 6px color-mix(in srgb, var(--nbr-color) 70%, transparent)
+  );
+}
+
+.nbr-logo-text {
+  font-family: var(--nbr-font);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  transition:
+    color var(--nbr-transition),
+    text-shadow var(--nbr-transition);
+}
+
+.nbr-logo:hover .nbr-logo-text {
+  color: var(--nbr-color);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--nbr-color) 60%, transparent);
+}
+
+/* ---- Desktop Nav ----------------------------------------- */
+
+.nbr-desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 0rem;
+  flex: 1;
+  justify-content: center;
+}
+
+/* nav alignment modifiers */
+.nbr-desktop-nav--center {
+  justify-content: center;
+}
+
+.nbr-desktop-nav--left {
+  justify-content: flex-start;
+}
+
+.nbr-desktop-nav--right {
+  justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+  .nbr-desktop-nav {
+    display: flex;
+  }
+}
+
+/* ---- Nav Items ------------------------------------------- */
+
+.nbr-nav-item-wrap {
+  position: relative;
+}
+
+.nbr-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  font-family: var(--nbr-font);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    color var(--nbr-transition),
+    text-shadow var(--nbr-transition),
+    background var(--nbr-transition);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.nbr-nav-item:hover,
+.nbr-nav-item--has-sub:hover {
+  color: var(--nbr-color);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--nbr-color) 60%, transparent);
+  background: color-mix(in srgb, var(--nbr-color) 5%, transparent);
+}
+
+.nbr-nav-item-icon {
+  display: inline-flex;
+  align-items: center;
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* Chevron arrow */
+.nbr-chevron {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.55rem;
+  margin-left: 0.2rem;
+  transition: transform var(--nbr-transition);
+  opacity: 0.5;
+}
+
+.nbr-chevron--open {
+  transform: rotate(180deg);
+  opacity: 0.9;
+}
+
+/* ---- Submenu Dropdown ------------------------------------ */
+
+.nbr-submenu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  min-width: 176px;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--nbr-color) 22%, transparent);
+  padding: 0.25rem;
+  z-index: 200;
+  animation: nbr-fade-in 0.15s ease;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 16px color-mix(in srgb, var(--nbr-color) 6%, transparent);
+}
+
+/* Dropdown alignment — position relative to trigger */
+.nbr-submenu--center {
+  left: 50%;
+  transform: translateX(-50%);
+  animation: nbr-fade-in-center 0.15s ease;
+}
+
+.nbr-submenu--left {
+  left: 0;
+  animation: nbr-fade-in 0.15s ease;
+}
+
+.nbr-submenu--right {
+  right: 0;
+  animation: nbr-fade-in 0.15s ease;
+}
+
+.nbr-submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5625rem 0.75rem;
+  font-family: var(--nbr-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition:
+    color var(--nbr-transition),
+    background var(--nbr-transition);
+}
+
+.nbr-submenu-item:hover {
+  color: var(--nbr-color);
+  background: color-mix(in srgb, var(--nbr-color) 8%, transparent);
+}
+
+.nbr-submenu-item-icon {
+  display: inline-flex;
+  align-items: center;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* ---- Right Side Controls --------------------------------- */
+
+.nbr-right {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+/* ---- Profile Avatar / Dropdown --------------------------- */
+
+.nbr-profile-wrap {
+  position: relative;
+}
+
+.nbr-avatar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--nbr-color) 12%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--nbr-color) 35%, transparent);
+  cursor: pointer;
+  transition:
+    border-color var(--nbr-transition),
+    box-shadow var(--nbr-transition),
+    background var(--nbr-transition);
+  overflow: hidden;
+  padding: 0;
+}
+
+.nbr-avatar-btn:hover {
+  border-color: var(--nbr-color);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--nbr-color) 45%, transparent);
+  background: color-mix(in srgb, var(--nbr-color) 18%, transparent);
+}
+
+.nbr-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nbr-avatar-initials {
+  font-family: var(--nbr-font);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--nbr-color);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+/* ---- Profile Dropdown Menu ------------------------------- */
+
+.nbr-profile-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 176px;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--nbr-color) 22%, transparent);
+  padding: 0.25rem;
+  z-index: 200;
+  animation: nbr-fade-in 0.15s ease;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 16px color-mix(in srgb, var(--nbr-color) 6%, transparent);
+}
+
+.nbr-profile-menu-header {
+  padding: 0.625rem 0.75rem 0.5rem;
+  font-family: var(--nbr-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nbr-color);
+  border-bottom: 1px solid color-mix(in srgb, var(--nbr-color) 16%, transparent);
+  margin-bottom: 0.25rem;
+}
+
+.nbr-profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5625rem 0.75rem;
+  font-family: var(--nbr-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition:
+    color var(--nbr-transition),
+    background var(--nbr-transition);
+}
+
+.nbr-profile-menu-item:hover {
+  color: var(--nbr-color);
+  background: color-mix(in srgb, var(--nbr-color) 8%, transparent);
+}
+
+.nbr-profile-item-icon {
+  display: inline-flex;
+  align-items: center;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.nbr-profile-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 0.25rem 0.5rem;
+}
+
+/* ---- Hamburger Button ------------------------------------ */
+
+.nbr-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.375rem;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color var(--nbr-transition);
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .nbr-hamburger {
+    display: none;
+  }
+}
+
+.nbr-hamburger:hover {
+  color: var(--nbr-color);
+}
+
+/* Three-bar → X icon via pseudo-elements */
+.nbr-ham-icon,
+.nbr-ham-icon::before,
+.nbr-ham-icon::after {
+  display: block;
+  width: 1.25rem;
+  height: 1.5px;
+  background: currentColor;
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    opacity 0.22s ease,
+    top 0.22s ease;
+}
+
+.nbr-ham-icon::before,
+.nbr-ham-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nbr-ham-icon::before {
+  top: -6px;
+}
+.nbr-ham-icon::after {
+  top: 6px;
+}
+
+/* X state */
+.nbr-ham-icon--open {
+  background: transparent;
+}
+.nbr-ham-icon--open::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.nbr-ham-icon--open::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ---- Mobile Menu ----------------------------------------- */
+
+.nbr-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid color-mix(in srgb, var(--nbr-color) 18%, transparent);
+  padding: 0.5rem 1.25rem 0.875rem;
+  gap: 0;
+  animation: nbr-fade-in 0.18s ease;
+  /* Prevent overflow on small viewports when fixed navbar has many items */
+  overflow-y: auto;
+  max-height: calc(100svh - 3.5rem);
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .nbr-mobile-menu {
+    display: none;
+  }
+}
+
+.nbr-mobile-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  font-family: var(--nbr-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition:
+    color var(--nbr-transition),
+    background var(--nbr-transition);
+}
+
+.nbr-mobile-item:hover,
+.nbr-mobile-item--has-sub:hover {
+  color: var(--nbr-color);
+  background: color-mix(in srgb, var(--nbr-color) 5%, transparent);
+}
+
+.nbr-mobile-item--has-sub {
+  justify-content: space-between;
+}
+
+.nbr-mobile-submenu {
+  padding-left: 1rem;
+  animation: nbr-fade-in 0.14s ease;
+}
+
+.nbr-mobile-submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  font-family: var(--nbr-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: color var(--nbr-transition);
+}
+
+.nbr-mobile-submenu-item:hover {
+  color: var(--nbr-color);
+}
+
+/* Mobile backdrop overlay */
+.nbr-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(0, 0, 0, 0.45);
+  animation: nbr-fade-in 0.18s ease;
+}
+
+/* ============================================================
+   DOCK VARIANT
+============================================================ */
+
+.nbr-dock {
+  left: 50%;
+  z-index: 100;
+}
+
+/* Dock position modes */
+.nbr-dock.nbr-pos-fixed {
+  position: fixed;
+  transform: translateX(-50%);
+}
+.nbr-dock.nbr-pos-static {
+  position: relative;
+  z-index: 100;
+  left: auto;
+  transform: none;
+  display: flex;
+  justify-content: center;
+}
+.nbr-dock.nbr-pos-sticky {
+  position: sticky;
+  transform: translateX(-50%);
+}
+
+.nbr-dock--top.nbr-pos-fixed,
+.nbr-dock--top.nbr-pos-sticky {
+  top: 1rem;
+}
+.nbr-dock--bottom.nbr-pos-fixed {
+  bottom: 1.5rem;
+}
+
+.nbr-dock-inner {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0.375rem 0.625rem;
+  background: rgba(4, 4, 4, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, var(--nbr-color) 24%, transparent);
+  box-shadow:
+    0 4px 40px rgba(0, 0, 0, 0.55),
+    0 0 24px color-mix(in srgb, var(--nbr-color) 9%, transparent);
+}
+
+.nbr-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.5rem 0.875rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    color var(--nbr-transition),
+    background var(--nbr-transition);
+  position: relative;
+  min-width: 56px;
+}
+
+.nbr-dock-item:hover {
+  color: var(--nbr-color);
+}
+
+/* Active indicator dot under the icon */
+.nbr-dock-item::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--nbr-color);
+  box-shadow: 0 0 6px var(--nbr-color);
+  transition: transform var(--nbr-transition);
+}
+
+.nbr-dock-item:hover::after {
+  transform: translateX(-50%) scale(1);
+}
+
+.nbr-dock-item--active {
+  color: var(--nbr-color);
+}
+
+.nbr-dock-item--active::after {
+  transform: translateX(-50%) scale(1);
+}
+
+.nbr-dock-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.nbr-dock-item-label {
+  font-family: var(--nbr-font);
+  font-size: 0.5rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Profile section separator in dock */
+.nbr-dock-profile-sep {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.375rem 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Dock variant — avatar button slightly smaller */
+.nbr-dock .nbr-avatar-btn {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+
+@keyframes nbr-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Center-variant fade-in preserves the translateX(-50%) */
+@keyframes nbr-fade-in-center {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes nbr-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

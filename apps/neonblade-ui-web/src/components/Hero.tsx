@@ -42,14 +42,17 @@ export function Hero() {
      * The background gets its own absolute wrapper that clips itself.
      */
     <section className="relative min-h-screen flex flex-col pt-24">
-
       {/* Background — isolated clip so section stays overflow:visible for sticky */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {bgType === "grid" ? <DatalinesWithGrid overlay={true} /> : <AsciiRain />}
+        {bgType === "grid" ? (
+          <DatalinesWithGrid overlay={true} />
+        ) : (
+          <AsciiRain />
+        )}
       </div>
 
       {/* Hero content — flex-1 pushes the sticky toggle row to the bottom */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6 pb-12">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6">
         <div className="container mx-auto max-w-7xl flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -79,8 +82,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-white/60 max-w-2xl mb-12 font-light"
           >
-            Not your typical UI library. NeonBlade delivers futuristic components
-            with neon aesthetics, sharp edges, and total design control.
+            Not your typical UI library. NeonBlade delivers futuristic
+            components with neon aesthetics, sharp edges, and total design
+            control.
           </motion.p>
 
           <motion.div
@@ -162,7 +166,6 @@ export function Hero() {
           </button>
         </div>
       </div>
-
     </section>
   );
 }

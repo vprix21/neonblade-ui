@@ -78,4 +78,40 @@ export const categories = [
       },
     ],
   },
+  {
+    name: "Navbars",
+    slug: "navbars",
+    components: [
+      {
+        name: "NavBar",
+        slug: "navbar",
+        description:
+          "All-in-one navbar: standard or dock variant, submenus, profile menu, transparent/glass/solid, fixed/floating/sticky positioning.",
+      },
+    ],
+  },
+  {
+    name: "Footers",
+    slug: "footers",
+    components: [
+      {
+        name: "Footer",
+        slug: "footer",
+        description:
+          "Fully customizable footer: minimal, columns, centered, and mega variants with link groups, social links, newsletter, and accent color system.",
+      },
+    ],
+  },
+  {
+    name: "Timelines",
+    slug: "timelines",
+    components: [
+      {
+        name: "Timeline",
+        slug: "timeline",
+        description:
+          "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
+      },
+    ],
+  },
 ];

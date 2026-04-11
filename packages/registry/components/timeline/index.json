@@ -1,0 +1,14 @@
+{
+  "name": "timeline",
+  "files": [
+    {
+      "path": "components/ui/timeline/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/timeline/index.tsx"
+    },
+    {
+      "path": "components/ui/timeline/timeline.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/timeline/timeline.css"
+    }
+  ],
+  "dependencies": []
+}

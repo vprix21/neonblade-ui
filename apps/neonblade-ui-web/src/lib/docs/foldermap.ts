@@ -8,6 +8,9 @@ const folderMap: Record<string, string> = {
   "corner-cut-button": "CornerCutButton",
   "neon-glow-corner-cut-card": "NeonGlowCornerCutCard",
   badge: "Badge",
+  navbar: "NavBar",
+  footer: "Footer",
+  timeline: "Timeline",
 };
 
 export default folderMap;

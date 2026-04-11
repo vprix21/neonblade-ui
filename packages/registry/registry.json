@@ -44,6 +44,21 @@
       "name": "neon-glow-corner-cut-card",
       "category": "cards",
       "description": "Corner-cut card with neon gradient glow on hover"
+    },
+    {
+      "name": "navbar",
+      "category": "navbars",
+      "description": "All-in-one navbar: standard or dock variant, submenus, profile menu, transparent/glass/solid backgrounds, fixed/floating/sticky positioning"
+    },
+    {
+      "name": "timeline",
+      "category": "timelines",
+      "description": "Futuristic neon timeline with multiple variants, dot shapes, line styles, and animate-in"
+    },
+    {
+      "name": "footer",
+      "category": "footers",
+      "description": "All-in-one footer: minimal, columns, centered, and mega variants with socials, newsletter, link groups, and glass/solid backgrounds"
     }
   ]
 }
