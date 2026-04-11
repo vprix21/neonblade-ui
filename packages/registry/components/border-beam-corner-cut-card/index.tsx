@@ -139,6 +139,39 @@ export interface BorderBeamCornerCutCardProps extends HTMLAttributes<HTMLDivElem
   innerClassName?: string;
 }
 
+// ---- Size maps (move padding/sizing out of CSS) -----------
+
+const INNER_PADDING: Record<BBCSize, string> = {
+  sm: "p-5",
+  md: "p-6",
+  lg: "p-8",
+  xl: "p-10",
+};
+const ICON_BOX_SIZE: Record<BBCSize, string> = {
+  sm: "w-9 h-9",
+  md: "w-12 h-12",
+  lg: "w-14 h-14",
+  xl: "w-16 h-16",
+};
+const ICON_SIZE: Record<BBCSize, string> = {
+  sm: "w-4 h-4",
+  md: "w-6 h-6",
+  lg: "w-8 h-8",
+  xl: "w-9 h-9",
+};
+const TITLE_SIZE: Record<BBCSize, string> = {
+  sm: "text-sm",
+  md: "text-lg",
+  lg: "text-[1.375rem]",
+  xl: "text-[1.625rem]",
+};
+const DESC_SIZE: Record<BBCSize, string> = {
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-base",
+  xl: "text-lg",
+};
+
 // ---- Component ---------------------------------------------
 
 export const BorderBeamCornerCutCard: React.FC<
@@ -172,7 +205,7 @@ export const BorderBeamCornerCutCard: React.FC<
 
   const outerClasses = [
     "bbc-wrapper",
-    `bbc-size-${size}`,
+    "relative w-full overflow-hidden bg-white/[0.05]",
     `bbc-variant-${variant}`,
     glowIntensity !== "none" ? `bbc-glow-${glowIntensity}` : "",
     cornerClass,
@@ -200,21 +233,62 @@ export const BorderBeamCornerCutCard: React.FC<
       {/* Primary spinning beam */}
       <div className="bbc-beam" aria-hidden="true" />
 
-      {/* Secondary beam — only for "dual" variant */}
+      {/* Secondary beam — only for “dual” variant */}
       {variant === "dual" && <div className="bbc-beam-b" aria-hidden="true" />}
 
       {/* Inner content card */}
       <div
-        className={`bbc-inner ${cornerClass} ${innerClassName}`}
-        style={bgColor ? { backgroundColor: bgColor } : undefined}
+        className={[
+          "bbc-inner",
+          "relative z-10 w-full h-full flex flex-col",
+          cornerClass,
+          INNER_PADDING[size],
+          innerClassName,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        style={{ backgroundColor: bgColor ?? "var(--background, #050505)" }}
       >
         {icon && (
-          <div className="bbc-icon-box">
-            <span className="bbc-icon">{icon}</span>
+          <div
+            className={[
+              "bbc-icon-box",
+              "border border-white/10 bg-black rounded-[4px] flex items-center justify-center shrink-0 mb-6 transition-[border-color,box-shadow] duration-300",
+              ICON_BOX_SIZE[size],
+            ].join(" ")}
+          >
+            <span
+              className={[
+                "bbc-icon",
+                "text-white/70 flex items-center justify-center transition-colors duration-300",
+                ICON_SIZE[size],
+              ].join(" ")}
+            >
+              {icon}
+            </span>
           </div>
         )}
-        {title && <h3 className="bbc-title font-orbitron">{title}</h3>}
-        {description && <p className="bbc-description">{description}</p>}
+        {title && (
+          <h3
+            className={[
+              "bbc-title",
+              "font-orbitron font-bold text-white mb-3 leading-[1.3] transition-[text-shadow] duration-300",
+              TITLE_SIZE[size],
+            ].join(" ")}
+          >
+            {title}
+          </h3>
+        )}
+        {description && (
+          <p
+            className={[
+              "text-white/60 leading-[1.65] flex-grow",
+              DESC_SIZE[size],
+            ].join(" ")}
+          >
+            {description}
+          </p>
+        )}
         {children}
       </div>
     </div>

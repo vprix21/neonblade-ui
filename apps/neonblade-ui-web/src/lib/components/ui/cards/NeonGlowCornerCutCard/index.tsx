@@ -147,6 +147,39 @@ export interface NeonGlowCornerCutCardProps extends HTMLAttributes<HTMLDivElemen
   bgColor?: string;
 }
 
+// ---- Size maps (move padding/sizing out of CSS) -----------
+
+const CARD_PADDING: Record<NGCCSize, string> = {
+  sm: "p-5",
+  md: "p-8",
+  lg: "p-10",
+  xl: "p-12",
+};
+const ICON_BOX_SIZE: Record<NGCCSize, string> = {
+  sm: "w-9 h-9",
+  md: "w-12 h-12",
+  lg: "w-14 h-14",
+  xl: "w-16 h-16",
+};
+const ICON_SIZE: Record<NGCCSize, string> = {
+  sm: "w-4 h-4",
+  md: "w-6 h-6",
+  lg: "w-8 h-8",
+  xl: "w-9 h-9",
+};
+const TITLE_SIZE: Record<NGCCSize, string> = {
+  sm: "text-sm",
+  md: "text-lg",
+  lg: "text-[1.375rem]",
+  xl: "text-[1.625rem]",
+};
+const DESC_SIZE: Record<NGCCSize, string> = {
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-base",
+  xl: "text-lg",
+};
+
 // ---- Component ---------------------------------------------
 
 export const NeonGlowCornerCutCard: React.FC<NeonGlowCornerCutCardProps> = ({
@@ -172,7 +205,9 @@ export const NeonGlowCornerCutCard: React.FC<NeonGlowCornerCutCardProps> = ({
 
   return (
     <div
-      className={`ngcc-wrapper ngcc-size-${size} ${HOVER_CLASSES[hoverEffect]} ${className}`}
+      className={["relative h-full p-px", HOVER_CLASSES[hoverEffect], className]
+        .filter(Boolean)
+        .join(" ")}
       style={
         {
           "--ngcc-color-a": resolvedA,
@@ -186,32 +221,77 @@ export const NeonGlowCornerCutCard: React.FC<NeonGlowCornerCutCardProps> = ({
       {...props}
     >
       {/* Gradient/solid glow backdrop — sits behind the clipped inner card */}
-      <div className="ngcc-glow" aria-hidden="true" />
+      <div
+        className="ngcc-glow absolute -inset-0.5 rounded-[3px] pointer-events-none z-0"
+        aria-hidden="true"
+      />
 
       {/* Border frame — same clip-path as the card, 1px visible ring on all
           edges including the diagonal (CSS border can't reach there) */}
       <div
-        className={`ngcc-border-frame ${CORNER_CLASSES[corner]}`}
+        className={[
+          "ngcc-border-frame",
+          "absolute inset-0 bg-white/10 z-[5] pointer-events-none transition-[background,opacity] duration-300",
+          CORNER_CLASSES[corner],
+        ].join(" ")}
         aria-hidden="true"
       />
 
       {/* Inner card — receives the clip-path */}
       <div
-        className={`ngcc-card ${CORNER_CLASSES[corner]}`}
-        style={bgColor ? { backgroundColor: bgColor } : undefined}
+        className={[
+          "ngcc-card",
+          "relative h-full flex flex-col overflow-hidden z-10 transition-[box-shadow] duration-300",
+          CORNER_CLASSES[corner],
+          CARD_PADDING[size],
+        ].join(" ")}
+        style={{ backgroundColor: bgColor ?? "#0a0a0a" }}
       >
         {/* Optional icon box */}
         {icon && (
-          <div className="ngcc-icon-box">
-            <span className="ngcc-icon">{icon}</span>
+          <div
+            className={[
+              "ngcc-icon-box",
+              "border border-white/10 bg-black rounded-[4px] flex items-center justify-center shrink-0 mb-6 transition-[border-color,box-shadow] duration-300",
+              ICON_BOX_SIZE[size],
+            ].join(" ")}
+          >
+            <span
+              className={[
+                "ngcc-icon",
+                "text-white/70 flex items-center justify-center transition-colors duration-300",
+                ICON_SIZE[size],
+              ].join(" ")}
+            >
+              {icon}
+            </span>
           </div>
         )}
 
         {/* Optional title */}
-        {title && <h3 className="ngcc-title font-orbitron">{title}</h3>}
+        {title && (
+          <h3
+            className={[
+              "ngcc-title",
+              "font-orbitron font-bold text-white mb-3 leading-[1.3] transition-[text-shadow] duration-300",
+              TITLE_SIZE[size],
+            ].join(" ")}
+          >
+            {title}
+          </h3>
+        )}
 
         {/* Optional description */}
-        {description && <p className="ngcc-description">{description}</p>}
+        {description && (
+          <p
+            className={[
+              "text-white/60 leading-[1.65] flex-grow",
+              DESC_SIZE[size],
+            ].join(" ")}
+          >
+            {description}
+          </p>
+        )}
 
         {/* Custom children */}
         {children}

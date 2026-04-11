@@ -1,42 +1,20 @@
-"use client";
+﻿"use client";
 
 import React, { HTMLAttributes, ReactNode } from "react";
 import "./badge.css";
 
 // ---- Types -------------------------------------------------
 
-/** Named color presets or any valid CSS color string */
 export type BadgeColor = "cyan" | "pink" | "green" | (string & {});
-
-/** Badge size */
 export type BadgeSize = "xs" | "sm" | "md";
-
-/** Visual style variant */
 export type BadgeVariant = "solid" | "outline" | "ghost";
-
-/**
- * Badge shape:
- * - `pill`        — fully rounded capsule (default)
- * - `rectangle`   — sharp rectangle, no border radius
- * - `corner-cut`  — diagonal polygon corner cut
- */
 export type BadgeShape = "pill" | "rectangle" | "corner-cut";
-
-/** Which corner receives the diagonal cut (corner-cut shape only) */
 export type BadgeCorner =
   | "bottom-right"
   | "bottom-left"
   | "top-right"
   | "top-left"
   | "all";
-
-/**
- * Indicator dot animation:
- * - `none`    — no dot
- * - `solid`   — static dot, no animation
- * - `pulse`   — breathing fade in/out
- * - `flicker` — neon flicker
- */
 export type BadgeDot = "none" | "solid" | "pulse" | "flicker";
 
 // ---- Maps --------------------------------------------------
@@ -55,69 +33,31 @@ const CORNER_CLIP: Record<BadgeCorner, string> = {
   all: "bdg-clip-all",
 };
 
+// Size: padding + font-size + gap for inner badge content
+const INNER_SIZE: Record<BadgeSize, string> = {
+  xs: "px-2 py-0.5 text-[9px] gap-1",
+  sm: "px-2.5 py-1 text-[10px] gap-[5px]",
+  md: "px-3.5 py-[5px] text-[11px] gap-[6px]",
+};
+
+// Dot dimensions per badge size
+const DOT_SIZE: Record<BadgeSize, string> = {
+  xs: "w-[5px] h-[5px]",
+  sm: "w-[6px] h-[6px]",
+  md: "w-[7px] h-[7px]",
+};
+
 // ---- Component props ---------------------------------------
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  /** Badge label — text or any inline React node */
   children?: ReactNode;
-
-  /**
-   * Accent color.
-   * Use a preset ("cyan" | "pink" | "green") or any CSS color value.
-   * @default "cyan"
-   */
   color?: BadgeColor;
-
-  /**
-   * Visual style.
-   * - `solid`   — filled with the accent color, black text
-   * - `outline` — transparent background with accent border
-   * - `ghost`   — subtle tinted background, accent text
-   * @default "outline"
-   */
   variant?: BadgeVariant;
-
-  /**
-   * Badge shape.
-   * - `pill`       — fully rounded capsule
-   * - `rectangle`  — sharp rectangle
-   * - `corner-cut` — diagonal polygon corner cut
-   * @default "pill"
-   */
   shape?: BadgeShape;
-
-  /**
-   * Which corner is cut (corner-cut shape only).
-   * @default "bottom-right"
-   */
   corner?: BadgeCorner;
-
-  /**
-   * Depth of the corner diagonal cut in pixels (corner-cut shape only).
-   * @default 8
-   */
   cornerSize?: number;
-
-  /**
-   * Indicator dot shown before the badge text.
-   * - `none`    — no dot (default)
-   * - `solid`   — static colored dot
-   * - `pulse`   — breathing fade animation
-   * - `flicker` — neon flicker animation
-   * @default "none"
-   */
   dot?: BadgeDot;
-
-  /**
-   * Add a neon glow + text-shadow using the badge color.
-   * @default false
-   */
   glow?: boolean;
-
-  /**
-   * Badge size.
-   * @default "sm"
-   */
   size?: BadgeSize;
 }
 
@@ -138,12 +78,60 @@ export const Badge: React.FC<BadgeProps> = ({
   ...props
 }) => {
   const resolvedColor = COLOR_PRESETS[color] ?? color;
-  const shapeClass = shape !== "corner-cut" ? `bdg-shape-${shape}` : "";
   const clipClass = shape === "corner-cut" ? CORNER_CLIP[corner] : "";
+  const roundedClass = shape === "pill" ? "rounded-full" : "";
+
+  // Border frame: 1px ring on all edges including diagonal
+  const frameClass = [
+    "absolute inset-0 pointer-events-none z-0",
+    roundedClass,
+    clipClass,
+    variant === "outline" ? "bg-[var(--bdg-color)]" : "bg-white/[0.08]",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  // Inner badge content
+  const innerClass = [
+    "relative z-[1] inline-flex items-center font-orbitron font-bold tracking-[0.1em] uppercase whitespace-nowrap select-none leading-none",
+    INNER_SIZE[size],
+    roundedClass,
+    clipClass,
+    variant === "solid"
+      ? "bg-[var(--bdg-color)] text-black"
+      : variant === "outline"
+        ? "bg-black text-[var(--bdg-color)]"
+        : "text-[var(--bdg-color)]",
+    glow ? "bdg-glow" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  // Ghost variant needs color-mix background (not expressible in Tailwind)
+  const ghostStyle =
+    variant === "ghost"
+      ? {
+          backgroundColor:
+            "color-mix(in srgb, var(--bdg-color) 12%, #000)",
+        }
+      : undefined;
+
+  const dotAnimClass =
+    dot === "pulse"
+      ? "bdg-dot-pulse"
+      : dot === "flicker"
+        ? "bdg-dot-flicker"
+        : "";
 
   return (
     <span
-      className={`bdg-wrapper bdg-variant-${variant} bdg-size-${size} ${shapeClass} ${className}`}
+      className={[
+        "relative inline-flex p-px align-middle",
+        roundedClass,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={
         {
           "--bdg-color": resolvedColor,
@@ -153,19 +141,22 @@ export const Badge: React.FC<BadgeProps> = ({
       }
       {...props}
     >
-      {/* Border frame — same clip-path / border-radius as inner.
-          Provides the 1px border on all edges including the diagonal. */}
-      <span
-        className={`bdg-frame ${shapeClass} ${clipClass}`}
-        aria-hidden="true"
-      />
+      {/* Border frame */}
+      <span className={frameClass} aria-hidden="true" />
 
-      {/* Inner badge content */}
-      <span
-        className={`bdg-inner ${shapeClass} ${clipClass}${glow ? " bdg-glow" : ""}`}
-      >
+      {/* Inner content */}
+      <span className={innerClass} style={ghostStyle}>
         {dot !== "none" && (
-          <span className={`bdg-dot bdg-dot-${dot}`} aria-hidden="true" />
+          <span
+            className={[
+              "rounded-full bg-[var(--bdg-color)] inline-block shrink-0",
+              DOT_SIZE[size],
+              dotAnimClass,
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            aria-hidden="true"
+          />
         )}
         {children}
       </span>

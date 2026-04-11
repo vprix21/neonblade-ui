@@ -16,24 +16,8 @@
 
 /* ---- Base corner piece ------------------------------------- */
 
-.af-corner {
-  position: absolute;
-  background-color: var(--af-color-a, #00f3ff);
-  transition-property: width, height, box-shadow, opacity;
-  transition-timing-function: ease;
-  transition-duration: var(--af-duration, 300ms);
-}
-
-/* Secondary color — applied to the opposite-diagonal pair */
-.af-corner-b {
-  background-color: var(--af-color-b, var(--af-color-a, #00f3ff));
-}
-
-/* ---- Rounded bracket tips ---------------------------------- */
-
-.af-rounded .af-corner {
-  border-radius: 2px;
-}
+/* .af-corner — layout + bg + transition handled by Tailwind; class name kept for hover-state CSS selectors */
+/* .af-corner-b — secondary-color bg handled by Tailwind; class name kept for hover-state CSS selectors */
 
 /* ---- Glow intensity (sets --af-glow-size) ------------------ */
 
@@ -222,6 +206,4 @@
   );
 }
 
-.af-bg-solid {
-  background-color: #0a0a0a;
-}
+/* .af-bg-solid — bg-[#0a0a0a] handled by Tailwind */

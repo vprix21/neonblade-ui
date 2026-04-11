@@ -158,6 +158,7 @@ export function Timeline({
 
   const rootClasses = [
     "tl-root",
+    "relative flex flex-col",
     `tl-variant-${variant}`,
     animate ? "tl-animate" : "",
     className,
@@ -180,21 +181,56 @@ export function Timeline({
       {items.map((item, idx) => {
         const dotClasses = [
           "tl-dot",
-          `tl-dot-${dotStyle}`,
+          "border-2 text-[var(--tl-color)] border-[var(--tl-color)] bg-[#0a0a0a] flex items-center justify-center transition-[box-shadow] duration-300",
+          "w-[var(--tl-dot-size)] h-[var(--tl-dot-size)] text-[11px]",
+          dotStyle === "circle" ? "rounded-full"
+            : dotStyle === "square" ? "rounded-[2px]"
+            : "rounded-[2px] rotate-45",
           item.active ? "tl-dot-active" : "",
         ]
           .filter(Boolean)
           .join(" ");
 
         const dotWrapClasses = [
-          "tl-dot-wrap",
           dotAnim === "pulse" ? "tl-dot-pulse" : "",
+          "shrink-0 flex items-center justify-center relative z-[1]",
+          align === "alternate" || align === "center"
+            ? "absolute left-1/2 -translate-x-1/2 mt-0.5"
+            : "mt-0.5",
         ]
           .filter(Boolean)
           .join(" ");
 
+        const itemClasses = [
+          "relative flex items-start gap-4 pb-8 last:pb-0",
+          align === "right" ? "flex-row-reverse" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        const isAlternate = align === "alternate" || align === "center";
+        const contentClasses = [
+          "flex-1 flex flex-col gap-1 min-w-0 pt-px",
+          isAlternate && idx % 2 === 0 ? "pr-[calc(50%+24px)]" : "",
+          isAlternate && idx % 2 !== 0
+            ? "pl-[calc(50%+24px)] text-right items-end"
+            : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        const titleClasses = [
+          "font-semibold text-white leading-[1.3] font-orbitron tracking-[0.04em]",
+          variant === "minimal" ? "text-[0.8rem]" : "text-sm",
+        ].join(" ");
+
+        const descClasses = [
+          "text-white/45 leading-[1.55]",
+          variant === "minimal" ? "text-[0.73rem]" : "text-[0.8rem]",
+        ].join(" ");
+
         return (
-          <div key={idx} className="tl-item">
+          <div key={idx} className={itemClasses}>
             {/* Dot node */}
             <div className={dotWrapClasses}>
               <div className={dotClasses}>
@@ -228,16 +264,20 @@ export function Timeline({
             </div>
 
             {/* Content */}
-            <div className="tl-content">
+            <div className={contentClasses}>
               <div
                 className={
                   variant === "glow" || variant === "stepped" ? "tl-card" : ""
                 }
               >
-                {item.date && <p className="tl-date">{item.date}</p>}
-                <p className="tl-title">{item.title}</p>
+                {item.date && (
+                  <p className="tl-date font-orbitron text-[0.65rem] tracking-[0.1em] uppercase text-[var(--tl-color)] opacity-70 mb-0.5">
+                    {item.date}
+                  </p>
+                )}
+                <p className={titleClasses}>{item.title}</p>
                 {item.description && (
-                  <p className="tl-desc">{item.description}</p>
+                  <p className={descClasses}>{item.description}</p>
                 )}
                 {item.badge && <span className="tl-badge">{item.badge}</span>}
               </div>

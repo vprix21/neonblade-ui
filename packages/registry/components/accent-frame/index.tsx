@@ -135,13 +135,13 @@ export const AccentFrame: React.FC<AccentFrameProps> = ({
 
   const wrapperClasses = [
     "px-6 py-4 relative group",
-    cornerStyle === "rounded" ? "af-rounded" : "",
     hoverEffect !== "expand" && hoverEffect !== "none"
       ? `af-hover-${hoverEffect}`
       : "",
     `af-glow-${glowIntensity}`,
     animated ? "af-animated" : "",
-    bgVariant !== "none" ? `af-bg-${bgVariant}` : "",
+    bgVariant === "subtle" ? "af-bg-subtle" : "",
+    bgVariant === "solid" ? "bg-[#0a0a0a]" : "",
     className,
   ]
     .filter(Boolean)
@@ -150,13 +150,43 @@ export const AccentFrame: React.FC<AccentFrameProps> = ({
   const shouldExpand = hoverEffect === "expand";
   const off = `-${cornerThickness / 2}px`;
 
+  // Shared Tailwind classes for every corner piece
+  const cornerBase = [
+    "af-corner absolute",
+    "transition-[width,height,box-shadow,opacity] duration-[var(--af-duration)]",
+  ].join(" ");
+
   // Horizontal bracket piece (controls width axis)
   const H = (pos: string, isB = false) =>
-    `af-corner ${isB ? "af-corner-b" : ""} ${pos} h-[var(--af-thickness)] w-[var(--af-corner-length)] ${shouldExpand ? "group-hover:w-[var(--af-hover-length)]" : ""}`.trim();
+    [
+      cornerBase,
+      isB ? "af-corner-b" : "",
+      pos,
+      "h-[var(--af-thickness)] w-[var(--af-corner-length)]",
+      shouldExpand ? "group-hover:w-[var(--af-hover-length)]" : "",
+      isB
+        ? "bg-[var(--af-color-b,var(--af-color-a,#00f3ff))]"
+        : "bg-[var(--af-color-a,#00f3ff)]",
+      cornerStyle === "rounded" ? "rounded-[2px]" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
 
   // Vertical bracket piece (controls height axis)
   const V = (pos: string, isB = false) =>
-    `af-corner ${isB ? "af-corner-b" : ""} ${pos} w-[var(--af-thickness)] h-[var(--af-corner-length)] ${shouldExpand ? "group-hover:h-[var(--af-hover-length)]" : ""}`.trim();
+    [
+      cornerBase,
+      isB ? "af-corner-b" : "",
+      pos,
+      "w-[var(--af-thickness)] h-[var(--af-corner-length)]",
+      shouldExpand ? "group-hover:h-[var(--af-hover-length)]" : "",
+      isB
+        ? "bg-[var(--af-color-b,var(--af-color-a,#00f3ff))]"
+        : "bg-[var(--af-color-a,#00f3ff)]",
+      cornerStyle === "rounded" ? "rounded-[2px]" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
 
   return (
     <div

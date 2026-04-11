@@ -1,4 +1,4 @@
-/* ================================================================
+﻿/* ================================================================
    NeonGlowCornerCutCard — neonglow-cornercut-card.css
    All class names are prefixed with `ngcc-` to avoid conflicts
    with globals.css.
@@ -65,21 +65,10 @@
   );
 }
 
-/* ---- Wrapper ----------------------------------------------- */
+/* .ngcc-wrapper — layout now handled by Tailwind; class name removed from JSX */
 
-.ngcc-wrapper {
-  position: relative;
-  height: 100%;
-  /* 1px padding creates the inset for the border-frame to show through */
-  padding: 1px;
-}
-
-/* ---- Gradient glow backdrop --------------------------------- */
-
+/* .ngcc-glow dynamic styles (cannot be Tailwind) */
 .ngcc-glow {
-  position: absolute;
-  inset: -2px;
-  border-radius: 3px;
   opacity: 0;
   filter: blur(var(--ngcc-glow-blur, 7px));
   transition: opacity 500ms ease;
@@ -88,35 +77,14 @@
     var(--ngcc-color-a, #00f3ff),
     var(--ngcc-color-b, #ff00ff)
   );
-  pointer-events: none;
-  z-index: 0;
 }
 
-/* ---- Border frame — sits between glow and card, handles all borders
-   including the clipped diagonal edge where CSS border can't reach ---- */
+/* .ngcc-border-frame — absolute inset-0 bg-white/10 z-[5] pointer-events-none
+   transition-[background,opacity] duration-300 handled by Tailwind;
+   class name kept for hover-state CSS selectors */
 
-.ngcc-border-frame {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  z-index: 5;
-  pointer-events: none;
-  transition:
-    background 300ms ease,
-    opacity 300ms ease;
-}
-
-/* ---- Inner card -------------------------------------------- */
-
+/* .ngcc-card — layout handled by Tailwind; only transition kept in CSS */
 .ngcc-card {
-  position: relative;
-  height: 100%;
-  background-color: #0a0a0a;
-  /* No CSS border — the border-frame layer behind handles all border rendering */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 10;
   transition: box-shadow 300ms ease;
 }
 
@@ -214,21 +182,8 @@
   display: none;
 }
 
-/* ---- Icon box ---------------------------------------------- */
-
-.ngcc-icon-box {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: #000;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 1.5rem;
-  transition:
-    border-color 300ms ease,
-    box-shadow 300ms ease;
-}
+/* ---- Icon box, icon, title hover -------------------------------- */
+/* (base layout + typography handled by Tailwind; class names kept for targeting) */
 
 .ngcc-wrapper:hover .ngcc-icon-box {
   border-color: var(--ngcc-color-a, #00f3ff);
@@ -239,28 +194,8 @@
       color-mix(in srgb, var(--ngcc-color-a, #00f3ff) 20%, transparent);
 }
 
-/* ---- Icon -------------------------------------------------- */
-
-.ngcc-icon {
-  color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 300ms ease;
-}
-
 .ngcc-wrapper:hover .ngcc-icon {
   color: var(--ngcc-color-a, #00f3ff);
-}
-
-/* ---- Title ------------------------------------------------- */
-
-.ngcc-title {
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
-  transition: text-shadow 300ms ease;
 }
 
 .ngcc-wrapper:hover .ngcc-title {
@@ -269,90 +204,4 @@
     0 0 20px var(--ngcc-color-a, #00f3ff);
 }
 
-/* ---- Description ------------------------------------------- */
-
-.ngcc-description {
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.65;
-  flex-grow: 1;
-}
-
-/* ---- Size variants ----------------------------------------- */
-
-/* padding on the inner card */
-.ngcc-size-sm .ngcc-card {
-  padding: 1.25rem;
-}
-.ngcc-size-md .ngcc-card {
-  padding: 2rem;
-}
-.ngcc-size-lg .ngcc-card {
-  padding: 2.5rem;
-}
-.ngcc-size-xl .ngcc-card {
-  padding: 3rem;
-}
-
-/* icon box dimensions */
-.ngcc-size-sm .ngcc-icon-box {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-.ngcc-size-md .ngcc-icon-box {
-  width: 3rem;
-  height: 3rem;
-}
-.ngcc-size-lg .ngcc-icon-box {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-.ngcc-size-xl .ngcc-icon-box {
-  width: 4rem;
-  height: 4rem;
-}
-
-/* icon SVG / inner element dimensions */
-.ngcc-size-sm .ngcc-icon {
-  width: 1rem;
-  height: 1rem;
-}
-.ngcc-size-md .ngcc-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.ngcc-size-lg .ngcc-icon {
-  width: 2rem;
-  height: 2rem;
-}
-.ngcc-size-xl .ngcc-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-
-/* title font size */
-.ngcc-size-sm .ngcc-title {
-  font-size: 0.875rem;
-}
-.ngcc-size-md .ngcc-title {
-  font-size: 1.125rem;
-}
-.ngcc-size-lg .ngcc-title {
-  font-size: 1.375rem;
-}
-.ngcc-size-xl .ngcc-title {
-  font-size: 1.625rem;
-}
-
-/* description font size */
-.ngcc-size-sm .ngcc-description {
-  font-size: 0.75rem;
-}
-.ngcc-size-md .ngcc-description {
-  font-size: 0.875rem;
-}
-.ngcc-size-lg .ngcc-description {
-  font-size: 1rem;
-}
-.ngcc-size-xl .ngcc-description {
-  font-size: 1.125rem;
-}
+/* ---- Size variants — all padding/sizing moved to Tailwind via JSX maps ------------ */

@@ -65,26 +65,10 @@
   );
 }
 
-/* ---- Wrapper ----------------------------------------------- */
+/* .bbc-wrapper — relative w-full overflow-hidden bg-white/[0.05] handled by Tailwind; */
+/* class name kept for .bbc-wrapper:hover hover-state selectors. */
 
-.bbc-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* ---- Inner card -------------------------------------------- */
-
-.bbc-inner {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background, #050505);
-  display: flex;
-  flex-direction: column;
-}
+/* .bbc-inner — layout + bg handled by Tailwind; class name kept for glow box-shadow targeting. */
 
 /* ---- Animations -------------------------------------------- */
 
@@ -210,21 +194,7 @@
       color-mix(in srgb, var(--bbc-beam-color, #ff00ff) 25%, transparent);
 }
 
-/* ---- Icon box ---------------------------------------------- */
-
-.bbc-icon-box {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: #000;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 1.5rem;
-  transition:
-    border-color 300ms ease,
-    box-shadow 300ms ease;
-}
+/* .bbc-icon-box — layout + base styles handled by Tailwind; class name kept for hover selectors. */
 
 .bbc-wrapper:hover .bbc-icon-box {
   border-color: var(--bbc-beam-color, #ff00ff);
@@ -234,29 +204,13 @@
       color-mix(in srgb, var(--bbc-beam-color, #ff00ff) 20%, transparent);
 }
 
-/* ---- Icon -------------------------------------------------- */
-
-.bbc-icon {
-  color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 300ms ease;
-}
+/* .bbc-icon — layout + base color handled by Tailwind; class name kept for hover selector. */
 
 .bbc-wrapper:hover .bbc-icon {
   color: var(--bbc-beam-color, #ff00ff);
 }
 
-/* ---- Title ------------------------------------------------- */
-
-.bbc-title {
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
-  transition: text-shadow 300ms ease;
-}
+/* .bbc-title — layout + base styles handled by Tailwind; class name kept for hover text-shadow selector. */
 
 .bbc-wrapper:hover .bbc-title {
   text-shadow:
@@ -264,85 +218,6 @@
     0 0 20px var(--bbc-beam-color, #ff00ff);
 }
 
-/* ---- Description ------------------------------------------- */
+/* .bbc-description — fully handled by Tailwind; class removed. */
 
-.bbc-description {
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.65;
-  flex-grow: 1;
-}
-
-/* ---- Size variants ----------------------------------------- */
-
-.bbc-size-sm .bbc-inner {
-  padding: 1.25rem;
-}
-.bbc-size-md .bbc-inner {
-  padding: 1.5rem;
-}
-.bbc-size-lg .bbc-inner {
-  padding: 2rem;
-}
-.bbc-size-xl .bbc-inner {
-  padding: 2.5rem;
-}
-
-.bbc-size-sm .bbc-icon-box {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-.bbc-size-md .bbc-icon-box {
-  width: 3rem;
-  height: 3rem;
-}
-.bbc-size-lg .bbc-icon-box {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-.bbc-size-xl .bbc-icon-box {
-  width: 4rem;
-  height: 4rem;
-}
-
-.bbc-size-sm .bbc-icon {
-  width: 1rem;
-  height: 1rem;
-}
-.bbc-size-md .bbc-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.bbc-size-lg .bbc-icon {
-  width: 2rem;
-  height: 2rem;
-}
-.bbc-size-xl .bbc-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-
-.bbc-size-sm .bbc-title {
-  font-size: 0.875rem;
-}
-.bbc-size-md .bbc-title {
-  font-size: 1.125rem;
-}
-.bbc-size-lg .bbc-title {
-  font-size: 1.375rem;
-}
-.bbc-size-xl .bbc-title {
-  font-size: 1.625rem;
-}
-
-.bbc-size-sm .bbc-description {
-  font-size: 0.75rem;
-}
-.bbc-size-md .bbc-description {
-  font-size: 0.875rem;
-}
-.bbc-size-lg .bbc-description {
-  font-size: 1rem;
-}
-.bbc-size-xl .bbc-description {
-  font-size: 1.125rem;
-}
+/* ---- Size variants — all padding/sizing moved to Tailwind via JSX maps ------------ */

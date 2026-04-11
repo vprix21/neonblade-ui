@@ -93,6 +93,12 @@ const COLOR_PRESETS: Record<string, string> = {
   green: "#39ff14",
 };
 
+const ALIGN_CLASSES: Record<NavAlign, string> = {
+  center: "justify-center",
+  left: "justify-start",
+  right: "justify-end",
+};
+
 // ---- Default profile menu items ----------------------------
 
 /** Ready-to-use profile menu preset — pass as `profileItems` or extend it */
@@ -259,14 +265,18 @@ function SubMenuDropdown({
         item.href ? (
           <a key={idx} href={item.href} className="nbr-submenu-item">
             {item.icon && (
-              <span className="nbr-submenu-item-icon">{item.icon}</span>
+              <span className="inline-flex items-center w-[0.8rem] h-[0.8rem]">
+                {item.icon}
+              </span>
             )}
             {item.label}
           </a>
         ) : (
           <button key={idx} className="nbr-submenu-item" onClick={item.onClick}>
             {item.icon && (
-              <span className="nbr-submenu-item-icon">{item.icon}</span>
+              <span className="inline-flex items-center w-[0.8rem] h-[0.8rem]">
+                {item.icon}
+              </span>
             )}
             {item.label}
           </button>
@@ -310,19 +320,27 @@ function NavDesktopItem({
         style={style}
         onClick={item.onClick}
       >
-        {item.icon && <span className="nbr-nav-item-icon">{item.icon}</span>}
+        {item.icon && (
+          <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+            {item.icon}
+          </span>
+        )}
         {item.label}
       </a>
     ) : (
       <button className="nbr-nav-item" style={style} onClick={item.onClick}>
-        {item.icon && <span className="nbr-nav-item-icon">{item.icon}</span>}
+        {item.icon && (
+          <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+            {item.icon}
+          </span>
+        )}
         {item.label}
       </button>
     );
   }
 
   return (
-    <div ref={wrapRef} className="nbr-nav-item-wrap">
+    <div ref={wrapRef} className="relative">
       <button
         className="nbr-nav-item nbr-nav-item--has-sub"
         style={style}
@@ -330,7 +348,11 @@ function NavDesktopItem({
         aria-expanded={open}
         aria-haspopup="true"
       >
-        {item.icon && <span className="nbr-nav-item-icon">{item.icon}</span>}
+        {item.icon && (
+          <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+            {item.icon}
+          </span>
+        )}
         {item.label}
         <span className={`nbr-chevron${open ? " nbr-chevron--open" : ""}`}>
           ▾
@@ -378,7 +400,11 @@ function ProfileDropdown({
 
   const avatarContent =
     typeof avatar === "string" ? (
-      <img src={avatar} alt="User avatar" className="nbr-avatar-img" />
+      <img
+        src={avatar}
+        alt="User avatar"
+        className="w-full h-full object-cover"
+      />
     ) : avatar !== undefined ? (
       avatar
     ) : (
@@ -388,7 +414,7 @@ function ProfileDropdown({
     );
 
   return (
-    <div ref={wrapRef} className="nbr-profile-wrap">
+    <div ref={wrapRef} className="relative">
       <button
         className="nbr-avatar-btn"
         style={style}
@@ -418,7 +444,9 @@ function ProfileDropdown({
                 }}
               >
                 {item.icon && (
-                  <span className="nbr-profile-item-icon">{item.icon}</span>
+                  <span className="inline-flex items-center w-[0.8rem] h-[0.8rem]">
+                    {item.icon}
+                  </span>
                 )}
                 {item.label}
               </button>
@@ -481,13 +509,24 @@ export const NavBar: React.FC<NavBarProps> = ({
   // ---- Logo node -------------------------------------------
 
   const logoNode = (
-    <a href={logoHref} className="nbr-logo">
+    <a
+      href={logoHref}
+      className="nbr-logo inline-flex items-center gap-2.5 shrink-0 no-underline cursor-pointer"
+    >
       {typeof logo === "string" ? (
-        <img src={logo} alt="Logo" className="nbr-logo-img" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="nbr-logo-img w-9 h-9 object-contain"
+        />
       ) : (
         logo
       )}
-      {logoText && <span className="nbr-logo-text">{logoText}</span>}
+      {logoText && (
+        <span className="nbr-logo-text font-orbitron font-bold text-[1.05rem] tracking-[0.08em] text-white transition-[color,text-shadow] duration-[280ms]">
+          {logoText}
+        </span>
+      )}
     </a>
   );
 
@@ -520,7 +559,9 @@ export const NavBar: React.FC<NavBarProps> = ({
               aria-label={item.label}
             >
               {item.icon && (
-                <span className="nbr-dock-item-icon">{item.icon}</span>
+                <span className="flex items-center justify-center w-[1.1rem] h-[1.1rem]">
+                  {item.icon}
+                </span>
               )}
               {dockShowLabels && (
                 <span className="nbr-dock-item-label">{item.label}</span>
@@ -572,17 +613,17 @@ export const NavBar: React.FC<NavBarProps> = ({
   return (
     <>
       <nav
-        className={`nbr-root ${posClass} ${bgClass} ${className}`}
+        className={`nbr-root ${posClass} ${bgClass} w-full z-[100] ${className}`}
         style={cssVars}
         aria-label="Navigation"
       >
-        <div className="nbr-inner">
+        <div className="flex items-center justify-between py-[0.875rem] px-6 max-w-[1280px] mx-auto gap-4">
           {/* Logo */}
           {logoNode}
 
           {/* Desktop nav items */}
           <div
-            className={`nbr-desktop-nav nbr-desktop-nav--${navAlign}`}
+            className={`hidden md:flex items-center gap-0 flex-1 ${ALIGN_CLASSES[navAlign]}`}
           >
             {items.map((item, idx) => (
               <NavDesktopItem
@@ -595,7 +636,7 @@ export const NavBar: React.FC<NavBarProps> = ({
           </div>
 
           {/* Right side: profile avatar + mobile toggle */}
-          <div className="nbr-right">
+          <div className="flex items-center gap-2.5 shrink-0">
             {showProfile && (
               <ProfileDropdown
                 avatar={profileAvatar}
@@ -607,7 +648,7 @@ export const NavBar: React.FC<NavBarProps> = ({
             )}
 
             <button
-              className="nbr-hamburger"
+              className="nbr-hamburger flex md:hidden items-center justify-center w-9 h-9 bg-transparent border-none cursor-pointer p-1.5 text-white/65 transition-colors duration-[280ms] shrink-0"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={mobileOpen}
@@ -636,7 +677,9 @@ export const NavBar: React.FC<NavBarProps> = ({
                         aria-expanded={isOpen}
                       >
                         {item.icon && (
-                          <span className="nbr-nav-item-icon">{item.icon}</span>
+                          <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+                            {item.icon}
+                          </span>
                         )}
                         <span>{item.label}</span>
                         <span
@@ -660,7 +703,7 @@ export const NavBar: React.FC<NavBarProps> = ({
                                 }}
                               >
                                 {child.icon && (
-                                  <span className="nbr-nav-item-icon">
+                                  <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
                                     {child.icon}
                                   </span>
                                 )}
@@ -676,7 +719,7 @@ export const NavBar: React.FC<NavBarProps> = ({
                                 }}
                               >
                                 {child.icon && (
-                                  <span className="nbr-nav-item-icon">
+                                  <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
                                     {child.icon}
                                   </span>
                                 )}
@@ -697,7 +740,9 @@ export const NavBar: React.FC<NavBarProps> = ({
                       }}
                     >
                       {item.icon && (
-                        <span className="nbr-nav-item-icon">{item.icon}</span>
+                        <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+                          {item.icon}
+                        </span>
                       )}
                       {item.label}
                     </a>
@@ -710,7 +755,9 @@ export const NavBar: React.FC<NavBarProps> = ({
                       }}
                     >
                       {item.icon && (
-                        <span className="nbr-nav-item-icon">{item.icon}</span>
+                        <span className="inline-flex items-center w-[0.9rem] h-[0.9rem]">
+                          {item.icon}
+                        </span>
                       )}
                       {item.label}
                     </button>

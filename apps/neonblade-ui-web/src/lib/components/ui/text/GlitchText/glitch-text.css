@@ -13,13 +13,7 @@
 
 /* ---- Base wrapper ------------------------------------------ */
 
-.glitch-wrapper {
-  position: relative;
-  display: inline-block;
-  font-weight: inherit;
-  font-size: inherit;
-  letter-spacing: inherit;
-}
+/* .glitch-wrapper — layout handled by Tailwind; class kept for ::before/::after pseudo-element targeting */
 
 /* Pseudo-elements for the RGB split channels */
 .glitch-wrapper::before,

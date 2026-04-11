@@ -8,11 +8,8 @@
 
 /* ── Root ───────────────────────────────────────────────────── */
 
+/* .tl-root — relative flex flex-col handled by Tailwind; class kept for data-align selectors + CSS var */
 .tl-root {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
   /* Default dot diameter — overridden per variant below.
      Used to accurately centre the 2px connector line through each dot. */
   --tl-dot-size: 22px;
@@ -76,86 +73,16 @@
 }
 
 /* ── Item row ───────────────────────────────────────────────── */
-
-.tl-item {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding-bottom: 32px;
-}
-
-.tl-item:last-child {
-  padding-bottom: 0;
-}
-
-/* Align variants for items */
-.tl-root[data-align="right"] .tl-item {
-  flex-direction: row-reverse;
-}
-
-.tl-root[data-align="alternate"] .tl-item:nth-child(even) .tl-content,
-.tl-root[data-align="center"] .tl-item:nth-child(even) .tl-content {
-  text-align: right;
-  align-items: flex-end;
-}
+/* .tl-item — layout handled by Tailwind (relative flex items-start gap-4 pb-8 last:pb-0) */
+/* flex-direction: row-reverse for align=right handled inline in JSX */
 
 /* ── Dot ────────────────────────────────────────────────────── */
+/* .tl-dot-wrap — layout + positioning handled by Tailwind; class removed in JSX */
+/* Alignment-specific dot-wrap positioning handled inline in JSX via align prop */
 
-.tl-dot-wrap {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* left */
-.tl-root[data-align="left"] .tl-dot-wrap {
-  margin-top: 2px;
-}
-
-/* right */
-.tl-root[data-align="right"] .tl-dot-wrap {
-  margin-top: 2px;
-}
-
-/* alternate/center — centered on the line */
-.tl-root[data-align="alternate"] .tl-dot-wrap,
-.tl-root[data-align="center"] .tl-dot-wrap {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 2px;
-}
-
-.tl-dot {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--tl-color, #00f3ff);
-  background: #0a0a0a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--tl-color, #00f3ff);
-  font-size: 11px;
-  transition: box-shadow 0.3s ease;
-}
-
-/* Dot shapes */
-.tl-dot-circle {
-  border-radius: 50%;
-}
-
-.tl-dot-square {
-  border-radius: 2px;
-}
-
-.tl-dot-diamond {
-  transform: rotate(45deg);
-  border-radius: 2px;
-}
+/* .tl-dot — base layout, size (w/h via --tl-dot-size), border, bg, flex, color, transition
+   all handled by Tailwind; class name kept for .tl-dot-active and .tl-dot-pulse targeting */
+/* Dot shapes handled by Tailwind conditional rounded-full / rounded-[2px] / rotate-45 in JSX */
 
 /* Active dot */
 .tl-dot-active {
@@ -205,55 +132,8 @@
 }
 
 /* ── Content ────────────────────────────────────────────────── */
-
-.tl-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-  padding-top: 1px;
-}
-
-/* alternate even items — push content to the left half */
-.tl-root[data-align="alternate"] .tl-item:nth-child(odd) .tl-content,
-.tl-root[data-align="center"] .tl-item:nth-child(odd) .tl-content {
-  padding-right: calc(50% + 24px);
-}
-
-.tl-root[data-align="alternate"] .tl-item:nth-child(even) .tl-content,
-.tl-root[data-align="center"] .tl-item:nth-child(even) .tl-content {
-  padding-left: calc(50% + 24px);
-  padding-right: 0;
-}
-
-/* Date chip */
-.tl-date {
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tl-color, #00f3ff);
-  opacity: 0.7;
-  font-family: var(--font-orbitron, monospace);
-  margin-bottom: 2px;
-}
-
-/* Title */
-.tl-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.3;
-  font-family: var(--font-orbitron, monospace);
-  letter-spacing: 0.04em;
-}
-
-/* Description */
-.tl-desc {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.55;
-}
+/* .tl-content — layout handled by Tailwind; alternate/center padding computed in JSX */
+/* .tl-date / .tl-title / .tl-desc — typography handled by Tailwind */
 
 /* Badge chip on the item */
 .tl-badge {
@@ -273,24 +153,16 @@
 
 /* ── Variant — minimal ──────────────────────────────────────── */
 
-/* Smaller dot → update the size variable so the line re-centres */
+/* Smaller dot size — CSS var drives w/h via Tailwind w-[var(--tl-dot-size)] */
 .tl-variant-minimal {
   --tl-dot-size: 10px;
 }
 
+/* Minimal dot border-width stays here (can't be CSS-var-driven in Tailwind) */
 .tl-variant-minimal .tl-dot {
-  width: 10px;
-  height: 10px;
   border-width: 2px;
 }
-
-.tl-variant-minimal .tl-title {
-  font-size: 0.8rem;
-}
-
-.tl-variant-minimal .tl-desc {
-  font-size: 0.73rem;
-}
+/* Title/desc font sizes for minimal handled in JSX conditionally */
 
 /* ── Variant — glow ─────────────────────────────────────────── */
 

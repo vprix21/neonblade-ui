@@ -217,9 +217,7 @@ function FooterLinkNode({ link }: { link: FooterLink }) {
   const props = {
     className: "ftc-link",
     href: link.href ?? "#",
-    ...(link.external
-      ? { target: "_blank", rel: "noopener noreferrer" }
-      : {}),
+    ...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {}),
     onClick: link.onClick,
   };
   return <a {...props}>{link.label}</a>;
@@ -229,13 +227,15 @@ function SocialBtn({ s }: { s: FooterSocialLink }) {
   return (
     <a
       href={s.href}
-      className="ftc-social-btn"
+      className="ftc-social-btn flex items-center justify-center w-8 h-8"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={s.label}
       title={s.label}
     >
-      <span className="ftc-social-icon">{s.icon}</span>
+      <span className="flex items-center justify-center w-[0.95rem] h-[0.95rem]">
+        {s.icon}
+      </span>
     </a>
   );
 }
@@ -312,30 +312,41 @@ export const Footer: React.FC<FooterProps> = ({
 
   const bgClass =
     background === "glass"
-      ? "ftc-bg-glass"
+      ? "bg-[rgba(4,4,4,0.82)] backdrop-blur-[14px]"
       : background === "transparent"
-        ? "ftc-bg-transparent"
-        : "ftc-bg-solid";
+        ? "bg-transparent"
+        : "bg-[#060606]";
 
   const borderClass = topBorder ? "ftc-border-top" : "";
 
   // Logo node
   const logoNode =
     logo || logoText ? (
-      <a href={logoHref} className="ftc-logo">
+      <a
+        href={logoHref}
+        className="ftc-logo inline-flex items-center gap-2.5 no-underline cursor-pointer shrink-0"
+      >
         {typeof logo === "string" ? (
-          <img src={logo} alt="Logo" className="ftc-logo-img" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="ftc-logo-img w-8 h-8 object-contain"
+          />
         ) : (
           logo
         )}
-        {logoText && <span className="ftc-logo-text">{logoText}</span>}
+        {logoText && (
+          <span className="ftc-logo-text font-orbitron font-bold text-base tracking-[0.1em] text-white transition-[color,text-shadow] duration-[240ms]">
+            {logoText}
+          </span>
+        )}
       </a>
     ) : null;
 
   // Social row
   const socialRow =
     socialLinks.length > 0 ? (
-      <div className="ftc-social-row">
+      <div className="flex items-center gap-2 flex-wrap">
         {socialLinks.map((s, i) => (
           <SocialBtn key={i} s={s} />
         ))}
@@ -348,30 +359,37 @@ export const Footer: React.FC<FooterProps> = ({
   if (variant === "minimal") {
     return (
       <footer
-        className={`ftc-root ftc-minimal ${bgClass} ${borderClass} ${className}`}
+        className={`w-full font-orbitron py-4 ${bgClass} ${borderClass} ${className}`}
         style={cssVars}
         aria-label="Site footer"
       >
-        <div className="ftc-minimal-inner">
-          <div className="ftc-minimal-brand">
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between flex-wrap gap-3 sm:gap-4 py-3 px-5 sm:px-8 max-w-[1280px] mx-auto text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-3 shrink-0 w-full sm:w-auto">
             {logoNode}
             {!logo && !logoText && (
-              <span className="ftc-copyright-text">{copyrightText}</span>
+              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+                {copyrightText}
+              </span>
             )}
           </div>
 
           {navLinks.length > 0 && (
-            <nav className="ftc-minimal-nav" aria-label="Footer navigation">
+            <nav
+              className="flex items-center gap-5 flex-wrap flex-1 justify-center w-full sm:w-auto"
+              aria-label="Footer navigation"
+            >
               {navLinks.map((link, i) => (
                 <FooterLinkNode key={i} link={link} />
               ))}
             </nav>
           )}
 
-          <div className="ftc-minimal-right">
+          <div className="flex sm:flex-row flex-col items-center gap-4 shrink-0 w-full sm:w-auto justify-center sm:justify-end">
             {socialRow}
             {(logo || logoText) && (
-              <span className="ftc-copyright-text">{copyrightText}</span>
+              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+                {copyrightText}
+              </span>
             )}
           </div>
         </div>
@@ -385,24 +403,29 @@ export const Footer: React.FC<FooterProps> = ({
   if (variant === "centered") {
     return (
       <footer
-        className={`ftc-root ftc-centered ${bgClass} ${borderClass} ${className}`}
+        className={`w-full font-orbitron py-10 px-8 ${bgClass} ${borderClass} ${className}`}
         style={cssVars}
         aria-label="Site footer"
       >
-        <div className="ftc-centered-inner">
-          {logoNode && <div className="ftc-centered-logo">{logoNode}</div>}
+        <div className="flex flex-col items-center gap-6 max-w-[1280px] mx-auto text-center">
+          {logoNode && <div className="flex justify-center">{logoNode}</div>}
 
           {navLinks.length > 0 && (
-            <nav className="ftc-centered-nav" aria-label="Footer navigation">
+            <nav
+              className="flex items-center justify-center gap-7 flex-wrap"
+              aria-label="Footer navigation"
+            >
               {navLinks.map((link, i) => (
                 <FooterLinkNode key={i} link={link} />
               ))}
             </nav>
           )}
 
-          {socialRow && <div className="ftc-centered-social">{socialRow}</div>}
+          {socialRow && <div className="flex justify-center">{socialRow}</div>}
 
-          <span className="ftc-copyright-text">{copyrightText}</span>
+          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+            {copyrightText}
+          </span>
         </div>
       </footer>
     );
@@ -414,24 +437,28 @@ export const Footer: React.FC<FooterProps> = ({
   if (variant === "columns") {
     return (
       <footer
-        className={`ftc-root ftc-columns ${bgClass} ${borderClass} ${className}`}
+        className={`w-full font-orbitron ${bgClass} ${borderClass} ${className}`}
         style={cssVars}
         aria-label="Site footer"
       >
-        <div className="ftc-columns-inner">
+        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_repeat(auto-fill,minmax(9rem,1fr))] gap-8 md:gap-12 py-8 md:py-14 px-5 md:px-8 max-w-[1280px] mx-auto w-full box-border">
           {/* Brand column */}
-          <div className="ftc-columns-brand">
+          <div className="flex flex-col gap-5">
             {logoNode}
             {description && (
-              <p className="ftc-brand-desc">{description}</p>
+              <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.38] max-w-[22rem] m-0">
+                {description}
+              </p>
             )}
             {socialRow}
           </div>
 
           {/* Link columns */}
           {linkGroups.map((group, gi) => (
-            <div key={gi} className="ftc-link-group">
-              <p className="ftc-link-group-title">{group.title}</p>
+            <div key={gi} className="flex flex-col gap-2.5">
+              <p className="ftc-link-group-title font-orbitron text-[0.6rem] font-bold tracking-[0.12em] uppercase text-[var(--ftc-color)] m-0 mb-1">
+                {group.title}
+              </p>
               {group.links.map((link, li) => (
                 <FooterLinkNode key={li} link={link} />
               ))}
@@ -440,10 +467,15 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom bar */}
-        <div className="ftc-bottom-bar">
-          <span className="ftc-copyright-text">{copyrightText}</span>
+        <div className="flex items-center justify-between flex-wrap gap-3 py-4 px-8 border-t border-white/[0.07] max-w-[1280px] mx-auto w-full box-border">
+          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+            {copyrightText}
+          </span>
           {navLinks.length > 0 && (
-            <nav className="ftc-bottom-nav" aria-label="Bottom footer navigation">
+            <nav
+              className="flex items-center gap-5 flex-wrap"
+              aria-label="Bottom footer navigation"
+            >
               {navLinks.map((link, i) => (
                 <FooterLinkNode key={i} link={link} />
               ))}
@@ -459,19 +491,21 @@ export const Footer: React.FC<FooterProps> = ({
   // ==========================================================
   return (
     <footer
-      className={`ftc-root ftc-mega ${bgClass} ${borderClass} ${className}`}
+      className={`w-full font-orbitron ${bgClass} ${borderClass} ${className}`}
       style={cssVars}
       aria-label="Site footer"
     >
-      <div className="ftc-mega-inner">
+      <div className="grid grid-cols-1 md:grid-cols-[1.75fr_1fr] gap-8 md:gap-12 py-8 md:py-14 px-5 md:px-8 pb-6 md:pb-10 max-w-[1280px] mx-auto">
         {/* Left brand section */}
-        <div className="ftc-mega-brand">
+        <div className="flex flex-col gap-5">
           {logoNode}
           {description && (
-            <p className="ftc-brand-desc">{description}</p>
+            <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.38] max-w-[22rem] m-0">
+              {description}
+            </p>
           )}
           {showNewsletter && (
-            <div className="ftc-mega-newsletter-wrap">
+            <div className="flex flex-col gap-1.5">
               <p className="ftc-newsletter-label">Stay in the loop</p>
               <Newsletter
                 placeholder={newsletterPlaceholder}
@@ -485,10 +519,12 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Right link columns */}
-        <div className="ftc-mega-columns">
+        <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-6 md:gap-y-8 md:gap-x-10 content-start">
           {linkGroups.map((group, gi) => (
-            <div key={gi} className="ftc-link-group">
-              <p className="ftc-link-group-title">{group.title}</p>
+            <div key={gi} className="flex flex-col gap-2.5">
+              <p className="ftc-link-group-title font-orbitron text-[0.6rem] font-bold tracking-[0.12em] uppercase text-[var(--ftc-color)] m-0 mb-1">
+                {group.title}
+              </p>
               {group.links.map((link, li) => (
                 <FooterLinkNode key={li} link={link} />
               ))}
@@ -498,10 +534,15 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Bottom bar */}
-      <div className="ftc-bottom-bar">
-        <span className="ftc-copyright-text">{copyrightText}</span>
+      <div className="flex items-center justify-between flex-wrap gap-3 py-4 px-8 border-t border-white/[0.07] max-w-[1280px] mx-auto w-full box-border">
+        <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+          {copyrightText}
+        </span>
         {navLinks.length > 0 && (
-          <nav className="ftc-bottom-nav" aria-label="Bottom footer navigation">
+          <nav
+            className="flex items-center gap-5 flex-wrap"
+            aria-label="Bottom footer navigation"
+          >
             {navLinks.map((link, i) => (
               <FooterLinkNode key={i} link={link} />
             ))}

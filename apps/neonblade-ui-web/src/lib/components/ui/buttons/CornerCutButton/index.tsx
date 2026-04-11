@@ -161,9 +161,25 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
   const resolvedColor = COLOR_PRESETS[color] ?? color;
   const glowSize = GLOW_SIZES[glowIntensity];
 
+  // Ghost variant needs color-mix background — not expressible in Tailwind
+  const ghostStyle =
+    variant === "ghost"
+      ? {
+          backgroundColor: "color-mix(in srgb, var(--ccb-color) 12%, #000)",
+          color: "var(--ccb-color)",
+        }
+      : undefined;
+
   return (
     <div
-      className={`ccb-wrapper ccb-wrapper-${variant} ${className}`}
+      className={[
+        "relative inline-flex p-px",
+        // ccb-wrapper class retained ONLY for the flicker :has() selector in CSS
+        hoverEffect === "flicker" ? "ccb-wrapper" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={
         {
           "--ccb-color": resolvedColor,
@@ -173,22 +189,32 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
         } as React.CSSProperties
       }
     >
-      {/* Border frame — same clip-path as button, provides the 1px diagonal border */}
+      {/* Border frame: 1px ring on all edges including the diagonal */}
       <div
-        className={`ccb-border-frame ${CORNER_CLASSES[corner]}`}
+        className={[
+          "absolute inset-0 pointer-events-none z-0 transition-[background,opacity] duration-300",
+          CORNER_CLASSES[corner],
+          variant === "outline" ? "bg-[var(--ccb-color)]" : "bg-white/[0.08]",
+        ]
+          .filter(Boolean)
+          .join(" ")}
         aria-hidden="true"
       />
 
       <button
         className={[
-          "ccb-btn relative group font-orbitron font-bold tracking-wider uppercase transition-all overflow-hidden cursor-pointer",
+          "flex-1 relative group font-orbitron font-bold tracking-wider uppercase transition-all overflow-hidden cursor-pointer",
           SIZE_CLASSES[size],
           CORNER_CLASSES[corner],
           HOVER_CLASSES[hoverEffect],
+          // Class kept for compound hover-state CSS selectors (.ccb-solid.ccb-hover-glow:hover etc.)
           `ccb-${variant}`,
+          variant === "solid" ? "bg-[var(--ccb-color)] text-black" : "",
+          variant === "outline" ? "bg-black text-[var(--ccb-color)]" : "",
         ]
           .filter(Boolean)
           .join(" ")}
+        style={ghostStyle}
         {...props}
       >
         {/* Shine sweep layer — only rendered when needed */}
