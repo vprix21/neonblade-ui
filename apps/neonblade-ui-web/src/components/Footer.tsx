@@ -45,18 +45,27 @@ export function Footer() {
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
-        <p className="text-sm font-orbitron text-white/50 tracking-wider">
-          Developed by{" "}
-          <a
-            href="https://neuronrush.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#00f3ff] text-glow-cyan animate-pulse hover:text-white transition-colors"
-          >
-            NeuronRush
-          </a>{" "}
-          © {new Date().getFullYear()}
-        </p>
+        <div className="flex flex-col items-center gap-1 text-center">
+          <p className="text-sm font-orbitron text-white/50 tracking-wider">
+            Developed by{" "}
+            <span className="text-white/70 font-bold hover:text-white transition-colors">
+              Vinay Kalwale
+            </span>{" "}
+            © {new Date().getFullYear()}
+          </p>
+          <p className="text-[11px] font-orbitron text-white/30 tracking-wider">
+            A{" "}
+            <a
+              href="https://neuronrush.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#00f3ff] text-glow-cyan animate-pulse hover:text-white transition-colors"
+            >
+              NeuronRush
+            </a>{" "}
+            Project
+          </p>
+        </div>
       </div>
     </footer>
   );
