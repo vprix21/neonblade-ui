@@ -2,11 +2,11 @@
   "name": "glitch-text",
   "files": [
     {
-      "path": "components/ui/glitch-text/index.tsx",
+      "path": "components/neonblade-ui/glitch-text/index.tsx",
       "url": "https://neonbladeui-registry.vercel.app/components/glitch-text/index.tsx"
     },
     {
-      "path": "components/ui/glitch-text/glitch-text.css",
+      "path": "components/neonblade-ui/glitch-text/glitch-text.css",
       "url": "https://neonbladeui-registry.vercel.app/components/glitch-text/glitch-text.css"
     }
   ],

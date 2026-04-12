@@ -49,10 +49,11 @@ export interface GlitchTextProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode;
 
   /**
-   * The string to render in `data-text` (must match `children` text).
-   * Used by the CSS `content: attr(data-text)` pseudo-elements.
+   * The string to render in `data-text` for the CSS pseudo-elements.
+   * Defaults to `children` when `children` is a plain string — so you only
+   * need this when `children` contains JSX rather than a bare string.
    */
-  text: string;
+  text?: string;
 
   /**
    * Activation mode.
@@ -147,6 +148,8 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
     setMounted(true);
   }, []);
 
+  const resolvedText = text ?? (typeof children === "string" ? children : "");
+
   const resolvedA = COLOR_PRESETS[colorA] ?? colorA;
   const resolvedB = COLOR_PRESETS[colorB] ?? colorB;
   const resolvedGlow = glowColor
@@ -168,6 +171,7 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
 
   const classes = [
     "glitch-wrapper",
+    "relative inline-block",
     mode === "active" ? "activeglitch" : "hoverglitch",
     intensity !== "normal" ? `gt-${intensity}` : "",
     neon ? "gt-neon" : "",
@@ -180,7 +184,7 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
   return (
     <span
       className={classes}
-      data-text={text}
+      data-text={resolvedText}
       style={
         {
           "--gt-color-a": resolvedA,

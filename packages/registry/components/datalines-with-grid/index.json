@@ -2,7 +2,7 @@
   "name": "datalines-with-grid",
   "files": [
     {
-      "path": "components/ui/datalines-with-grid/index.tsx",
+      "path": "components/neonblade-ui/datalines-with-grid/index.tsx",
       "url": "https://neonbladeui-registry.vercel.app/components/datalines-with-grid/index.tsx"
     }
   ],

@@ -1,6 +1,6 @@
 {
   "name": "neonblade",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "NeonBlade UI CLI",
   "bin": {
     "neonblade": "index.js"

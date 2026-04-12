@@ -16,11 +16,6 @@
       "description": "Futuristic label badge with pill, rectangle, and corner-cut shapes"
     },
     {
-      "name": "blur-text",
-      "category": "text",
-      "description": "Text with smooth blur-in reveal animation"
-    },
-    {
       "name": "border-beam-corner-cut-card",
       "category": "cards",
       "description": "Corner-cut card with animated conic-gradient beam border"

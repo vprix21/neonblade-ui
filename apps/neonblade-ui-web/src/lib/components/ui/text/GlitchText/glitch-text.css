@@ -14,6 +14,11 @@
 /* ---- Base wrapper ------------------------------------------ */
 
 /* .glitch-wrapper — layout handled by Tailwind; class kept for ::before/::after pseudo-element targeting */
+/* .glitch-wrapper — must be a positioned container so ::before/::after position: absolute aligns over the text */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
 /* Pseudo-elements for the RGB split channels */
 .glitch-wrapper::before,

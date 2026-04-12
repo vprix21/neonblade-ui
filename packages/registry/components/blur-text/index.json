@@ -2,7 +2,7 @@
   "name": "blur-text",
   "files": [
     {
-      "path": "components/ui/blur-text/index.tsx",
+      "path": "components/neonblade-ui/blur-text/index.tsx",
       "url": "https://neonbladeui-registry.vercel.app/components/blur-text/BlurText.tsx"
     }
   ],

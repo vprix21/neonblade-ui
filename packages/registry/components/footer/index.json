@@ -2,11 +2,11 @@
   "name": "footer",
   "files": [
     {
-      "path": "components/ui/footer/index.tsx",
+      "path": "components/neonblade-ui/footer/index.tsx",
       "url": "https://neonbladeui-registry.vercel.app/components/footer/index.tsx"
     },
     {
-      "path": "components/ui/footer/footer.css",
+      "path": "components/neonblade-ui/footer/footer.css",
       "url": "https://neonbladeui-registry.vercel.app/components/footer/footer.css"
     }
   ],
