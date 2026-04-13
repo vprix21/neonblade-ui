@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { NeonGlowCornerCutCard } from "../../lib/components/ui/cards/NeonGlowCornerCutCard";
 import { Badge } from "../../lib/components/ui/badges/Badge";
 import { Navbar } from "../../components/Navbar";
@@ -16,11 +15,11 @@ const templates = [
     color: "cyan" as const,
     status: "free" as const,
     github: "https://github.com/neonblade-ui/neonbladeui-sd-portfolio-template",
+    preview: "https://neonbladeui-sd-portfolio-template.vercel.app/",
   },
 ];
 
 export default function TemplatesPage() {
-  const router = useRouter();
   return (
     <main className="flex min-h-screen flex-col bg-black text-white">
       <Navbar />
@@ -49,7 +48,9 @@ export default function TemplatesPage() {
             {templates.map((t) => (
               <div
                 key={t.slug}
-                onClick={() => router.push(`/templates/${t.slug}`)}
+                onClick={() =>
+                  window.open(t.preview, "_blank", "noopener,noreferrer")
+                }
                 className="cursor-pointer"
               >
                 <NeonGlowCornerCutCard
