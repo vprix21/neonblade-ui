@@ -183,9 +183,11 @@ export function Timeline({
           "tl-dot",
           "border-2 text-[var(--tl-color)] border-[var(--tl-color)] bg-[#0a0a0a] flex items-center justify-center transition-[box-shadow] duration-300",
           "w-[var(--tl-dot-size)] h-[var(--tl-dot-size)] text-[11px]",
-          dotStyle === "circle" ? "rounded-full"
-            : dotStyle === "square" ? "rounded-[2px]"
-            : "rounded-[2px] rotate-45",
+          dotStyle === "circle"
+            ? "rounded-full"
+            : dotStyle === "square"
+              ? "rounded-[2px]"
+              : "rounded-[2px] rotate-45",
           item.active ? "tl-dot-active" : "",
         ]
           .filter(Boolean)
@@ -194,7 +196,7 @@ export function Timeline({
         const dotWrapClasses = [
           dotAnim === "pulse" ? "tl-dot-pulse" : "",
           "shrink-0 flex items-center justify-center relative z-[1]",
-          align === "alternate" || align === "center"
+          align === "alternate"
             ? "absolute left-1/2 -translate-x-1/2 mt-0.5"
             : "mt-0.5",
         ]
@@ -208,7 +210,7 @@ export function Timeline({
           .filter(Boolean)
           .join(" ");
 
-        const isAlternate = align === "alternate" || align === "center";
+        const isAlternate = align === "alternate";
         const contentClasses = [
           "flex-1 flex flex-col gap-1 min-w-0 pt-px",
           isAlternate && idx % 2 === 0 ? "pr-[calc(50%+24px)]" : "",
