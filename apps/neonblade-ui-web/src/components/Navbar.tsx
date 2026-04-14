@@ -39,13 +39,13 @@ export function Navbar() {
         <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group"
             onClick={() => setMobileOpen(false)}
           >
             <img
               src="/neonblade_ui_logo.png"
               alt="NeonBlade UI Logo"
-              className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
+              className="w-6 h-6 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
             />
             <span className="font-orbitron font-bold text-xl tracking-wider text-white group-hover:text-glow-cyan transition-all">
               {/* NeonBlade<span className="text-[#00f3ff]">UI</span> */}
