@@ -43,14 +43,39 @@ export function Footer() {
           ))}
         </nav>
 
+        {/* Social links */}
+        <div className="flex items-center gap-4 mb-6">
+          <a
+            href="https://x.com/vi_x1x6"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="text-white/40 hover:text-white transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-5 h-5"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
+
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
         <div className="flex flex-col items-center gap-1 text-center">
-          <p className="text-sm font-orbitron text-white/50 tracking-wider">
+          <p className="text-xs font-orbitron text-white/30 tracking-wider">
             Developed by{" "}
-            <span className="text-white/70 font-bold hover:text-white transition-colors">
+            <a
+              href="https://x.com/vi_x1x6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#00f3ff] text-glow-cyan animate-pulse hover:text-white transition-colors"
+            >
               Vinay Kalwale
-            </span>{" "}
+            </a>{" "}
             © {new Date().getFullYear()}
           </p>
           <p className="text-[11px] font-orbitron text-white/30 tracking-wider">
@@ -59,7 +84,7 @@ export function Footer() {
               href="https://neuronrush.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#00f3ff] text-glow-cyan animate-pulse hover:text-white transition-colors"
+              className="bg-gradient-to-r from-[#1859ba] to-[#eded21] bg-clip-text text-transparent text-glow-neuronrush animate-pulse transition-colors"
             >
               NeuronRush
             </a>{" "}

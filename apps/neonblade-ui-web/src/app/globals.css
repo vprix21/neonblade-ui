@@ -88,6 +88,16 @@ body {
     0 0 20px var(--neon-pink);
 }
 
+.text-glow-white {
+  text-shadow:
+    0 0 10px var(--foreground),
+    0 0 20px var(--foreground);
+}
+
+.text-glow-neuronrush {
+  filter: drop-shadow(0 0 6px #1859ba) drop-shadow(0 0 12px #eded21);
+}
+
 .box-glow-cyan {
   box-shadow:
     0 0 15px rgba(0, 243, 255, 0.4),
