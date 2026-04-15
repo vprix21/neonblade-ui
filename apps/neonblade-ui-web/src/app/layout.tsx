@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Rajdhani, Orbitron } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const rajdhani = Rajdhani({
@@ -45,6 +46,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
