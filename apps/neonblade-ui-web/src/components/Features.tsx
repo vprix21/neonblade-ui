@@ -40,8 +40,8 @@ export function Features() {
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-4">
             {/* Forged in the <span className="text-[#00f3ff]">Future</span>
              */}
-            Forged in the{" "}
-            <span>
+            Forged in the Future
+            {/* <span>
               {" "}
               <AccentFrame
                 mode="duo"
@@ -52,7 +52,7 @@ export function Features() {
                   Future
                 </GlitchText>
               </AccentFrame>
-            </span>
+            </span> */}
           </h2>
           <p className="text-white/65 max-w-2xl text-lg mb-4">
             NeonBlade provides primitive, high-quality components engineered for

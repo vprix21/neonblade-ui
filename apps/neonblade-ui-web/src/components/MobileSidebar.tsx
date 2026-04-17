@@ -16,7 +16,7 @@ export function MobileSidebar() {
           className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded text-white transition-colors flex-shrink-0"
           aria-label="Open menu"
         >
-          <Menu className="w-5 h-5 text-[#00f3ff]" />
+          <Menu className="w-5 h-5" />
         </button>
         <h2 className="text-xl font-orbitron font-bold text-white">
           Components
