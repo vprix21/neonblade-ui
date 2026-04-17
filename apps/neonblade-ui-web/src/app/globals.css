@@ -136,6 +136,15 @@ body {
   animation: flicker 4s linear infinite;
 }
 
+/* Hero title — clamp() gives smooth, reliable scaling on every device width.
+   min: 2.75rem (44px) keeps it readable on small phones (≤440px)
+   fluid: 10vw scales naturally from ~440px upward
+   max: 4.5rem (72px) caps it on large screens */
+.hero-title {
+  font-size: clamp(2.75rem, 10vw, 4.5rem);
+  line-height: 1.1;
+}
+
 .bg-grid {
   background-size: 50px 50px;
   background-image:

@@ -15,7 +15,7 @@ export default function ComponentsLayout({
       {/* We reuse the Navbar but keep it standard on the docs */}
       <Navbar />
 
-      <main className="flex-1 flex flex-col md:flex-row container mx-auto px-6 max-w-7xl pt-32 pb-12 gap-10">
+      <main className="flex-1 flex flex-col md:flex-row container mx-auto px-4 sm:px-6 max-w-7xl pt-32 pb-12 gap-10">
         <MobileSidebar />
         
         {/* Sidebar */}
@@ -27,7 +27,7 @@ export default function ComponentsLayout({
             <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)] pr-4 custom-scrollbar">
               {categories.map((category) => (
                 <div key={category.slug} className="space-y-3">
-                  <h4 className="font-orbitron font-semibold text-sm text-[#00f3ff] uppercase tracking-wider">
+                  <h4 className="font-orbitron font-semibold text-sm text-[#00f3ff] tracking-wide">
                     {category.name}
                   </h4>
                   <ul className="space-y-2 border-l border-white/10 ml-2 pl-4">
@@ -35,7 +35,7 @@ export default function ComponentsLayout({
                       <li key={component.slug}>
                         <Link
                           href={`/components/${category.slug}/${component.slug}`}
-                          className="block text-white/60 hover:text-white hover:translate-x-1 transition-all text-sm font-light"
+                          className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm"
                         >
                           {component.name}
                         </Link>

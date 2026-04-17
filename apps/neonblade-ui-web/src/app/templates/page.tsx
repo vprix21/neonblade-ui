@@ -21,10 +21,10 @@ const templates = [
 
 export default function TemplatesPage() {
   return (
-    <main className="flex min-h-screen flex-col bg-black text-white">
+    <main className="flex min-h-screen flex-col bg-black text-white selection:bg-[#00f3ff] selection:text-black">
       <Navbar />
 
-      <section className="flex-1 pt-32 pb-24 px-6">
+      <section className="flex-1 pt-32 pb-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-7xl">
           {/* Header */}
           <div className="mb-16">
@@ -37,7 +37,7 @@ export default function TemplatesPage() {
                 templates
               </span>
             </h1>
-            <p className="text-white/50 text-lg max-w-2xl">
+            <p className="text-white/65 text-lg max-w-2xl">
               Free, open-source templates built entirely with NeonBlade UI
               components. Copy, customise, deploy.
             </p>
@@ -110,7 +110,7 @@ export default function TemplatesPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/30 transition-colors"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/30 transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

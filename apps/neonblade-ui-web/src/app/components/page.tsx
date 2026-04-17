@@ -5,12 +5,12 @@ import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCa
 
 export default function ComponentsLanding() {
   return (
-    <div className="animate-in fade-in duration-500 max-w-4xl mx-auto space-y-12">
+    <div className="max-w-4xl mx-auto space-y-12">
       <div className="space-y-4">
         <h1 className="text-4xl md:text-5xl font-bold font-orbitron tracking-tight text-white mb-2">
           Component Library
         </h1>
-        <p className="text-lg text-white/60 font-light max-w-2xl leading-relaxed">
+        <p className="text-lg text-white/70 font-light max-w-2xl leading-relaxed">
           Explore our collection of modern and futuristic React components.
           Built with Tailwind CSS for ultimate customization without hidden
           magic.

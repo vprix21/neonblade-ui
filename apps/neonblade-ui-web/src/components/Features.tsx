@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Terminal, Zap, PackageOpen, Layers } from "lucide-react";
 import AccentFrame from "../lib/components/ui/frames/AccentFrame";
 import GlitchText from "../lib/components/ui/text/GlitchText";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
-import Badge from "@/lib/components/ui/badges/Badge";
 
 const features = [
   {
@@ -56,7 +54,7 @@ export function Features() {
               </AccentFrame>
             </span>
           </h2>
-          <p className="text-white/50 max-w-2xl text-lg mb-4">
+          <p className="text-white/65 max-w-2xl text-lg mb-4">
             NeonBlade provides primitive, high-quality components engineered for
             absolute aesthetic dominance.
           </p>

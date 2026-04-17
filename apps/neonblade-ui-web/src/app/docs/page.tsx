@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useState } from "react";
-import { Copy, Check, Terminal, ArrowRight, ExternalLink } from "lucide-react";
+import { Copy, Check, ArrowRight, ExternalLink } from "lucide-react";
 import {
   SiReact,
   SiNextdotjs,
@@ -87,15 +86,6 @@ function CodeBlock({
   );
 }
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 18 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, delay: i * 0.08 },
-  }),
-};
-
 const frameworks = [
   { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
   { icon: SiReact, label: "React", color: "#61dafb" },
@@ -116,15 +106,9 @@ export default function DocsPage() {
       <Navbar />
 
       <main className="flex-1 pt-32 pb-12">
-        <div className="container mx-auto px-6 max-w-3xl">
+        <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
           {/* Header */}
-          <motion.div
-            custom={0}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14 space-y-4"
-          >
+          <div className="mb-14 space-y-4">
             {/* <span className="inline-flex items-center gap-2 px-3 py-1 border border-[#00f3ff]/30 bg-[#00f3ff]/5 text-[#00f3ff] text-xs font-orbitron tracking-widest uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00f3ff] animate-flicker" />
               Documentation
@@ -139,26 +123,20 @@ export default function DocsPage() {
                 NeonBlade UI
               </span>
             </h1>
-            <p className="text-white/50 text-xl leading-relaxed max-w-2xl">
+            <p className="text-white/65 text-xl leading-relaxed max-w-2xl">
               A futuristic React component library with sci-fi aesthetics built
               with Tailwind CSS. No wrappers. Just code that&apos;s yours.
             </p>
-          </motion.div>
+          </div>
 
           <div className="w-full h-px bg-gradient-to-r from-[#00f3ff]/40 via-white/10 to-transparent mb-14" />
 
           {/* Section: The Rule */}
-          <motion.section
-            custom={1}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">01</span>The Rule Is Simple
             </h2>
-            <p className="text-white/55 leading-relaxed mb-4 ">
+            <p className="text-white/65 leading-relaxed mb-4 ">
               NeonBlade UI has zero lock-in. Components are downloaded directly
               into your project — they live in your codebase, not inside a
               node_modules black box. The only real requirement is{" "}
@@ -166,7 +144,7 @@ export default function DocsPage() {
               . That&apos;s it. Install Tailwind, run the CLI, and you&apos;re
               building.
             </p>
-            <ul className="space-y-2 text-white/55  leading-relaxed list-none">
+            <ul className="space-y-2 text-white/65  leading-relaxed list-none">
               {[
                 "Have Tailwind CSS set up in your project",
                 "Run the CLI to add components",
@@ -182,21 +160,15 @@ export default function DocsPage() {
                 </li>
               ))}
             </ul>
-          </motion.section>
+          </section>
 
           {/* Section: Tailwind CSS */}
-          <motion.section
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">02</span>Installing Tailwind
               CSS
             </h2>
-            <p className="text-white/55 leading-relaxed mb-5">
+            <p className="text-white/65 leading-relaxed mb-5">
               NeonBlade UI is built on top of{" "}
               {/* <span className="inline-flex items-center gap-1.5"> */}
               <SiTailwindcss className="text-[#38bdf8] inline" size={14} />
@@ -239,20 +211,14 @@ export default function DocsPage() {
               Tailwind CSS Official Docs
               <ExternalLink size={12} className="opacity-60" />
             </a>
-          </motion.section>
+          </section>
 
           {/* Section: CLI */}
-          <motion.section
-            custom={3}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">03</span>The NeonBlade CLI
             </h2>
-            <p className="text-white/55 leading-relaxed mb-4 ">
+            <p className="text-white/65 leading-relaxed mb-4 ">
               NeonBlade UI ships its{" "}
               <span className="text-white/50 font-semibold">own CLI</span>.
               It&apos;s built from scratch for NeonBlade and talks directly to
@@ -270,7 +236,7 @@ export default function DocsPage() {
             </p>
             <CodeBlock code={`npx neonblade add`} />
 
-            <p className="text-white/55 text-sm leading-relaxed mt-5">
+            <p className="text-white/65 text-sm leading-relaxed mt-5">
               The CLI will automatically detect your package manager ({" "}
               <span className="inline-flex items-center gap-1">
                 <SiNpm className="text-[#cb3837]" size={12} /> npm
@@ -285,30 +251,24 @@ export default function DocsPage() {
               </span>
               ) and install any required dependencies.
             </p>
-          </motion.section>
+          </section>
 
           {/* Section: Example Usage */}
-          <motion.section
-            custom={4}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">04</span>Example Usage
             </h2>
-            <p className="text-white/55 leading-relaxed mb-4 ">
+            <p className="text-white/65 leading-relaxed mb-4 ">
               Let&apos;s add the{" "}
               <code className="text-[#00f3ff] text-sm">corner-cut-button</code>{" "}
               component to your project:
             </p>
             <CodeBlock code={`npx neonblade add corner-cut-button`} />
-            <p className="text-white/50 text-sm mb-4">
+            <p className="text-white/65 text-sm mb-4">
               The CLI fetches the files, installs dependencies, and places them
               in your project.
             </p>
-            <p className="text-white/55 leading-relaxed mb-3">Then use it:</p>
+            <p className="text-white/65 leading-relaxed mb-3">Then use it:</p>
             <CodeBlock
               language="tsx"
               code={`export default function Page() {
@@ -319,21 +279,15 @@ export default function DocsPage() {
   );
 }`}
             />
-          </motion.section>
+          </section>
 
           {/* Section: Supported Frameworks */}
-          <motion.section
-            custom={5}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">05</span>Supported
               Environments
             </h2>
-            <p className="text-white/55 leading-relaxed mb-6 ">
+            <p className="text-white/65 leading-relaxed mb-6 ">
               NeonBlade UI components are standard React components — anything
               that runs React and Tailwind CSS is supported. Here&apos;s what we
               directly test and recommend:
@@ -360,7 +314,7 @@ export default function DocsPage() {
               {packageManagers.map(({ icon: Icon, label, color }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2 bg-white/[0.03] border border-white/10 px-3 py-2 text-sm text-white/60 font-orbitron"
+                  className="flex items-center gap-2 bg-white/[0.03] border border-white/10 px-3 py-2 text-sm text-white/70 font-orbitron"
                 >
                   <Icon size={14} style={{ color }} />
                   {label}
@@ -368,27 +322,21 @@ export default function DocsPage() {
               ))}
             </div>
 
-            <p className="text-white/50 text-sm mt-5 leading-relaxed">
+            <p className="text-white/65 text-sm mt-5 leading-relaxed">
               NeonBlade UI also plays well with{" "}
               <span className="text-white">Remix</span> and{" "}
               <span className="text-white">Astro</span> (with React integration)
               — anywhere you can import a React component and have Tailwind
               scanning your files.
             </p>
-          </motion.section>
+          </section>
 
           {/* Section: Browse Components */}
-          <motion.section
-            custom={6}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mb-14"
-          >
+          <section className="mb-14">
             <h2 className="font-orbitron font-bold text-xl text-white mb-3 tracking-wide">
               <span className="text-[#00f3ff] mr-2">06</span>Browse Components
             </h2>
-            <p className="text-white/55 leading-relaxed mb-5 ">
+            <p className="text-white/65 leading-relaxed mb-5 ">
               All available components — backgrounds, buttons, cards, text
               effects, frames — are documented in the component library. Live
               previews, prop tables, and usage code included.
@@ -404,18 +352,12 @@ export default function DocsPage() {
                 View All Components
               </CornerCutButton>
             </Link>
-          </motion.section>
+          </section>
 
           <div className="w-full h-px bg-gradient-to-r from-[#00f3ff]/30 via-white/5 to-transparent mb-10" />
 
           {/* Closing */}
-          <motion.div
-            custom={7}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="text-center py-6"
-          >
+          <div className="text-center py-6">
             <Badge color="green" size="md" dot="flicker" className="mb-4">
               System ready
             </Badge>
@@ -425,7 +367,7 @@ export default function DocsPage() {
                 NeonBlade UI
               </span>
             </p>
-          </motion.div>
+          </div>
         </div>
       </main>
 

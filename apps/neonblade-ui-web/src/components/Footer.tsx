@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
   { label: "Components", href: "/components" },
@@ -15,12 +16,14 @@ export function Footer() {
       <div className="container mx-auto px-6 max-w-7xl flex flex-col items-center relative z-10">
         <Link
           href="/"
-          className="flex items-center gap-3 mb-6 opacity-50 hover:opacity-100 transition-opacity"
+          className="flex items-center gap-3 mb-6 opacity-100 hover:opacity-100 transition-opacity"
         >
-          <img
+          <Image
             src="/neonblade_ui_logo.png"
             alt="NeonBlade UI Logo"
-            className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
+            width={32}
+            height={32}
+            className="object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
           />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff] font-orbitron font-bold text-lg tracking-wider">
             NeonBlade UI
@@ -36,7 +39,7 @@ export function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-orbitron tracking-widest text-white/40 hover:text-[#00f3ff] uppercase transition-colors"
+              className="text-xs font-orbitron tracking-widest text-white/65 hover:text-[#00f3ff] uppercase transition-colors"
             >
               {link.label}
             </Link>
@@ -50,7 +53,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X (Twitter)"
-            className="text-white/40 hover:text-white transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+            className="text-white/65 hover:text-white transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,25 +69,25 @@ export function Footer() {
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
         <div className="flex flex-col items-center gap-1 text-center">
-          <p className="text-xs font-orbitron text-white/30 tracking-wider">
+          <p className="text-xs font-orbitron text-white/65 tracking-wider">
             Developed by{" "}
             <a
               href="https://x.com/vi_x1x6"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#00f3ff] text-glow-cyan animate-pulse hover:text-white transition-colors"
+              className="text-[#00f2ff] hover:text-white transition-colors"
             >
               Vinay Kalwale
             </a>{" "}
             © {new Date().getFullYear()}
           </p>
-          <p className="text-[11px] font-orbitron text-white/30 tracking-wider">
+          <p className="text-[11px] font-orbitron text-white/65 tracking-wider">
             A{" "}
             <a
               href="https://neuronrush.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-[#1859ba] to-[#eded21] bg-clip-text text-transparent text-glow-neuronrush animate-pulse transition-colors"
+              className="text-[#00f2ff] hover:text-white transition-colors"
             >
               NeuronRush
             </a>{" "}

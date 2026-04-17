@@ -50,7 +50,7 @@ export function MobileSidebar() {
               <div className="space-y-8 pb-12">
                 {categories.map((category) => (
                   <div key={category.slug} className="space-y-3">
-                    <h4 className="font-orbitron font-semibold text-sm text-[#00f3ff] uppercase tracking-wider">
+                    <h4 className="font-orbitron font-semibold text-sm text-[#00f3ff] tracking-wide">
                       {category.name}
                     </h4>
                     <ul className="space-y-2 border-l border-white/10 ml-2 pl-4">
@@ -59,7 +59,7 @@ export function MobileSidebar() {
                           <Link
                             href={`/components/${category.slug}/${component.slug}`}
                             onClick={() => setIsOpen(false)}
-                            className="block text-white/60 hover:text-white hover:translate-x-1 transition-all text-sm font-light py-1"
+                            className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm py-1"
                           >
                             {component.name}
                           </Link>
@@ -76,14 +76,14 @@ export function MobileSidebar() {
                 <Link
                   href="/"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-orbitron text-white/50 hover:text-[#00f3ff] transition-colors"
+                  className="text-sm font-orbitron text-white/65 hover:text-[#00f3ff] transition-colors"
                 >
                   Home
                 </Link>
                 <Link
                   href="/docs"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-orbitron text-white/50 hover:text-[#ff00ff] transition-colors"
+                  className="text-sm font-orbitron text-white/65 hover:text-[#ff00ff] transition-colors"
                 >
                   Documentation
                 </Link>
