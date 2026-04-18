@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { categories } from "@/lib/docs/data";
-import AccentFrame from "@/lib/components/ui/frames/AccentFrame";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
+import Badge from "@/lib/components/ui/badges/Badge";
 
 export default function ComponentsLanding() {
   return (
@@ -17,47 +17,38 @@ export default function ComponentsLanding() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
-        {categories.map((category) => (
-          <div key={category.slug} className="space-y-4">
-            <h2 className="text-xl font-bold font-orbitron text-[#00f3ff] border-b border-white/10 pb-2">
-              {category.name}
-            </h2>
-            <div className="grid gap-4 mt-4">
-              {category.components.map((c) => (
-                //            <NeonGlowCornerCutCard
-                //   title="CLI Installation"
-                //   description="Install components directly into your project via CLI."
-                //   colorA="cyan"
-                //   colorB="pink"
-                //   hoverEffect="gradient"
-                //   icon={<Terminal className="w-full h-full" />}
-                // />
-                <Link
-                  href={`/components/${category.slug}/${c.slug}`}
-                  key={c.slug}
-                  className=""
-                >
-                  <NeonGlowCornerCutCard
-                    title={c.name}
-                    description={c.description}
-                    colorA="cyan"
-                    colorB="cyan"
-                    hoverEffect="solid"
-                  />
-                  {/* <h3 className="font-orbitron font-semibold text-white group-hover:text-glow-pink transition-all mb-2">
-                    {c.name}
-                  </h3>
-                  <p className="text-sm text-white/50 font-light flex-grow">
-                    {c.description ||
-                      "A futuristic UI element for your digital interface."}
-                  </p> */}
-                  {/* </AccentFrame> */}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8">
+        {categories
+          .flatMap((category) =>
+            category.components.map((c) => ({
+              ...c,
+              categorySlug: category.slug,
+            })),
+          )
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((c) => (
+            <Link
+              href={`/components/${c.categorySlug}/${c.slug}`}
+              key={`${c.categorySlug}-${c.slug}`}
+            >
+              <NeonGlowCornerCutCard
+                title={c.name}
+                description={c.description}
+                colorA="cyan"
+                colorB="cyan"
+                hoverEffect="solid"
+              >
+                {/* If it's new, show a badge */}
+                {c.is_new && (
+                  <div className="absolute top-2 right-2 z-20">
+                    <Badge color="green" size="xs" variant="solid">
+                      New
+                    </Badge>
+                  </div>
+                )}
+              </NeonGlowCornerCutCard>
+            </Link>
+          ))}
       </div>
     </div>
   );

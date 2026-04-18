@@ -52,6 +52,13 @@ export const categories = [
         slug: "glitch-text",
         description: "Animated RGB split, CSS-only glitch effect.",
       },
+      {
+        name: "Neon Glow",
+        slug: "neon-glow",
+        description:
+          "Highly customizable neon glow text with single color, multi-color gradients (linear, radial, conic), and animated effects.",
+        is_new: true,
+      },
     ],
   },
   {

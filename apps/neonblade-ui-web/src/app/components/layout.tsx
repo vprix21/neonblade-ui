@@ -2,6 +2,7 @@ import { categories } from "@/lib/docs/data";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Badge from "@/lib/components/ui/badges/Badge";
 
 import { MobileSidebar } from "@/components/MobileSidebar";
 
@@ -17,7 +18,7 @@ export default function ComponentsLayout({
 
       <main className="flex-1 flex flex-col md:flex-row container mx-auto px-4 sm:px-6 max-w-7xl pt-32 pb-12 gap-10">
         <MobileSidebar />
-        
+
         {/* Sidebar */}
         <aside className="w-64 hidden md:block shrink-0">
           <div className="sticky top-32">
@@ -35,9 +36,14 @@ export default function ComponentsLayout({
                       <li key={component.slug}>
                         <Link
                           href={`/components/${category.slug}/${component.slug}`}
-                          className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm"
+                          className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm gap-1 flex items-center"
                         >
                           {component.name}
+                          {component.is_new && (
+                            <Badge color="green" size="xs" variant="solid">
+                              New
+                            </Badge>
+                          )}
                         </Link>
                       </li>
                     ))}
@@ -49,9 +55,7 @@ export default function ComponentsLayout({
         </aside>
 
         {/* Content Area */}
-        <section className="flex-1 min-w-0">
-          {children}
-        </section>
+        <section className="flex-1 min-w-0">{children}</section>
       </main>
       <Footer />
     </div>

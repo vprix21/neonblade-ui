@@ -4,11 +4,12 @@ import borderBeamUsage from "./components/border-beam-corner-cut-card/usage";
 import accentFrameUsage from "./components/accent-frame/usage";
 import glitchTextUsage from "./components/glitch-text/usage";
 import cornerCutButtonUsage from "./components/corner-cut-button/usage";
-import neonGlowUsage from "./components/neon-glow-corner-cut-card/usage";
+import neonGlowCornerCutCardUsage from "./components/neon-glow-corner-cut-card/usage";
 import badgeUsage from "./components/badge/usage";
 import navbarUsage from "./components/navbar/usage";
 import footerUsage from "./components/footer/usage";
 import timelineUsage from "./components/timeline/usage";
+import neonGlowUsage from "./components/neon-glow/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -17,11 +18,12 @@ const usageMap: Record<string, string> = {
   "accent-frame": accentFrameUsage,
   "glitch-text": glitchTextUsage,
   "corner-cut-button": cornerCutButtonUsage,
-  "neon-glow-corner-cut-card": neonGlowUsage,
+  "neon-glow-corner-cut-card": neonGlowCornerCutCardUsage,
   badge: badgeUsage,
   navbar: navbarUsage,
   footer: footerUsage,
   timeline: timelineUsage,
+  "neon-glow": neonGlowUsage,
 };
 
 export default usageMap;

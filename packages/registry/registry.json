@@ -36,6 +36,11 @@
       "description": "RGB-split CSS glitch text with multiple intensities"
     },
     {
+      "name": "neon-glow",
+      "category": "text",
+      "description": "Highly customizable neon glow text with single color, multi-color gradients (linear, radial, conic), glow intensities, and animated effects"
+    },
+    {
       "name": "neon-glow-corner-cut-card",
       "category": "cards",
       "description": "Corner-cut card with neon gradient glow on hover"

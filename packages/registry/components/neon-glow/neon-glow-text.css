@@ -1,0 +1,59 @@
+/* ================================================================
+   NeonGlow — neon-glow-text.css
+   Keyframe animations for gradient shift and glow pulse effects.
+   All classes use the `ng-` prefix.
+================================================================ */
+
+/* ---- Gradient shift (linear multi-color) ------------------- */
+@keyframes ng-shift-kf {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.ng-shift {
+  animation-name: ng-shift-kf;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.ng-shift--slow {
+  animation-duration: 6s;
+}
+.ng-shift--normal {
+  animation-duration: 3s;
+}
+.ng-shift--fast {
+  animation-duration: 1.5s;
+}
+
+/* ---- Glow pulse (single color / radial / conic) ------------ */
+@keyframes ng-pulse-kf {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.ng-pulse {
+  animation-name: ng-pulse-kf;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.ng-pulse--slow {
+  animation-duration: 4s;
+}
+.ng-pulse--normal {
+  animation-duration: 2s;
+}
+.ng-pulse--fast {
+  animation-duration: 1s;
+}

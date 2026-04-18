@@ -9,6 +9,7 @@ import BadgeDemo from "./components/badge/demo";
 import NavBarDemo from "./components/navbar/demo";
 import FooterDemo from "./components/footer/demo";
 import TimelineDemo from "./components/timeline/demo";
+import NeonGlowDemo from "./components/neon-glow/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -22,6 +23,7 @@ const demoMap: Record<string, React.FC> = {
   navbar: NavBarDemo,
   footer: FooterDemo,
   timeline: TimelineDemo,
+  "neon-glow": NeonGlowDemo,
 };
 
 export default demoMap;

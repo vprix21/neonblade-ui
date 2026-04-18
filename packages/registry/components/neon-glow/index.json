@@ -1,0 +1,14 @@
+{
+  "name": "neon-glow",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-glow/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-glow/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-glow/neon-glow-text.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-glow/neon-glow-text.css"
+    }
+  ],
+  "dependencies": []
+}

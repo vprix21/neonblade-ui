@@ -11,6 +11,7 @@ const folderMap: Record<string, string> = {
   navbar: "NavBar",
   footer: "Footer",
   timeline: "Timeline",
+  "neon-glow": "NeonGlow",
 };
 
 export default folderMap;
