@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import Badge from "@/lib/components/ui/badges/Badge";
 
 import { MobileSidebar } from "@/components/MobileSidebar";
+import { DesktopSidebar } from "@/components/DesktopSidebar";
 
 export default function ComponentsLayout({
   children,
@@ -20,39 +21,7 @@ export default function ComponentsLayout({
         <MobileSidebar />
 
         {/* Sidebar */}
-        <aside className="w-64 hidden md:block shrink-0">
-          <div className="sticky top-32">
-            <h3 className="font-orbitron font-bold text-xl mb-6 text-white border-b border-white/10 pb-4">
-              Components
-            </h3>
-            <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)] pr-4 custom-scrollbar">
-              {categories.map((category) => (
-                <div key={category.slug} className="space-y-3">
-                  <h4 className="font-orbitron font-semibold text-sm text-[#00f3ff] tracking-wide">
-                    {category.name}
-                  </h4>
-                  <ul className="space-y-2 border-l border-white/10 ml-2 pl-4">
-                    {category.components.map((component) => (
-                      <li key={component.slug}>
-                        <Link
-                          href={`/components/${category.slug}/${component.slug}`}
-                          className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm gap-1 flex items-center"
-                        >
-                          {component.name}
-                          {component.is_new && (
-                            <Badge color="green" size="xs" variant="solid">
-                              New
-                            </Badge>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </aside>
+        <DesktopSidebar />
 
         {/* Content Area */}
         <section className="flex-1 min-w-0">{children}</section>

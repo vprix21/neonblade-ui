@@ -45,6 +45,20 @@ const props: PropDefinition[] = [
     description: "Hover animation preset applied to the button.",
   },
   {
+    name: "hoverColor",
+    type: '"cyan" | "pink" | "green" | string',
+    default: "—",
+    description:
+      "Override the color used for hover glow/pulse/shift effects. Falls back to `color` when not set. Accepts any CSS color string or preset name.",
+  },
+  {
+    name: "hoverOutline",
+    type: "boolean",
+    default: "false",
+    description:
+      "Hover outline effect. Only applies when variant='solid' and hoverEffect='shift'. When true the button transitions to an outline style on hover.",
+  },
+  {
     name: "glowIntensity",
     type: '"low" | "medium" | "high"',
     default: '"medium"',

@@ -92,12 +92,12 @@ export function Navbar() {
             >
               Templates
             </Link>
-            <Link
+            {/* <Link
               href="/contact"
               className="text-white/80 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
             >
               Contact
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile hamburger */}
@@ -139,13 +139,13 @@ export function Navbar() {
             >
               Templates
             </Link>
-            <Link
+            {/* <Link
               href="/contact"
               className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
               onClick={() => setMobileOpen(false)}
             >
               Contact
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

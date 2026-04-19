@@ -37,8 +37,8 @@ export type CCBHoverEffect =
   | "shift"
   | "shine"
   | "pulse"
-  | "scan"
   | "flicker"
+  | "default"
   | "none";
 
 /** Controls the spread radius of the neon glow */
@@ -75,6 +75,7 @@ const HOVER_CLASSES: Record<CCBHoverEffect, string> = {
   pulse: "ccb-hover-pulse",
   scan: "ccb-hover-scan",
   flicker: "ccb-hover-flicker",
+  default: "ccb-hover-default",
   none: "",
 };
 
@@ -125,7 +126,7 @@ export interface CornerCutButtonProps extends ButtonHTMLAttributes<HTMLButtonEle
 
   /**
    * Hover animation/effect.
-   * @default "glow"
+   * @default "default"
    */
   hoverEffect?: CCBHoverEffect;
 
@@ -140,6 +141,17 @@ export interface CornerCutButtonProps extends ButtonHTMLAttributes<HTMLButtonEle
    * @default false
    */
   showArrow?: boolean;
+
+  /**
+   * Hover effect color. Overrides the element color on hover (for glow and shift effects).
+   */
+  hoverColor?: CCBColor;
+
+  /**
+   * When true, a solid button with 'shift' effect becomes outlined on hover.
+   * @default false
+   */
+  hoverOutlined?: boolean;
 }
 
 // ---- Component ---------------------------------------------
@@ -151,14 +163,17 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
   variant = "solid",
   corner = "bottom-right",
   cornerSize = 20,
-  hoverEffect = "glow",
+  hoverEffect = "default",
   glowIntensity = "medium",
   showArrow = false,
+  hoverColor,
+  hoverOutlined = false,
   className = "",
   style,
   ...props
 }) => {
   const resolvedColor = COLOR_PRESETS[color] ?? color;
+  const resolvedHoverColor = hoverColor ? (COLOR_PRESETS[hoverColor] ?? hoverColor) : undefined;
   const glowSize = GLOW_SIZES[glowIntensity];
 
   // Ghost variant needs color-mix background — not expressible in Tailwind
@@ -173,7 +188,8 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
   return (
     <div
       className={[
-        "relative inline-flex p-px",
+        "relative inline-flex p-px group/ccb",
+        `ccb-wrapper-${hoverEffect}`,
         // ccb-wrapper class retained ONLY for the flicker :has() selector in CSS
         hoverEffect === "flicker" ? "ccb-wrapper" : "",
         className,
@@ -183,6 +199,8 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
       style={
         {
           "--ccb-color": resolvedColor,
+          "--ccb-hover-color": resolvedHoverColor ?? resolvedColor,
+          "--ccb-hover-bg": resolvedHoverColor ?? "#ffffff",
           "--ccb-corner-size": `${cornerSize}px`,
           "--ccb-glow-size": `${glowSize}px`,
           ...style,
@@ -195,6 +213,7 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           "absolute inset-0 pointer-events-none z-0 transition-[background,opacity] duration-300",
           CORNER_CLASSES[corner],
           variant === "outline" ? "bg-[var(--ccb-color)]" : "bg-white/[0.08]",
+          (variant === "solid" && hoverOutlined && hoverEffect === "shift") ? "group-hover/ccb:bg-[var(--ccb-hover-color)]" : ""
         ]
           .filter(Boolean)
           .join(" ")}
@@ -209,6 +228,7 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           HOVER_CLASSES[hoverEffect],
           // Class kept for compound hover-state CSS selectors (.ccb-solid.ccb-hover-glow:hover etc.)
           `ccb-${variant}`,
+          (hoverOutlined ? "ccb-hover-outlined" : ""),
           variant === "solid" ? "bg-[var(--ccb-color)] text-black" : "",
           variant === "outline" ? "bg-black text-[var(--ccb-color)]" : "",
         ]

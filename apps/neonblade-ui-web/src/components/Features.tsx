@@ -55,8 +55,8 @@ export function Features() {
             </span> */}
           </h2>
           <p className="text-white/65 max-w-2xl text-lg mb-4">
-            NeonBlade provides primitive, high-quality components engineered for
-            absolute aesthetic dominance.
+            Futuristic by design, highly customizable by default, NeonBlade UI
+            empowers you to ship neon-charged interfaces with total control
           </p>
           <p className="max-w-2xl text-lg mb-4 text-[#00f2ff]">
             For developers building beyond conventional UI

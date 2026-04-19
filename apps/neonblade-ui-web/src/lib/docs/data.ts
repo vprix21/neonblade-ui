@@ -70,6 +70,7 @@ export const categories = [
         slug: "corner-cut-button",
         description:
           "A button with a diagonal corner cut, multiple variants, colors, sizes and hover effects.",
+        is_updated: true,
       },
     ],
   },

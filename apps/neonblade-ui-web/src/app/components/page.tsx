@@ -46,6 +46,13 @@ export default function ComponentsLanding() {
                     </Badge>
                   </div>
                 )}
+                {c.is_updated && (
+                  <div className="absolute top-2 right-2 z-20">
+                    <Badge color="yellow" size="xs" variant="solid">
+                      Updated
+                    </Badge>
+                  </div>
+                )}
               </NeonGlowCornerCutCard>
             </Link>
           ))}

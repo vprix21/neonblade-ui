@@ -90,10 +90,10 @@ export default function CornerCutButtonDemo() {
           <CornerCutButton hoverEffect="shift" color="cyan" variant="outline">
             Shift
           </CornerCutButton>
-          <CornerCutButton hoverEffect="shine" color="cyan">
+          <CornerCutButton hoverEffect="shine" color="pink">
             Shine
           </CornerCutButton>
-          <CornerCutButton hoverEffect="pulse" color="green">
+          <CornerCutButton hoverEffect="pulse" color="green" variant="outline">
             Pulse
           </CornerCutButton>
           <CornerCutButton hoverEffect="scan" color="pink">
@@ -101,6 +101,12 @@ export default function CornerCutButtonDemo() {
           </CornerCutButton>
           <CornerCutButton hoverEffect="flicker" color="pink" variant="outline">
             Flicker
+          </CornerCutButton>
+          <CornerCutButton hoverEffect="shift" hoverOutlined color="green">
+            Shift to Outline
+          </CornerCutButton>
+          <CornerCutButton hoverEffect="shift" hoverColor="pink" color="cyan">
+            Custom Hover Color
           </CornerCutButton>
         </div>
       </div>

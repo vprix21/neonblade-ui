@@ -4,9 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { categories } from "@/lib/docs/data";
+import { usePathname } from "next/navigation";
+import Badge from "@/lib/components/ui/badges/Badge";
 
 export function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -54,17 +57,39 @@ export function MobileSidebar() {
                       {category.name}
                     </h4>
                     <ul className="space-y-2 border-l border-white/10 ml-2 pl-4">
-                      {category.components.map((component) => (
-                        <li key={component.slug}>
-                          <Link
-                            href={`/components/${category.slug}/${component.slug}`}
-                            onClick={() => setIsOpen(false)}
-                            className="block text-white/75 hover:text-white hover:translate-x-1 transition-all text-sm py-1"
-                          >
-                            {component.name}
-                          </Link>
-                        </li>
-                      ))}
+                      {category.components.map((component) => {
+                        const href = `/components/${category.slug}/${component.slug}`;
+                        const isActive = pathname === href;
+
+                        return (
+                          <li key={component.slug} className="relative">
+                            {isActive && (
+                              <div className="absolute -left-[20px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#ff00ff] shadow-[0_0_8px_#ff00ff]" />
+                            )}
+                            <Link
+                              href={href}
+                              onClick={() => setIsOpen(false)}
+                              className={`block text-sm py-1 transition-all flex flex-wrap items-center gap-2 ${
+                                isActive
+                                  ? "text-white font-medium translate-x-1"
+                                  : "text-white/75 hover:text-white hover:translate-x-1"
+                              }`}
+                            >
+                              <span>{component.name}</span>
+                              {component.is_new && (
+                                <Badge color="green" size="xs" variant="solid">
+                                  New
+                                </Badge>
+                              )}
+                              {component.is_updated && (
+                                <Badge color="yellow" size="xs" variant="solid">
+                                  Updated
+                                </Badge>
+                              )}
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 ))}
