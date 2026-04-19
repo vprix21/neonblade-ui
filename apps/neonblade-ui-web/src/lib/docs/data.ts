@@ -1,4 +1,18 @@
-export const categories = [
+export interface ComponentData {
+  name: string;
+  slug: string;
+  description: string;
+  is_new?: boolean;
+  is_updated?: boolean;
+}
+
+export interface CategoryData {
+  name: string;
+  slug: string;
+  components: ComponentData[];
+}
+
+export const categories: CategoryData[] = [
   {
     name: "Backgrounds",
     slug: "backgrounds",
