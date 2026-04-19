@@ -37,6 +37,7 @@ export type CCBHoverEffect =
   | "shift"
   | "shine"
   | "pulse"
+  | "scan"
   | "flicker"
   | "default"
   | "none";
