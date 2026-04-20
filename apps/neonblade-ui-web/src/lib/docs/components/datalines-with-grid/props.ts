@@ -38,6 +38,13 @@ const props: PropDefinition[] = [
     description: "Flow speed multiplier.",
   },
   {
+    name: "lineLength",
+    type: "number",
+    default: "150",
+    description:
+      "Visual length of each data line in pixels. Stays constant regardless of baseSpeed.",
+  },
+  {
     name: "spawnProbability",
     type: "number",
     default: "0.1",

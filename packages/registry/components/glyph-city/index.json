@@ -1,0 +1,10 @@
+{
+  "name": "glyph-city",
+  "files": [
+    {
+      "path": "components/neonblade-ui/glyph-city/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/glyph-city/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

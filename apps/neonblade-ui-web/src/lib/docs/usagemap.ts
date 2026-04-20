@@ -10,6 +10,7 @@ import navbarUsage from "./components/navbar/usage";
 import footerUsage from "./components/footer/usage";
 import timelineUsage from "./components/timeline/usage";
 import neonGlowUsage from "./components/neon-glow/usage";
+import glyphCityUsage from "./components/glyph-city/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -24,6 +25,7 @@ const usageMap: Record<string, string> = {
   footer: footerUsage,
   timeline: timelineUsage,
   "neon-glow": neonGlowUsage,
+  "glyph-city": glyphCityUsage,
 };
 
 export default usageMap;

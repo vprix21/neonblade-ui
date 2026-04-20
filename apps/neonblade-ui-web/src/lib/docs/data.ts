@@ -21,11 +21,19 @@ export const categories: CategoryData[] = [
         name: "Datalines With Grid",
         slug: "datalines-with-grid",
         description: "A grid with random data line tracers.",
+        is_updated: true,
       },
       {
         name: "Ascii Rain",
         slug: "ascii-rain",
         description: "A futuristic falling ASCII matrix effect.",
+      },
+      {
+        name: "Glyph City",
+        slug: "glyph-city",
+        description:
+          "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles.",
+        is_new: true,
       },
     ],
   },

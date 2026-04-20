@@ -12,6 +12,7 @@ const folderMap: Record<string, string> = {
   footer: "Footer",
   timeline: "Timeline",
   "neon-glow": "NeonGlow",
+  "glyph-city": "GlyphCity",
 };
 
 export default folderMap;

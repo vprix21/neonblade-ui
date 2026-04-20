@@ -11,6 +11,7 @@ import navbarProps from "./components/navbar/props";
 import footerProps from "./components/footer/props";
 import timelineProps from "./components/timeline/props";
 import neonGlowTextProps from "./components/neon-glow/props";
+import glyphCityProps from "./components/glyph-city/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -25,6 +26,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   footer: footerProps,
   timeline: timelineProps,
   "neon-glow": neonGlowTextProps,
+  "glyph-city": glyphCityProps,
 };
 
 export default propsMap;

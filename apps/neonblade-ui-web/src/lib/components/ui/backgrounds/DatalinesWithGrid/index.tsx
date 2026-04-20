@@ -9,6 +9,7 @@ export interface DatalinesWithGridProps {
   cellSize?: number;
   maxLines?: number;
   baseSpeed?: number;
+  lineLength?: number;
   spawnProbability?: number;
   overlay?: boolean;
 }
@@ -45,6 +46,7 @@ function DatalinesCanvas({
   cellSize = 50,
   maxLines = 15,
   baseSpeed = 2,
+  lineLength = 150,
   spawnProbability = 0.1,
 }: Omit<DatalinesWithGridProps, "bgGridColor">) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -72,7 +74,8 @@ function DatalinesCanvas({
       dx: number;
       dy: number;
       speed: number;
-      maxLength: number;
+      // Pixel-based length so visual tail stays constant regardless of speed.
+      lineLengthPx: number;
     }
 
     let lines: DataLine[] = [];
@@ -88,19 +91,32 @@ function DatalinesCanvas({
           dx: 0,
           dy: 1,
           speed: baseSpeed,
-          maxLength: Math.floor((Math.random() * 150 + 50) / 2),
+          // Randomise ±25 % around the configured lineLength.
+          lineLengthPx: Math.floor(
+            Math.random() * lineLength * 0.5 + lineLength * 0.75,
+          ),
         });
       }
 
       lines.forEach((line) => {
         line.history.push({ x: line.x, y: line.y });
-        if (line.history.length > line.maxLength) {
+
+        // History limit derived from pixel length, not entry count.
+        // This keeps the visual tail the same physical size at any speed.
+        const historyLimit = Math.max(
+          2,
+          Math.ceil(line.lineLengthPx / line.speed),
+        );
+        if (line.history.length > historyLimit) {
           line.history.shift();
         }
 
         line.x += line.dx * line.speed;
         line.y += line.dy * line.speed;
 
+        // Original modulo-based intersection check: fires only when the line
+        // lands on a grid intersection, preserving the same turn frequency as
+        // the original code at any integer speed.
         if (line.x % cellSize === 0 && line.y % cellSize === 0) {
           const max_x = Math.floor(canvas.width / cellSize) * cellSize;
           if (line.x <= 0 && line.dx === -1) {
@@ -124,24 +140,42 @@ function DatalinesCanvas({
           }
         }
 
+        if (line.history.length < 2) return;
+
+        const h = line.history;
+        const tail = h[0];
+        const head = h[h.length - 1];
+
         ctx.lineCap = "round";
+        ctx.lineJoin = "round";
         ctx.lineWidth = 1.5;
 
-        for (let i = 0; i < line.history.length - 1; i++) {
-          ctx.beginPath();
-          ctx.moveTo(line.history[i].x, line.history[i].y);
-          ctx.lineTo(line.history[i + 1].x, line.history[i + 1].y);
-          const alpha = (i / line.history.length) * 0.8;
-          ctx.strokeStyle = hexToRgbA(lineColor, alpha);
+        // Build a gradient from the tail pixel position to the head pixel
+        // position. This gives the classic dim-tail → bright-head fade as a
+        // single unbroken polyline — no per-segment strokes, so no gaps or
+        // dots appear regardless of speed.
+        const grad = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
+        grad.addColorStop(0, hexToRgbA(lineColor, 0));
+        grad.addColorStop(0.6, hexToRgbA(lineColor, 0.35));
+        grad.addColorStop(1, hexToRgbA(lineColor, 0.9));
 
-          if (i > line.history.length - 3) {
-            ctx.shadowColor = shadowColor;
-            ctx.shadowBlur = 10;
-          } else {
-            ctx.shadowBlur = 0;
-          }
-          ctx.stroke();
-        }
+        ctx.beginPath();
+        ctx.moveTo(h[0].x, h[0].y);
+        for (let i = 1; i < h.length; i++) ctx.lineTo(h[i].x, h[i].y);
+        ctx.strokeStyle = grad;
+        ctx.shadowBlur = 0;
+        ctx.stroke();
+
+        // Bright glowing cap at the head — one tiny continuous path.
+        const headCount = Math.max(2, Math.ceil(20 / Math.max(1, line.speed)));
+        const headIdx = Math.max(0, h.length - 1 - headCount);
+        ctx.beginPath();
+        ctx.moveTo(h[headIdx].x, h[headIdx].y);
+        for (let i = headIdx + 1; i < h.length; i++) ctx.lineTo(h[i].x, h[i].y);
+        ctx.strokeStyle = hexToRgbA(lineColor, 0.95);
+        ctx.shadowColor = shadowColor;
+        ctx.shadowBlur = 10;
+        ctx.stroke();
         ctx.shadowBlur = 0;
       });
 
@@ -160,7 +194,15 @@ function DatalinesCanvas({
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [lineColor, shadowColor, cellSize, maxLines, baseSpeed, spawnProbability]);
+  }, [
+    lineColor,
+    shadowColor,
+    cellSize,
+    maxLines,
+    baseSpeed,
+    lineLength,
+    spawnProbability,
+  ]);
 
   return (
     <canvas
@@ -176,6 +218,7 @@ export function DatalinesWithGrid({
   cellSize = 50,
   maxLines = 10,
   baseSpeed = 2,
+  lineLength = 150,
   spawnProbability = 0.1,
   bgGridColor = "rgba(255,255,255,0.05)",
   overlay = false,
@@ -213,6 +256,7 @@ export function DatalinesWithGrid({
         cellSize={cellSize}
         maxLines={maxLines}
         baseSpeed={baseSpeed}
+        lineLength={lineLength}
         spawnProbability={spawnProbability}
       />
       {Array.from({ length: tiles }).map((_, i) => (

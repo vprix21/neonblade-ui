@@ -11,6 +11,11 @@
       "description": "Animated Matrix-style ASCII rain background"
     },
     {
+      "name": "glyph-city",
+      "category": "backgrounds",
+      "description": "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles. Multiple variants"
+    },
+    {
       "name": "badge",
       "category": "badges",
       "description": "Futuristic label badge with pill, rectangle, and corner-cut shapes"
@@ -23,7 +28,7 @@
     {
       "name": "corner-cut-button",
       "category": "buttons",
-      "description": "Cyberpunk button with clipped polygon corner"
+      "description": "A Button with clipped polygon corner with high customizability"
     },
     {
       "name": "datalines-with-grid",
