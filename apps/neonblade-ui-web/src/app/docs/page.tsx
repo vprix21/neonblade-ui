@@ -21,6 +21,7 @@ import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Badge from "@/lib/components/ui/badges/Badge";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
+import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
 
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("tsx", tsx);
@@ -28,9 +29,11 @@ SyntaxHighlighter.registerLanguage("tsx", tsx);
 function CodeBlock({
   code,
   language = "bash",
+  multiLine = false,
 }: {
   code: string;
   language?: string;
+  multiLine?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -55,34 +58,46 @@ function CodeBlock({
   };
 
   return (
-    <div className="relative group my-3">
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          margin: 0,
-          padding: "1.25rem 1.5rem",
-          background: "#0a0a0a",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          borderRadius: 0,
-          fontSize: "0.875rem",
-        }}
-        className="corner-cut-bottom-right custom-scrollbar"
+    <NeonGlowCornerCutCard
+      corner="bottom-right"
+      hoverEffect="none"
+      colorA="#00f3ff"
+      size="sm"
+      className="my-3"
+    >
+      <div
+        className={
+          multiLine
+            ? "relative flex items-start justify-between -m-5"
+            : "relative flex items-center justify-between -m-5"
+        }
       >
-        {code}
-      </SyntaxHighlighter>
-      <button
-        onClick={handleCopy}
-        className="absolute top-3 right-3 p-1.5 text-white/30 hover:text-[#00f3ff] transition-colors z-10"
-        aria-label="Copy code"
-      >
-        {copied ? (
-          <Check size={14} className="text-[#39ff14]" />
-        ) : (
-          <Copy size={14} />
-        )}
-      </button>
-    </div>
+        <SyntaxHighlighter
+          language={language}
+          style={vscDarkPlus}
+          customStyle={{
+            margin: 0,
+            padding: "1.25rem 1.5rem",
+            background: "#0a0a0a",
+            fontSize: "0.875rem",
+          }}
+          className="custom-scrollbar"
+        >
+          {code}
+        </SyntaxHighlighter>
+        <button
+          onClick={handleCopy}
+          className={`${multiLine ? "mt-2" : ""} p-1.5 me-2 text-white/30 hover:text-[#00f3ff] transition-colors z-10`}
+          aria-label="Copy code"
+        >
+          {copied ? (
+            <Check size={14} className="text-[#39ff14]" />
+          ) : (
+            <Copy size={14} />
+          )}
+        </button>
+      </div>
+    </NeonGlowCornerCutCard>
   );
 }
 
@@ -271,6 +286,7 @@ export default function DocsPage() {
             <p className="text-white/65 leading-relaxed mb-3">Then use it:</p>
             <CodeBlock
               language="tsx"
+              multiLine={true}
               code={`export default function Page() {
   return (
     <CornerCutButton>

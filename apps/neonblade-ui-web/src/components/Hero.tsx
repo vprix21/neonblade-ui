@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DatalinesWithGrid } from "../lib/components/ui/backgrounds/DatalinesWithGrid";
+import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 
 export function Hero() {
   return (
@@ -32,12 +33,15 @@ export function Hero() {
 
           <div className="flex items-center">
             <Link href="/components">
-              <button className="corner-cut bg-[#00f3ff] text-black px-8 py-3 sm:py-4 font-orbitron font-bold tracking-wider hover:bg-white hover:box-glow-cyan transition-all uppercase text-xs sm:text-sm group flex items-center justify-center gap-2">
+              {/* <button className="corner-cut bg-[#00f3ff] text-black px-8 py-3 sm:py-4 font-orbitron font-bold tracking-wider hover:bg-white hover:box-glow-cyan transition-all uppercase text-xs sm:text-sm group flex items-center justify-center gap-2">
                 Explore Components
                 <span className="group-hover:translate-x-1 transition-transform">
                   →
                 </span>
-              </button>
+              </button> */}
+              <CornerCutButton color="cyan" hoverEffect="shift" showArrow>
+                Explore Components
+              </CornerCutButton>
             </Link>
           </div>
         </div>

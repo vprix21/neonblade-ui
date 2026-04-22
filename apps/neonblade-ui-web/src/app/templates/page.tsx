@@ -3,6 +3,7 @@ import { NeonGlowCornerCutCard } from "../../lib/components/ui/cards/NeonGlowCor
 import { Badge } from "../../lib/components/ui/badges/Badge";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 
 const templates = [
   {
@@ -10,7 +11,7 @@ const templates = [
     title: "Software Developer Portfolio",
     description:
       "A sleek, dark-themed portfolio for developers. Showcases skills, projects, experience, and contact info using NeonBlade components.",
-    tags: ["Portfolio", "Developer", "Dark"],
+    tags: ["Portfolio", "Developer", "Dark", "open-source"],
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     color: "cyan" as const,
     status: "free" as const,
@@ -27,15 +28,12 @@ export default function TemplatesPage() {
       <section className="flex-1 pt-32 pb-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-16">
-            <p className="text-xs font-orbitron tracking-widest text-[#00f3ff] uppercase mb-4">
+          <div className="mb-16 space-y-4">
+            <Badge shape="corner-cut" color="cyan" dot="flicker">
               Templates
-            </p>
+            </Badge>
             <h1 className="text-4xl md:text-6xl font-bold font-orbitron tracking-tight mb-4">
-              Ready-to-use{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
-                templates
-              </span>
+              Ready-to-use templates
             </h1>
             <p className="text-white/65 text-lg max-w-2xl">
               Free, open-source templates built entirely with NeonBlade UI
@@ -86,25 +84,24 @@ export default function TemplatesPage() {
                   </div>
 
                   {/* Tags + status */}
-                  <div className="flex flex-wrap items-center gap-2 mt-3">
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
                     {t.tags.map((tag) => (
                       <Badge key={tag} color="cyan" variant="ghost" size="xs">
                         {tag}
                       </Badge>
                     ))}
-                    <Badge
-                      color="green"
-                      variant="solid"
-                      size="xs"
-                      dot="pulse"
-                      className="ml-auto"
-                    >
-                      Free
-                    </Badge>
                   </div>
+                  <Badge
+                    color="green"
+                    variant="solid"
+                    size="xs"
+                    className="w-fit mt-5"
+                  >
+                    Free
+                  </Badge>
 
                   {/* GitHub link */}
-                  <div className="mt-4 pt-3 border-t border-white/10">
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-3">
                     <a
                       href={t.github}
                       target="_blank"
@@ -121,6 +118,15 @@ export default function TemplatesPage() {
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
                       </svg>
                       View Source on GitHub
+                    </a>
+                    <a
+                      href={t.preview}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/30 transition-colors"
+                    >
+                      Preview
                     </a>
                   </div>
                 </NeonGlowCornerCutCard>

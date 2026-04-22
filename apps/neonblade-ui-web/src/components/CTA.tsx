@@ -10,7 +10,7 @@ export function CTA() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#00f3ff]/10 via-black to-black opacity-60"></div>
 
       <div className="container relative z-10 mx-auto px-6 max-w-4xl flex flex-col items-center text-center">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <Badge color="green" size="md" dot="flicker" className="mb-4">
             System ready
           </Badge>
@@ -28,18 +28,18 @@ export function CTA() {
            */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full justify-center items-center">
             <Link href="/components">
-              <CornerCutButton color="cyan" showArrow className="text-xs sm:text-sm">
+              <CornerCutButton color="cyan" showArrow hoverEffect="shift">
                 Explore Components
               </CornerCutButton>
             </Link>
 
             <Link href="/docs">
-              <CornerCutButton color="pink" showArrow variant="outline" className="text-xs sm:text-sm">
+              <CornerCutButton color="pink" showArrow variant="outline">
                 Read the Docs
               </CornerCutButton>
             </Link>
           </div>
-          </div>
+        </div>
       </div>
     </section>
   );

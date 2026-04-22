@@ -98,15 +98,18 @@ export default async function ComponentPage({
       </div>
 
       {/* CLI Installation */}
-      <div className="bg-[#0a0a0a] border border-white/10 p-4 rounded corner-cut-bottom-left flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Terminal className="text-[#00f3ff] w-5 h-5" />
-          <code className="text-sm font-mono text-white">
-            npx neonblade add {slug}
-          </code>
+
+      <NeonGlowCornerCutCard hoverEffect="none" size="sm">
+        <div className="flex items-center gap-4 justify-between w-full">
+          <div className="flex items-center gap-4">
+            <Terminal className="text-[#00f3ff] w-5 h-5" />
+            <code className="text-sm font-mono text-white">
+              npx neonblade add {slug}
+            </code>
+          </div>
+          <CopyButton text={`npx neonblade add ${slug}`} />
         </div>
-        <CopyButton text={`npx neonblade add ${slug}`} />
-      </div>
+      </NeonGlowCornerCutCard>
 
       <ComponentTabs
         source={source}

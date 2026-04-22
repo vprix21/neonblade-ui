@@ -153,6 +153,21 @@ body {
 }
 
 /* Custom Scrollbar */
+
+/* Firefox (browsers that don't support ::-webkit-scrollbar) */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.5);
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar,
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;

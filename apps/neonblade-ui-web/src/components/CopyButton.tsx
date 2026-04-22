@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 
-export function CopyButton({ text, className = "" }: { text: string; className?: string }) {
+export function CopyButton({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -17,7 +23,7 @@ export function CopyButton({ text, className = "" }: { text: string; className?:
       document.body.prepend(textArea);
       textArea.select();
       try {
-        document.execCommand('copy');
+        document.execCommand("copy");
       } catch (error) {
         console.error(error);
       } finally {
@@ -34,7 +40,11 @@ export function CopyButton({ text, className = "" }: { text: string; className?:
       className={`p-2 transition-colors ${className}`}
       aria-label="Copy to clipboard"
     >
-      {copied ? <Check className="w-4 h-4 text-[#39ff14]" /> : <Copy className="w-4 h-4 text-white/50 hover:text-white" />}
+      {copied ? (
+        <Check className="w-4 h-4 text-[#39ff14]" />
+      ) : (
+        <Copy className="w-4 h-4 text-white/50 hover:text-[#00f3ff]" />
+      )}
     </button>
   );
 }
