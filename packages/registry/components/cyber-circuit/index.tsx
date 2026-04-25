@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import "./cyber-circuit.css";
 
 interface CyberCircuitProps {
   className?: string;
@@ -284,13 +283,8 @@ export const CyberCircuit: React.FC<CyberCircuitProps> = ({
 
     return (
       <React.Fragment key={key}>
-        <path
-          className="cyber-circuit-path"
-          d={pathData}
-          style={{ filter: pathFilter }}
-        />
+        <path d={pathData} style={{ filter: pathFilter }} />
         <circle
-          className="cyber-circuit-dot"
           cx={endPoint[0]}
           cy={endPoint[1]}
           r={endRadius}
@@ -299,7 +293,6 @@ export const CyberCircuit: React.FC<CyberCircuitProps> = ({
         />
         {trace.startDotScale ? (
           <circle
-            className="cyber-circuit-dot"
             cx={trace.points[0][0]}
             cy={trace.points[0][1]}
             r={dotSize * trace.startDotScale}
