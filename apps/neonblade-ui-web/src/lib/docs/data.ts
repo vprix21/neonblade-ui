@@ -21,7 +21,7 @@ export const categories: CategoryData[] = [
         name: "Datalines With Grid",
         slug: "datalines-with-grid",
         description: "A grid with random data line tracers.",
-        is_updated: true,
+        is_updated: false,
       },
       {
         name: "Ascii Rain",
@@ -33,6 +33,27 @@ export const categories: CategoryData[] = [
         slug: "glyph-city",
         description:
           "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles.",
+        is_new: true,
+      },
+      // {
+      //   name: "Neon Triangle",
+      //   slug: "neon-triangle",
+      //   description:
+      //     "Glowing neon inverted triangle with prism wireframe, layered, and fractured variants. Full control over colors, glow intensity, and animations.",
+      //   is_new: true,
+      // },
+      // {
+      //   name: "Data Buses",
+      //   slug: "databuses",
+      //   description:
+      //     "Static neon circuit-board bus lines with circular terminal nodes. PCB-trace aesthetic with full control over colors, density, glow, and node style.",
+      //   is_new: true,
+      // },
+      {
+        name: "Cyber Circuit",
+        slug: "cyber-circuit",
+        description:
+          "Static SVG circuit traces entering from the corners with glowing terminal nodes. Configurable colors, line weight, dot style, and glow intensity.",
         is_new: true,
       },
     ],
@@ -79,7 +100,7 @@ export const categories: CategoryData[] = [
         slug: "neon-glow",
         description:
           "Highly customizable neon glow text with single color, multi-color gradients (linear, radial, conic), and animated effects.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },
@@ -92,7 +113,7 @@ export const categories: CategoryData[] = [
         slug: "corner-cut-button",
         description:
           "A button with a diagonal corner cut, multiple variants, colors, sizes and hover effects.",
-        is_updated: true,
+        is_updated: false,
       },
     ],
   },
@@ -141,6 +162,19 @@ export const categories: CategoryData[] = [
         slug: "timeline",
         description:
           "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
+      },
+    ],
+  },
+  {
+    name: "Inputs",
+    slug: "inputs",
+    components: [
+      {
+        name: "Neon Input",
+        slug: "neon-input",
+        description:
+          "A fully-featured text input with the iconic NeonBlade corner-cut shape, neon focus glow, full color customization, label, hint, error state, prefix/suffix slots, border styles, background opacity, and all standard HTML input types.",
+        is_new: true,
       },
     ],
   },

@@ -12,6 +12,10 @@ import footerProps from "./components/footer/props";
 import timelineProps from "./components/timeline/props";
 import neonGlowTextProps from "./components/neon-glow/props";
 import glyphCityProps from "./components/glyph-city/props";
+// import neonTriangleProps from "./components/neon-triangle/props";
+// import databusesProps from "./components/databuses/props";
+import cyberCircuitProps from "./components/cyber-circuit/props";
+import neonInputProps from "./components/neon-input/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -27,6 +31,10 @@ const propsMap: Record<string, PropDefinition[]> = {
   timeline: timelineProps,
   "neon-glow": neonGlowTextProps,
   "glyph-city": glyphCityProps,
+  // "neon-triangle": neonTriangleProps,
+  // databuses: databusesProps,
+  "cyber-circuit": cyberCircuitProps,
+  "neon-input": neonInputProps,
 };
 
 export default propsMap;

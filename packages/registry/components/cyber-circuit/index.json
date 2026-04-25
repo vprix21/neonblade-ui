@@ -1,0 +1,14 @@
+{
+  "name": "cyber-circuit",
+  "files": [
+    {
+      "path": "components/neonblade-ui/cyber-circuit/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/cyber-circuit/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/cyber-circuit/cyber-circuit.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/cyber-circuit/cyber-circuit.css"
+    }
+  ],
+  "dependencies": []
+}

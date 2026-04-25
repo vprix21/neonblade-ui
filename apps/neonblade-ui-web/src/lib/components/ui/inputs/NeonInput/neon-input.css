@@ -1,0 +1,253 @@
+/* ============================================================
+   NeonInput — neon-input.css
+   clip-path geometry, focus glow, hover/focus border
+   transitions, bottom-border style.
+   Layout / typography / padding handled by Tailwind in index.tsx.
+
+   CSS custom properties (set inline on ni-field-root):
+     --ni-accent  : main accent color
+     --ni-border  : border color (default state)
+     --ni-hover   : border color on hover
+     --ni-focus   : border color + glow color on focus
+     --ni-glow    : drop-shadow spread radius
+     --ni-corner  : diagonal cut depth in px
+   ============================================================ */
+
+/* ─── Root ──────────────────────────────────────────────────────────────── */
+
+.ni-field-root {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.ni-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── Label ─────────────────────────────────────────────────────────────── */
+
+.ni-label {
+  display: block;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* ─── Glow wrapper (drop-shadow lives here, outside clip-path) ──────────── */
+
+.ni-glow-wrapper {
+  position: relative;
+  transition: filter 0.25s ease;
+}
+
+.ni-glow-wrapper:focus-within {
+  filter: drop-shadow(0 0 var(--ni-glow, 10px) var(--ni-focus));
+}
+
+/* ─── Border frame (full border style) ──────────────────────────────────── */
+/*
+ * ni-border-frame is absolute inset-0 with the same clip-path as ni-inner.
+ * Its background IS the border color. ni-outer has p-[1px], creating a 1px
+ * gap between the border-frame edge and the inner content edge — this gap is
+ * the visible "border" on all sides, including the diagonal cut corner.
+ */
+
+.ni-border-frame {
+  background: var(--ni-border);
+  transition: background 0.2s ease;
+}
+
+.ni-glow-wrapper:hover .ni-border-frame {
+  background: var(--ni-hover);
+}
+
+.ni-glow-wrapper:focus-within .ni-border-frame {
+  background: var(--ni-focus);
+}
+
+/* ─── CSS border fallback (ghost / transparent bg) ─────────────────────── */
+/*
+ * Used when the background is transparent or semi-transparent. The double-layer
+ * clip technique cannot be used here because the ni-border-frame (solid accent
+ * color) would bleed through the transparent ni-inner and make the whole input
+ * appear as a solid block. Instead, a plain CSS border is applied directly.
+ * The diagonal cut corner loses its border line — acceptable for transparent /
+ * ghost styles; the cut itself is the visual.
+ */
+
+.ni-border-css {
+  border: 1px solid var(--ni-border);
+  transition: border-color 0.2s ease;
+}
+
+.ni-glow-wrapper:hover .ni-border-css {
+  border-color: var(--ni-hover);
+}
+
+.ni-glow-wrapper:focus-within .ni-border-css {
+  border-color: var(--ni-focus);
+}
+
+/* ─── Bottom-only border style ──────────────────────────────────────────── */
+
+.ni-bottom-shell {
+  border-bottom: 1px solid var(--ni-border);
+  transition: border-color 0.2s ease;
+}
+
+.ni-glow-wrapper:hover .ni-bottom-shell {
+  border-color: var(--ni-hover);
+}
+
+.ni-glow-wrapper:focus-within .ni-bottom-shell {
+  border-color: var(--ni-focus);
+}
+
+/* ─── Input element ─────────────────────────────────────────────────────── */
+
+.ni-input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  caret-color: var(--ni-accent);
+}
+
+.ni-input::placeholder {
+  color: var(--ni-ph-color);
+}
+
+/* Kill browser autofill yellow background */
+.ni-input:-webkit-autofill,
+.ni-input:-webkit-autofill:hover,
+.ni-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #0a0f14 inset;
+  -webkit-text-fill-color: inherit;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Hide password reveal eye (Edge / IE) */
+.ni-input::-ms-reveal {
+  display: none;
+}
+
+/* Hide number input spinners (webkit + firefox) */
+.ni-input[type="number"]::-webkit-inner-spin-button,
+.ni-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ni-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ─── Prefix / Suffix ───────────────────────────────────────────────────── */
+
+.ni-prefix,
+.ni-suffix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  user-select: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.ni-glow-wrapper:focus-within .ni-prefix,
+.ni-glow-wrapper:focus-within .ni-suffix {
+  opacity: 1;
+}
+
+/* ─── Hint / Error text ─────────────────────────────────────────────────── */
+
+.ni-hint {
+  display: block;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Clip paths ────────────────────────────────────────────────────────── */
+
+.ni-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ni-corner, 12px)),
+    calc(100% - var(--ni-corner, 12px)) 100%,
+    0 100%
+  );
+}
+
+.ni-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--ni-corner, 12px) 100%,
+    0 calc(100% - var(--ni-corner, 12px))
+  );
+}
+
+.ni-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ni-corner, 12px)) 0,
+    100% var(--ni-corner, 12px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.ni-clip-tl {
+  clip-path: polygon(
+    var(--ni-corner, 12px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--ni-corner, 12px)
+  );
+}
+
+.ni-clip-all {
+  clip-path: polygon(
+    var(--ni-corner, 12px) 0,
+    calc(100% - var(--ni-corner, 12px)) 0,
+    100% var(--ni-corner, 12px),
+    100% calc(100% - var(--ni-corner, 12px)),
+    calc(100% - var(--ni-corner, 12px)) 100%,
+    var(--ni-corner, 12px) 100%,
+    0 calc(100% - var(--ni-corner, 12px)),
+    0 var(--ni-corner, 12px)
+  );
+}
+
+/* Diagonal pair: top-left + bottom-right */
+.ni-clip-tl-br {
+  clip-path: polygon(
+    var(--ni-corner, 12px) 0,
+    100% 0,
+    100% calc(100% - var(--ni-corner, 12px)),
+    calc(100% - var(--ni-corner, 12px)) 100%,
+    0 100%,
+    0 var(--ni-corner, 12px)
+  );
+}
+
+/* Diagonal pair: bottom-left + top-right */
+.ni-clip-bl-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ni-corner, 12px)) 0,
+    100% var(--ni-corner, 12px),
+    100% 100%,
+    var(--ni-corner, 12px) 100%,
+    0 calc(100% - var(--ni-corner, 12px))
+  );
+}

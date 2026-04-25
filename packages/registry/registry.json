@@ -16,6 +16,11 @@
       "description": "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles. Multiple variants"
     },
     {
+      "name": "cyber-circuit",
+      "category": "backgrounds",
+      "description": "Static SVG circuit traces entering from the corners with glowing terminal nodes. Configurable colors, line weight, dot style, and glow intensity."
+    },
+    {
       "name": "badge",
       "category": "badges",
       "description": "Futuristic label badge with pill, rectangle, and corner-cut shapes"
@@ -29,6 +34,11 @@
       "name": "corner-cut-button",
       "category": "buttons",
       "description": "A Button with clipped polygon corner with high customizability"
+    },
+    {
+      "name": "neon-input",
+      "category": "inputs",
+      "description": "A highly customizable neon input text field with various styles"
     },
     {
       "name": "datalines-with-grid",

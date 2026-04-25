@@ -1,0 +1,14 @@
+{
+  "name": "neon-input",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-input/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-input/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-input/neon-input.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-input/neon-input.css"
+    }
+  ],
+  "dependencies": []
+}

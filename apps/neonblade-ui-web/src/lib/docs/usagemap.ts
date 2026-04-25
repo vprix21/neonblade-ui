@@ -11,6 +11,10 @@ import footerUsage from "./components/footer/usage";
 import timelineUsage from "./components/timeline/usage";
 import neonGlowUsage from "./components/neon-glow/usage";
 import glyphCityUsage from "./components/glyph-city/usage";
+// import neonTriangleUsage from "./components/neon-triangle/usage";
+// import databusesUsage from "./components/databuses/usage";
+import cyberCircuitUsage from "./components/cyber-circuit/usage";
+import neonInputUsage from "./components/neon-input/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -26,6 +30,10 @@ const usageMap: Record<string, string> = {
   timeline: timelineUsage,
   "neon-glow": neonGlowUsage,
   "glyph-city": glyphCityUsage,
+  // "neon-triangle": neonTriangleUsage,
+  // databuses: databusesUsage,
+  "cyber-circuit": cyberCircuitUsage,
+  "neon-input": neonInputUsage,
 };
 
 export default usageMap;

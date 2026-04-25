@@ -1,0 +1,16 @@
+{
+  "name": "cyber-circuit",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "index.tsx",
+      "content": ""
+    },
+    {
+      "name": "cyber-circuit.css",
+      "content": ""
+    }
+  ],
+  "type": "components:ui"
+}

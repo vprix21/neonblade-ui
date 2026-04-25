@@ -11,6 +11,10 @@ import FooterDemo from "./components/footer/demo";
 import TimelineDemo from "./components/timeline/demo";
 import NeonGlowDemo from "./components/neon-glow/demo";
 import GlyphCityDemo from "./components/glyph-city/demo";
+// import NeonTriangleDemo from "./components/neon-triangle/demo";
+// import DataBusesDemo from "./components/databuses/demo";
+import CyberCircuitDemo from "./components/cyber-circuit/demo";
+import NeonInputDemo from "./components/neon-input/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -26,6 +30,10 @@ const demoMap: Record<string, React.FC> = {
   timeline: TimelineDemo,
   "neon-glow": NeonGlowDemo,
   "glyph-city": GlyphCityDemo,
+  // "neon-triangle": NeonTriangleDemo,
+  // "databuses": DataBusesDemo,
+  "cyber-circuit": CyberCircuitDemo,
+  "neon-input": NeonInputDemo,
 };
 
 export default demoMap;
