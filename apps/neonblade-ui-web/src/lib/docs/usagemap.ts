@@ -15,6 +15,7 @@ import glyphCityUsage from "./components/glyph-city/usage";
 // import databusesUsage from "./components/databuses/usage";
 import cyberCircuitUsage from "./components/cyber-circuit/usage";
 import neonInputUsage from "./components/neon-input/usage";
+import hexagonsUsage from "./components/hexagons/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -34,6 +35,7 @@ const usageMap: Record<string, string> = {
   // databuses: databusesUsage,
   "cyber-circuit": cyberCircuitUsage,
   "neon-input": neonInputUsage,
+  hexagons: hexagonsUsage,
 };
 
 export default usageMap;

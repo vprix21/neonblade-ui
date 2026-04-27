@@ -15,6 +15,7 @@ import GlyphCityDemo from "./components/glyph-city/demo";
 // import DataBusesDemo from "./components/databuses/demo";
 import CyberCircuitDemo from "./components/cyber-circuit/demo";
 import NeonInputDemo from "./components/neon-input/demo";
+import HexagonsDemo from "./components/hexagons/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -34,6 +35,7 @@ const demoMap: Record<string, React.FC> = {
   // "databuses": DataBusesDemo,
   "cyber-circuit": CyberCircuitDemo,
   "neon-input": NeonInputDemo,
+  hexagons: HexagonsDemo,
 };
 
 export default demoMap;

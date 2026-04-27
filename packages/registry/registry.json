@@ -74,6 +74,11 @@
       "name": "footer",
       "category": "footers",
       "description": "All-in-one footer: minimal, columns, centered, and mega variants with socials, newsletter, link groups, and glass/solid backgrounds"
+    },
+    {
+      "name": "hexagons",
+      "category": "backgrounds",
+      "description": "Flat-top hexagon grid with customizable fill, border colors, hover highlight, ambient glow, and animated beam lines flowing along hex edges."
     }
   ]
 }

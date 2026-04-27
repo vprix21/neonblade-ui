@@ -17,6 +17,7 @@ const folderMap: Record<string, string> = {
   // databuses: "DataBuses",
   "cyber-circuit": "CyberCircuit",
   "neon-input": "NeonInput",
+  hexagons: "Hexagons",
 };
 
 export default folderMap;

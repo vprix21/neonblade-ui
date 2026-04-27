@@ -1,0 +1,10 @@
+{
+  "name": "hexagons",
+  "files": [
+    {
+      "path": "components/neonblade-ui/hexagons/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/hexagons/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

@@ -33,7 +33,7 @@ export const categories: CategoryData[] = [
         slug: "glyph-city",
         description:
           "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles.",
-        is_new: true,
+        is_new: false,
       },
       // {
       //   name: "Neon Triangle",
@@ -54,6 +54,13 @@ export const categories: CategoryData[] = [
         slug: "cyber-circuit",
         description:
           "Static SVG circuit traces entering from the corners with glowing terminal nodes. Configurable colors, line weight, dot style, and glow intensity.",
+        is_new: false,
+      },
+      {
+        name: "Hexagons",
+        slug: "hexagons",
+        description:
+          "Flat-top hexagon grid with customizable fill, border colors, hover highlight, ambient glow, and animated beam lines flowing along hex edges.",
         is_new: true,
       },
     ],

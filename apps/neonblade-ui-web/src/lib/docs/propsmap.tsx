@@ -16,6 +16,7 @@ import glyphCityProps from "./components/glyph-city/props";
 // import databusesProps from "./components/databuses/props";
 import cyberCircuitProps from "./components/cyber-circuit/props";
 import neonInputProps from "./components/neon-input/props";
+import hexagonsProps from "./components/hexagons/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -35,6 +36,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   // databuses: databusesProps,
   "cyber-circuit": cyberCircuitProps,
   "neon-input": neonInputProps,
+  hexagons: hexagonsProps,
 };
 
 export default propsMap;
