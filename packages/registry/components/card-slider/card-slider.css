@@ -1,0 +1,274 @@
+/* ============================================================
+   CardSlider — card-slider.css
+   All classes prefixed with `cs-` to avoid global conflicts.
+
+   CSS custom properties (set inline by the component):
+     --cs-accent      : primary accent / neon color
+     --cs-corner-size : nav button diagonal cut size (px)
+     --cs-edge-color  : edge-fade color (match page background)
+============================================================ */
+
+/* ---- Sliding track --------------------------------------- */
+
+.cs-track {
+  will-change: transform;
+  transition: transform 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cs-track.cs-dragging {
+  transition: none;
+}
+
+/* ---- Navigation button clip paths ----------------------- */
+
+/* Four diagonal-cut positions (top-right / top-left / bottom-right / bottom-left) */
+.cs-btn-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cs-corner-size, 10px)) 0,
+    100% var(--cs-corner-size, 10px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.cs-btn-clip-tl {
+  clip-path: polygon(
+    var(--cs-corner-size, 10px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--cs-corner-size, 10px)
+  );
+}
+
+.cs-btn-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cs-corner-size, 10px)),
+    calc(100% - var(--cs-corner-size, 10px)) 100%,
+    0 100%
+  );
+}
+
+.cs-btn-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--cs-corner-size, 10px) 100%,
+    0 calc(100% - var(--cs-corner-size, 10px))
+  );
+}
+
+/* Drop-shadow glow on wrapper hover (clip-path clips box-shadow on the button,
+   so drop-shadow on the parent wrapper is needed) */
+.cs-btn-wrapper:not(.cs-btn-disabled):hover {
+  filter: drop-shadow(0 0 8px var(--cs-accent, #00f3ff));
+}
+
+/* Inner glow on button hover */
+.cs-btn:not(:disabled):hover {
+  box-shadow: inset 0 0 16px
+    color-mix(in srgb, var(--cs-accent, #00f3ff) 22%, transparent);
+}
+
+/* Scan-line animation overlay */
+.cs-btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.cs-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cs-accent, #00f3ff) 18%, transparent) 50%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.cs-btn:not(:disabled):hover::before {
+  animation: cs-scan-btn 0.45s ease-out forwards;
+}
+
+@keyframes cs-scan-btn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(150%);
+  }
+}
+
+/* ---- Progress bar ---------------------------------------- */
+
+.cs-progress-track {
+  position: relative;
+  /* Tiny diagonal corner cut on top-left and bottom-right */
+  clip-path: polygon(3px 0, 100% 0, 100% 100%, 0 100%, 0 3px);
+}
+
+.cs-progress-fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  transition: width 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+/* Shimmer sweep on progress fill */
+.cs-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cs-accent, #00f3ff) 70%, white) 50%,
+    transparent 100%
+  );
+  animation: cs-shimmer 2.4s ease-in-out infinite;
+}
+
+@keyframes cs-shimmer {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* ---- Progress dots --------------------------------------- */
+
+.cs-dot {
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease,
+    border-color 200ms ease;
+  cursor: pointer;
+}
+
+.cs-dot:not(.cs-dot-active):hover {
+  background-color: color-mix(
+    in srgb,
+    var(--cs-accent, #00f3ff) 28%,
+    transparent
+  ) !important;
+}
+
+.cs-dot.cs-dot-active {
+  box-shadow:
+    0 0 7px color-mix(in srgb, var(--cs-accent, #00f3ff) 85%, transparent),
+    0 0 14px color-mix(in srgb, var(--cs-accent, #00f3ff) 40%, transparent);
+  transform: scale(1.15);
+}
+
+/* Corner-cut dot shape (bottom-right cut) */
+.cs-dot-clip {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 3px),
+    calc(100% - 3px) 100%,
+    0 100%
+  );
+}
+
+/* ---- Counter --------------------------------------------- */
+
+.cs-counter-current {
+  text-shadow:
+    0 0 10px color-mix(in srgb, var(--cs-accent, #00f3ff) 90%, transparent),
+    0 0 22px color-mix(in srgb, var(--cs-accent, #00f3ff) 45%, transparent);
+}
+
+/* ---- Edge fades ------------------------------------------ */
+
+.cs-edge-fade-left {
+  background: linear-gradient(
+    90deg,
+    var(--cs-edge-color, #000) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.cs-edge-fade-right {
+  background: linear-gradient(
+    270deg,
+    var(--cs-edge-color, #000) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- CRT scan-line overlay ------------------------------- */
+
+.cs-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+}
+
+/* ---- Corner targeting accents ---------------------------- */
+
+.cs-corner-tl,
+.cs-corner-tr,
+.cs-corner-bl,
+.cs-corner-br {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 300ms ease;
+}
+
+.cs-corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 1.5px solid var(--cs-accent, #00f3ff);
+  border-left: 1.5px solid var(--cs-accent, #00f3ff);
+}
+
+.cs-corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 1.5px solid var(--cs-accent, #00f3ff);
+  border-right: 1.5px solid var(--cs-accent, #00f3ff);
+}
+
+.cs-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1.5px solid var(--cs-accent, #00f3ff);
+  border-left: 1.5px solid var(--cs-accent, #00f3ff);
+}
+
+.cs-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1.5px solid var(--cs-accent, #00f3ff);
+  border-right: 1.5px solid var(--cs-accent, #00f3ff);
+}

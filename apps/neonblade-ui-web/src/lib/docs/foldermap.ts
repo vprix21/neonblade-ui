@@ -18,6 +18,7 @@ const folderMap: Record<string, string> = {
   "cyber-circuit": "CyberCircuit",
   "neon-input": "NeonInput",
   hexagons: "Hexagons",
+  "card-slider": "CardSlider",
 };
 
 export default folderMap;

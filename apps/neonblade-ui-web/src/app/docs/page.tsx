@@ -364,7 +364,12 @@ export default function DocsPage() {
               {/* <Terminal size={15} />
               View All Components
               <ArrowRight size={14} /> */}
-              <CornerCutButton variant="solid" color="cyan" showArrow={true}>
+              <CornerCutButton
+                variant="solid"
+                color="cyan"
+                showArrow={true}
+                hoverEffect="shift"
+              >
                 View All Components
               </CornerCutButton>
             </Link>

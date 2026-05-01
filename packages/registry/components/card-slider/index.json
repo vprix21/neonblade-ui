@@ -1,0 +1,14 @@
+{
+  "name": "card-slider",
+  "files": [
+    {
+      "path": "components/neonblade-ui/card-slider/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/card-slider/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/card-slider/card-slider.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/card-slider/card-slider.css"
+    }
+  ],
+  "dependencies": ["lucide-react"]
+}

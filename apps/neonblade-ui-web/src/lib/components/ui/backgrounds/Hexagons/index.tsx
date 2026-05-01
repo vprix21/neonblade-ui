@@ -49,20 +49,42 @@ export interface HexagonsProps {
   className?: string;
 }
 
-// ─── Geometry helpers ─────────────────────────────────────────────────────────
+// ─── Color helpers ─────────────────────────────────────────────────────────────
 
-function hexToRgba(hex: string, alpha: number): string {
-  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-    let c = hex.substring(1).split("");
-    if (c.length === 3) c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-    const n = parseInt("0x" + c.join(""), 16);
+/**
+ * Normalise any CSS color string to rgba(r,g,b,alpha).
+ * Handles #RGB, #RRGGBB, rgb(), rgba() — so hex colors work correctly
+ * without per-frame regex overhead in the render loop.
+ */
+function toRgba(color: string, alpha: number): string {
+  const t = color.trim();
+  // #RGB shorthand
+  const s3 = /^#([A-Fa-f0-9]{3})$/.exec(t);
+  if (s3) {
+    const r = parseInt(s3[1][0] + s3[1][0], 16);
+    const g = parseInt(s3[1][1] + s3[1][1], 16);
+    const b = parseInt(s3[1][2] + s3[1][2], 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+  // #RRGGBB
+  const s6 = /^#([A-Fa-f0-9]{6})$/.exec(t);
+  if (s6) {
+    const n = parseInt(s6[1], 16);
     return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
   }
-  if (hex.startsWith("rgb")) {
-    return hex.replace(/^rgb\(/, "rgba(").replace(/\)$/, `,${alpha})`);
+  // rgba() — replace existing alpha
+  if (t.startsWith("rgba(")) {
+    if (alpha === 1) return t;
+    return t.replace(/,\s*[\d.]+\s*\)$/, `,${alpha})`);
   }
-  return hex;
+  // rgb() → rgba()
+  if (t.startsWith("rgb(")) {
+    return t.replace(/^rgb\(/, "rgba(").replace(/\)$/, `,${alpha})`);
+  }
+  return t;
 }
+
+// ─── Geometry helpers ─────────────────────────────────────────────────────────
 
 /** Flat-top hexagon: vertex i at angle i*60 degrees from the center. */
 function flatTopVerts(cx: number, cy: number, r: number): [number, number][] {
@@ -351,126 +373,262 @@ function HexCanvas({
   beamSpawnProbability,
 }: HexCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Current hovered cell index (-1 = none)
   const hoveredRef = useRef(-1);
+  // Previous frame's hovered index — used to detect changes
+  const prevHoveredRef = useRef(-1);
+
   const cellsRef = useRef<HexCell[]>([]);
   const graphRef = useRef<HexGraph>({ verts: [], edges: [], vertToEdges: [] });
   const beamsRef = useRef<Beam[]>([]);
   const rafRef = useRef(0);
 
+  // Offscreen canvas caches the static hex grid layer
+  const bgRef = useRef<HTMLCanvasElement | OffscreenCanvas | null>(null);
+  // Flag: bg needs a full redraw (rebuild or prop change)
+  const needsBgRedrawRef = useRef(true);
+
+  // Logical (CSS-pixel) canvas dimensions
+  const logicalRef = useRef({ w: 0, h: 0 });
+
+  // ── Hover detection ─────────────────────────────────────────────────────────
+  // Listen at document level so hover works even when foreground content
+  // (e.g. text with z-index) sits on top of the canvas.
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !hoverEffect) {
+    if (!hoverEffect) {
       hoveredRef.current = -1;
       return;
     }
+
+    // Inscribed-circle radius — any point closer than this to a cell centre
+    // is inside that hexagon.
     const inscribed = (hexSize * Math.sqrt(3)) / 2;
 
     const onMove = (ev: MouseEvent) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
       const rect = canvas.getBoundingClientRect();
       const mx = ev.clientX - rect.left;
       const my = ev.clientY - rect.top;
+
+      // If the cursor is outside the canvas bounds, clear hover and return
+      if (mx < 0 || my < 0 || mx > rect.width || my > rect.height) {
+        hoveredRef.current = -1;
+        return;
+      }
+
       let best = -1;
       let bestD = inscribed;
-      cellsRef.current.forEach((cell, i) => {
-        const d = Math.hypot(cell.cx - mx, cell.cy - my);
+      const cells = cellsRef.current;
+      for (let i = 0; i < cells.length; i++) {
+        const d = Math.hypot(cells[i].cx - mx, cells[i].cy - my);
         if (d < bestD) {
           bestD = d;
           best = i;
         }
-      });
+      }
       hoveredRef.current = best;
     };
 
-    const onLeave = () => {
-      hoveredRef.current = -1;
-    };
-
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mouseleave", onLeave);
-    return () => {
-      canvas.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mouseleave", onLeave);
-    };
+    // passive: true → browser won't block scroll for this listener
+    document.addEventListener("mousemove", onMove, { passive: true });
+    return () => document.removeEventListener("mousemove", onMove);
   }, [hoverEffect, hexSize]);
 
+  // ── Render loop ──────────────────────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Pre-parse beam color stops once per prop change — avoids per-frame
+    // hex-string → rgba conversion which was causing noticeable lag with
+    // hex colour values like #0a61ed.
+    const bc0 = toRgba(beamColor, 0);
+    const bc28 = toRgba(beamColor, 0.28);
+    const bc92 = toRgba(beamColor, 0.92);
+    const bc95 = toRgba(beamColor, 0.95);
+
+    // ── Draw static hex grid to offscreen canvas ─────────────────────────────
+    // By building one compound path for all cells and issuing a single
+    // fill() + stroke(), we reduce O(N) draw calls to O(1) — a major
+    // performance win, especially with borderGlowEffect (shadowBlur).
+    const drawBackground = (
+      bgCtx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+      W: number,
+      H: number,
+    ) => {
+      bgCtx.clearRect(0, 0, W, H);
+      const cells = cellsRef.current;
+      const hov = hoverEffect ? hoveredRef.current : -1;
+
+      // ── Batch: all non-hovered cells ──
+      bgCtx.beginPath();
+      for (let i = 0; i < cells.length; i++) {
+        if (i === hov) continue;
+        const { verts } = cells[i];
+        bgCtx.moveTo(verts[0][0], verts[0][1]);
+        for (let v = 1; v < 6; v++) bgCtx.lineTo(verts[v][0], verts[v][1]);
+        bgCtx.closePath();
+      }
+      // Fill first (no shadow), then stroke (optionally with glow shadow)
+      if (hexColor !== "transparent") {
+        bgCtx.fillStyle = hexColor;
+        bgCtx.fill();
+      }
+      if (borderGlowEffect) {
+        bgCtx.shadowColor = borderGlowColor;
+        bgCtx.shadowBlur = borderGlowRadius;
+      }
+      bgCtx.strokeStyle = hexBorderColor;
+      bgCtx.lineWidth = borderWidth;
+      bgCtx.stroke();
+      bgCtx.shadowBlur = 0;
+
+      // ── Hovered cell (drawn separately so it can have a different style) ──
+      if (hov >= 0) {
+        const { verts } = cells[hov];
+        bgCtx.beginPath();
+        bgCtx.moveTo(verts[0][0], verts[0][1]);
+        for (let v = 1; v < 6; v++) bgCtx.lineTo(verts[v][0], verts[v][1]);
+        bgCtx.closePath();
+        bgCtx.fillStyle = hoverColor;
+        bgCtx.fill();
+        const hBorder = hoverBorderColor || hexBorderColor;
+        if (borderGlowEffect) {
+          bgCtx.shadowColor = hBorder;
+          bgCtx.shadowBlur = borderGlowRadius;
+        }
+        bgCtx.strokeStyle = hBorder;
+        bgCtx.lineWidth = borderWidth;
+        bgCtx.stroke();
+        bgCtx.shadowBlur = 0;
+      }
+    };
+
+    // ── Rebuild grid + canvases ───────────────────────────────────────────
     const rebuild = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      const { cells, graph } = buildGrid(canvas.width, canvas.height, hexSize);
+      // Use devicePixelRatio to render crisp edges at every zoom level and
+      // on high-DPI / Retina screens.
+      const dpr = Math.max(window.devicePixelRatio ?? 1, 1);
+      const logW = canvas.offsetWidth;
+      const logH = canvas.offsetHeight;
+      if (logW === 0 || logH === 0) return;
+
+      // Resize main canvas to device pixels; scale ctx so all coordinates
+      // remain in CSS pixels (no changes needed to geometry math).
+      canvas.width = Math.round(logW * dpr);
+      canvas.height = Math.round(logH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      logicalRef.current = { w: logW, h: logH };
+
+      // Build grid using logical (CSS-pixel) dimensions
+      const { cells, graph } = buildGrid(logW, logH, hexSize);
       cellsRef.current = cells;
       graphRef.current = graph;
       beamsRef.current = [];
+
+      // Create (or recreate) offscreen canvas at device-pixel resolution
+      const bgW = Math.round(logW * dpr);
+      const bgH = Math.round(logH * dpr);
+      try {
+        bgRef.current = new OffscreenCanvas(bgW, bgH);
+      } catch {
+        // Fallback for environments that don't support OffscreenCanvas
+        const el = document.createElement("canvas");
+        el.width = bgW;
+        el.height = bgH;
+        bgRef.current = el;
+      }
+
+      // Apply the same DPR scale to the offscreen context
+      const bgCtx = bgRef.current.getContext("2d") as
+        | CanvasRenderingContext2D
+        | OffscreenCanvasRenderingContext2D
+        | null;
+      if (bgCtx) bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      needsBgRedrawRef.current = true;
     };
 
     rebuild();
     const ro = new ResizeObserver(rebuild);
     ro.observe(canvas);
 
+    // ── Render loop ──────────────────────────────────────────────────────────
     const render = () => {
-      const W = canvas.width;
-      const H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-
-      const cells = cellsRef.current;
-      const graph = graphRef.current;
-
-      for (let i = 0; i < cells.length; i++) {
-        const cell = cells[i];
-        const isHov = hoverEffect && hoveredRef.current === i;
-        const { verts } = cell;
-
-        ctx.beginPath();
-        ctx.moveTo(verts[0][0], verts[0][1]);
-        for (let v = 1; v < 6; v++) ctx.lineTo(verts[v][0], verts[v][1]);
-        ctx.closePath();
-
-        ctx.fillStyle = isHov ? hoverColor : hexColor;
-        ctx.fill();
-
-        if (borderGlowEffect) {
-          ctx.shadowColor = borderGlowColor;
-          ctx.shadowBlur = borderGlowRadius;
-        }
-        ctx.strokeStyle =
-          isHov && hoverBorderColor ? hoverBorderColor : hexBorderColor;
-        ctx.lineWidth = borderWidth;
-        ctx.stroke();
-        ctx.shadowBlur = 0;
+      const bg = bgRef.current;
+      if (!bg) {
+        rafRef.current = requestAnimationFrame(render);
+        return;
       }
 
-      if (beamEffect && graph.edges.length > 0) {
+      const bgCtx = bg.getContext("2d") as
+        | CanvasRenderingContext2D
+        | OffscreenCanvasRenderingContext2D
+        | null;
+      if (!bgCtx) {
+        rafRef.current = requestAnimationFrame(render);
+        return;
+      }
+
+      const { w: W, h: H } = logicalRef.current;
+      if (W === 0 || H === 0) {
+        rafRef.current = requestAnimationFrame(render);
+        return;
+      }
+
+      const hov = hoverEffect ? hoveredRef.current : -1;
+      const hovChanged = hov !== prevHoveredRef.current;
+
+      // Redraw the static bg layer only when hover changes or after rebuild.
+      // For most frames this is skipped — a significant CPU saving.
+      if (hovChanged || needsBgRedrawRef.current) {
+        drawBackground(bgCtx, W, H);
+        prevHoveredRef.current = hov;
+        needsBgRedrawRef.current = false;
+      }
+
+      // Composite bg onto main canvas (GPU blit — very cheap)
+      ctx.clearRect(0, 0, W, H);
+      // Draw bg at logical dimensions; the DPR scaling on both contexts
+      // ensures device-pixel-perfect output.
+      ctx.drawImage(bg as CanvasImageSource, 0, 0, W, H);
+
+      // ── Beams ──
+      if (beamEffect && graphRef.current.edges.length > 0) {
         if (
           Math.random() < beamSpawnProbability &&
           beamsRef.current.length < maxBeams
         ) {
-          const b = spawnBeam(graph, hexSize, beamSpeed, beamLength);
+          const b = spawnBeam(graphRef.current, hexSize, beamSpeed, beamLength);
           if (b) beamsRef.current.push(b);
         }
 
         const surviving: Beam[] = [];
         for (const beam of beamsRef.current) {
-          const alive = stepBeam(beam, graph, H);
+          const alive = stepBeam(beam, graphRef.current, H);
           if (!alive) continue;
 
           if (beam.trail.length >= 2) {
             const tail = beam.trail[0];
             const head = beam.trail[beam.trail.length - 1];
 
+            // Pre-parsed color strings (bc0/bc28/bc92/bc95) are used here
+            // instead of calling toRgba() on every frame.
             const grad = ctx.createLinearGradient(
               tail[0],
               tail[1],
               head[0],
               head[1],
             );
-            grad.addColorStop(0, hexToRgba(beamColor, 0));
-            grad.addColorStop(0.55, hexToRgba(beamColor, 0.28));
-            grad.addColorStop(1, hexToRgba(beamColor, 0.92));
+            grad.addColorStop(0, bc0);
+            grad.addColorStop(0.55, bc28);
+            grad.addColorStop(1, bc92);
 
             ctx.beginPath();
             ctx.moveTo(beam.trail[0][0], beam.trail[0][1]);
@@ -484,12 +642,12 @@ function HexCanvas({
             ctx.shadowBlur = 0;
             ctx.stroke();
 
-            // Flat thick head — redraw last segment thicker with butt caps (no circle/dot)
+            // Flat thick head — redrawn as a short segment with butt caps
             const prev = beam.trail[beam.trail.length - 2];
             ctx.beginPath();
             ctx.moveTo(prev[0], prev[1]);
             ctx.lineTo(head[0], head[1]);
-            ctx.strokeStyle = hexToRgba(beamColor, 0.95);
+            ctx.strokeStyle = bc95;
             ctx.lineWidth = borderWidth + 2.5;
             ctx.lineCap = "butt";
             ctx.lineJoin = "miter";
@@ -533,11 +691,13 @@ function HexCanvas({
     beamSpawnProbability,
   ]);
 
+  // Canvas itself never needs pointer-events — hover is tracked at
+  // document level so it works through any z-index stack.
   return (
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ pointerEvents: hoverEffect ? "auto" : "none" }}
+      style={{ pointerEvents: "none" }}
     />
   );
 }

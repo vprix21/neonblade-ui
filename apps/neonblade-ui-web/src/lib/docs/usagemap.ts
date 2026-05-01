@@ -16,6 +16,7 @@ import glyphCityUsage from "./components/glyph-city/usage";
 import cyberCircuitUsage from "./components/cyber-circuit/usage";
 import neonInputUsage from "./components/neon-input/usage";
 import hexagonsUsage from "./components/hexagons/usage";
+import cardSliderUsage from "./components/card-slider/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -36,6 +37,7 @@ const usageMap: Record<string, string> = {
   "cyber-circuit": cyberCircuitUsage,
   "neon-input": neonInputUsage,
   hexagons: hexagonsUsage,
+  "card-slider": cardSliderUsage,
 };
 
 export default usageMap;

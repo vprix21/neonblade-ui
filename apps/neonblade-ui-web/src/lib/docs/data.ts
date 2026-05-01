@@ -61,7 +61,8 @@ export const categories: CategoryData[] = [
         slug: "hexagons",
         description:
           "Flat-top hexagon grid with customizable fill, border colors, hover highlight, ambient glow, and animated beam lines flowing along hex edges.",
-        is_new: true,
+        is_new: false,
+        is_updated: true,
       },
     ],
   },
@@ -181,6 +182,19 @@ export const categories: CategoryData[] = [
         slug: "neon-input",
         description:
           "A fully-featured text input with the iconic NeonBlade corner-cut shape, neon focus glow, full color customization, label, hint, error state, prefix/suffix slots, border styles, background opacity, and all standard HTML input types.",
+        is_new: false,
+      },
+    ],
+  },
+  {
+    name: "Sliders",
+    slug: "sliders",
+    components: [
+      {
+        name: "Card Slider",
+        slug: "card-slider",
+        description:
+          "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization.",
         is_new: true,
       },
     ],
