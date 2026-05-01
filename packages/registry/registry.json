@@ -79,6 +79,11 @@
       "name": "hexagons",
       "category": "backgrounds",
       "description": "Flat-top hexagon grid with customizable fill, border colors, hover highlight, ambient glow, and animated beam lines flowing along hex edges."
+    },
+    {
+      "name": "card-slider",
+      "category": "sliders",
+      "description": "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization."
     }
   ]
 }
