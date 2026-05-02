@@ -1,7 +1,8 @@
 {
   "name": "neonblade",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "NeonBlade UI CLI",
+  "license": "MIT",
   "bin": {
     "neonblade": "index.js"
   },

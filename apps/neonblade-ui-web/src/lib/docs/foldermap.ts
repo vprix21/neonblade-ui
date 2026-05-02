@@ -13,8 +13,6 @@ const folderMap: Record<string, string> = {
   timeline: "Timeline",
   "neon-glow": "NeonGlow",
   "glyph-city": "GlyphCity",
-  // "neon-triangle": "NeonTriangle",
-  // databuses: "DataBuses",
   "cyber-circuit": "CyberCircuit",
   "neon-input": "NeonInput",
   hexagons: "Hexagons",

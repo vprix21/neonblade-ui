@@ -35,20 +35,6 @@ export const categories: CategoryData[] = [
           "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles.",
         is_new: false,
       },
-      // {
-      //   name: "Neon Triangle",
-      //   slug: "neon-triangle",
-      //   description:
-      //     "Glowing neon inverted triangle with prism wireframe, layered, and fractured variants. Full control over colors, glow intensity, and animations.",
-      //   is_new: true,
-      // },
-      // {
-      //   name: "Data Buses",
-      //   slug: "databuses",
-      //   description:
-      //     "Static neon circuit-board bus lines with circular terminal nodes. PCB-trace aesthetic with full control over colors, density, glow, and node style.",
-      //   is_new: true,
-      // },
       {
         name: "Cyber Circuit",
         slug: "cyber-circuit",
