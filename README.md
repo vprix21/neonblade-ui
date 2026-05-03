@@ -122,9 +122,6 @@ Please read `CONTRIBUTING.md` before opening a pull request.
 
 Created and maintained by **[Vinay Kalwale](https://github.com/vprix21)** (**NeuronRush**).
 
-- Website: https://neuronrush.com
-- Contact: contact@neuronrush.com
-
 ## License
 
 MIT License. See `LICENSE` for details.
