@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { VscMail } from "react-icons/vsc";
+import { VscMail, VscGithub } from "react-icons/vsc";
 import { RiTwitterXFill } from "react-icons/ri";
 
 const footerLinks = [
   { label: "Components", href: "/components" },
   { label: "Docs", href: "/docs" },
   { label: "Templates", href: "/templates" },
-  // { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
@@ -32,10 +31,6 @@ export function Footer() {
           </span>
         </Link>
 
-        {/* <p className="text-sm text-white/40 mb-6 font-mono">
-          Engineered for the future of digital frontier.
-        </p> */}
-
         <nav className="flex flex-wrap justify-center gap-6 mb-6">
           {footerLinks.map((link) => (
             <Link
@@ -57,15 +52,16 @@ export function Footer() {
             aria-label="X (Twitter)"
             className="text-white/65 hover:text-white transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
           >
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg> */}
             <RiTwitterXFill size={20} />
+          </a>
+          <a
+            href="https://github.com/vprix21/neonblade-ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-white/65 hover:text-white transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+          >
+            <VscGithub size={20} />
           </a>
           <a
             href="mailto:contact@neuronrush.com"

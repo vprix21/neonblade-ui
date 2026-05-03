@@ -2,6 +2,8 @@
 
 Thanks for your interest in contributing.
 
+Whether you're forging a new component, refining a neon effect, or fixing a bug, your work helps push the boundaries of UI design. Let’s bring true futuristic, neon-driven interfaces to the modern web together.
+
 NeonBlade UI is a curated futuristic component library. We welcome contributions that are visually strong, reusable, and production-minded.
 
 ## Contribution Philosophy
@@ -61,6 +63,16 @@ pnpm lint
 pnpm check-types
 pnpm build
 ```
+
+## Tech Stack (Current)
+
+- Monorepo orchestration: Turborepo
+- Workspace/package manager: pnpm
+- Website framework: Next.js (App Router) with React + TypeScript
+- Styling: Tailwind CSS v4 first, plain CSS only when needed
+- Linting/formatting: ESLint + Prettier
+- Shared config packages: `@repo/eslint-config`, `@repo/typescript-config`
+- Common UI/runtime libs in the web app: Framer Motion, Lucide React, clsx, tailwind-merge
 
 ## Monorepo Areas
 
@@ -131,7 +143,8 @@ PR description expectations:
 
 - Component is reusable and customizable via props.
 - Component follows the complete integration workflow in this document.
-- Naming and folder conventions are followed.
+- Naming and folde
+  r conventions are followed.
 - Types are clear and safe.
 - Docs integration is complete (`demo.tsx`, `props.ts`, `usage.ts`, map updates, and `src/lib/docs/data.ts`).
 - Component preview is added/updated on the components page through the docs integration flow.
@@ -162,7 +175,7 @@ If you have ideas, feel free to open an issue for discussion.
 
 ## Review Timeline
 
-Maintainer review is typically targeted within 3 days, but this may take longer depending on workload and PR volume.
+Maintainer review is typically targeted within 2 days, but this may take longer depending on workload and PR volume.
 
 Thanks for your patience when review queues are high.
 

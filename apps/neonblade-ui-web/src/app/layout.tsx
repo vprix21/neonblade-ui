@@ -16,7 +16,7 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   title: "NeonBlade UI",
-  description: "Modern and futuristic UI component library.",
+  description: "Free and open-source futuristic React UI component library.",
   icons: {
     icon: "/neonblade_ui_logo_rounded.png",
     shortcut: "/neonblade_ui_logo_rounded.png",

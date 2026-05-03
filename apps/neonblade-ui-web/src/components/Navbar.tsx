@@ -5,6 +5,7 @@ import Image from "next/image";
 import { cn } from "../lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { VscGithub } from "react-icons/vsc";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -92,12 +93,15 @@ export function Navbar() {
             >
               Templates
             </Link>
-            {/* <Link
-              href="/contact"
-              className="text-white/80 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            <a
+              href="https://github.com/vprix21/neonblade-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="text-white/80 hover:text-[#00f3ff] hover:text-glow-cyan transition-all"
             >
-              Contact
-            </Link> */}
+              <VscGithub size={18} />
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -139,13 +143,16 @@ export function Navbar() {
             >
               Templates
             </Link>
-            {/* <Link
-              href="/contact"
-              className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+            <a
+              href="https://github.com/vprix21/neonblade-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 px-2 flex items-center gap-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
               onClick={() => setMobileOpen(false)}
             >
-              Contact
-            </Link> */}
+              <VscGithub size={16} />
+              GitHub
+            </a>
           </div>
         </div>
       )}

@@ -55,8 +55,12 @@ Registry base URL:
 
 - Monorepo: Turborepo
 - Package manager: pnpm
-- Website: Next.js + TypeScript + Tailwind CSS v4
-- Components: TypeScript + Tailwind CSS v4 + plain CSS (when justified)
+- Website app: Next.js (App Router) + React + TypeScript
+- Styling: Tailwind CSS v4 + component-scoped CSS (when justified)
+- Code quality: ESLint + Prettier
+- DX/shared tooling: shared TypeScript config + shared ESLint config packages
+- UI/runtime libraries: Framer Motion, Lucide React, clsx, tailwind-merge
+- Analytics: Vercel Analytics
 
 ## Monorepo Overview
 
@@ -110,7 +114,16 @@ pnpm format
 
 NeonBlade UI is community-friendly and quality-curated.
 
+Whether you want to forge a new sci-fi component, tweak a neon glow, or refine the docs, your help is welcome. Let's bring true futuristic and neon-driven interfaces to the modern web together!
+
 Please read `CONTRIBUTING.md` before opening a pull request.
+
+## Maintainer
+
+Created and maintained by **[Vinay Kalwale](https://github.com/vprix21)** (**NeuronRush**).
+
+- Website: https://neuronrush.com
+- Contact: contact@neuronrush.com
 
 ## License
 

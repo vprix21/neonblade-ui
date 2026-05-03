@@ -139,8 +139,9 @@ export default function DocsPage() {
               </span>
             </h1>
             <p className="text-white/65 text-xl leading-relaxed max-w-2xl">
-              A futuristic React component library with sci-fi aesthetics built
-              with Tailwind CSS. No wrappers. Just code that&apos;s yours.
+              A free and open-source futuristic React component library with
+              sci-fi aesthetics built with Tailwind CSS. No wrappers. Just code
+              that&apos;s yours.
             </p>
           </div>
 
