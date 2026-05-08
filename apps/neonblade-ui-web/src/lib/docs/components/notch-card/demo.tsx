@@ -13,7 +13,7 @@ export default function NotchCardDemo() {
           <NotchCard
             title="Cyber Unit"
             description="Default top & bottom notches with cyan border."
-            notchWidth={500}
+            notchWidth={300}
             notchSize={5}
             size="lg"
             innerClassName="py-10"
