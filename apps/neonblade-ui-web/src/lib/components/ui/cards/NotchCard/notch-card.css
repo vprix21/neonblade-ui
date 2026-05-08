@@ -1,0 +1,264 @@
+/* ================================================================
+   NotchCard — notch-card.css
+   All class names are prefixed with `nc-` to avoid conflicts.
+
+   CSS custom properties (set inline by the component):
+     --nc-accent        : accent / glow color
+     --nc-border-color  : primary border color
+     --nc-border-color-b: secondary border color (gradient)
+     --nc-beam-color    : primary beam color
+     --nc-beam-color-b  : secondary beam color (dual / gradient-sweep)
+     --nc-duration      : primary beam rotation speed in seconds
+     --nc-duration-b    : secondary beam rotation speed in seconds
+================================================================ */
+
+/* ---- Animations -------------------------------------------- */
+
+@keyframes nc-spin-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nc-spin-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes nc-pulse-opacity {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nc-rainbow-hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes nc-scan-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(350%);
+    opacity: 0;
+  }
+}
+
+@keyframes nc-pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px color-mix(in srgb, var(--nc-accent, #00f3ff) 40%, transparent),
+      inset 0 0 8px
+        color-mix(in srgb, var(--nc-accent, #00f3ff) 8%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 28px var(--nc-accent, #00f3ff),
+      0 0 55px color-mix(in srgb, var(--nc-accent, #00f3ff) 35%, transparent),
+      inset 0 0 20px
+        color-mix(in srgb, var(--nc-accent, #00f3ff) 18%, transparent);
+  }
+}
+
+/* ---- Inner card base transition ---------------------------- */
+
+.nc-inner {
+  transition: box-shadow 0.3s ease;
+}
+
+/* ---- Primary beam ------------------------------------------ */
+
+.nc-beam {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 50%,
+    var(--nc-beam-color, #00f3ff) 100%
+  );
+  animation: nc-spin-cw var(--nc-duration, 4s) linear infinite;
+}
+
+/* ---- Secondary beam (dual variant) ------------------------- */
+
+.nc-beam-b {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 270deg at 50% 50%,
+    transparent 50%,
+    var(--nc-beam-color-b, #ff00ff) 100%
+  );
+  animation: nc-spin-ccw var(--nc-duration-b, 6s) linear infinite;
+}
+
+/* ---- Beam variant overrides -------------------------------- */
+
+/* gradient-sweep: wide blending beam colorA → colorB */
+.nc-beam-gradient-sweep .nc-beam {
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 38%,
+    color-mix(in srgb, var(--nc-beam-color, #00f3ff) 40%, transparent) 55%,
+    var(--nc-beam-color, #00f3ff) 70%,
+    var(--nc-beam-color-b, #ff00ff) 85%,
+    transparent 100%
+  );
+}
+
+/* rainbow: full neon spectrum cycling */
+.nc-beam-rainbow .nc-beam {
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 50%,
+    #ff00ff 60%,
+    #00f3ff 72%,
+    #39ff14 83%,
+    #ff9900 92%,
+    transparent 100%
+  );
+  animation:
+    nc-spin-cw var(--nc-duration, 4s) linear infinite,
+    nc-rainbow-hue 4s linear infinite;
+}
+
+/* pulse: single beam that breathes in opacity */
+.nc-beam-pulse .nc-beam {
+  animation:
+    nc-spin-cw var(--nc-duration, 4s) linear infinite,
+    nc-pulse-opacity 1.4s ease-in-out infinite;
+}
+
+/* ---- Ambient glow ------------------------------------------ */
+
+.nc-glow-low .nc-inner {
+  box-shadow: 0 0 8px
+    color-mix(in srgb, var(--nc-accent, #00f3ff) 35%, transparent);
+}
+
+.nc-glow-medium .nc-inner {
+  box-shadow:
+    0 0 15px color-mix(in srgb, var(--nc-accent, #00f3ff) 50%, transparent),
+    inset 0 0 10px
+      color-mix(in srgb, var(--nc-accent, #00f3ff) 10%, transparent);
+}
+
+.nc-glow-high .nc-inner {
+  box-shadow:
+    0 0 28px var(--nc-accent, #00f3ff),
+    0 0 50px color-mix(in srgb, var(--nc-accent, #00f3ff) 40%, transparent),
+    inset 0 0 20px
+      color-mix(in srgb, var(--nc-accent, #00f3ff) 20%, transparent);
+}
+
+/* ---- Hover effects ----------------------------------------- */
+
+/* glow: intensified box-shadow on hover */
+.nc-hover-glow:hover .nc-inner {
+  box-shadow:
+    0 0 22px var(--nc-accent, #00f3ff),
+    0 0 45px color-mix(in srgb, var(--nc-accent, #00f3ff) 45%, transparent),
+    inset 0 0 18px
+      color-mix(in srgb, var(--nc-accent, #00f3ff) 15%, transparent);
+}
+
+/* lift: translateY + scale + glow */
+.nc-hover-lift {
+  transition: transform 0.3s ease;
+}
+.nc-hover-lift:hover {
+  transform: translateY(-5px) scale(1.015);
+}
+.nc-hover-lift:hover .nc-inner {
+  box-shadow:
+    0 10px 35px color-mix(in srgb, var(--nc-accent, #00f3ff) 50%, transparent),
+    inset 0 0 15px
+      color-mix(in srgb, var(--nc-accent, #00f3ff) 12%, transparent);
+}
+
+/* pulse: continuously pulsing glow while hovered */
+.nc-hover-pulse:hover .nc-inner {
+  animation: nc-pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* scan: animated scan line sweeping across the card */
+.nc-scan-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--nc-accent, #00f3ff) 12%, transparent) 45%,
+    color-mix(in srgb, var(--nc-accent, #00f3ff) 18%, transparent) 50%,
+    color-mix(in srgb, var(--nc-accent, #00f3ff) 12%, transparent) 55%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.nc-hover-scan:hover .nc-scan-line {
+  animation: nc-scan-sweep 2.2s ease-in-out infinite;
+}
+
+/* ---- Interactive: title neon glow on hover ----------------- */
+
+.nc-title {
+  transition: text-shadow 0.3s ease;
+}
+
+.nc-wrapper:hover .nc-title {
+  text-shadow:
+    0 0 10px var(--nc-accent, #00f3ff),
+    0 0 22px color-mix(in srgb, var(--nc-accent, #00f3ff) 55%, transparent);
+}
+
+/* ---- Interactive: icon box on hover ----------------------- */
+
+.nc-icon-box {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.nc-wrapper:hover .nc-icon-box {
+  border-color: var(--nc-accent, #00f3ff);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--nc-accent, #00f3ff) 50%, transparent),
+    inset 0 0 8px color-mix(in srgb, var(--nc-accent, #00f3ff) 12%, transparent);
+}
+
+.nc-icon {
+  transition: color 0.3s ease;
+}
+
+.nc-wrapper:hover .nc-icon {
+  color: var(--nc-accent, #00f3ff);
+}

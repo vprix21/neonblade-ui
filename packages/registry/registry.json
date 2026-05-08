@@ -31,6 +31,11 @@
       "description": "Corner-cut card with animated conic-gradient beam border"
     },
     {
+      "name": "notch-card",
+      "category": "cards",
+      "description": "Futuristic card with customizable rectangular notch indentations on any sides, animated beam border, gradient border, hover effects, and full color control"
+    },
+    {
       "name": "corner-cut-button",
       "category": "buttons",
       "description": "A Button with clipped polygon corner with high customizability"
@@ -85,5 +90,9 @@
       "category": "sliders",
       "description": "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization."
     }
-  ]
+  ],
+  "stats": {
+    "totalComponents": 18,
+    "totalTemplates": 1
+  }
 }

@@ -153,6 +153,13 @@ export interface CornerCutButtonProps extends ButtonHTMLAttributes<HTMLButtonEle
    * @default false
    */
   hoverOutlined?: boolean;
+
+  /**
+   * Overrides the button text color.
+   * Use a preset name ("cyan" | "pink" | "green") or any CSS color value.
+   * Defaults to `black` for solid variant and the accent color for outline/ghost.
+   */
+  textColor?: CCBColor;
 }
 
 // ---- Component ---------------------------------------------
@@ -169,12 +176,18 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
   showArrow = false,
   hoverColor,
   hoverOutlined = false,
+  textColor,
   className = "",
   style,
   ...props
 }) => {
   const resolvedColor = COLOR_PRESETS[color] ?? color;
-  const resolvedHoverColor = hoverColor ? (COLOR_PRESETS[hoverColor] ?? hoverColor) : undefined;
+  const resolvedHoverColor = hoverColor
+    ? (COLOR_PRESETS[hoverColor] ?? hoverColor)
+    : undefined;
+  const resolvedTextColor = textColor
+    ? (COLOR_PRESETS[textColor] ?? textColor)
+    : undefined;
   const glowSize = GLOW_SIZES[glowIntensity];
 
   // Ghost variant needs color-mix background — not expressible in Tailwind
@@ -204,6 +217,9 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           "--ccb-hover-bg": resolvedHoverColor ?? "#ffffff",
           "--ccb-corner-size": `${cornerSize}px`,
           "--ccb-glow-size": `${glowSize}px`,
+          ...(resolvedTextColor
+            ? { "--ccb-text-color": resolvedTextColor }
+            : {}),
           ...style,
         } as React.CSSProperties
       }
@@ -214,7 +230,9 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           "absolute inset-0 pointer-events-none z-0 transition-[background,opacity] duration-300",
           CORNER_CLASSES[corner],
           variant === "outline" ? "bg-[var(--ccb-color)]" : "bg-white/[0.08]",
-          (variant === "solid" && hoverOutlined && hoverEffect === "shift") ? "group-hover/ccb:bg-[var(--ccb-hover-color)]" : ""
+          variant === "solid" && hoverOutlined && hoverEffect === "shift"
+            ? "group-hover/ccb:bg-[var(--ccb-hover-color)]"
+            : "",
         ]
           .filter(Boolean)
           .join(" ")}
@@ -229,13 +247,22 @@ export const CornerCutButton: React.FC<CornerCutButtonProps> = ({
           HOVER_CLASSES[hoverEffect],
           // Class kept for compound hover-state CSS selectors (.ccb-solid.ccb-hover-glow:hover etc.)
           `ccb-${variant}`,
-          (hoverOutlined ? "ccb-hover-outlined" : ""),
-          variant === "solid" ? "bg-[var(--ccb-color)] text-black" : "",
-          variant === "outline" ? "bg-black text-[var(--ccb-color)]" : "",
+          hoverOutlined ? "ccb-hover-outlined" : "",
+          variant === "solid"
+            ? `bg-[var(--ccb-color)] ${resolvedTextColor ? "text-[var(--ccb-text-color)]" : "text-black"}`
+            : "",
+          variant === "outline"
+            ? `bg-black ${resolvedTextColor ? "text-[var(--ccb-text-color)]" : "text-[var(--ccb-color)]"}`
+            : "",
         ]
           .filter(Boolean)
           .join(" ")}
-        style={ghostStyle}
+        style={{
+          ...ghostStyle,
+          ...(resolvedTextColor && variant === "ghost"
+            ? { color: resolvedTextColor }
+            : {}),
+        }}
         {...props}
       >
         {/* Shine sweep layer — only rendered when needed */}

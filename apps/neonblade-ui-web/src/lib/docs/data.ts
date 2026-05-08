@@ -48,7 +48,7 @@ export const categories: CategoryData[] = [
         description:
           "Flat-top hexagon grid with customizable fill, border colors, hover highlight, ambient glow, and animated beam lines flowing along hex edges.",
         is_new: false,
-        is_updated: true,
+        is_updated: false,
       },
     ],
   },
@@ -60,6 +60,13 @@ export const categories: CategoryData[] = [
         name: "Border Beam Corner Cut",
         slug: "border-beam-corner-cut-card",
         description: "A corner cut card with a spinning border beam.",
+      },
+      {
+        name: "Notch Card",
+        slug: "notch-card",
+        description:
+          "Futuristic card with rectangular notch indentations on any sides, beam border, gradient border, and hover effects.",
+        is_new: true,
       },
       {
         name: "Neon Glow Corner Cut Card",
@@ -107,7 +114,7 @@ export const categories: CategoryData[] = [
         slug: "corner-cut-button",
         description:
           "A button with a diagonal corner cut, multiple variants, colors, sizes and hover effects.",
-        is_updated: false,
+        is_updated: true,
       },
     ],
   },
@@ -181,7 +188,7 @@ export const categories: CategoryData[] = [
         slug: "card-slider",
         description:
           "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

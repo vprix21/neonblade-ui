@@ -1,0 +1,14 @@
+{
+  "name": "notch-card",
+  "files": [
+    {
+      "path": "components/neonblade-ui/notch-card/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/notch-card/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/notch-card/notch-card.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/notch-card/notch-card.css"
+    }
+  ],
+  "dependencies": []
+}

@@ -1,0 +1,5 @@
+{
+  "name": "NotchCard",
+  "category": "cards",
+  "dependencies": ["react", "tailwindcss"]
+}

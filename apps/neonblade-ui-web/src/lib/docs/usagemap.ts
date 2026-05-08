@@ -15,6 +15,7 @@ import cyberCircuitUsage from "./components/cyber-circuit/usage";
 import neonInputUsage from "./components/neon-input/usage";
 import hexagonsUsage from "./components/hexagons/usage";
 import cardSliderUsage from "./components/card-slider/usage";
+import notchCardUsage from "./components/notch-card/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -34,6 +35,7 @@ const usageMap: Record<string, string> = {
   "neon-input": neonInputUsage,
   hexagons: hexagonsUsage,
   "card-slider": cardSliderUsage,
+  "notch-card": notchCardUsage,
 };
 
 export default usageMap;

@@ -16,6 +16,7 @@ import cyberCircuitProps from "./components/cyber-circuit/props";
 import neonInputProps from "./components/neon-input/props";
 import hexagonsProps from "./components/hexagons/props";
 import cardSliderProps from "./components/card-slider/props";
+import notchCardProps from "./components/notch-card/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -35,6 +36,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "neon-input": neonInputProps,
   hexagons: hexagonsProps,
   "card-slider": cardSliderProps,
+  "notch-card": notchCardProps,
 };
 
 export default propsMap;
