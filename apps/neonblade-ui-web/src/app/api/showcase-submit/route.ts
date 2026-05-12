@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { FieldValue } from "firebase-admin/firestore";
 import { Resend } from "resend";
-import { adminDb } from "@/lib/firebase-admin";
+import { getAdminDb } from "@/lib/firebase-admin";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -81,17 +81,19 @@ export async function POST(req: NextRequest) {
 
   // 1. Save to Firestore (primary action)
   try {
-    await adminDb.collection("showcase-submissions").add({
-      displayName: displayName.trim(),
-      email: email.trim().toLowerCase(),
-      country: country.trim(),
-      projectLink: projectLink.trim(),
-      description: description?.trim() ?? "",
-      components,
-      feedback: feedback?.trim() ?? "",
-      status: "pending",
-      createdAt: FieldValue.serverTimestamp(),
-    });
+    await getAdminDb()
+      .collection("showcase-submissions")
+      .add({
+        displayName: displayName.trim(),
+        email: email.trim().toLowerCase(),
+        country: country.trim(),
+        projectLink: projectLink.trim(),
+        description: description?.trim() ?? "",
+        components,
+        feedback: feedback?.trim() ?? "",
+        status: "pending",
+        createdAt: FieldValue.serverTimestamp(),
+      });
   } catch (err) {
     console.error("[showcase-submit] Firestore error:", err);
     return NextResponse.json(
