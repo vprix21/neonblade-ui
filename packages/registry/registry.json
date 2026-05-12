@@ -89,10 +89,15 @@
       "name": "card-slider",
       "category": "sliders",
       "description": "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization."
+    },
+    {
+      "name": "crosshair",
+      "category": "cursors",
+      "description": "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, rotation speed, and glow intensity."
     }
   ],
   "stats": {
-    "totalComponents": 18,
+    "totalComponents": 19,
     "totalTemplates": 1
   }
 }

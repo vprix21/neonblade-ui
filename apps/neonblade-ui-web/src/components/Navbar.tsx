@@ -93,6 +93,12 @@ export function Navbar() {
             >
               Templates
             </Link>
+            <Link
+              href="/showcase"
+              className="text-white/80 hover:text-[#00f3ff] hover:text-glow-cyan transition-all cursor-pointer"
+            >
+              Showcase
+            </Link>
             <a
               href="https://github.com/vprix21/neonblade-ui"
               target="_blank"
@@ -142,6 +148,13 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
             >
               Templates
+            </Link>
+            <Link
+              href="/showcase"
+              className="py-3 px-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+              onClick={() => setMobileOpen(false)}
+            >
+              Showcase
             </Link>
             <a
               href="https://github.com/vprix21/neonblade-ui"

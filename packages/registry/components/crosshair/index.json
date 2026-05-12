@@ -1,0 +1,14 @@
+{
+  "name": "crosshair",
+  "files": [
+    {
+      "path": "components/neonblade-ui/crosshair/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/crosshair/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/crosshair/crosshair.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/crosshair/crosshair.css"
+    }
+  ],
+  "dependencies": []
+}

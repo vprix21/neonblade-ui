@@ -66,7 +66,7 @@ export const categories: CategoryData[] = [
         slug: "notch-card",
         description:
           "Futuristic card with rectangular notch indentations on any sides, beam border, gradient border, and hover effects.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Glow Corner Cut Card",
@@ -114,7 +114,7 @@ export const categories: CategoryData[] = [
         slug: "corner-cut-button",
         description:
           "A button with a diagonal corner cut, multiple variants, colors, sizes and hover effects.",
-        is_updated: true,
+        is_updated: false,
       },
     ],
   },
@@ -189,6 +189,19 @@ export const categories: CategoryData[] = [
         description:
           "A generic card / image / video slider with touch swipe, arrow navigation, progress indicator (bar, dots, or counter), responsive visible count, auto-play, and full color customization.",
         is_new: false,
+      },
+    ],
+  },
+  {
+    name: "Cursors",
+    slug: "cursors",
+    components: [
+      {
+        name: "Crosshair",
+        slug: "crosshair",
+        description:
+          "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, speed, and glow.",
+        is_new: true,
       },
     ],
   },

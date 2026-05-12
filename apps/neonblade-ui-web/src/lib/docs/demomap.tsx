@@ -16,6 +16,7 @@ import NeonInputDemo from "./components/neon-input/demo";
 import HexagonsDemo from "./components/hexagons/demo";
 import CardSliderDemo from "./components/card-slider/demo";
 import NotchCardDemo from "./components/notch-card/demo";
+import CrosshairDemo from "./components/crosshair/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -36,6 +37,7 @@ const demoMap: Record<string, React.FC> = {
   hexagons: HexagonsDemo,
   "card-slider": CardSliderDemo,
   "notch-card": NotchCardDemo,
+  crosshair: CrosshairDemo,
 };
 
 export default demoMap;

@@ -1,0 +1,24 @@
+/* ================================================================
+   Crosshair — crosshair.css
+   Keyframes for the two spinning partial rings.
+   The actual animation is applied via inline styles on <g> elements
+   inside the SVG so that transform-origin can be set per-element.
+================================================================ */
+
+@keyframes crosshair-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes crosshair-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

@@ -16,6 +16,7 @@ import neonInputUsage from "./components/neon-input/usage";
 import hexagonsUsage from "./components/hexagons/usage";
 import cardSliderUsage from "./components/card-slider/usage";
 import notchCardUsage from "./components/notch-card/usage";
+import crosshairUsage from "./components/crosshair/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -36,6 +37,7 @@ const usageMap: Record<string, string> = {
   hexagons: hexagonsUsage,
   "card-slider": cardSliderUsage,
   "notch-card": notchCardUsage,
+  crosshair: crosshairUsage,
 };
 
 export default usageMap;
