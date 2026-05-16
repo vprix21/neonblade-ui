@@ -1,16 +1,5 @@
-/**
- * StatsSection — server component that fetches live stats from the registry
- * and npm download API, then renders a highlight strip.
- *
- * Data sources:
- *   - Registry:  https://neonbladeui-registry.vercel.app/registry.json
- *   - npm DLs:   https://api.npmjs.org/downloads/range/2026-03-01:2030-01-01/neonblade
- */
-
 import { Code2, Download, GitFork, Heart, LayoutTemplate } from "lucide-react";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
-
-// ---- Types -------------------------------------------------
 
 interface RegistryStats {
   totalComponents: number;
@@ -28,8 +17,6 @@ interface NpmDownloadResponse {
   package: string;
   downloads: NpmDownloadDay[];
 }
-
-// ---- Helpers -----------------------------------------------
 
 /** Format download count: subtract 5, then compact above 1000. */
 function formatDownloads(raw: number): string {
@@ -64,7 +51,6 @@ async function fetchRegistryStats(): Promise<RegistryStats | null> {
   }
 }
 
-/** Fetch total npm downloads. Returns null on any failure. */
 async function fetchNpmDownloads(): Promise<number | null> {
   try {
     const res = await fetch(
@@ -84,16 +70,12 @@ async function fetchNpmDownloads(): Promise<number | null> {
   }
 }
 
-// ---- Stat item config -------------------------------------
-
 interface StatItem {
   icon: React.ElementType;
   value: string;
   label: string;
   glowColor: string; // css accent color
 }
-
-// ---- Component ---------------------------------------------
 
 export async function StatsSection() {
   const [registryStats, npmTotal] = await Promise.all([
@@ -159,8 +141,6 @@ export async function StatsSection() {
     </section>
   );
 }
-
-// ---- StatCard (pure presentational) ------------------------
 
 function StatCard({ stat }: { stat: StatItem }) {
   const Icon = stat.icon;

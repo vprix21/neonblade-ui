@@ -1,16 +1,6 @@
 "use client";
 
-/**
- * CommunityFeedback — real Reddit comments from the React community,
- * displayed as neon-styled feedback cards.
- *
- * To update quotes: edit the FEEDBACK array below.
- */
-
-import { MessageSquareQuote } from "lucide-react";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
-
-// ---- Data --------------------------------------------------
 
 interface FeedbackItem {
   quote: string;
@@ -18,7 +8,6 @@ interface FeedbackItem {
   color: "cyan" | "pink" | "green" | string;
 }
 
-/** Real Reddit comments. Update as new quotes come in. */
 const FEEDBACK: FeedbackItem[] = [
   {
     quote: "Absolutely awesome, I love it!",
@@ -55,8 +44,6 @@ const FEEDBACK: FeedbackItem[] = [
   },
 ];
 
-// ---- Component ---------------------------------------------
-
 export function CommunityFeedback() {
   return (
     <section className="relative py-24 bg-black border-t border-white/5 overflow-hidden">
@@ -82,8 +69,6 @@ export function CommunityFeedback() {
     </section>
   );
 }
-
-// ---- FeedbackCard -----------------------------------------
 
 function FeedbackCard({ item }: { item: FeedbackItem }) {
   const resolved = resolveColor(item.color);
@@ -132,8 +117,6 @@ function FeedbackCard({ item }: { item: FeedbackItem }) {
     </NeonGlowCornerCutCard>
   );
 }
-
-// ---- Helpers -----------------------------------------------
 
 const COLOR_MAP: Record<string, string> = {
   cyan: "#00f3ff",

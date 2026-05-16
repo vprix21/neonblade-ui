@@ -1,8 +1,6 @@
 "use client";
 
 import { Terminal, Zap, PackageOpen, Layers } from "lucide-react";
-import AccentFrame from "../lib/components/ui/frames/AccentFrame";
-import GlitchText from "../lib/components/ui/text/GlitchText";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
 
 const features = [
@@ -38,28 +36,11 @@ export function Features() {
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="flex flex-col items-center mb-16 text-center">
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-4">
-            {/* Forged in the <span className="text-[#00f3ff]">Future</span>
-             */}
             Forged in the Future
-            {/* <span>
-              {" "}
-              <AccentFrame
-                mode="duo"
-                className="inline-flex items-center gap-2 text-3xl md:text-5xl font-orbitron tracking-widest text-neon-cyan uppercase"
-              >
-                <span className="w-2 h-2 rounded-full bg-neon-cyan animate-flicker" />
-                <GlitchText text="Future" mode="hover">
-                  Future
-                </GlitchText>
-              </AccentFrame>
-            </span> */}
           </h2>
           <p className="text-white/65 max-w-2xl text-lg mb-4">
             Futuristic by design, highly customizable by default, NeonBlade UI
             empowers you to ship neon-charged interfaces with total control
-          </p>
-          <p className="max-w-2xl text-lg mb-4 text-[#00f2ff]">
-            For developers building beyond conventional UI
           </p>
         </div>
 

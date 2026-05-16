@@ -7,7 +7,31 @@ import Badge from "@/lib/components/ui/badges/Badge";
 export function CTA() {
   return (
     <section className="relative py-32 overflow-hidden flex justify-center border-t border-white/5 bg-black">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#00f3ff]/10 via-black to-black opacity-60"></div>
+      {/* Background Orbs */}
+      <div className="absolute inset-0 pointer-events-none mix-blend-screen opacity-10">
+        {/* Cyan Orb */}
+        <div
+          className="absolute rounded-full bg-[#00f3ff]"
+          style={{
+            width: "17vmax",
+            height: "17vmax",
+            top: "1vmax",
+            left: "1vmax",
+            filter: "blur(8vmax)",
+          }}
+        />
+        {/* Magenta Orb */}
+        <div
+          className="absolute rounded-full bg-[#ff00ff]"
+          style={{
+            width: "17vmax",
+            height: "17vmax",
+            bottom: "1vmax",
+            right: "1vmax",
+            filter: "blur(8vmax)",
+          }}
+        />
+      </div>
 
       <div className="container relative z-10 mx-auto px-6 max-w-4xl flex flex-col items-center text-center">
         <div className="flex flex-col items-center">
@@ -15,7 +39,7 @@ export function CTA() {
             System ready
           </Badge>
 
-          <h2 className="text-4xl md:text-6xl font-bold font-orbitron tracking-tighter mb-6 relative leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold font-orbitron tracking-tighter mb-8 relative leading-tight min-h-[1.2em]">
             Ready to upgrade your interface?
           </h2>
 
