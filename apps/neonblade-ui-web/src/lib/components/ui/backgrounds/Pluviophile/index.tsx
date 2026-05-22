@@ -102,10 +102,12 @@ export default function Pluviophile({
   const animRef = useRef<number>(0);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const canvas: HTMLCanvasElement = canvasEl;
+    const ctxOrNull = canvas.getContext("2d");
+    if (!ctxOrNull) return;
+    const ctx: CanvasRenderingContext2D = ctxOrNull;
 
     // Clamp angle to ±60°
     const clampedAngle = Math.max(-60, Math.min(60, angle));
