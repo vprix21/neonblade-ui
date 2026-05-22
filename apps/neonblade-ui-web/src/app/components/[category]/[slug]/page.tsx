@@ -1,16 +1,9 @@
-import React from "react";
 import fs from "fs/promises";
 import path from "path";
 import { notFound } from "next/navigation";
 import { categories } from "@/lib/docs/data";
-import { DatalinesWithGrid } from "@/lib/components/ui/backgrounds/DatalinesWithGrid";
-import { AsciiRain } from "@/lib/components/ui/backgrounds/AsciiRain";
-import BorderBeamCornerCutCard from "@/lib/components/ui/cards/BorderBeamCornerCutCard";
-import AccentFrame from "@/lib/components/ui/frames/AccentFrame";
-import GlitchText from "@/lib/components/ui/text/GlitchText";
-import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
-import ComponentTabs from "@/components/DocTabs"; // We will create this
+import ComponentTabs from "@/components/DocTabs";
 import { Terminal } from "lucide-react";
 import { CopyButton } from "@/components/CopyButton";
 import usageMap from "@/lib/docs/usagemap";
@@ -18,7 +11,12 @@ import folderMap from "@/lib/docs/foldermap";
 import propsMap from "@/lib/docs/propsmap";
 import demoMap from "@/lib/docs/demomap";
 
-async function getComponentFiles(category: string, folderName: string) {
+async function getComponentFiles(
+  category: string,
+  folderName: string | undefined,
+) {
+  if (!folderName)
+    return { source: "", cssSource: "", meta: { dependencies: [] } };
   try {
     const basePath = path.join(
       process.cwd(),
@@ -61,7 +59,7 @@ async function getComponentFiles(category: string, folderName: string) {
     }
 
     return { source, cssSource, meta };
-  } catch (error) {
+  } catch {
     return { source: "", cssSource: "", meta: { dependencies: [] } };
   }
 }
