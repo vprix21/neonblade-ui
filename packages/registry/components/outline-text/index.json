@@ -1,0 +1,10 @@
+{
+  "name": "outline-text",
+  "files": [
+    {
+      "path": "components/neonblade-ui/outline-text/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/outline-text/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

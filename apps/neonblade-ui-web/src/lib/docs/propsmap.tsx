@@ -18,6 +18,8 @@ import hexagonsProps from "./components/hexagons/props";
 import cardSliderProps from "./components/card-slider/props";
 import notchCardProps from "./components/notch-card/props";
 import crosshairProps from "./components/crosshair/props";
+import outlineTextProps from "./components/outline-text/props";
+import pluviophileProps from "./components/pluviophile/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -39,6 +41,8 @@ const propsMap: Record<string, PropDefinition[]> = {
   "card-slider": cardSliderProps,
   "notch-card": notchCardProps,
   crosshair: crosshairProps,
+  "outline-text": outlineTextProps,
+  pluviophile: pluviophileProps,
 };
 
 export default propsMap;

@@ -17,6 +17,8 @@ import HexagonsDemo from "./components/hexagons/demo";
 import CardSliderDemo from "./components/card-slider/demo";
 import NotchCardDemo from "./components/notch-card/demo";
 import CrosshairDemo from "./components/crosshair/demo";
+import OutlineTextDemo from "./components/outline-text/demo";
+import PluviophileDemo from "./components/pluviophile/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -38,6 +40,8 @@ const demoMap: Record<string, React.FC> = {
   "card-slider": CardSliderDemo,
   "notch-card": NotchCardDemo,
   crosshair: CrosshairDemo,
+  "outline-text": OutlineTextDemo,
+  pluviophile: PluviophileDemo,
 };
 
 export default demoMap;

@@ -94,10 +94,20 @@
       "name": "crosshair",
       "category": "cursors",
       "description": "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, rotation speed, and glow intensity."
+    },
+    {
+      "name": "outline-text",
+      "category": "text",
+      "description": "Outline-only text with customizable stroke color, fill, stroke width, per-letter proximity hover effect, color transitions, and neon glow."
+    },
+    {
+      "name": "pluviophile",
+      "category": "backgrounds",
+      "description": "Natural rain background with canvas-rendered falling streaks. Configurable angle, speed, color, density, and drop size."
     }
   ],
   "stats": {
-    "totalComponents": 19,
+    "totalComponents": 21,
     "totalTemplates": 1
   }
 }

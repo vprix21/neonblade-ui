@@ -50,6 +50,13 @@ export const categories: CategoryData[] = [
         is_new: false,
         is_updated: false,
       },
+      {
+        name: "Pluviophile",
+        slug: "pluviophile",
+        description:
+          "Natural rain background with canvas-rendered falling streaks. Configurable angle, speed, color, density, and drop size.",
+        is_new: true,
+      },
     ],
   },
   {
@@ -102,6 +109,13 @@ export const categories: CategoryData[] = [
         description:
           "Highly customizable neon glow text with single color, multi-color gradients (linear, radial, conic), and animated effects.",
         is_new: false,
+      },
+      {
+        name: "Outline Text",
+        slug: "outline-text",
+        description:
+          "Outline-only text with customizable stroke color, fill, stroke width, per-letter proximity hover effect, color transitions, and neon glow.",
+        is_new: true,
       },
     ],
   },
@@ -201,7 +215,7 @@ export const categories: CategoryData[] = [
         slug: "crosshair",
         description:
           "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, speed, and glow.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

@@ -17,6 +17,8 @@ import hexagonsUsage from "./components/hexagons/usage";
 import cardSliderUsage from "./components/card-slider/usage";
 import notchCardUsage from "./components/notch-card/usage";
 import crosshairUsage from "./components/crosshair/usage";
+import outlineTextUsage from "./components/outline-text/usage";
+import pluviophileUsage from "./components/pluviophile/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -38,6 +40,8 @@ const usageMap: Record<string, string> = {
   "card-slider": cardSliderUsage,
   "notch-card": notchCardUsage,
   crosshair: crosshairUsage,
+  "outline-text": outlineTextUsage,
+  pluviophile: pluviophileUsage,
 };
 
 export default usageMap;

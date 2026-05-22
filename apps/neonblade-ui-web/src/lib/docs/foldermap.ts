@@ -19,6 +19,8 @@ const folderMap: Record<string, string> = {
   "card-slider": "CardSlider",
   "notch-card": "NotchCard",
   crosshair: "Crosshair",
+  "outline-text": "OutlineText",
+  pluviophile: "Pluviophile",
 };
 
 export default folderMap;

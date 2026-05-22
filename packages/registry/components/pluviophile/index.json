@@ -1,0 +1,10 @@
+{
+  "name": "pluviophile",
+  "files": [
+    {
+      "path": "components/neonblade-ui/pluviophile/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/pluviophile/index.tsx"
+    }
+  ],
+  "dependencies": []
+}
