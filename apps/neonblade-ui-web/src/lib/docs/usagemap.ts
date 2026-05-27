@@ -19,6 +19,7 @@ import notchCardUsage from "./components/notch-card/usage";
 import crosshairUsage from "./components/crosshair/usage";
 import outlineTextUsage from "./components/outline-text/usage";
 import pluviophileUsage from "./components/pluviophile/usage";
+import holographicTerrainUsage from "./components/holographic-terrain/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -42,6 +43,7 @@ const usageMap: Record<string, string> = {
   crosshair: crosshairUsage,
   "outline-text": outlineTextUsage,
   pluviophile: pluviophileUsage,
+  "holographic-terrain": holographicTerrainUsage,
 };
 
 export default usageMap;

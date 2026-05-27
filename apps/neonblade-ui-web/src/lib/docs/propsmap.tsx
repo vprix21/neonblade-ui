@@ -20,6 +20,7 @@ import notchCardProps from "./components/notch-card/props";
 import crosshairProps from "./components/crosshair/props";
 import outlineTextProps from "./components/outline-text/props";
 import pluviophileProps from "./components/pluviophile/props";
+import holographicTerrainProps from "./components/holographic-terrain/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -43,6 +44,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   crosshair: crosshairProps,
   "outline-text": outlineTextProps,
   pluviophile: pluviophileProps,
+  "holographic-terrain": holographicTerrainProps,
 };
 
 export default propsMap;

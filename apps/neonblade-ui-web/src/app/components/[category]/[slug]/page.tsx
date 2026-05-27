@@ -1,6 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CornerCutButton } from "@/lib/components/ui/buttons/CornerCutButton";
 import { categories } from "@/lib/docs/data";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
 import ComponentTabs from "@/components/DocTabs";
@@ -89,9 +91,26 @@ export default async function ComponentPage({
   return (
     <div className="max-w-4xl mx-auto space-y-12 pb-24 animate-in fade-in duration-500 min-h-screen">
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold font-orbitron text-white tracking-wide">
-          {c.name}
-        </h1>
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <h1 className="text-4xl font-bold font-orbitron text-white tracking-wide">
+            {c.name}
+          </h1>
+          {c.demo && (
+            <Link href={c.demo}>
+              <CornerCutButton
+                size="sm"
+                variant="outline"
+                color="cyan"
+                corner="bottom-right"
+                cornerSize={12}
+                hoverEffect="shift"
+                glowIntensity="low"
+              >
+                Live Demo →
+              </CornerCutButton>
+            </Link>
+          )}
+        </div>
         <p className="text-lg text-white/50">{c.description}</p>
       </div>
 

@@ -19,6 +19,7 @@ import NotchCardDemo from "./components/notch-card/demo";
 import CrosshairDemo from "./components/crosshair/demo";
 import OutlineTextDemo from "./components/outline-text/demo";
 import PluviophileDemo from "./components/pluviophile/demo";
+import HolographicTerrainDemo from "./components/holographic-terrain/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -42,6 +43,7 @@ const demoMap: Record<string, React.FC> = {
   crosshair: CrosshairDemo,
   "outline-text": OutlineTextDemo,
   pluviophile: PluviophileDemo,
+  "holographic-terrain": HolographicTerrainDemo,
 };
 
 export default demoMap;

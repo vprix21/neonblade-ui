@@ -10,6 +10,13 @@
       "category": "backgrounds",
       "description": "Animated Matrix-style ASCII rain background"
     },
+
+    {
+      "name": "holographic-terrain",
+      "category": "backgrounds",
+      "description": "Three.js wireframe terrain animated with layered sine waves and a cursor-reactive Gaussian bump."
+    },
+
     {
       "name": "glyph-city",
       "category": "backgrounds",
@@ -107,7 +114,7 @@
     }
   ],
   "stats": {
-    "totalComponents": 21,
+    "totalComponents": 22,
     "totalTemplates": 1
   }
 }

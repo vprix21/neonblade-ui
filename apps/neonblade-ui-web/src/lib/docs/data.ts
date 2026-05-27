@@ -4,6 +4,7 @@ export interface ComponentData {
   description: string;
   is_new?: boolean;
   is_updated?: boolean;
+  demo?: string;
 }
 
 export interface CategoryData {
@@ -55,7 +56,16 @@ export const categories: CategoryData[] = [
         slug: "pluviophile",
         description:
           "Natural rain background with canvas-rendered falling streaks. Configurable angle, speed, color, density, and drop size.",
+        is_new: false,
+      },
+
+      {
+        name: "Holographic Terrain",
+        slug: "holographic-terrain",
+        description:
+          "Three.js wireframe terrain animated with layered sine waves and a cursor-reactive Gaussian bump. Mouse hover deforms the mesh in real time.",
         is_new: true,
+        demo: "/demo/holographic-terrain",
       },
     ],
   },
@@ -115,7 +125,7 @@ export const categories: CategoryData[] = [
         slug: "outline-text",
         description:
           "Outline-only text with customizable stroke color, fill, stroke width, per-letter proximity hover effect, color transitions, and neon glow.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

@@ -1,0 +1,10 @@
+{
+  "name": "holographic-terrain",
+  "files": [
+    {
+      "path": "components/neonblade-ui/holographic-terrain/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/holographic-terrain/index.tsx"
+    }
+  ],
+  "dependencies": ["three"]
+}
