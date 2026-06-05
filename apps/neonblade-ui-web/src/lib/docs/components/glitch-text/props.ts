@@ -76,6 +76,25 @@ const props: PropDefinition[] = [
     description:
       "(Deprecated) Legacy loop duration in seconds. Use speed or customSpeed instead.",
   },
+  {
+    name: "rest",
+    type: '"clean" | "split"',
+    default: '"clean"',
+    description:
+      '"clean" hides the channels until the glitch plays; "split" keeps them visible at rest as a frozen split that jitters in place.',
+  },
+  {
+    name: "layers",
+    type: "{ color: string; x?: number; y?: number }[]",
+    description:
+      "Extra colour channels rendered as stacked clones, each with its own X/Y rest offset. When set, REPLACES the colorA/colorB split — how multi-colour wordmarks (3+ channels) are built.",
+  },
+  {
+    name: "palette",
+    type: '"anaglyph" | "tiktok" | "cmyk" | "spectrum"',
+    description:
+      "A curated channel stack whose spread scales with offset. Shorthand for layers — an explicit layers prop overrides it.",
+  },
 ];
 
 export default props;
