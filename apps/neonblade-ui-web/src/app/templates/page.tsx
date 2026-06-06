@@ -1,6 +1,6 @@
 "use client";
 import { NeonGlowCornerCutCard } from "../../lib/components/ui/cards/NeonGlowCornerCutCard";
-import { Badge } from "../../lib/components/ui/badges/Badge";
+import { Badge } from "../../lib/components/ui/elements/Badge";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";

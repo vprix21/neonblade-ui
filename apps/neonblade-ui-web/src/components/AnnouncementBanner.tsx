@@ -6,7 +6,7 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New component: Holographic Terrain!",
+    text: "New component: Neon Modal",
   },
   {
     tag: "Announcement",

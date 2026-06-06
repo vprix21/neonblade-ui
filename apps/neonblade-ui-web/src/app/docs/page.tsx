@@ -19,7 +19,7 @@ import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
 import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
 

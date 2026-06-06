@@ -1,4 +1,4 @@
-﻿import type { PropDefinition } from "./types";
+import type { PropDefinition } from "./types";
 import datalinesProps from "./components/datalines-with-grid/props";
 import asciiRainProps from "./components/ascii-rain/props";
 import borderBeamProps from "./components/border-beam-corner-cut-card/props";
@@ -21,6 +21,7 @@ import crosshairProps from "./components/crosshair/props";
 import outlineTextProps from "./components/outline-text/props";
 import pluviophileProps from "./components/pluviophile/props";
 import holographicTerrainProps from "./components/holographic-terrain/props";
+import neonModalProps from "./components/modal/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -45,6 +46,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "outline-text": outlineTextProps,
   pluviophile: pluviophileProps,
   "holographic-terrain": holographicTerrainProps,
+  "neon-modal": neonModalProps,
 };
 
 export default propsMap;

@@ -3,9 +3,9 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import type { Metadata } from "next";
 
-import { Badge } from "../../lib/components/ui/badges/Badge";
+import { Badge } from "../../lib/components/ui/elements/Badge";
 import { CornerCutButton } from "../../lib/components/ui/buttons/CornerCutButton";
-import AccentFrame from "../../lib/components/ui/frames/AccentFrame";
+import AccentFrame from "../../lib/components/ui/elements/AccentFrame";
 import Hexagons from "../../lib/components/ui/backgrounds/Hexagons";
 
 export const metadata: Metadata = {

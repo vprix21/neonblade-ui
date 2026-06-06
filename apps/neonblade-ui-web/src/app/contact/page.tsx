@@ -3,7 +3,7 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 
 export default function ContactPage() {
   return (

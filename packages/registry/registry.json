@@ -2,7 +2,7 @@
   "components": [
     {
       "name": "accent-frame",
-      "category": "frames",
+      "category": "elements",
       "description": "Corner bracket accent frame for highlighting content"
     },
     {
@@ -29,7 +29,7 @@
     },
     {
       "name": "badge",
-      "category": "badges",
+      "category": "elements",
       "description": "Futuristic label badge with pill, rectangle, and corner-cut shapes"
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "name": "timeline",
-      "category": "timelines",
+      "category": "elements",
       "description": "Futuristic neon timeline with multiple variants, dot shapes, line styles, and animate-in"
     },
     {
@@ -111,10 +111,15 @@
       "name": "pluviophile",
       "category": "backgrounds",
       "description": "Natural rain background with canvas-rendered falling streaks. Configurable angle, speed, color, density, and drop size."
+    },
+    {
+      "name": "neon-modal",
+      "category": "elements",
+      "description": "Cyberpunk-styled modal dialog with corner cuts, neon glow, animated entry/exit, scrollable body, header/footer slots, and full color customization."
     }
   ],
   "stats": {
-    "totalComponents": 22,
+    "totalComponents": 23,
     "totalTemplates": 1
   }
 }

@@ -64,7 +64,7 @@ export const categories: CategoryData[] = [
         slug: "holographic-terrain",
         description:
           "Three.js wireframe terrain animated with layered sine waves and a cursor-reactive Gaussian bump. Mouse hover deforms the mesh in real time.",
-        is_new: true,
+        is_new: false,
         demo: "/demo/holographic-terrain",
       },
     ],
@@ -94,13 +94,32 @@ export const categories: CategoryData[] = [
     ],
   },
   {
-    name: "Frames",
-    slug: "frames",
+    name: "Elements",
+    slug: "elements",
     components: [
       {
         name: "Accent Frame",
         slug: "accent-frame",
         description: "A dynamic frame with animated corner accents.",
+      },
+      {
+        name: "Badge",
+        slug: "badge",
+        description:
+          "Futuristic label badge with pill, rectangle, and corner-cut shapes, dot indicators, and glow.",
+      },
+      {
+        name: "Timeline",
+        slug: "timeline",
+        description:
+          "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
+      },
+      {
+        name: "Neon Modal",
+        slug: "neon-modal",
+        description:
+          "Cyberpunk-styled modal dialog with corner cuts, neon glow, comet border beam, animated entry/exit, scrollable body, header/footer slots, and full color customization.",
+        is_new: true,
       },
     ],
   },
@@ -142,18 +161,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
-  {
-    name: "Badges",
-    slug: "badges",
-    components: [
-      {
-        name: "Badge",
-        slug: "badge",
-        description:
-          "Futuristic label badge with pill, rectangle, and corner-cut shapes, dot indicators, and glow.",
-      },
-    ],
-  },
+
   {
     name: "Navbars",
     slug: "navbars",
@@ -178,18 +186,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
-  {
-    name: "Timelines",
-    slug: "timelines",
-    components: [
-      {
-        name: "Timeline",
-        slug: "timeline",
-        description:
-          "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
-      },
-    ],
-  },
+
   {
     name: "Inputs",
     slug: "inputs",
@@ -216,6 +213,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
+
   {
     name: "Cursors",
     slug: "cursors",

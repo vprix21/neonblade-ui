@@ -1,4 +1,4 @@
-import { AccentFrame } from "../../../components/ui/frames/AccentFrame";
+import { AccentFrame } from "../../../components/ui/elements/AccentFrame";
 
 export default function AccentFrameDemo() {
   return (

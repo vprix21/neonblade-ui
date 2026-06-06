@@ -1,4 +1,4 @@
-import { Timeline } from "../../../components/ui/timelines/Timeline";
+import { Timeline } from "../../../components/ui/elements/Timeline";
 
 const ITEMS_BASE = [
   {

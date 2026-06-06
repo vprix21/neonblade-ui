@@ -1,4 +1,4 @@
-﻿import DatalinesWithGridDemo from "./components/datalines-with-grid/demo";
+import DatalinesWithGridDemo from "./components/datalines-with-grid/demo";
 import AsciiRainDemo from "./components/ascii-rain/demo";
 import BorderBeamCornerCutCardDemo from "./components/border-beam-corner-cut-card/demo";
 import AccentFrameDemo from "./components/accent-frame/demo";
@@ -20,6 +20,7 @@ import CrosshairDemo from "./components/crosshair/demo";
 import OutlineTextDemo from "./components/outline-text/demo";
 import PluviophileDemo from "./components/pluviophile/demo";
 import HolographicTerrainDemo from "./components/holographic-terrain/demo";
+import NeonModalDemo from "./components/modal/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -44,6 +45,7 @@ const demoMap: Record<string, React.FC> = {
   "outline-text": OutlineTextDemo,
   pluviophile: PluviophileDemo,
   "holographic-terrain": HolographicTerrainDemo,
+  "neon-modal": NeonModalDemo,
 };
 
 export default demoMap;

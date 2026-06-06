@@ -1,4 +1,4 @@
-﻿import datalinesUsage from "./components/datalines-with-grid/usage";
+import datalinesUsage from "./components/datalines-with-grid/usage";
 import asciiRainUsage from "./components/ascii-rain/usage";
 import borderBeamUsage from "./components/border-beam-corner-cut-card/usage";
 import accentFrameUsage from "./components/accent-frame/usage";
@@ -20,6 +20,7 @@ import crosshairUsage from "./components/crosshair/usage";
 import outlineTextUsage from "./components/outline-text/usage";
 import pluviophileUsage from "./components/pluviophile/usage";
 import holographicTerrainUsage from "./components/holographic-terrain/usage";
+import neonModalUsage from "./components/modal/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -44,6 +45,7 @@ const usageMap: Record<string, string> = {
   "outline-text": outlineTextUsage,
   pluviophile: pluviophileUsage,
   "holographic-terrain": holographicTerrainUsage,
+  "neon-modal": neonModalUsage,
 };
 
 export default usageMap;

@@ -22,6 +22,7 @@ const folderMap: Record<string, string> = {
   "outline-text": "OutlineText",
   pluviophile: "Pluviophile",
   "holographic-terrain": "HolographicTerrain",
+  "neon-modal": "Modal",
 };
 
 export default folderMap;

@@ -1,4 +1,4 @@
-import { Badge } from "../../../components/ui/badges/Badge";
+import { Badge } from "../../../components/ui/elements/Badge";
 
 export default function BadgeDemo() {
   return (
