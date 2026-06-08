@@ -116,10 +116,35 @@
       "name": "neon-modal",
       "category": "elements",
       "description": "Cyberpunk-styled modal dialog with corner cuts, neon glow, animated entry/exit, scrollable body, header/footer slots, and full color customization."
+    },
+    {
+      "name": "neon-line-chart",
+      "category": "charts",
+      "description": "Recharts-powered line/area chart with neon glow strokes, gradient area fills, multi-series support, and a corner-cut tooltip."
+    },
+    {
+      "name": "neon-bar-chart",
+      "category": "charts",
+      "description": "Recharts-powered bar chart with top-rounded neon bars, glow drop-shadow, multi-color mode, multi-series support, and horizontal layout."
+    },
+    {
+      "name": "neon-donut-chart",
+      "category": "charts",
+      "description": "Recharts-powered donut/ring chart with per-segment neon glow, interactive center label, hover dimming, and auto color palette."
+    },
+    {
+      "name": "neon-sparkline",
+      "category": "charts",
+      "description": "Inline mini sparkline for embedding in KPI cards and stat widgets. Neon glow stroke, gradient fill, and a minimal tooltip."
+    },
+    {
+      "name": "stat-card",
+      "category": "charts",
+      "description": "Dashboard KPI metric card with neon corner accents, scan-line hover, large value display, trend arrow with color coding, and embedded NeonSparkline."
     }
   ],
   "stats": {
-    "totalComponents": 23,
+    "totalComponents": 28,
     "totalTemplates": 1
   }
 }

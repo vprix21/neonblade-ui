@@ -1,0 +1,10 @@
+{
+  "name": "neon-sparkline",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-sparkline/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-sparkline/index.tsx"
+    }
+  ],
+  "dependencies": ["recharts"]
+}

@@ -1,0 +1,1 @@
+{ "name": "StatCard", "category": "charts", "dependencies": ["react", "recharts"] }

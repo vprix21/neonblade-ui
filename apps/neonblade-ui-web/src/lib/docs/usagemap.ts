@@ -1,3 +1,8 @@
+import neonLineChartUsage from "./components/neon-line-chart/usage";
+import neonBarChartUsage from "./components/neon-bar-chart/usage";
+import neonDonutChartUsage from "./components/neon-donut-chart/usage";
+import neonSparklineUsage from "./components/neon-sparkline/usage";
+import statCardUsage from "./components/stat-card/usage";
 import datalinesUsage from "./components/datalines-with-grid/usage";
 import asciiRainUsage from "./components/ascii-rain/usage";
 import borderBeamUsage from "./components/border-beam-corner-cut-card/usage";
@@ -46,6 +51,11 @@ const usageMap: Record<string, string> = {
   pluviophile: pluviophileUsage,
   "holographic-terrain": holographicTerrainUsage,
   "neon-modal": neonModalUsage,
+  "neon-line-chart": neonLineChartUsage,
+  "neon-bar-chart": neonBarChartUsage,
+  "neon-donut-chart": neonDonutChartUsage,
+  "neon-sparkline": neonSparklineUsage,
+  "stat-card": statCardUsage,
 };
 
 export default usageMap;

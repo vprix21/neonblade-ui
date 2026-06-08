@@ -1,4 +1,9 @@
 import DatalinesWithGridDemo from "./components/datalines-with-grid/demo";
+import NeonLineChartDemo from "./components/neon-line-chart/demo";
+import NeonBarChartDemo from "./components/neon-bar-chart/demo";
+import NeonDonutChartDemo from "./components/neon-donut-chart/demo";
+import NeonSparklineDemo from "./components/neon-sparkline/demo";
+import StatCardDemo from "./components/stat-card/demo";
 import AsciiRainDemo from "./components/ascii-rain/demo";
 import BorderBeamCornerCutCardDemo from "./components/border-beam-corner-cut-card/demo";
 import AccentFrameDemo from "./components/accent-frame/demo";
@@ -46,6 +51,11 @@ const demoMap: Record<string, React.FC> = {
   pluviophile: PluviophileDemo,
   "holographic-terrain": HolographicTerrainDemo,
   "neon-modal": NeonModalDemo,
+  "neon-line-chart": NeonLineChartDemo,
+  "neon-bar-chart": NeonBarChartDemo,
+  "neon-donut-chart": NeonDonutChartDemo,
+  "neon-sparkline": NeonSparklineDemo,
+  "stat-card": StatCardDemo,
 };
 
 export default demoMap;

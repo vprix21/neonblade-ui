@@ -1,0 +1,14 @@
+{
+  "name": "stat-card",
+  "files": [
+    {
+      "path": "components/neonblade-ui/stat-card/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/stat-card/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/stat-card/stat-card.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/stat-card/stat-card.css"
+    }
+  ],
+  "dependencies": ["recharts"]
+}

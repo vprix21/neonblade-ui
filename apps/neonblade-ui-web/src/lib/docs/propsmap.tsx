@@ -1,4 +1,9 @@
 import type { PropDefinition } from "./types";
+import neonLineChartProps from "./components/neon-line-chart/props";
+import neonBarChartProps from "./components/neon-bar-chart/props";
+import neonDonutChartProps from "./components/neon-donut-chart/props";
+import neonSparklineProps from "./components/neon-sparkline/props";
+import statCardProps from "./components/stat-card/props";
 import datalinesProps from "./components/datalines-with-grid/props";
 import asciiRainProps from "./components/ascii-rain/props";
 import borderBeamProps from "./components/border-beam-corner-cut-card/props";
@@ -47,6 +52,11 @@ const propsMap: Record<string, PropDefinition[]> = {
   pluviophile: pluviophileProps,
   "holographic-terrain": holographicTerrainProps,
   "neon-modal": neonModalProps,
+  "neon-line-chart": neonLineChartProps,
+  "neon-bar-chart": neonBarChartProps,
+  "neon-donut-chart": neonDonutChartProps,
+  "neon-sparkline": neonSparklineProps,
+  "stat-card": statCardProps,
 };
 
 export default propsMap;

@@ -1,0 +1,135 @@
+/* ============================================================
+   StatCard — scoped CSS
+   ============================================================ */
+
+.sc-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sc-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Animated scan-line on hover */
+.sc-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--sc-accent, #00f3ff) 6%, transparent) 50%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sc-card:hover::after {
+  animation: sc-scan 1.4s ease-in-out;
+}
+
+@keyframes sc-scan {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* Trend indicators */
+.sc-trend-up {
+  color: #39ff14;
+  filter: drop-shadow(0 0 4px #39ff14);
+}
+
+.sc-trend-down {
+  color: #ff00ff;
+  filter: drop-shadow(0 0 4px #ff00ff);
+}
+
+.sc-trend-neutral {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Value counter — mono font */
+.sc-value {
+  font-family: var(--font-orbitron, monospace);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* Label */
+.sc-label {
+  font-family: var(--font-orbitron, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Corner accent lines (top-left) */
+.sc-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sc-corner::before,
+.sc-corner::after {
+  content: "";
+  position: absolute;
+  background: var(--sc-accent, #00f3ff);
+  box-shadow: 0 0 6px var(--sc-accent, #00f3ff);
+}
+
+.sc-corner::before {
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+}
+
+.sc-corner::after {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 24px;
+}
+
+/* Bottom-right corner */
+.sc-corner-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sc-corner-br::before,
+.sc-corner-br::after {
+  content: "";
+  position: absolute;
+  background: var(--sc-accent, #00f3ff);
+  box-shadow: 0 0 6px var(--sc-accent, #00f3ff);
+}
+
+.sc-corner-br::before {
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 2px;
+}
+
+.sc-corner-br::after {
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  height: 24px;
+}
