@@ -300,9 +300,16 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
               {children}
             </span>
           ))}
-          <span className="glitch-wrapper__base">
-            {mounted ? children : <span className="invisible">{children}</span>}
-          </span>
+<span className="glitch-wrapper__base">
+  {mounted ? (
+    children
+  ) : (
+    <>
+      <span className="invisible">{children}</span>
+      <span className="absolute inset-0">{children}</span>
+    </>
+  )}
+</span>
         </>
       ) : (
         <>
