@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { categories } from "@/lib/docs/data";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 
 export default function ComponentsLanding() {
   return (

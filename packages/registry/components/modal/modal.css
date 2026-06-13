@@ -1,0 +1,306 @@
+/* ============================================================
+   NeonModal — modal.css
+   All class names are prefixed with `nm-` to avoid conflicts.
+
+   CSS custom properties driven by the component (set inline):
+     --nm-color       : accent color (hex / CSS color)
+     --nm-corner      : corner-cut size (px)
+     --nm-beam-speed  : beam revolution duration (e.g. 3s)
+     --nm-beam-length : comet arc length (degrees, e.g. 60deg)
+   ============================================================ */
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+
+.nm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.nm-backdrop-blur {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.nm-backdrop-overlay {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Enter / exit animations ─────────────────────────────── */
+
+@keyframes nm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes nm-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes nm-slide-up {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes nm-slide-down {
+  from { opacity: 1; transform: translateY(0)    scale(1); }
+  to   { opacity: 0; transform: translateY(28px) scale(0.97); }
+}
+
+@keyframes nm-scale-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes nm-scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.88); }
+}
+
+.nm-enter { animation: nm-fade-in 0.22s ease forwards; }
+.nm-exit  { animation: nm-fade-out 0.18s ease forwards; }
+
+.nm-dialog-enter-slide { animation: nm-slide-up   0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.nm-dialog-exit-slide  { animation: nm-slide-down 0.20s ease forwards; }
+
+.nm-dialog-enter-scale { animation: nm-scale-in  0.26s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.nm-dialog-exit-scale  { animation: nm-scale-out 0.18s ease forwards; }
+
+/* ── Clip-path variants ───────────────────────────────────── */
+/* Applied identically to nm-border-frame AND nm-card         */
+
+.nm-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--nm-corner, 24px)),
+    calc(100% - var(--nm-corner, 24px)) 100%,
+    0 100%
+  );
+}
+
+.nm-clip-bl {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    var(--nm-corner, 24px) 100%,
+    0 calc(100% - var(--nm-corner, 24px))
+  );
+}
+
+.nm-clip-tr {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--nm-corner, 24px)) 0,
+    100% var(--nm-corner, 24px),
+    100% 100%,
+    0 100%
+  );
+}
+
+.nm-clip-tl {
+  clip-path: polygon(
+    var(--nm-corner, 24px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--nm-corner, 24px)
+  );
+}
+
+.nm-clip-all {
+  clip-path: polygon(
+    var(--nm-corner, 24px) 0,
+    calc(100% - var(--nm-corner, 24px)) 0,
+    100% var(--nm-corner, 24px),
+    100% calc(100% - var(--nm-corner, 24px)),
+    calc(100% - var(--nm-corner, 24px)) 100%,
+    var(--nm-corner, 24px) 100%,
+    0 calc(100% - var(--nm-corner, 24px)),
+    0 var(--nm-corner, 24px)
+  );
+}
+
+/* ── Outer wrapper ────────────────────────────────────────── */
+/* p-px padding creates the 1px gap that nm-border-frame fills */
+
+.nm-wrapper {
+  position: relative;
+  z-index: 9999;
+  padding: 1px;
+}
+
+/* ── Border frame ─────────────────────────────────────────── */
+/*
+  Same clip-path as nm-card. Because the wrapper has p-px, this
+  div fills the 1px gap on ALL edges (straight + diagonal),
+  producing a perfectly uniform border ring.
+*/
+.nm-border-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: color-mix(in srgb, var(--nm-color, #00f3ff) 35%, transparent);
+  transition: background 0.3s ease;
+}
+
+/* ── Border beam (comet) ──────────────────────────────────── */
+/*
+  Uses @property so the conic-gradient angle is animatable.
+  The same clip-path as nm-border-frame means only the 1px ring
+  is visible — the comet travels around the exact border shape.
+*/
+
+@property --nm-beam-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes nm-beam-spin {
+  from { --nm-beam-angle: 0deg; }
+  to   { --nm-beam-angle: 360deg; }
+}
+
+/*
+  When nm-beam is added to nm-border-frame, replace the static
+  background with a rotating conic-gradient comet:
+    - transparent for most of the circle
+    - tail fades in at (360deg - beam-length)
+    - body brightens toward the head
+    - bright point at 358deg, white tip at 360deg
+*/
+.nm-border-frame.nm-beam {
+  --nm-beam-angle: 0deg;
+  animation: nm-beam-spin var(--nm-beam-speed, 3s) linear infinite;
+  background: conic-gradient(
+    from var(--nm-beam-angle) at 50% 50%,
+    transparent 0deg,
+    transparent calc(360deg - var(--nm-beam-length, 60deg)),
+    color-mix(in srgb, var(--nm-color, #00f3ff) 20%, transparent)
+      calc(360deg - var(--nm-beam-length, 60deg) + 1deg),
+    color-mix(in srgb, var(--nm-color, #00f3ff) 70%, transparent) 352deg,
+    var(--nm-color, #00f3ff) 356deg,
+    white 359deg,
+    transparent 360deg
+  );
+}
+
+/* ── Card (inner content surface) ────────────────────────── */
+
+.nm-card {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  outline: none;
+}
+
+/* ── Neon glow drop-shadow (on the wrapper) ───────────────── */
+
+.nm-glow-low    { filter: drop-shadow(0 0  6px color-mix(in srgb, var(--nm-color, #00f3ff) 50%, transparent)); }
+.nm-glow-medium { filter: drop-shadow(0 0 16px color-mix(in srgb, var(--nm-color, #00f3ff) 60%, transparent)); }
+.nm-glow-high   { filter: drop-shadow(0 0 32px color-mix(in srgb, var(--nm-color, #00f3ff) 70%, transparent)); }
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.nm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.125rem 1.5rem 1rem;
+}
+
+/* Header bottom divider — toggled by nm-divider-header class */
+.nm-header.nm-divider-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--nm-color, #00f3ff) 18%, transparent);
+}
+
+.nm-header-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nm-color, #00f3ff);
+  font-family: var(--font-orbitron, monospace);
+  margin-bottom: 2px;
+}
+
+.nm-title {
+  font-family: var(--font-orbitron, monospace);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+/* ── Close button ─────────────────────────────────────────── */
+
+.nm-close-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--nm-color, #00f3ff) 40%, transparent);
+  color: var(--nm-color, #00f3ff);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.nm-close-btn:hover {
+  color: #ffffff;
+  border-color: var(--nm-color, #00f3ff);
+  background: color-mix(in srgb, var(--nm-color, #00f3ff) 15%, transparent);
+}
+
+/* ── Body ─────────────────────────────────────────────────── */
+
+.nm-body {
+  padding: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  font-size: 0.925rem;
+}
+
+.nm-body-scrollable {
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+.nm-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem 1.25rem;
+}
+
+/* Footer top divider — toggled by nm-divider-footer class */
+.nm-footer.nm-divider-footer {
+  border-top: 1px solid color-mix(in srgb, var(--nm-color, #00f3ff) 14%, transparent);
+}
+
+.nm-footer-left    { justify-content: flex-start; }
+.nm-footer-center  { justify-content: center; }
+.nm-footer-right   { justify-content: flex-end; }
+.nm-footer-between { justify-content: space-between; }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+
+.nm-body-scrollable::-webkit-scrollbar        { width: 4px; }
+.nm-body-scrollable::-webkit-scrollbar-track  { background: transparent; }
+.nm-body-scrollable::-webkit-scrollbar-thumb  {
+  background: color-mix(in srgb, var(--nm-color, #00f3ff) 30%, transparent);
+  border-radius: 2px;
+}
+.nm-body-scrollable::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--nm-color, #00f3ff) 55%, transparent);
+}

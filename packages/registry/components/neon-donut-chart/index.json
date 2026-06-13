@@ -1,0 +1,10 @@
+{
+  "name": "neon-donut-chart",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-donut-chart/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-donut-chart/index.tsx"
+    }
+  ],
+  "dependencies": ["recharts"]
+}

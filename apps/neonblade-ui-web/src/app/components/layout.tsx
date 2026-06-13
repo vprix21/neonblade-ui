@@ -2,7 +2,7 @@ import { categories } from "@/lib/docs/data";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 
 import { MobileSidebar } from "@/components/MobileSidebar";
 import { DesktopSidebar } from "@/components/DesktopSidebar";

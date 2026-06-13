@@ -64,7 +64,7 @@ export const categories: CategoryData[] = [
         slug: "holographic-terrain",
         description:
           "Three.js wireframe terrain animated with layered sine waves and a cursor-reactive Gaussian bump. Mouse hover deforms the mesh in real time.",
-        is_new: true,
+        is_new: false,
         demo: "/demo/holographic-terrain",
       },
     ],
@@ -94,13 +94,32 @@ export const categories: CategoryData[] = [
     ],
   },
   {
-    name: "Frames",
-    slug: "frames",
+    name: "Elements",
+    slug: "elements",
     components: [
       {
         name: "Accent Frame",
         slug: "accent-frame",
         description: "A dynamic frame with animated corner accents.",
+      },
+      {
+        name: "Badge",
+        slug: "badge",
+        description:
+          "Futuristic label badge with pill, rectangle, and corner-cut shapes, dot indicators, and glow.",
+      },
+      {
+        name: "Timeline",
+        slug: "timeline",
+        description:
+          "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
+      },
+      {
+        name: "Neon Modal",
+        slug: "neon-modal",
+        description:
+          "Cyberpunk-styled modal dialog with corner cuts, neon glow, comet border beam, animated entry/exit, scrollable body, header/footer slots, and full color customization.",
+        is_new: false,
       },
     ],
   },
@@ -142,18 +161,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
-  {
-    name: "Badges",
-    slug: "badges",
-    components: [
-      {
-        name: "Badge",
-        slug: "badge",
-        description:
-          "Futuristic label badge with pill, rectangle, and corner-cut shapes, dot indicators, and glow.",
-      },
-    ],
-  },
+
   {
     name: "Navbars",
     slug: "navbars",
@@ -178,18 +186,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
-  {
-    name: "Timelines",
-    slug: "timelines",
-    components: [
-      {
-        name: "Timeline",
-        slug: "timeline",
-        description:
-          "Futuristic neon timeline with multiple variants, dot shapes, line styles, alignment modes, and staggered animate-in.",
-      },
-    ],
-  },
+
   {
     name: "Inputs",
     slug: "inputs",
@@ -216,6 +213,7 @@ export const categories: CategoryData[] = [
       },
     ],
   },
+
   {
     name: "Cursors",
     slug: "cursors",
@@ -226,6 +224,47 @@ export const categories: CategoryData[] = [
         description:
           "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, speed, and glow.",
         is_new: false,
+      },
+    ],
+  },
+  {
+    name: "Charts",
+    slug: "charts",
+    components: [
+      {
+        name: "Neon Line Chart",
+        slug: "neon-line-chart",
+        description:
+          "Recharts-powered line/area chart with neon glow strokes, gradient area fills, multi-series support, and a corner-cut tooltip.",
+        is_new: true,
+      },
+      {
+        name: "Neon Bar Chart",
+        slug: "neon-bar-chart",
+        description:
+          "Recharts-powered bar chart with top-rounded neon bars, custom glow drop-shadow, multi-color mode, multi-series support, and horizontal layout.",
+        is_new: true,
+      },
+      {
+        name: "Neon Donut Chart",
+        slug: "neon-donut-chart",
+        description:
+          "Recharts-powered donut/ring chart with per-segment neon glow, interactive center label, hover dimming, auto color palette, and a custom legend.",
+        is_new: true,
+      },
+      {
+        name: "Neon Sparkline",
+        slug: "neon-sparkline",
+        description:
+          "Inline mini sparkline for embedding in KPI cards and stat widgets. Neon glow stroke, gradient fill, and a minimal tooltip.",
+        is_new: true,
+      },
+      {
+        name: "Stat Card",
+        slug: "stat-card",
+        description:
+          "Dashboard KPI metric card with neon corner accents, scan-line hover, large value display, trend arrow with color coding, and an embedded NeonSparkline.",
+        is_new: true,
       },
     ],
   },

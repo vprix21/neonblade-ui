@@ -1,0 +1,1 @@
+{ "name": "NeonLineChart", "category": "charts", "dependencies": ["react", "recharts"] }

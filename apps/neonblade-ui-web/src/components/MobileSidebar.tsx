@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { categories } from "@/lib/docs/data";
 import { usePathname } from "next/navigation";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 
 export function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,0 +1,14 @@
+{
+  "name": "neon-bar-chart",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-bar-chart/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-bar-chart/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-bar-chart/neon-bar-chart.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-bar-chart/neon-bar-chart.css"
+    }
+  ],
+  "dependencies": ["recharts"]
+}

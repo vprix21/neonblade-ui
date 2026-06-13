@@ -2,7 +2,7 @@
 
 import { categories } from "@/lib/docs/data";
 import Link from "next/link";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 import { usePathname } from "next/navigation";
 
 export function DesktopSidebar() {

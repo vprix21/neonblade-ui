@@ -1,0 +1,14 @@
+{
+  "name": "neon-line-chart",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-line-chart/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-line-chart/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-line-chart/neon-line-chart.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-line-chart/neon-line-chart.css"
+    }
+  ],
+  "dependencies": ["recharts"]
+}

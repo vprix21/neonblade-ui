@@ -1,0 +1,80 @@
+/* ============================================================
+   NeonBarChart — scoped CSS
+   ============================================================ */
+
+/* ── Kill Recharts tooltip transition so it doesn't fly from (0,0) ── */
+.nbc-wrapper .recharts-tooltip-wrapper {
+  outline: none;
+  transition: none !important;
+}
+
+/* ── NeonBlade Tooltip — two-layer corner-cut (ngcc pattern) ─────── */
+
+.nbc-tooltip-outer {
+  position: relative;
+  padding: 1px;
+  background: var(--nbc-color, #00f3ff);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+  box-shadow:
+    0 0 14px color-mix(in srgb, var(--nbc-color, #00f3ff) 40%, transparent),
+    0 0 28px color-mix(in srgb, var(--nbc-color, #00f3ff) 18%, transparent);
+  min-width: 110px;
+  pointer-events: none;
+}
+
+.nbc-tooltip-inner {
+  background: rgba(5, 5, 5, 0.95);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 9px),
+    calc(100% - 9px) 100%,
+    0 100%
+  );
+  padding: 8px 12px;
+  font-family: var(--font-orbitron, monospace);
+  font-size: 11px;
+  color: #fff;
+}
+
+.nbc-tooltip-label {
+  color: var(--nbc-color, #00f3ff);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  opacity: 0.65;
+}
+
+.nbc-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.nbc-tooltip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.nbc-tooltip-name {
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+.nbc-tooltip-value {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nbc-color, #00f3ff);
+  filter: drop-shadow(0 0 4px var(--nbc-color, #00f3ff));
+}

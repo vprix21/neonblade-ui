@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
-import Badge from "@/lib/components/ui/badges/Badge";
+import Badge from "@/lib/components/ui/elements/Badge";
 
 export function CTA() {
   return (

@@ -6,8 +6,29 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New component: Holographic Terrain!",
+    text: "New component: Neon Line Chart",
   },
+  {
+    tag: "New",
+    color: "#39ff14",
+    text: "New component: Neon Bar Chart",
+  },
+  {
+    tag: "New",
+    color: "#39ff14",
+    text: "New component: Neon Donut Chart",
+  },
+  {
+    tag: "New",
+    color: "#39ff14",
+    text: "New component: Neon Sparkline",
+  },
+  {
+    tag: "New",
+    color: "#39ff14",
+    text: "New component: Neon Stats Card",
+  },
+
   {
     tag: "Announcement",
     color: "#00f3ff",
