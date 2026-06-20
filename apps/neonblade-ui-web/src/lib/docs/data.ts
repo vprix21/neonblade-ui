@@ -124,6 +124,33 @@ export const categories: CategoryData[] = [
     ],
   },
   {
+    name: "Progress",
+    slug: "progress",
+    components: [
+      {
+        name: "Progress Bar",
+        slug: "progress-bar",
+        description:
+          "Horizontal neon progress bar with solid, segmented, striped, and pulse variants. Supports size presets, glow, percentage label, and smooth fill transition.",
+        is_new: true,
+      },
+      {
+        name: "Circular Progress",
+        slug: "circular-progress",
+        description:
+          "SVG arc-based radial progress ring with neon glow filter, animated fill transition, tick mark at origin, center value display, and sub-label. Zero dependencies beyond React.",
+        is_new: true,
+      },
+      {
+        name: "Arrow Loader",
+        slug: "arrow-loader",
+        description:
+          "Full-width indeterminate loader with flowing SVG chevron arrows. Fully customizable arrow size, gap, thickness, speed, and color.",
+        is_new: true,
+      },
+    ],
+  },
+  {
     name: "Text",
     slug: "text",
     components: [
@@ -198,6 +225,27 @@ export const categories: CategoryData[] = [
           "A fully-featured text input with the iconic NeonBlade corner-cut shape, neon focus glow, full color customization, label, hint, error state, prefix/suffix slots, border styles, background opacity, and all standard HTML input types.",
         is_new: false,
       },
+      {
+        name: "Neon Toggle",
+        slug: "neon-toggle",
+        description:
+          "An accessible switch/toggle with a neon-glowing track, animated thumb slide, spark particle burst on activation, size presets, and full color control. Supports controlled and uncontrolled modes.",
+        is_new: true,
+      },
+      {
+        name: "Neon Checkbox",
+        slug: "neon-checkbox",
+        description:
+          "Corner-cut cyberpunk checkbox with neon glow on check, animated SVG checkmark, indeterminate state (dash), size presets, and accessible aria-checked semantics.",
+        is_new: true,
+      },
+      {
+        name: "Neon Select",
+        slug: "neon-select",
+        description:
+          "Fully accessible custom dropdown with keyboard navigation (arrows/enter/esc), controlled and uncontrolled modes, neon glow trigger, animated clip-path listbox panel, and disabled option support.",
+        is_new: true,
+      },
     ],
   },
   {
@@ -228,6 +276,20 @@ export const categories: CategoryData[] = [
     ],
   },
   {
+    name: "Tables",
+    slug: "tables",
+    components: [
+      {
+        name: "Neon Table",
+        slug: "neon-table",
+        description:
+          "Sortable, paginated data table with neon scan-line row hover, corner accent marks, animated sort indicators, custom cell renderers, striped rows, and cyberpunk pagination controls.",
+        is_new: true,
+      },
+    ],
+  },
+
+  {
     name: "Charts",
     slug: "charts",
     components: [
@@ -236,35 +298,35 @@ export const categories: CategoryData[] = [
         slug: "neon-line-chart",
         description:
           "Recharts-powered line/area chart with neon glow strokes, gradient area fills, multi-series support, and a corner-cut tooltip.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Bar Chart",
         slug: "neon-bar-chart",
         description:
           "Recharts-powered bar chart with top-rounded neon bars, custom glow drop-shadow, multi-color mode, multi-series support, and horizontal layout.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Donut Chart",
         slug: "neon-donut-chart",
         description:
           "Recharts-powered donut/ring chart with per-segment neon glow, interactive center label, hover dimming, auto color palette, and a custom legend.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Sparkline",
         slug: "neon-sparkline",
         description:
           "Inline mini sparkline for embedding in KPI cards and stat widgets. Neon glow stroke, gradient fill, and a minimal tooltip.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Stat Card",
         slug: "stat-card",
         description:
           "Dashboard KPI metric card with neon corner accents, scan-line hover, large value display, trend arrow with color coding, and an embedded NeonSparkline.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

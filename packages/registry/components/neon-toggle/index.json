@@ -1,0 +1,14 @@
+{
+  "name": "neon-toggle",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-toggle/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-toggle/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-toggle/neon-toggle.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-toggle/neon-toggle.css"
+    }
+  ],
+  "dependencies": []
+}

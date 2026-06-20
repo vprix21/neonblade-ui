@@ -28,6 +28,12 @@ const folderMap: Record<string, string> = {
   "neon-donut-chart": "NeonDonutChart",
   "neon-sparkline": "NeonSparkline",
   "stat-card": "StatCard",
+  "neon-table": "NeonTable",
+  "progress-bar": "ProgressBar",
+  "circular-progress": "CircularProgress",
+  "arrow-loader": "ArrowLoader",
+  "neon-toggle": "NeonToggle",
+  "neon-checkbox": "NeonCheckbox",
+  "neon-select": "NeonSelect",
 };
-
 export default folderMap;

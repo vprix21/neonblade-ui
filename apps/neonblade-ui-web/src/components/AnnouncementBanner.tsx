@@ -6,29 +6,38 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New component: Neon Line Chart",
+    text: "New component: Arrow Loader",
   },
   {
     tag: "New",
     color: "#39ff14",
-    text: "New component: Neon Bar Chart",
+    text: "New component: Circular Progress",
   },
   {
-    tag: "New",
-    color: "#39ff14",
-    text: "New component: Neon Donut Chart",
+    tag: "Updated",
+    color: "#00f3ff",
+    text: "New component: Progress Bar",
   },
   {
-    tag: "New",
-    color: "#39ff14",
-    text: "New component: Neon Sparkline",
+    tag: "Updated",
+    color: "#00f3ff",
+    text: "New component: Neon Toggle",
   },
   {
-    tag: "New",
-    color: "#39ff14",
-    text: "New component: Neon Stats Card",
+    tag: "Updated",
+    color: "#00f3ff",
+    text: "New component: Neon Checkbox",
   },
-
+  {
+    tag: "Updated",
+    color: "#00f3ff",
+    text: "New component: Neon Select",
+  },
+  {
+    tag: "Updated",
+    color: "#00f3ff",
+    text: "New component: Neon Table",
+  },
   {
     tag: "Announcement",
     color: "#00f3ff",

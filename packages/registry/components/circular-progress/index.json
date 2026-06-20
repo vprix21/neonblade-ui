@@ -1,0 +1,10 @@
+{
+  "name": "circular-progress",
+  "files": [
+    {
+      "path": "components/neonblade-ui/circular-progress/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/circular-progress/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

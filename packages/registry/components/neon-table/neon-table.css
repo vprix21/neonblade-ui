@@ -1,0 +1,347 @@
+﻿/* ── NeonTable ────────────────────────────────────────────────────────────── */
+
+.nt-wrapper {
+  position: relative;
+  background: rgba(4, 4, 10, 0.95);
+  border: 1px solid color-mix(in srgb, var(--nt-accent) 20%, transparent);
+  overflow: hidden;
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--nt-accent) 8%, transparent),
+    inset 0 0 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Scanline overlay (accent-tinted) ── */
+.nt-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    color-mix(in srgb, var(--nt-accent) 2%, transparent) 2px,
+    color-mix(in srgb, var(--nt-accent) 2%, transparent) 4px
+  );
+}
+
+/* ── Corner accent marks ── */
+.nt-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 2;
+  pointer-events: none;
+}
+.nt-corner::before,
+.nt-corner::after {
+  content: "";
+  position: absolute;
+  background: var(--nt-accent);
+  box-shadow: 0 0 6px var(--nt-accent);
+}
+.nt-corner-tl {
+  top: 0;
+  left: 0;
+}
+.nt-corner-tl::before {
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 1px;
+}
+.nt-corner-tl::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.nt-corner-tr {
+  top: 0;
+  right: 0;
+}
+.nt-corner-tr::before {
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 1px;
+}
+.nt-corner-tr::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.nt-corner-bl {
+  bottom: 0;
+  left: 0;
+}
+.nt-corner-bl::before {
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 1px;
+}
+.nt-corner-bl::after {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+}
+
+.nt-corner-br {
+  bottom: 0;
+  right: 0;
+}
+.nt-corner-br::before {
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 1px;
+}
+.nt-corner-br::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 10px;
+}
+
+/* ── Title bar ── */
+.nt-title-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: color-mix(in srgb, var(--nt-accent) 5%, rgba(4, 4, 10, 0.8));
+  border-bottom: 1px solid color-mix(in srgb, var(--nt-accent) 25%, transparent);
+}
+
+.nt-title-text {
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--nt-accent);
+  text-transform: uppercase;
+}
+
+/* ── Scrollable inner ── */
+.nt-scroll {
+  position: relative;
+  z-index: 1;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* ── Table ── */
+.nt-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-family: var(--font-rajdhani, sans-serif);
+  font-size: 13px;
+}
+
+/* ── Header ── */
+.nt-thead {
+  position: relative;
+}
+
+.nt-th {
+  padding: 12px 16px;
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--nt-accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--nt-accent) 25%, transparent);
+  white-space: nowrap;
+  user-select: none;
+  background: color-mix(in srgb, var(--nt-accent) 4%, transparent);
+}
+
+.nt-th.nt-compact {
+  padding: 8px 12px;
+}
+
+.nt-th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nt-sortable {
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+.nt-sortable:hover {
+  color: color-mix(in srgb, var(--nt-accent) 90%, white);
+  background: color-mix(in srgb, var(--nt-accent) 8%, transparent);
+}
+
+/* Sort icon */
+.nt-sort-icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+.nt-sort-arrow {
+  font-size: 6px;
+  color: color-mix(in srgb, var(--nt-accent) 30%, transparent);
+  transition: color 0.15s ease;
+  line-height: 1;
+}
+.nt-sort-arrow.nt-sort-active {
+  color: var(--nt-accent);
+  filter: drop-shadow(0 0 3px var(--nt-accent));
+}
+
+/* ── Body rows ── */
+.nt-tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s ease;
+}
+
+.nt-row-hover:hover {
+  background: color-mix(in srgb, var(--nt-accent) 6%, transparent);
+  box-shadow: inset 3px 0 0 var(--nt-accent);
+}
+
+.nt-striped .nt-tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+/* ── Cells ── */
+.nt-td {
+  padding: 11px 16px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.nt-td.nt-compact {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+/* Alignment */
+.nt-align-left {
+  text-align: left;
+}
+.nt-align-center {
+  text-align: center;
+}
+.nt-align-right {
+  text-align: right;
+}
+
+/* ── Empty state ── */
+.nt-empty {
+  padding: 48px 16px;
+  text-align: center;
+  font-family: var(--font-orbitron, monospace);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: color-mix(in srgb, var(--nt-accent) 35%, transparent);
+}
+
+/* ── Grid variant ── */
+.nt-grid .nt-td {
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+}
+.nt-grid .nt-td:last-child {
+  border-right: none;
+}
+.nt-grid .nt-th {
+  border-right: 1px solid color-mix(in srgb, var(--nt-accent) 12%, transparent);
+}
+.nt-grid .nt-th:last-child {
+  border-right: none;
+}
+
+/* ── Skeleton loading ── */
+.nt-skeleton {
+  display: inline-block;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    color-mix(in srgb, var(--nt-accent) 8%, rgba(255, 255, 255, 0.06)) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: nt-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes nt-shimmer {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+/* ── Pagination ── */
+.nt-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid color-mix(in srgb, var(--nt-accent) 18%, transparent);
+  background: color-mix(in srgb, var(--nt-accent) 3%, transparent);
+  position: relative;
+  z-index: 1;
+}
+
+.nt-page-info {
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: color-mix(in srgb, var(--nt-accent) 55%, transparent);
+}
+
+.nt-page-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nt-page-num {
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--nt-accent);
+}
+
+.nt-page-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--nt-accent) 30%, transparent);
+  color: var(--nt-accent);
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.nt-page-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--nt-accent) 10%, transparent);
+  border-color: var(--nt-accent);
+}
+.nt-page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

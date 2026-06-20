@@ -1,0 +1,14 @@
+{
+  "name": "progress-bar",
+  "files": [
+    {
+      "path": "components/neonblade-ui/progress-bar/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/progress-bar/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/progress-bar/progress-bar.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/progress-bar/progress-bar.css"
+    }
+  ],
+  "dependencies": []
+}

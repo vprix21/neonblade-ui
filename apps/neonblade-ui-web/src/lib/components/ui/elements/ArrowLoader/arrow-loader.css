@@ -1,0 +1,31 @@
+/* ── ArrowLoader ─────────────────────────────────────────────────────────── */
+
+.al-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.al-track {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.al-fill {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat-x;
+  background-position: 0 center;
+  animation: al-arrows var(--al-speed, 450ms) linear infinite;
+}
+
+@keyframes al-arrows {
+  from {
+    background-position: 0 center;
+  }
+  to {
+    background-position: var(--al-tile, 18px) center;
+  }
+}

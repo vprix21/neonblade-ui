@@ -1,0 +1,14 @@
+{
+  "name": "neon-checkbox",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-checkbox/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-checkbox/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-checkbox/neon-checkbox.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-checkbox/neon-checkbox.css"
+    }
+  ],
+  "dependencies": []
+}

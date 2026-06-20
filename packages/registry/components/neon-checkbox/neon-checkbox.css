@@ -1,0 +1,152 @@
+﻿/* ── NeonCheckbox ─────────────────────────────────────────────────────────── */
+
+.ncb-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ncb-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Hide native input */
+.ncb-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ── Square box ─────────────────────────────────────────────────────────────── */
+
+.ncb-box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: transparent;
+  transition:
+    background   0.15s ease,
+    border-color 0.15s ease,
+    box-shadow   0.15s ease,
+    color        0.15s ease;
+}
+
+.ncb-box.ncb-checked {
+  background: color-mix(in srgb, var(--ncb-accent) 14%, transparent);
+  border-color: var(--ncb-accent);
+  color: var(--ncb-accent);
+  box-shadow:
+    0 0 8px  color-mix(in srgb, var(--ncb-accent) 35%, transparent),
+    inset 0 0 6px color-mix(in srgb, var(--ncb-accent) 8%, transparent);
+}
+
+.ncb-label:not(.ncb-disabled):hover .ncb-box:not(.ncb-checked) {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Corner-cut box ─────────────────────────────────────────────────────────── */
+
+/*
+ * Technique: two-layer rendering
+ *   .ncb-cc-outer — full size, no clip-path; its background colour acts as the "border"
+ *   .ncb-cc-inner — absolute inset: 1px, clip-path polygon cuts the corner;
+ *                   dark fill inside so only the 1 px rim of the outer shows
+ *   .ncb-icon-layer — sits above both layers (z-index), centred
+ *
+ * This mirrors the NeonGlowCornerCutCard wrapper/inner approach and ensures the
+ * diagonal edge has a real coloured border — not just a filled triangle.
+ */
+
+.ncb-cc-outer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);   /* unchecked border colour */
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.ncb-cc-outer.ncb-checked {
+  background: var(--ncb-accent);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--ncb-accent) 50%, transparent),
+    0 0 20px color-mix(in srgb, var(--ncb-accent) 25%, transparent);
+}
+
+.ncb-label:not(.ncb-disabled):hover .ncb-cc-outer:not(.ncb-checked) {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.ncb-cc-inner {
+  position: absolute;
+  inset: 1px;                              /* 1 px rim of outer visible = the border */
+  background: rgb(10, 10, 18);            /* match page dark background */
+  transition: background 0.15s ease;
+}
+
+/* When checked the fill becomes a tinted version of accent so the checkmark pops */
+.ncb-cc-outer.ncb-checked .ncb-cc-inner {
+  background: color-mix(in srgb, var(--ncb-accent) 12%, rgb(10, 10, 18));
+}
+
+.ncb-icon-layer {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: color 0.15s ease;
+}
+
+.ncb-cc-outer.ncb-checked .ncb-icon-layer {
+  color: var(--ncb-accent);
+}
+
+/* ── Focus ring ─────────────────────────────────────────────────────────────── */
+
+.ncb-label:focus-within .ncb-box,
+.ncb-label:focus-within .ncb-cc-outer {
+  outline: 2px solid var(--ncb-accent);
+  outline-offset: 2px;
+}
+
+/* ── Checkmark animation ────────────────────────────────────────────────────── */
+
+.ncb-check-icon {
+  animation: ncb-check-in 0.18s ease-out;
+}
+
+@keyframes ncb-check-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Label text ─────────────────────────────────────────────────────────────── */
+
+.ncb-text {
+  font-family: var(--font-rajdhani, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.15s ease;
+}
+
+.ncb-label:not(.ncb-disabled):hover .ncb-text {
+  color: rgba(255, 255, 255, 0.95);
+}

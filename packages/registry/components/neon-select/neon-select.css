@@ -1,0 +1,217 @@
+﻿/* ── NeonSelect ──────────────────────────────────────────────────────────── */
+
+.nsl-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-family: var(--font-rajdhani, sans-serif);
+}
+
+.nsl-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Field label ─────────────────────────────────────────────────────────── */
+
+.nsl-label {
+  display: block;
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: color-mix(in srgb, var(--nsl-accent) 70%, rgba(255,255,255,0.5));
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* ── Square trigger (default) ────────────────────────────────────────────── */
+
+.nsl-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-rajdhani, sans-serif);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.15s ease,
+    background   0.15s ease,
+    box-shadow   0.15s ease;
+}
+
+.nsl-trigger:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--nsl-accent) 50%, transparent);
+  background: color-mix(in srgb, var(--nsl-accent) 5%, transparent);
+}
+
+.nsl-trigger.nsl-trigger-open {
+  border-color: var(--nsl-accent);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--nsl-accent) 25%, transparent),
+    inset 0 0 8px color-mix(in srgb, var(--nsl-accent) 6%, transparent);
+}
+
+.nsl-trigger:focus-visible {
+  outline: 2px solid var(--nsl-accent);
+  outline-offset: 2px;
+}
+
+/* ── Corner-cut frame (two-layer) ────────────────────────────────────────── */
+/*
+ * .nsl-frame  — the border-colour layer; clip-path applied here; no own border
+ * .nsl-trigger-cc inside it — dark fill, no clip-path, padding: 1px inset
+ * The 1 px rim of the frame visible around all edges (incl. diagonal) = border
+ */
+
+.nsl-frame {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.18);   /* unchecked border colour */
+  padding: 1px;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nsl-frame:hover:not(.nsl-disabled .nsl-frame) {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.nsl-frame.nsl-frame-open {
+  background: var(--nsl-accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--nsl-accent) 35%, transparent);
+}
+
+/* Trigger inside a cc frame: override border, no clip-path */
+.nsl-trigger-cc {
+  border: none !important;
+  box-shadow: none !important;
+  background: rgb(8, 8, 16);
+  outline-offset: 3px;
+}
+
+.nsl-trigger-cc:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--nsl-accent) 5%, rgb(8, 8, 16));
+  border: none !important;
+}
+
+/* ── Placeholder / value ─────────────────────────────────────────────────── */
+
+.nsl-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-orbitron, monospace);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+/* ── Chevron ─────────────────────────────────────────────────────────────── */
+
+.nsl-arrow {
+  color: var(--nsl-accent);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+  opacity: 0.65;
+}
+
+.nsl-open .nsl-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--nsl-accent));
+}
+
+/* ── Square dropdown ─────────────────────────────────────────────────────── */
+
+.nsl-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: rgba(6, 6, 14, 0.97);
+  border: 1px solid color-mix(in srgb, var(--nsl-accent) 35%, transparent);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--nsl-accent) 15%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+  animation: nsl-open-in 0.12s ease-out;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Corner-cut dropdown frame ───────────────────────────────────────────── */
+
+.nsl-list-frame {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--nsl-accent) 35%, transparent);
+  padding: 1px;
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--nsl-accent) 15%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+  animation: nsl-open-in 0.12s ease-out;
+}
+
+.nsl-list-cc {
+  position: relative;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: rgba(6, 6, 14, 0.98);
+  border: none;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Open animation ──────────────────────────────────────────────────────── */
+
+@keyframes nsl-open-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Options ─────────────────────────────────────────────────────────────── */
+
+.nsl-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-rajdhani, sans-serif);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.nsl-option:hover,
+.nsl-option.nsl-focused {
+  background: color-mix(in srgb, var(--nsl-accent) 10%, transparent);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nsl-option.nsl-selected {
+  color: var(--nsl-accent);
+  background: color-mix(in srgb, var(--nsl-accent) 8%, transparent);
+}
+
+.nsl-option-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.nsl-check {
+  font-size: 10px;
+  color: var(--nsl-accent);
+  filter: drop-shadow(0 0 3px var(--nsl-accent));
+  min-width: 12px;
+}

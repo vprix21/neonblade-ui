@@ -141,10 +141,40 @@
       "name": "stat-card",
       "category": "charts",
       "description": "Dashboard KPI metric card with neon corner accents, scan-line hover, large value display, trend arrow with color coding, and embedded NeonSparkline."
+    },
+    {
+      "name": "neon-table",
+      "category": "tables",
+      "description": "Sortable, paginated data table with neon scan-line row hover, corner accent marks, animated sort indicators, custom cell renderers, striped rows, and cyberpunk pagination."
+    },
+    {
+      "name": "progress-bar",
+      "category": "elements",
+      "description": "Horizontal neon progress bar with solid, segmented, striped, and pulse variants. Supports size presets, glow, label, and smooth fill transition."
+    },
+    {
+      "name": "circular-progress",
+      "category": "elements",
+      "description": "SVG arc-based radial progress ring with neon glow filter, animated fill, tick mark, center value display, and sub-label."
+    },
+    {
+      "name": "neon-toggle",
+      "category": "inputs",
+      "description": "Accessible switch/toggle with neon-glowing track, animated thumb, spark particle burst on activation, size presets, and full color control."
+    },
+    {
+      "name": "neon-checkbox",
+      "category": "inputs",
+      "description": "Corner-cut cyberpunk checkbox with neon glow on check, animated SVG checkmark, indeterminate state, and accessible aria-checked."
+    },
+    {
+      "name": "neon-select",
+      "category": "inputs",
+      "description": "Accessible custom dropdown with keyboard navigation, controlled/uncontrolled modes, neon glow trigger, animated clip-path listbox, and disabled option support."
     }
   ],
   "stats": {
-    "totalComponents": 28,
+    "totalComponents": 34,
     "totalTemplates": 1
   }
 }

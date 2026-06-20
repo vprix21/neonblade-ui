@@ -26,6 +26,13 @@ import OutlineTextDemo from "./components/outline-text/demo";
 import PluviophileDemo from "./components/pluviophile/demo";
 import HolographicTerrainDemo from "./components/holographic-terrain/demo";
 import NeonModalDemo from "./components/modal/demo";
+import NeonTableDemo from "./components/neon-table/demo";
+import ProgressBarDemo from "./components/progress-bar/demo";
+import ArrowLoaderDemo from "./components/arrow-loader/demo";
+import CircularProgressDemo from "./components/circular-progress/demo";
+import NeonToggleDemo from "./components/neon-toggle/demo";
+import NeonCheckboxDemo from "./components/neon-checkbox/demo";
+import NeonSelectDemo from "./components/neon-select/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -56,6 +63,13 @@ const demoMap: Record<string, React.FC> = {
   "neon-donut-chart": NeonDonutChartDemo,
   "neon-sparkline": NeonSparklineDemo,
   "stat-card": StatCardDemo,
+  "neon-table": NeonTableDemo,
+  "progress-bar": ProgressBarDemo,
+  "arrow-loader": ArrowLoaderDemo,
+  "circular-progress": CircularProgressDemo,
+  "neon-toggle": NeonToggleDemo,
+  "neon-checkbox": NeonCheckboxDemo,
+  "neon-select": NeonSelectDemo,
 };
 
 export default demoMap;

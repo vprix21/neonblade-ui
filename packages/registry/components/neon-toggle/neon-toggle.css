@@ -1,0 +1,124 @@
+﻿/* -- NeonToggle ------------------------------------------------------------- */
+
+.ntg-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.ntg-label-right { flex-direction: row; }
+.ntg-label-left  { flex-direction: row-reverse; }
+
+.ntg-disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Hide native input but keep it accessible */
+.ntg-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* -- Track ------------------------------------------------------------------ */
+.ntg-track {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+  overflow: visible;
+}
+
+.ntg-track.ntg-on {
+  background: color-mix(in srgb, var(--ntg-accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--ntg-accent) 55%, transparent);
+  box-shadow:
+    0 0 12px color-mix(in srgb, var(--ntg-accent) 28%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--ntg-accent) 10%, transparent);
+}
+
+/* Hover */
+.ntg-label:not(.ntg-disabled):hover .ntg-track {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.ntg-label:not(.ntg-disabled):hover .ntg-track.ntg-on {
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--ntg-accent) 40%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--ntg-accent) 14%, transparent);
+}
+
+/* Focus ring */
+.ntg-label:focus-within .ntg-track {
+  outline: 2px solid var(--ntg-accent);
+  outline-offset: 3px;
+}
+
+/* -- Thumb ------------------------------------------------------------------ */
+.ntg-thumb {
+  position: absolute;
+  /* top: 50% + translateY(-50%) is set inline via transform — border-proof centering */
+  top: 50%;
+  border-radius: 50%;
+  background: rgba(220, 230, 255, 0.65);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.ntg-on .ntg-thumb {
+  background: var(--ntg-accent);
+  box-shadow:
+    0 0 8px var(--ntg-accent),
+    0 0 20px color-mix(in srgb, var(--ntg-accent) 45%, transparent);
+}
+
+/* Subtle press scale */
+.ntg-label:not(.ntg-disabled):active .ntg-thumb {
+  transform: scaleX(1.12) translateY(-50%) !important;
+}
+
+/* -- Spark particles -------------------------------------------------------- */
+.ntg-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ntg-accent);
+  box-shadow: 0 0 5px var(--ntg-accent);
+  pointer-events: none;
+  animation: ntg-spark-fly 0.45s ease-out forwards;
+}
+
+.ntg-spark-1 { top: 35%; right: 28%; animation-delay: 0s;    --dx: -6px; --dy: -7px; }
+.ntg-spark-2 { top: 55%; right: 22%; animation-delay: 0.07s; --dx: -4px; --dy:  5px; }
+.ntg-spark-3 { top: 45%; right: 34%; animation-delay: 0.13s; --dx: -8px; --dy:  2px; }
+
+@keyframes ntg-spark-fly {
+  0%   { transform: translate(0, 0) scale(1);   opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* -- Label text ------------------------------------------------------------- */
+.ntg-text {
+  font-family: var(--font-rajdhani, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+.ntg-label:not(.ntg-disabled):hover .ntg-text {
+  color: rgba(255, 255, 255, 0.95);
+}

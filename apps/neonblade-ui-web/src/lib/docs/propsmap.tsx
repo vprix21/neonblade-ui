@@ -27,6 +27,13 @@ import outlineTextProps from "./components/outline-text/props";
 import pluviophileProps from "./components/pluviophile/props";
 import holographicTerrainProps from "./components/holographic-terrain/props";
 import neonModalProps from "./components/modal/props";
+import neonTableProps from "./components/neon-table/props";
+import progressBarProps from "./components/progress-bar/props";
+import arrowLoaderProps from "./components/arrow-loader/props";
+import circularProgressProps from "./components/circular-progress/props";
+import neonToggleProps from "./components/neon-toggle/props";
+import neonCheckboxProps from "./components/neon-checkbox/props";
+import neonSelectProps from "./components/neon-select/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -57,6 +64,13 @@ const propsMap: Record<string, PropDefinition[]> = {
   "neon-donut-chart": neonDonutChartProps,
   "neon-sparkline": neonSparklineProps,
   "stat-card": statCardProps,
+  "neon-table": neonTableProps,
+  "progress-bar": progressBarProps,
+  "arrow-loader": arrowLoaderProps,
+  "circular-progress": circularProgressProps,
+  "neon-toggle": neonToggleProps,
+  "neon-checkbox": neonCheckboxProps,
+  "neon-select": neonSelectProps,
 };
 
 export default propsMap;

@@ -1,0 +1,14 @@
+{
+  "name": "arrow-loader",
+  "files": [
+    {
+      "path": "components/neonblade-ui/arrow-loader/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/arrow-loader/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/arrow-loader/arrow-loader.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/arrow-loader/arrow-loader.css"
+    }
+  ],
+  "dependencies": []
+}

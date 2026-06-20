@@ -1,0 +1,14 @@
+{
+  "name": "neon-table",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-table/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-table/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-table/neon-table.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-table/neon-table.css"
+    }
+  ],
+  "dependencies": []
+}

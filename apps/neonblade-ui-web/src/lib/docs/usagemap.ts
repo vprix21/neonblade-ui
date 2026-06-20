@@ -26,6 +26,13 @@ import outlineTextUsage from "./components/outline-text/usage";
 import pluviophileUsage from "./components/pluviophile/usage";
 import holographicTerrainUsage from "./components/holographic-terrain/usage";
 import neonModalUsage from "./components/modal/usage";
+import neonTableUsage from "./components/neon-table/usage";
+import progressBarUsage from "./components/progress-bar/usage";
+import circularProgressUsage from "./components/circular-progress/usage";
+import arrowLoaderUsage from "./components/arrow-loader/usage";
+import neonToggleUsage from "./components/neon-toggle/usage";
+import neonCheckboxUsage from "./components/neon-checkbox/usage";
+import neonSelectUsage from "./components/neon-select/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -56,6 +63,13 @@ const usageMap: Record<string, string> = {
   "neon-donut-chart": neonDonutChartUsage,
   "neon-sparkline": neonSparklineUsage,
   "stat-card": statCardUsage,
+  "neon-table": neonTableUsage,
+  "progress-bar": progressBarUsage,
+  "circular-progress": circularProgressUsage,
+  "arrow-loader": arrowLoaderUsage,
+  "neon-toggle": neonToggleUsage,
+  "neon-checkbox": neonCheckboxUsage,
+  "neon-select": neonSelectUsage,
 };
 
 export default usageMap;

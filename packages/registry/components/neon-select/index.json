@@ -1,0 +1,14 @@
+{
+  "name": "neon-select",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-select/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-select/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-select/neon-select.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-select/neon-select.css"
+    }
+  ],
+  "dependencies": []
+}
