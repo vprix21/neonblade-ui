@@ -1,5 +1,12 @@
 # NeonBlade UI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![Stars](https://img.shields.io/github/stars/vprix21/neonblade-ui?style=flat-square&color=yellow)](https://github.com/vprix21/neonblade-ui/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/vprix21/neonblade-ui?style=flat-square)](https://github.com/vprix21/neonblade-ui/commits/main)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
+
+![NeonBlade UI](https://raw.githubusercontent.com/vprix21/neonblade-ui/main/apps/neonblade-ui-web/public/nb-home-hero.png)
+
 Futuristic React UI components for modern web apps.
 
 Website: https://neonbladeui.neuronrush.com/
