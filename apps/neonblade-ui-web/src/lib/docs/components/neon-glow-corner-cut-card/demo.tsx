@@ -5,7 +5,7 @@ export default function NeonGlowCornerCutCardDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Hover Effects */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hover Effects (hover each card)
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -143,7 +143,7 @@ export default function NeonGlowCornerCutCardDemo() {
 
       {/* Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Colors
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -176,7 +176,7 @@ export default function NeonGlowCornerCutCardDemo() {
 
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
@@ -209,7 +209,7 @@ export default function NeonGlowCornerCutCardDemo() {
 
       {/* Corners */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corners
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -239,7 +239,7 @@ export default function NeonGlowCornerCutCardDemo() {
 
       {/* Hero replica — with icon */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hero replica (Features grid style)
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

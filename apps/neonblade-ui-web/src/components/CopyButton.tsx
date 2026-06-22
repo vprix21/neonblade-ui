@@ -43,7 +43,7 @@ export function CopyButton({
       {copied ? (
         <Check className="w-4 h-4 text-[#39ff14]" />
       ) : (
-        <Copy className="w-4 h-4 text-white/50 hover:text-[#00f3ff]" />
+        <Copy className="w-4 h-4 text-white/65 hover:text-[#00f3ff]" />
       )}
     </button>
   );

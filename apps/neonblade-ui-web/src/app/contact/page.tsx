@@ -44,7 +44,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-orbitron text-white/50 uppercase tracking-widest mb-0.5">
+                  <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest mb-0.5">
                     X (Twitter)
                   </p>
                   <p className="font-mono text-white/80 group-hover:text-white transition-colors text-sm">
@@ -54,7 +54,7 @@ export default function ContactPage() {
               </div>
               <ArrowUpRight
                 size={16}
-                className="text-white/20 group-hover:text-white transition-colors"
+                className="text-white/60 group-hover:text-white transition-colors"
               />
             </a>
 
@@ -67,7 +67,7 @@ export default function ContactPage() {
                   <Mail size={18} className="text-[#00f3ff]" />
                 </div>
                 <div>
-                  <p className="text-xs font-orbitron text-white/50 uppercase tracking-widest mb-0.5">
+                  <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest mb-0.5">
                     Email
                   </p>
                   <p className="font-mono text-white/80 group-hover:text-white transition-colors text-sm">
@@ -77,7 +77,7 @@ export default function ContactPage() {
               </div>
               <ArrowUpRight
                 size={16}
-                className="text-white/20 group-hover:text-[#00f3ff] transition-colors"
+                className="text-white/60 group-hover:text-[#00f3ff] transition-colors"
               />
             </a>
 

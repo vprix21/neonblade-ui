@@ -5,7 +5,7 @@ export default function AccentFrameDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Hover effects */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hover Effects (hover each)
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -56,7 +56,7 @@ export default function AccentFrameDemo() {
 
       {/* Colors + colorB dual-color */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Colors & Dual Color (quad mode)
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -95,7 +95,7 @@ export default function AccentFrameDemo() {
 
       {/* Always-animated */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Always Animated (no hover needed)
         </p>
         <div className="grid grid-cols-3 gap-6">
@@ -131,7 +131,7 @@ export default function AccentFrameDemo() {
 
       {/* Background variants + corner styles */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Background Variants & Corner Styles
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -170,7 +170,7 @@ export default function AccentFrameDemo() {
 
       {/* Corner geometry */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corner Geometry
         </p>
         <div className="grid grid-cols-3 gap-6">

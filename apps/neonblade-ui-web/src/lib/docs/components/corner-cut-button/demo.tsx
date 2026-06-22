@@ -5,7 +5,7 @@ export default function CornerCutButtonDemo() {
     <div className="flex flex-col gap-10 w-full">
       {/* Variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Variants
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -22,7 +22,7 @@ export default function CornerCutButtonDemo() {
       </div>
       {/* Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Colors
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -34,7 +34,7 @@ export default function CornerCutButtonDemo() {
       </div>
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="flex flex-wrap gap-4 items-end">
@@ -57,7 +57,7 @@ export default function CornerCutButtonDemo() {
       </div>
       {/* Corners */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corners
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -80,7 +80,7 @@ export default function CornerCutButtonDemo() {
       </div>
       {/* Hover effects */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hover Effects (hover each)
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -112,7 +112,7 @@ export default function CornerCutButtonDemo() {
       </div>
       {/* Arrow + Hero replica */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           With Arrow / Hero style
         </p>
         <div className="flex flex-wrap gap-4 items-center">

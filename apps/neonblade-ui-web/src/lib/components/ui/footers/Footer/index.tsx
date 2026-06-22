@@ -367,7 +367,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center justify-center sm:justify-start gap-3 shrink-0 w-full sm:w-auto">
             {logoNode}
             {!logo && !logoText && (
-              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/60 whitespace-nowrap">
                 {copyrightText}
               </span>
             )}
@@ -387,7 +387,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex sm:flex-row flex-col items-center gap-4 shrink-0 w-full sm:w-auto justify-center sm:justify-end">
             {socialRow}
             {(logo || logoText) && (
-              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+              <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/60 whitespace-nowrap">
                 {copyrightText}
               </span>
             )}
@@ -423,7 +423,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {socialRow && <div className="flex justify-center">{socialRow}</div>}
 
-          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/60 whitespace-nowrap">
             {copyrightText}
           </span>
         </div>
@@ -446,7 +446,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex flex-col gap-5">
             {logoNode}
             {description && (
-              <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.38] max-w-[22rem] m-0">
+              <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.65] max-w-[22rem] m-0">
                 {description}
               </p>
             )}
@@ -468,7 +468,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom bar */}
         <div className="flex items-center justify-between flex-wrap gap-3 py-4 px-8 border-t border-white/[0.07] max-w-[1280px] mx-auto w-full box-border">
-          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+          <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/60 whitespace-nowrap">
             {copyrightText}
           </span>
           {navLinks.length > 0 && (
@@ -500,7 +500,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="flex flex-col gap-5">
           {logoNode}
           {description && (
-            <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.38] max-w-[22rem] m-0">
+            <p className="font-sans text-[0.78rem] leading-[1.65] text-white/[0.65] max-w-[22rem] m-0">
               {description}
             </p>
           )}
@@ -535,7 +535,7 @@ export const Footer: React.FC<FooterProps> = ({
 
       {/* Bottom bar */}
       <div className="flex items-center justify-between flex-wrap gap-3 py-4 px-8 border-t border-white/[0.07] max-w-[1280px] mx-auto w-full box-border">
-        <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/25 whitespace-nowrap">
+        <span className="font-orbitron text-[0.58rem] tracking-[0.06em] uppercase text-white/60 whitespace-nowrap">
           {copyrightText}
         </span>
         {navLinks.length > 0 && (

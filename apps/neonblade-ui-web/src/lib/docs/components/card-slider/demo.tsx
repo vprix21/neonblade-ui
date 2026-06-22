@@ -259,7 +259,7 @@ export default function CardSliderDemo() {
     <div className="flex flex-col gap-14 w-full">
       {/* ── Single visible, bar progress ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Single item · Bar progress · Sides buttons
         </p>
         <CardSlider
@@ -278,7 +278,7 @@ export default function CardSliderDemo() {
 
       {/* ── Multi-item responsive ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Responsive · 1→2→3 visible · Dot progress · Bottom buttons · Frame
           corners
         </p>
@@ -297,7 +297,7 @@ export default function CardSliderDemo() {
 
       {/* ── Counter progress · Plus corner accents ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           2 visible · Counter progress · Hover buttons · Plus corners · Pink
         </p>
         <CardSlider
@@ -317,7 +317,7 @@ export default function CardSliderDemo() {
 
       {/* ── Scan-lines · Auto-play · Plus corner accents ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Auto-play · Scan lines · Green
         </p>
         <CardSlider

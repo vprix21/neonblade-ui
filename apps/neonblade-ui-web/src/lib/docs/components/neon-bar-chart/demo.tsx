@@ -30,7 +30,7 @@ export default function NeonBarChartDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Default vertical bars */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Vertical bars — cyan (default)
         </p>
         <NeonBarChart
@@ -43,7 +43,7 @@ export default function NeonBarChartDemo() {
 
       {/* Multi-color single series */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Multi-color — auto neon palette
         </p>
         <NeonBarChart
@@ -57,7 +57,7 @@ export default function NeonBarChartDemo() {
 
       {/* Multi-series */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Multi-series — revenue vs costs
         </p>
         <NeonBarChart
@@ -73,7 +73,7 @@ export default function NeonBarChartDemo() {
 
       {/* Horizontal bars — green */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Horizontal bars — green, high glow
         </p>
         <NeonBarChart

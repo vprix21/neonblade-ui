@@ -23,7 +23,7 @@ export default function CrosshairDemo() {
     <div className="flex flex-col gap-10 w-full">
       {/* ── Interactive preview ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Interactive Preview — move mouse inside the box
         </p>
         <div
@@ -40,7 +40,7 @@ export default function CrosshairDemo() {
               backgroundSize: "40px 40px",
             }}
           />
-          <p className="font-orbitron text-white/30 text-xs uppercase tracking-widest relative z-10 select-none">
+          <p className="font-orbitron text-white/60 text-xs uppercase tracking-widest relative z-10 select-none">
             Move cursor here
           </p>
           {/* Color selector */}
@@ -74,7 +74,7 @@ export default function CrosshairDemo() {
 
       {/* ── Color variants ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Color Variants
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -97,7 +97,7 @@ export default function CrosshairDemo() {
 
       {/* ── Size variants ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Size Variants
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -116,7 +116,7 @@ export default function CrosshairDemo() {
                 innerSize={v.innerSize}
                 animated
               />
-              <span className="font-orbitron text-white/30 text-[10px] uppercase tracking-widest">
+              <span className="font-orbitron text-white/60 text-[10px] uppercase tracking-widest">
                 {v.label}
               </span>
             </div>
@@ -126,7 +126,7 @@ export default function CrosshairDemo() {
 
       {/* ── Arc gap variants ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Arc Gap
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -140,7 +140,7 @@ export default function CrosshairDemo() {
               className="h-36 bg-white/[0.02] border border-white/10 flex flex-col items-center justify-center gap-3"
             >
               <CrosshairSVG color="pink" arcGap={v.arcGap} animated />
-              <span className="font-orbitron text-white/30 text-[10px] uppercase tracking-widest text-center px-2">
+              <span className="font-orbitron text-white/60 text-[10px] uppercase tracking-widest text-center px-2">
                 {v.label}
               </span>
             </div>
@@ -150,7 +150,7 @@ export default function CrosshairDemo() {
 
       {/* ── Glow intensity ── */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Glow Intensity
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -160,7 +160,7 @@ export default function CrosshairDemo() {
               className="h-36 bg-white/[0.02] border border-white/10 flex flex-col items-center justify-center gap-3"
             >
               <CrosshairSVG color="green" glowIntensity={g} animated />
-              <span className="font-orbitron text-white/30 text-[10px] uppercase tracking-widest">
+              <span className="font-orbitron text-white/60 text-[10px] uppercase tracking-widest">
                 {g}
               </span>
             </div>

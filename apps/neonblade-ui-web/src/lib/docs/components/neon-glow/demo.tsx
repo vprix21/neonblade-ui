@@ -5,7 +5,7 @@ export default function NeonGlowDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Single color presets */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Single color presets
         </p>
         <div className="flex flex-wrap gap-8 items-center">
@@ -24,7 +24,7 @@ export default function NeonGlowDemo() {
 
       {/* Glow intensities */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Glow intensity
         </p>
         <div className="flex flex-wrap gap-8 items-center">
@@ -45,7 +45,7 @@ export default function NeonGlowDemo() {
 
       {/* Multi-color gradient — linear directions */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Multi-color gradient — linear directions
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -77,7 +77,7 @@ export default function NeonGlowDemo() {
 
       {/* Radial & conic */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Radial &amp; conic gradients
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -108,7 +108,7 @@ export default function NeonGlowDemo() {
 
       {/* Four-color gradient */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Up to four colors
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -136,7 +136,7 @@ export default function NeonGlowDemo() {
 
       {/* Animated */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Animated — animationType=&quot;shift&quot; (linear gradient scrolls)
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -166,7 +166,7 @@ export default function NeonGlowDemo() {
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Animated — animationType=&quot;pulse&quot; (opacity fades in/out)
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -199,7 +199,7 @@ export default function NeonGlowDemo() {
 
       {/* Gradient glow */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Gradient glow — halo matches the text gradient colors
         </p>
         <div className="flex flex-wrap gap-10 items-center">

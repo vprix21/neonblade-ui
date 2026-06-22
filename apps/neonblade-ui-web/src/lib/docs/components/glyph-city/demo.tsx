@@ -32,7 +32,7 @@ export default function GlyphCityDemo() {
     <div className="space-y-4 w-full">
       {/* Type switcher */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-white/40 font-mono uppercase tracking-widest mr-1">
+        <span className="text-xs text-white/65 font-mono uppercase tracking-widest mr-1">
           Type:
         </span>
         {(["solid", "outline"] as CityType[]).map((t) => (
@@ -42,7 +42,7 @@ export default function GlyphCityDemo() {
             className={`px-3 py-1 text-xs font-mono uppercase tracking-widest border transition-colors ${
               cityType === t
                 ? "border-cyan-400 text-cyan-400 bg-cyan-400/10"
-                : "border-white/20 text-white/50 hover:border-white/40 hover:text-white/70"
+                : "border-white/20 text-white/65 hover:border-white/40 hover:text-white/70"
             }`}
           >
             {t}
@@ -52,7 +52,7 @@ export default function GlyphCityDemo() {
 
       {/* Variant switcher */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-white/40 font-mono uppercase tracking-widest mr-1">
+        <span className="text-xs text-white/65 font-mono uppercase tracking-widest mr-1">
           Variant:
         </span>
         {cityType === "solid"
@@ -63,7 +63,7 @@ export default function GlyphCityDemo() {
                 className={`px-3 py-1 text-xs font-mono uppercase tracking-widest border transition-colors ${
                   solidVariant === v
                     ? "border-fuchsia-400 text-fuchsia-400 bg-fuchsia-400/10"
-                    : "border-white/20 text-white/50 hover:border-white/40 hover:text-white/70"
+                    : "border-white/20 text-white/65 hover:border-white/40 hover:text-white/70"
                 }`}
               >
                 {v}
@@ -76,7 +76,7 @@ export default function GlyphCityDemo() {
                 className={`px-3 py-1 text-xs font-mono uppercase tracking-widest border transition-colors ${
                   outlineVariant === v
                     ? "border-fuchsia-400 text-fuchsia-400 bg-fuchsia-400/10"
-                    : "border-white/20 text-white/50 hover:border-white/40 hover:text-white/70"
+                    : "border-white/20 text-white/65 hover:border-white/40 hover:text-white/70"
                 }`}
               >
                 {v}

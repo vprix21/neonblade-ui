@@ -38,7 +38,7 @@ export function Features() {
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-4">
             Forged in the Future
           </h2>
-          <p className="text-white/65 max-w-2xl text-lg mb-4">
+          <p className="text-white/80 max-w-2xl text-lg mb-4">
             Futuristic by design, highly customizable by default, NeonBlade UI
             empowers you to ship neon-charged interfaces with total control
           </p>

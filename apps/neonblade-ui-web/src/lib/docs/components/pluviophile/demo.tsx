@@ -5,7 +5,7 @@ export default function PluviophileDemo() {
     <div className="flex flex-col gap-8 w-full">
       {/* Default */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Default rain
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">
@@ -15,7 +15,7 @@ export default function PluviophileDemo() {
 
       {/* Straight falling, slow — calm drizzle */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Straight falling — slow drizzle
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">
@@ -32,7 +32,7 @@ export default function PluviophileDemo() {
 
       {/* Heavy downpour */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Heavy downpour
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">
@@ -49,7 +49,7 @@ export default function PluviophileDemo() {
 
       {/* Wind-driven — steep angle */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Wind-driven — steep angle
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">
@@ -66,7 +66,7 @@ export default function PluviophileDemo() {
 
       {/* Neon cyan */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Neon cyan rain
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">
@@ -82,7 +82,7 @@ export default function PluviophileDemo() {
 
       {/* Neon pink */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Neon pink rain
         </p>
         <div className="h-72 w-full relative rounded-lg overflow-hidden">

@@ -285,7 +285,7 @@ export const NeonGlowCornerCutCard: React.FC<NeonGlowCornerCutCardProps> = ({
         {description && (
           <p
             className={[
-              "text-white/60 leading-[1.65] flex-grow",
+              "text-white/75 leading-[1.65] flex-grow",
               DESC_SIZE[size],
             ].join(" ")}
           >

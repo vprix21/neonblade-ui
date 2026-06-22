@@ -12,18 +12,25 @@ export default function NeonModalDemo() {
   const [animations, setAnimations] = useState<string | null>(null);
   const [bgColor, setBgColor] = useState<string | null>(null);
   const [plain, setPlain] = useState(false);
-  const [beam, setBeam] = useState<{ speed: number; length: number } | null>(null);
+  const [beam, setBeam] = useState<{ speed: number; length: number } | null>(
+    null,
+  );
   const [scrollable, setScrollable] = useState(false);
 
   return (
     <div className="flex flex-col gap-10 w-full">
       {/* Basic */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Basic
         </p>
         <div className="flex flex-wrap gap-4 items-center">
-          <CornerCutButton color="cyan" size="sm" hoverEffect="glow" onClick={() => setBasic(true)}>
+          <CornerCutButton
+            color="cyan"
+            size="sm"
+            hoverEffect="glow"
+            onClick={() => setBasic(true)}
+          >
             Open Modal
           </CornerCutButton>
           <NeonModal
@@ -32,7 +39,12 @@ export default function NeonModalDemo() {
             header={{ label: "NeonBlade UI", title: "Basic Modal" }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="cyan" hoverEffect="shift" onClick={() => setBasic(false)}>
+                <CornerCutButton
+                  size="sm"
+                  color="cyan"
+                  hoverEffect="shift"
+                  onClick={() => setBasic(false)}
+                >
                   Close
                 </CornerCutButton>
               ),
@@ -46,7 +58,7 @@ export default function NeonModalDemo() {
 
       {/* Accent Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Accent Colors
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -98,7 +110,7 @@ export default function NeonModalDemo() {
 
       {/* Background Color */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Background Color
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -128,7 +140,12 @@ export default function NeonModalDemo() {
             header={{ label: "Background", title: `bgColor="${bgColor}"` }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="cyan" hoverEffect="shift" onClick={() => setBgColor(null)}>
+                <CornerCutButton
+                  size="sm"
+                  color="cyan"
+                  hoverEffect="shift"
+                  onClick={() => setBgColor(null)}
+                >
                   Close
                 </CornerCutButton>
               ),
@@ -143,7 +160,7 @@ export default function NeonModalDemo() {
 
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -165,7 +182,12 @@ export default function NeonModalDemo() {
             header={{ label: "Size", title: `size="${sizes}"` }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="cyan" hoverEffect="shift" onClick={() => setSizes(null)}>
+                <CornerCutButton
+                  size="sm"
+                  color="cyan"
+                  hoverEffect="shift"
+                  onClick={() => setSizes(null)}
+                >
                   Close
                 </CornerCutButton>
               ),
@@ -179,23 +201,30 @@ export default function NeonModalDemo() {
 
       {/* Corners */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corners
         </p>
         <div className="flex flex-wrap gap-4 items-center">
-          {(["bottom-right", "bottom-left", "top-right", "top-left", "all", "none"] as const).map(
-            (c) => (
-              <CornerCutButton
-                key={c}
-                color="pink"
-                size="sm"
-                hoverEffect="glow"
-                onClick={() => setCorners(c)}
-              >
-                {c}
-              </CornerCutButton>
-            ),
-          )}
+          {(
+            [
+              "bottom-right",
+              "bottom-left",
+              "top-right",
+              "top-left",
+              "all",
+              "none",
+            ] as const
+          ).map((c) => (
+            <CornerCutButton
+              key={c}
+              color="pink"
+              size="sm"
+              hoverEffect="glow"
+              onClick={() => setCorners(c)}
+            >
+              {c}
+            </CornerCutButton>
+          ))}
           <NeonModal
             open={corners !== null}
             onClose={() => setCorners(null)}
@@ -212,21 +241,26 @@ export default function NeonModalDemo() {
             header={{ label: "Corner", title: `corner="${corners}"` }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="pink" hoverEffect="shift" onClick={() => setCorners(null)}>
+                <CornerCutButton
+                  size="sm"
+                  color="pink"
+                  hoverEffect="shift"
+                  onClick={() => setCorners(null)}
+                >
                   Close
                 </CornerCutButton>
               ),
             }}
           >
-            Choose which corner receives the diagonal clip-path cut — or clip all
-            four, or none at all.
+            Choose which corner receives the diagonal clip-path cut — or clip
+            all four, or none at all.
           </NeonModal>
         </div>
       </div>
 
       {/* Animations */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Animations (enter/exit)
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -249,7 +283,12 @@ export default function NeonModalDemo() {
             header={{ label: "Animation", title: `animation="${animations}"` }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="green" hoverEffect="shift" onClick={() => setAnimations(null)}>
+                <CornerCutButton
+                  size="sm"
+                  color="green"
+                  hoverEffect="shift"
+                  onClick={() => setAnimations(null)}
+                >
                   Close
                 </CornerCutButton>
               ),
@@ -263,7 +302,7 @@ export default function NeonModalDemo() {
 
       {/* Plain (no dividers) */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Plain (no dividers)
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -283,7 +322,12 @@ export default function NeonModalDemo() {
             header={{ label: "Variant", title: "Plain Modal" }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="cyan" hoverEffect="shift" onClick={() => setPlain(false)}>
+                <CornerCutButton
+                  size="sm"
+                  color="cyan"
+                  hoverEffect="shift"
+                  onClick={() => setPlain(false)}
+                >
                   Close
                 </CornerCutButton>
               ),
@@ -298,7 +342,7 @@ export default function NeonModalDemo() {
 
       {/* Border Beam */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Border Beam
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -329,7 +373,13 @@ export default function NeonModalDemo() {
           <NeonModal
             open={beam !== null}
             onClose={() => setBeam(null)}
-            color={beam?.length === 30 ? "pink" : beam?.length === 120 ? "orange" : "cyan"}
+            color={
+              beam?.length === 30
+                ? "pink"
+                : beam?.length === 120
+                  ? "orange"
+                  : "cyan"
+            }
             borderBeam={true}
             beamSpeed={beam?.speed ?? 3}
             beamLength={beam?.length ?? 60}
@@ -342,7 +392,13 @@ export default function NeonModalDemo() {
               children: (
                 <CornerCutButton
                   size="sm"
-                  color={beam?.length === 30 ? "pink" : beam?.length === 120 ? "orange" : "cyan"}
+                  color={
+                    beam?.length === 30
+                      ? "pink"
+                      : beam?.length === 120
+                        ? "orange"
+                        : "cyan"
+                  }
                   hoverEffect="shift"
                   onClick={() => setBeam(null)}
                 >
@@ -361,7 +417,7 @@ export default function NeonModalDemo() {
 
       {/* Scrollable body */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Scrollable Body
         </p>
         <div className="flex flex-wrap gap-4 items-center">
@@ -381,7 +437,12 @@ export default function NeonModalDemo() {
             header={{ label: "Overflow", title: "Scrollable Body" }}
             footer={{
               children: (
-                <CornerCutButton size="sm" color="cyan" hoverEffect="shift" onClick={() => setScrollable(false)}>
+                <CornerCutButton
+                  size="sm"
+                  color="cyan"
+                  hoverEffect="shift"
+                  onClick={() => setScrollable(false)}
+                >
                   Close
                 </CornerCutButton>
               ),

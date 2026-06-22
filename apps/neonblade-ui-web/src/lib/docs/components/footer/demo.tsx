@@ -51,7 +51,7 @@ export default function FooterDemo() {
     <div className="flex flex-col gap-2 w-full">
       {/* Minimal — Cyan */}
       <div className="space-y-2">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest px-4 pt-4">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest px-4 pt-4">
           Minimal · Cyan
         </p>
         <Footer
@@ -73,7 +73,7 @@ export default function FooterDemo() {
 
       {/* Centered — Pink */}
       <div className="space-y-2">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest px-4 pt-4">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest px-4 pt-4">
           Centered · Pink
         </p>
         <Footer
@@ -96,7 +96,7 @@ export default function FooterDemo() {
 
       {/* Columns — Green */}
       <div className="space-y-2">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest px-4 pt-4">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest px-4 pt-4">
           Columns · Green
         </p>
         <Footer
@@ -115,7 +115,7 @@ export default function FooterDemo() {
 
       {/* Mega — Cyan + newsletter */}
       <div className="space-y-2">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest px-4 pt-4">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest px-4 pt-4">
           Mega · Cyan · With Newsletter
         </p>
         <Footer

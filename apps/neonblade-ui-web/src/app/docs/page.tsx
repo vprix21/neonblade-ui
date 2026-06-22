@@ -87,7 +87,7 @@ function CodeBlock({
         </SyntaxHighlighter>
         <button
           onClick={handleCopy}
-          className={`${multiLine ? "mt-2" : ""} p-1.5 me-2 text-white/30 hover:text-[#00f3ff] transition-colors z-10`}
+          className={`${multiLine ? "mt-2" : ""} p-1.5 me-2 text-white/60 hover:text-[#00f3ff] transition-colors z-10`}
           aria-label="Copy code"
         >
           {copied ? (
@@ -201,9 +201,9 @@ export default function DocsPage() {
               Next.js
             </p>
             <CodeBlock code={`npm install tailwindcss @tailwindcss/postcss`} />
-            <p className="text-white/50 text-xs font-mono mb-5">
+            <p className="text-white/65 text-xs font-mono mb-5">
               Then add{" "}
-              <code className="text-white/50">{'@import "tailwindcss"'}</code>{" "}
+              <code className="text-white/65">{'@import "tailwindcss"'}</code>{" "}
               to your global CSS file.
             </p>
 
@@ -212,7 +212,7 @@ export default function DocsPage() {
               Vite (React)
             </p>
             <CodeBlock code={`npm install tailwindcss @tailwindcss/vite`} />
-            <p className="text-white/50 text-xs font-mono mb-5">
+            <p className="text-white/65 text-xs font-mono mb-5">
               Add the Tailwind Vite plugin, then import Tailwind in your CSS
               entry.
             </p>
@@ -236,7 +236,7 @@ export default function DocsPage() {
             </h2>
             <p className="text-white/65 leading-relaxed mb-4 ">
               NeonBlade UI ships its{" "}
-              <span className="text-white/50 font-semibold">own CLI</span>.
+              <span className="text-white/65 font-semibold">own CLI</span>.
               It&apos;s built from scratch for NeonBlade and talks directly to
               our component registry. No config files, no init steps. Run it
               anywhere in your project.

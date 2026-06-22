@@ -5,7 +5,7 @@ export default function GlitchTextDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Modes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Modes (active vs hover)
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -24,7 +24,7 @@ export default function GlitchTextDemo() {
 
       {/* Intensity */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Intensity (hover each)
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -43,7 +43,7 @@ export default function GlitchTextDemo() {
 
       {/* Speed */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Speed — active mode
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -62,7 +62,7 @@ export default function GlitchTextDemo() {
 
       {/* Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Custom channel colors (hover)
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -97,7 +97,7 @@ export default function GlitchTextDemo() {
 
       {/* Neon glow */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Neon Glow add-on
         </p>
         <div className="flex flex-wrap gap-10 items-center">

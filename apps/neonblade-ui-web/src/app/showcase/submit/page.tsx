@@ -255,7 +255,7 @@ export default function ShowcaseSubmitPage() {
           <div className="mb-10">
             <Link
               href="/showcase"
-              className="inline-flex items-center gap-1.5 text-xs font-orbitron tracking-widest text-white/40 hover:text-[#00f3ff] uppercase transition-colors mb-6"
+              className="inline-flex items-center gap-1.5 text-xs font-orbitron tracking-widest text-white/65 hover:text-[#00f3ff] uppercase transition-colors mb-6"
             >
               <svg
                 className="w-3.5 h-3.5"
@@ -301,7 +301,7 @@ export default function ShowcaseSubmitPage() {
                 onBlur={() => handleBlur("displayName")}
                 placeholder="Your name or handle"
                 autoComplete="name"
-                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.displayName && errors.displayName ? "border-[#ff00ff]/60" : "border-white/10"}`}
+                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.displayName && errors.displayName ? "border-[#ff00ff]/60" : "border-white/10"}`}
               />
               {touched.displayName && errors.displayName && (
                 <p className="mt-1.5 text-xs text-[#ff00ff]/80 font-rajdhani">
@@ -326,7 +326,7 @@ export default function ShowcaseSubmitPage() {
                 onBlur={() => handleBlur("email")}
                 placeholder="your@email.com"
                 autoComplete="email"
-                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.email && errors.email ? "border-[#ff00ff]/60" : "border-white/10"}`}
+                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.email && errors.email ? "border-[#ff00ff]/60" : "border-white/10"}`}
               />
               {touched.email && errors.email && (
                 <p className="mt-1.5 text-xs text-[#ff00ff]/80 font-rajdhani">
@@ -351,7 +351,7 @@ export default function ShowcaseSubmitPage() {
                 onBlur={() => handleBlur("country")}
                 placeholder="e.g. United States"
                 autoComplete="country-name"
-                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.country && errors.country ? "border-[#ff00ff]/60" : "border-white/10"}`}
+                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.country && errors.country ? "border-[#ff00ff]/60" : "border-white/10"}`}
               />
               {touched.country && errors.country && (
                 <p className="mt-1.5 text-xs text-[#ff00ff]/80 font-rajdhani">
@@ -373,7 +373,7 @@ export default function ShowcaseSubmitPage() {
                 onBlur={() => handleBlur("projectLink")}
                 placeholder="https://your-project.com"
                 autoComplete="off"
-                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.projectLink && errors.projectLink ? "border-[#ff00ff]/60" : "border-white/10"}`}
+                className={`w-full bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors ${touched.projectLink && errors.projectLink ? "border-[#ff00ff]/60" : "border-white/10"}`}
               />
               {touched.projectLink && errors.projectLink && (
                 <p className="mt-1.5 text-xs text-[#ff00ff]/80 font-rajdhani">
@@ -389,7 +389,7 @@ export default function ShowcaseSubmitPage() {
             <div>
               <label className="block font-orbitron text-xs tracking-widest uppercase text-white/60 mb-2">
                 Short Description{" "}
-                <span className="text-white/30 normal-case tracking-normal font-rajdhani">
+                <span className="text-white/60 normal-case tracking-normal font-rajdhani">
                   (optional)
                 </span>
               </label>
@@ -399,7 +399,7 @@ export default function ShowcaseSubmitPage() {
                 onChange={handleChange}
                 rows={3}
                 placeholder="Tell us briefly what your project is about…"
-                className="w-full bg-white/[0.03] border border-white/10 px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors resize-none"
+                className="w-full bg-white/[0.03] border border-white/10 px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors resize-none"
               />
             </div>
 
@@ -442,7 +442,7 @@ export default function ShowcaseSubmitPage() {
                   onClick={() => setDropdownOpen((o) => !o)}
                   className={`w-full flex items-center justify-between bg-white/[0.03] border px-4 py-3 text-sm font-rajdhani text-left transition-colors focus:outline-none ${touched.components && errors.components ? "border-[#ff00ff]/60" : dropdownOpen ? "border-[#00f3ff]/60" : "border-white/10"}`}
                 >
-                  <span className="text-white/20">
+                  <span className="text-white/60">
                     {registryLoading
                       ? "Loading components…"
                       : registryError
@@ -450,7 +450,7 @@ export default function ShowcaseSubmitPage() {
                         : "Select components…"}
                   </span>
                   <svg
-                    className={`w-4 h-4 text-white/40 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 text-white/65 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -473,12 +473,12 @@ export default function ShowcaseSubmitPage() {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search components…"
                         autoFocus
-                        className="w-full bg-transparent text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none"
+                        className="w-full bg-transparent text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none"
                       />
                     </div>
                     <div className="overflow-y-auto flex-1">
                       {filteredComponents.length === 0 ? (
-                        <p className="px-4 py-3 text-xs text-white/30 font-rajdhani">
+                        <p className="px-4 py-3 text-xs text-white/60 font-rajdhani">
                           No components match.
                         </p>
                       ) : (
@@ -528,7 +528,7 @@ export default function ShowcaseSubmitPage() {
                 </p>
               )}
               {form.components.length > 0 && (
-                <p className="mt-2 text-xs text-white/30 font-rajdhani">
+                <p className="mt-2 text-xs text-white/60 font-rajdhani">
                   {form.components.length} selected
                 </p>
               )}
@@ -538,7 +538,7 @@ export default function ShowcaseSubmitPage() {
             <div>
               <label className="block font-orbitron text-xs tracking-widest uppercase text-white/60 mb-2">
                 Feedback / Comments{" "}
-                <span className="text-white/30 normal-case tracking-normal font-rajdhani">
+                <span className="text-white/60 normal-case tracking-normal font-rajdhani">
                   (optional)
                 </span>
               </label>
@@ -548,7 +548,7 @@ export default function ShowcaseSubmitPage() {
                 onChange={handleChange}
                 rows={3}
                 placeholder="Any feedback or thoughts about NeonBlade UI?"
-                className="w-full bg-white/[0.03] border border-white/10 px-4 py-3 text-sm font-rajdhani text-white placeholder-white/20 focus:outline-none focus:border-[#00f3ff]/60 transition-colors resize-none"
+                className="w-full bg-white/[0.03] border border-white/10 px-4 py-3 text-sm font-rajdhani text-white placeholder-white/55 focus:outline-none focus:border-[#00f3ff]/60 transition-colors resize-none"
               />
             </div>
 

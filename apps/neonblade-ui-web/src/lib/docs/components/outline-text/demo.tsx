@@ -5,7 +5,7 @@ export default function OutlineTextDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Color presets */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Stroke color presets — transparent fill
         </p>
         <div className="flex flex-wrap gap-8 items-center">
@@ -26,7 +26,7 @@ export default function OutlineTextDemo() {
 
       {/* Solid fill variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Custom fill color
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -62,7 +62,7 @@ export default function OutlineTextDemo() {
 
       {/* Glow intensities */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hover glow intensity (hover to see)
         </p>
         <div className="flex flex-wrap gap-8 items-center">
@@ -85,7 +85,7 @@ export default function OutlineTextDemo() {
 
       {/* Stroke width */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Stroke width
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -107,7 +107,7 @@ export default function OutlineTextDemo() {
 
       {/* Hover color change */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Stroke color change on hover
         </p>
         <div className="flex flex-wrap gap-10 items-center">
@@ -134,7 +134,7 @@ export default function OutlineTextDemo() {
 
       {/* Proximity radius effect */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Proximity radius effect — move cursor near letters
         </p>
         <div className="flex flex-wrap gap-12 items-center">
@@ -165,7 +165,7 @@ export default function OutlineTextDemo() {
 
       {/* Whole-text hover (no proximity) */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Whole-text hover (proximityEffect disabled)
         </p>
         <OutlineText
@@ -182,7 +182,7 @@ export default function OutlineTextDemo() {
 
       {/* Large headline showcase */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Headline showcase
         </p>
         <OutlineText

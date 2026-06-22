@@ -5,7 +5,7 @@ export default function NavBarDemo() {
     <div className="flex flex-col gap-8 w-full p-6">
       {/* Standard — Glass */}
       <div className="space-y-2 relative z-[50]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Standard · Glass · Cyan
         </p>
         <div className="relative border border-white/10">
@@ -36,7 +36,7 @@ export default function NavBarDemo() {
 
       {/* Standard — Solid + Profile */}
       <div className="space-y-2 relative z-[45]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Standard · Solid · Pink · With Profile Menu
         </p>
         <div className="relative border border-white/10">
@@ -74,7 +74,7 @@ export default function NavBarDemo() {
 
       {/* Standard — Transparent */}
       <div className="space-y-2 relative z-[40]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Standard · Transparent · Green
         </p>
         <div className="relative border border-white/10">
@@ -98,7 +98,7 @@ export default function NavBarDemo() {
 
       {/* Standard — navAlign right */}
       <div className="space-y-2 relative z-[35]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Standard · navAlign=&quot;right&quot; · Logo Left · Items Right · Cyan
         </p>
         <div className="relative border border-white/10">
@@ -131,7 +131,7 @@ export default function NavBarDemo() {
 
       {/* Standard — navAlign right + Profile */}
       <div className="space-y-2 relative z-[30]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Standard · navAlign=&quot;right&quot; · Pink · With Profile
         </p>
         <div className="relative border border-white/10">
@@ -157,7 +157,7 @@ export default function NavBarDemo() {
 
       {/* Dock — Cyan with labels */}
       <div className="space-y-2 relative z-[20]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Dock Variant · Cyan
         </p>
         <div
@@ -237,7 +237,7 @@ export default function NavBarDemo() {
 
       {/* Dock — Pink, no labels */}
       <div className="space-y-2 relative z-[10]">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Dock Variant · Pink · No Labels
         </p>
         <div

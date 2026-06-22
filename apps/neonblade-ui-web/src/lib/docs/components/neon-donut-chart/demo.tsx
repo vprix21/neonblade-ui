@@ -26,7 +26,7 @@ export default function NeonDonutChartDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Auto palette + center label */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Traffic sources — auto palette, center label
         </p>
         <NeonDonutChart data={trafficData} height={280} legend />
@@ -34,7 +34,7 @@ export default function NeonDonutChartDemo() {
 
       {/* Preset colors — system status */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           System status — preset colors
         </p>
         <NeonDonutChart
@@ -50,7 +50,7 @@ export default function NeonDonutChartDemo() {
 
       {/* Custom hex colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Budget allocation — custom colors, pink accent
         </p>
         <NeonDonutChart

@@ -5,7 +5,7 @@ export default function BorderBeamCornerCutCardDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Beam Variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Beam Variants
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -45,7 +45,7 @@ export default function BorderBeamCornerCutCardDemo() {
 
       {/* Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Colors
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -78,7 +78,7 @@ export default function BorderBeamCornerCutCardDemo() {
 
       {/* Glow Intensity */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Glow Intensity
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -111,7 +111,7 @@ export default function BorderBeamCornerCutCardDemo() {
 
       {/* Corners */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corners
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -150,7 +150,7 @@ export default function BorderBeamCornerCutCardDemo() {
 
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
@@ -183,7 +183,7 @@ export default function BorderBeamCornerCutCardDemo() {
 
       {/* With icon / title / description */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           With Icon + Content
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

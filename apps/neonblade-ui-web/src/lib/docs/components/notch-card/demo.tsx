@@ -6,7 +6,7 @@ export default function NotchCardDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Default — top + bottom notches */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Default (top + bottom notches)
         </p>
         <div className="grid grid-cols-1 gap-6">
@@ -48,7 +48,7 @@ export default function NotchCardDemo() {
 
       {/* Notch sides */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Notch Sides
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -84,7 +84,7 @@ export default function NotchCardDemo() {
 
       {/* Beam variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Beam Variants
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -121,7 +121,7 @@ export default function NotchCardDemo() {
 
       {/* Hover effects */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Hover Effects
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -161,7 +161,7 @@ export default function NotchCardDemo() {
 
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -182,7 +182,7 @@ export default function NotchCardDemo() {
 
       {/* Custom colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Custom Colors
         </p>
         <div className="grid grid-cols-1 gap-6">
@@ -204,7 +204,7 @@ export default function NotchCardDemo() {
 
       {/* Notch shape customization */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Notch Shape
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -41,12 +41,12 @@ export default function TimelineDemo() {
     <div className="flex flex-col gap-14 w-full">
       {/* Variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Variants
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Default
             </p>
             <Timeline
@@ -57,13 +57,13 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Glow
             </p>
             <Timeline items={ITEMS_BASE} color="pink" variant="glow" animate />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Minimal
             </p>
             <Timeline
@@ -74,7 +74,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Stepped
             </p>
             <Timeline
@@ -89,24 +89,24 @@ export default function TimelineDemo() {
 
       {/* Colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Colors
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Cyan
             </p>
             <Timeline items={ITEMS_BASE.slice(0, 3)} color="cyan" />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Pink
             </p>
             <Timeline items={ITEMS_BASE.slice(0, 3)} color="pink" />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Custom #ff6600
             </p>
             <Timeline items={ITEMS_BASE.slice(0, 3)} color="#ff6600" />
@@ -116,12 +116,12 @@ export default function TimelineDemo() {
 
       {/* Dot Styles */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Dot Shapes
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Circle
             </p>
             <Timeline
@@ -131,7 +131,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Square
             </p>
             <Timeline
@@ -141,7 +141,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Diamond
             </p>
             <Timeline
@@ -155,12 +155,12 @@ export default function TimelineDemo() {
 
       {/* Dot Animations */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Dot Animations
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Pulse
             </p>
             <Timeline
@@ -170,7 +170,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Ping
             </p>
             <Timeline
@@ -184,12 +184,12 @@ export default function TimelineDemo() {
 
       {/* Line Styles */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Line Styles
         </p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Solid
             </p>
             <Timeline
@@ -199,7 +199,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Dashed
             </p>
             <Timeline
@@ -209,7 +209,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Glow
             </p>
             <Timeline
@@ -219,7 +219,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               None
             </p>
             <Timeline
@@ -233,12 +233,12 @@ export default function TimelineDemo() {
 
       {/* Alignment */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Alignment
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Left
             </p>
             <Timeline
@@ -248,7 +248,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Right
             </p>
             <Timeline
@@ -258,7 +258,7 @@ export default function TimelineDemo() {
             />
           </div>
           <div>
-            <p className="text-[10px] font-orbitron text-white/30 uppercase mb-4">
+            <p className="text-[10px] font-orbitron text-white/60 uppercase mb-4">
               Alternate
             </p>
             <Timeline

@@ -104,7 +104,7 @@ export default function ArrowLoaderDemo() {
           width: "100%",
         }}
       >
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           COLORS
         </p>
         <ArrowLoader color="cyan" height={20} />
@@ -121,7 +121,7 @@ export default function ArrowLoaderDemo() {
           width: "100%",
         }}
       >
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           DENSITY
         </p>
         <ArrowLoader color="cyan" height={10} arrowSize={6} gap={4} />
@@ -137,7 +137,7 @@ export default function ArrowLoaderDemo() {
           width: "100%",
         }}
       >
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           THICKNESS
         </p>
         <ArrowLoader color="pink" height={10} thickness={1.5} />
@@ -153,7 +153,7 @@ export default function ArrowLoaderDemo() {
           width: "100%",
         }}
       >
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           SPEED
         </p>
         <ArrowLoader color="#ffb800" height={10} speed={200} />
@@ -169,7 +169,7 @@ export default function ArrowLoaderDemo() {
           width: "100%",
         }}
       >
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           USE CASE
         </p>
         <UseCaseCard

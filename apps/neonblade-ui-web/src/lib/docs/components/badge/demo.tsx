@@ -5,7 +5,7 @@ export default function BadgeDemo() {
     <div className="flex flex-col gap-10 w-full">
       {/* Shapes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Shapes
         </p>
         <div className="flex flex-wrap gap-3 items-center">
@@ -32,7 +32,7 @@ export default function BadgeDemo() {
 
       {/* Variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Variants
         </p>
         <div className="flex flex-wrap gap-3 items-center">
@@ -68,7 +68,7 @@ export default function BadgeDemo() {
 
       {/* Dot indicators */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Dot Indicators
         </p>
         <div className="flex flex-wrap gap-3 items-center">
@@ -92,7 +92,7 @@ export default function BadgeDemo() {
 
       {/* Sizes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Sizes
         </p>
         <div className="flex flex-wrap gap-3 items-center">
@@ -110,7 +110,7 @@ export default function BadgeDemo() {
 
       {/* Glow */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Glow
         </p>
         <div className="flex flex-wrap gap-3 items-center">
@@ -128,7 +128,7 @@ export default function BadgeDemo() {
 
       {/* Custom colors */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Custom Colors
         </p>
         <div className="flex flex-wrap gap-3 items-center">

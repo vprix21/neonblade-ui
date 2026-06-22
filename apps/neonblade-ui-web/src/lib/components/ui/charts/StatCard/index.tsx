@@ -126,10 +126,7 @@ export const StatCard: React.FC<StatCardProps> = ({
 
       {/* Top row: label + icon */}
       <div className="relative z-10 flex items-start justify-between gap-2 mb-3">
-        <span
-          className="sc-label text-white/40"
-          style={{ fontSize: 10 }}
-        >
+        <span className="sc-label text-white/65" style={{ fontSize: 10 }}>
           {label}
         </span>
         {icon && (
@@ -172,12 +169,14 @@ export const StatCard: React.FC<StatCardProps> = ({
         <div className="relative z-10 flex items-center gap-1.5 mb-3">
           {trend && <TrendArrow trend={trend} />}
           {change && (
-            <span className={`${trendTextClass} text-xs font-mono font-semibold`}>
+            <span
+              className={`${trendTextClass} text-xs font-mono font-semibold`}
+            >
               {change}
             </span>
           )}
           {changeLabel && (
-            <span className="text-white/30 text-xs">{changeLabel}</span>
+            <span className="text-white/60 text-xs">{changeLabel}</span>
           )}
         </div>
       )}

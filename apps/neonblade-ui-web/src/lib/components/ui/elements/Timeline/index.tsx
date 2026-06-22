@@ -227,7 +227,7 @@ export function Timeline({
         ].join(" ");
 
         const descClasses = [
-          "text-white/45 leading-[1.55]",
+          "text-white/65 leading-[1.55]",
           variant === "minimal" ? "text-[0.73rem]" : "text-[0.8rem]",
         ].join(" ");
 

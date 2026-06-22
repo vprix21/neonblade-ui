@@ -12,7 +12,7 @@ export default function NeonInputDemo() {
     <div className="flex flex-col gap-10 w-full max-w-lg mx-auto">
       {/* â”€â”€ Search input with icon â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Search
         </p>
         <NeonInput
@@ -26,7 +26,7 @@ export default function NeonInputDemo() {
 
       {/* Corner cut variants */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Corner Cuts
         </p>
         <div className="flex flex-col gap-4">
@@ -56,7 +56,7 @@ export default function NeonInputDemo() {
 
       {/* Border styles */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Border Styles
         </p>
         <div className="flex flex-col gap-4">
@@ -80,7 +80,7 @@ export default function NeonInputDemo() {
 
       {/* Background opacity */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Background Opacity
         </p>
         <div className="flex flex-col gap-4">
@@ -110,7 +110,7 @@ export default function NeonInputDemo() {
 
       {/* States  */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           States
         </p>
         <div className="flex flex-col gap-4">
@@ -130,7 +130,7 @@ export default function NeonInputDemo() {
 
       {/* â”€â”€ Login form â€” real use-case showcase â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Login Form
         </p>
         <div
@@ -141,7 +141,7 @@ export default function NeonInputDemo() {
             <p className="text-sm font-orbitron text-[#00f3ff] tracking-widest uppercase">
               System Access
             </p>
-            <p className="text-[10px] font-mono text-white/30 mt-1">
+            <p className="text-[10px] font-mono text-white/60 mt-1">
               Enter your credentials to continue
             </p>
           </div>

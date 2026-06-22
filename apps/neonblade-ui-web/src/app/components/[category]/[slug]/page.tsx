@@ -111,7 +111,7 @@ export default async function ComponentPage({
             </Link>
           )}
         </div>
-        <p className="text-lg text-white/50">{c.description}</p>
+        <p className="text-lg text-white/80">{c.description}</p>
       </div>
 
       {/* CLI Installation */}
@@ -182,7 +182,7 @@ export default async function ComponentPage({
                           {prop.default}
                         </code>
                       ) : (
-                        <span className="text-white/30 italic">-</span>
+                        <span className="text-white/60 italic">-</span>
                       )}
                     </td>
                     <td className="p-4 text-white/60 font-light">

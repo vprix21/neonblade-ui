@@ -94,7 +94,7 @@ export default function DocTabs({
           <div className="relative group animate-in fade-in duration-300">
             <button
               onClick={() => handleCopy(usage)}
-              className="absolute top-4 right-6 p-2 text-white/50 hover:text-[#00f3ff] rounded transition-colors z-10"
+              className="absolute top-4 right-6 p-2 text-white/65 hover:text-[#00f3ff] rounded transition-colors z-10"
             >
               {copied ? (
                 <Check className="w-4 h-4 text-[#39ff14]" />
@@ -128,7 +128,7 @@ export default function DocTabs({
               )}
               <button
                 onClick={() => handleCopy(source)}
-                className={`absolute ${cssSource ? "top-10" : "top-4"} right-6 p-2 text-white/50 hover:text-[#00f3ff] rounded transition-colors z-10`}
+                className={`absolute ${cssSource ? "top-10" : "top-4"} right-6 p-2 text-white/65 hover:text-[#00f3ff] rounded transition-colors z-10`}
               >
                 {copied ? (
                   <Check className="w-4 h-4 text-[#39ff14]" />
@@ -158,7 +158,7 @@ export default function DocTabs({
                 </h3>
                 <button
                   onClick={() => handleCopyCss(cssSource)}
-                  className="absolute top-10 right-6 p-2 text-white/50 hover:text-[#00f3ff] rounded transition-colors z-10"
+                  className="absolute top-10 right-6 p-2 text-white/65 hover:text-[#00f3ff] rounded transition-colors z-10"
                 >
                   {copiedCss ? (
                     <Check className="w-4 h-4 text-[#39ff14]" />
@@ -187,7 +187,7 @@ export default function DocTabs({
 
       {dependencies && dependencies.length > 0 && activeTab !== "preview" && (
         <div className="mt-8 pt-8 border-t border-white/5 select-none animate-in fade-in duration-300">
-          <h4 className="text-xs font-orbitron text-white/40 mb-3 uppercase tracking-widest">
+          <h4 className="text-xs font-orbitron text-white/65 mb-3 uppercase tracking-widest">
             Dependencies
           </h4>
           <div className="flex flex-wrap gap-2">

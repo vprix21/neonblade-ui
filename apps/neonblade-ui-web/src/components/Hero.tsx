@@ -49,7 +49,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-base sm:text-base md:text-lg lg:text-xl text-white/70 max-w-2xl mb-8 sm:mb-12 font-light">
+          <p className="text-base sm:text-base md:text-lg lg:text-xl text-white/80 max-w-2xl mb-8 sm:mb-12 font-light">
             Not your typical UI library. NeonBlade delivers{" "}
             <span className="font-semibold">free & open-source</span> futuristic
             React components with neon aesthetics, sharp edges, and total design

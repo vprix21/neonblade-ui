@@ -53,7 +53,7 @@ export function CommunityFeedback() {
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron tracking-tighter mb-4">
             Loved by the React Community
           </h2>
-          <p className="text-white/65 max-w-xl text-base">
+          <p className="text-white/80 max-w-xl text-base">
             Real feedback from developers across Reddit who found NeonBlade in
             the wild.
           </p>
@@ -92,7 +92,7 @@ function FeedbackCard({ item }: { item: FeedbackItem }) {
       </div>
 
       {/* Quote text */}
-      <p className="text-white/65 text-md leading-relaxed mb-6 flex-1">
+      <p className="text-white/80 text-md leading-relaxed mb-6 flex-1">
         {item.quote}
       </p>
 

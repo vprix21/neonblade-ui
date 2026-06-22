@@ -38,7 +38,7 @@ export default function NeonLineChartDemo() {
     <div className="flex flex-col gap-12 w-full">
       {/* Single series — cyan area */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Single series — area (default)
         </p>
         <NeonLineChart
@@ -51,7 +51,7 @@ export default function NeonLineChartDemo() {
 
       {/* Multi series */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Multi-series — cyan + pink
         </p>
         <NeonLineChart
@@ -67,7 +67,7 @@ export default function NeonLineChartDemo() {
 
       {/* Step / no area / green */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Step curve — line only, high glow
         </p>
         <NeonLineChart
@@ -85,7 +85,7 @@ export default function NeonLineChartDemo() {
 
       {/* Minimal — no axes */}
       <div className="space-y-3">
-        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-orbitron text-white/65 uppercase tracking-widest">
           Minimal — no axes, pink
         </p>
         <NeonLineChart
