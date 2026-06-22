@@ -1,6 +1,6 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
-import CircularProgress from "@/lib/components/ui/elements/CircularProgress";
+import CircularProgress from "@/lib/components/ui/progress/CircularProgress";
 
 function useAnimatedValue(target: number, duration = 1400): number {
   const [current, setCurrent] = useState(0);

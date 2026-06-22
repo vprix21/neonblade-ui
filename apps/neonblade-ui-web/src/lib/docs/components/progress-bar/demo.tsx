@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import ProgressBar from "@/lib/components/ui/elements/ProgressBar";
+import ProgressBar from "@/lib/components/ui/progress/ProgressBar";
 
 function useAnimatedValue(target: number, duration = 1200): number {
   const [current, setCurrent] = useState(0);

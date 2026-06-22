@@ -1,5 +1,5 @@
 ﻿"use client";
-import ArrowLoader from "@/lib/components/ui/elements/ArrowLoader";
+import ArrowLoader from "@/lib/components/ui/progress/ArrowLoader";
 
 function UseCaseCard({
   title,
