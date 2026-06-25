@@ -612,3 +612,160 @@
 .gt-chaos.activeglitch::after {
   animation: gt-anim-2-chaos calc(var(--gt-speed, 0.8s) * 1.1) infinite linear;
 }
+
+/* ================================================================
+   Multi-colour layers + persistent split  (additive)
+
+   The 2-channel ::before/::after split is fixed at two colours. `layers`
+   renders ANY number of extra colour channels as cloned spans (each with its
+   own X/Y rest offset), and `rest="split"` keeps the channels visible at rest
+   as a frozen split that jitters in place. Both reuse the keyframes above.
+================================================================ */
+
+/* the visible, on-top copy of the text (rendered when `layers` are present) */
+.glitch-wrapper__base {
+  position: relative;
+  z-index: 2;
+}
+
+/* when explicit `layers` are used, the default 2-channel pseudo split is off */
+.gt-layered {
+  isolation: isolate; /* keep the negative-context channels above the page */
+}
+.gt-layered::before,
+.gt-layered::after {
+  content: none;
+}
+
+/* an extra colour channel — a real span, so any number of colours can stack */
+.glitch-wrapper__layer {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* auto height + inherited line-height → the clone's text lays out on the SAME
+     first-line baseline as the base copy, so the channels register exactly */
+  z-index: 0; /* behind the base text, above the page */
+  pointer-events: none;
+  user-select: none;
+  color: var(--gt-lcolor, currentColor);
+  /* rest offset via the `translate` longhand so the glitch keyframes can animate
+     `transform` ON TOP without clobbering the channel's resting displacement */
+  translate: var(--gt-lx, 0) var(--gt-ly, 0);
+}
+
+/* neon glow lands on the base copy when layered */
+.gt-layered.gt-neon .glitch-wrapper__base {
+  text-shadow:
+    0 0 8px var(--gt-glow-color, #00f3ff),
+    0 0 20px var(--gt-glow-color, #00f3ff),
+    0 0 45px color-mix(in srgb, var(--gt-glow-color, #00f3ff) 45%, transparent);
+}
+.gt-layered.gt-neon-flicker .glitch-wrapper__base {
+  animation: gt-neon-flicker 4s linear infinite;
+}
+
+/* rest=split → the default channels stay shown at rest (frozen split) */
+.gt-rest-split:not(.gt-layered)::before,
+.gt-rest-split:not(.gt-layered)::after {
+  clip-path: inset(0);
+}
+
+/* persistent-split keyframes: the channel stays MOSTLY visible while it jitters
+   and periodically slices — a constant multi-colour body with frayed edges */
+@keyframes gt-split-1 {
+  0% { clip-path: inset(0 0 0 0); transform: translate(-1px, 0); }
+  12% { clip-path: inset(0 0 62% 0); transform: translate(2px, -1px); }
+  24% { clip-path: inset(0 0 0 0); transform: translate(-2px, 1px); }
+  38% { clip-path: inset(48% 0 18% 0); transform: translate(2px, 0); }
+  52% { clip-path: inset(0 0 0 0); transform: translate(-1px, -1px); }
+  66% { clip-path: inset(70% 0 6% 0); transform: translate(1px, 1px); }
+  80% { clip-path: inset(0 0 0 0); transform: translate(-2px, 0); }
+  92% { clip-path: inset(10% 0 66% 0); transform: translate(1px, -1px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(-1px, 0); }
+}
+@keyframes gt-split-2 {
+  0% { clip-path: inset(0 0 0 0); transform: translate(1px, 0); }
+  14% { clip-path: inset(56% 0 12% 0); transform: translate(-2px, 1px); }
+  28% { clip-path: inset(0 0 0 0); transform: translate(2px, -1px); }
+  44% { clip-path: inset(8% 0 72% 0); transform: translate(-1px, 1px); }
+  58% { clip-path: inset(0 0 0 0); transform: translate(2px, 0); }
+  72% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, -1px); }
+  86% { clip-path: inset(0 0 0 0); transform: translate(1px, 1px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(1px, 0); }
+}
+
+/* ---- layer-clone animation: (mode) × (intensity), mirroring the pseudo pair.
+        odd clone → channel 1, even clone → channel 2 ------------------------ */
+.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer),
+.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation: glitch-anim-1 var(--gt-speed, 1s) infinite linear;
+}
+.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer),
+.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation: glitch-anim-2 calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+/* active mode → continuous (never-hidden) keyframes for the clones */
+.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation-name: glitch-active-1;
+}
+.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation-name: glitch-active-2;
+}
+/* subtle */
+.gt-subtle.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer),
+.gt-subtle.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation: gt-anim-1-subtle var(--gt-speed, 1s) infinite linear;
+}
+.gt-subtle.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer),
+.gt-subtle.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation: gt-anim-2-subtle calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+/* heavy */
+.gt-heavy.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer),
+.gt-heavy.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation: gt-anim-1-heavy var(--gt-speed, 1s) infinite linear;
+}
+.gt-heavy.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer),
+.gt-heavy.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation: gt-anim-2-heavy calc(var(--gt-speed, 1s) * 1.2) infinite linear;
+}
+/* chaos */
+.gt-chaos.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer),
+.gt-chaos.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation: gt-anim-1-chaos var(--gt-speed, 0.8s) infinite linear;
+}
+.gt-chaos.hoverglitch:hover:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer),
+.gt-chaos.activeglitch:not(.gt-rest-split) .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation: gt-anim-2-chaos calc(var(--gt-speed, 0.8s) * 1.1) infinite linear;
+}
+
+/* rest=split → the never-hidden split keyframes, for pseudos AND clones */
+.gt-rest-split.activeglitch:not(.gt-layered)::before,
+.gt-rest-split.hoverglitch:hover:not(.gt-layered)::before,
+.gt-rest-split.activeglitch .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer),
+.gt-rest-split.hoverglitch:hover .glitch-wrapper__layer:nth-child(odd of .glitch-wrapper__layer) {
+  animation: gt-split-1 var(--gt-speed, 1s) infinite steps(1, end);
+}
+.gt-rest-split.activeglitch:not(.gt-layered)::after,
+.gt-rest-split.hoverglitch:hover:not(.gt-layered)::after,
+.gt-rest-split.activeglitch .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer),
+.gt-rest-split.hoverglitch:hover .glitch-wrapper__layer:nth-child(even of .glitch-wrapper__layer) {
+  animation: gt-split-2 calc(var(--gt-speed, 1s) * 1.25) infinite steps(1, end);
+}
+/* a 3rd+ layer in a split stack: desync its timing so the slicing stays busy */
+.gt-rest-split.activeglitch .glitch-wrapper__layer:nth-child(3n of .glitch-wrapper__layer),
+.gt-rest-split.hoverglitch:hover .glitch-wrapper__layer:nth-child(3n of .glitch-wrapper__layer) {
+  animation-duration: calc(var(--gt-speed, 1s) * 0.85);
+}
+
+/* honour reduced-motion — freeze to the rest stack */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-wrapper::before,
+  .glitch-wrapper::after,
+  .glitch-wrapper__layer,
+  .glitch-wrapper__base {
+    animation: none !important;
+  }
+}
