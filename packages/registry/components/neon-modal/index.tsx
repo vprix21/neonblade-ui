@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import "./modal.css";
+import "./neon-modal.css";
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -240,8 +240,24 @@ function CloseIcon() {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-      <line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+      <line
+        x1="1"
+        y1="1"
+        x2="9"
+        y2="9"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
+      <line
+        x1="9"
+        y1="1"
+        x2="1"
+        y2="9"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
     </svg>
   );
 }
@@ -284,17 +300,23 @@ export const NeonModal: React.FC<NeonModalProps> = ({
   const glowClass = GLOW_CLASSES[glowIntensity];
 
   const dialogEnterClass =
-    animation === "slide" ? "nm-dialog-enter-slide"
-    : animation === "scale" ? "nm-dialog-enter-scale"
-    : "";
+    animation === "slide"
+      ? "nm-dialog-enter-slide"
+      : animation === "scale"
+        ? "nm-dialog-enter-scale"
+        : "";
 
   const dialogExitClass =
-    animation === "slide" ? "nm-dialog-exit-slide"
-    : animation === "scale" ? "nm-dialog-exit-scale"
-    : "";
+    animation === "slide"
+      ? "nm-dialog-exit-slide"
+      : animation === "scale"
+        ? "nm-dialog-exit-scale"
+        : "";
 
   // Mount on client only (portal requires document)
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Open / close lifecycle with exit-animation delay
   useEffect(() => {
@@ -316,13 +338,17 @@ export const NeonModal: React.FC<NeonModalProps> = ({
     if (visible) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
+      return () => {
+        document.body.style.overflow = prev;
+      };
     }
   }, [visible]);
 
   // Escape key handler
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => { if (closeOnEscape && e.key === "Escape") onClose(); },
+    (e: KeyboardEvent) => {
+      if (closeOnEscape && e.key === "Escape") onClose();
+    },
     [closeOnEscape, onClose],
   );
 
@@ -345,39 +371,49 @@ export const NeonModal: React.FC<NeonModalProps> = ({
     animatingOut ? "nm-exit" : "nm-enter",
     backdropBlur ? "nm-backdrop-blur" : "",
     backdropOverlay ? "nm-backdrop-overlay" : "",
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const wrapperClasses = [
     "nm-wrapper",
     glowClass,
     animatingOut ? dialogExitClass : dialogEnterClass,
     className,
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   // Border frame: beam overrides static background when active
   const borderFrameClasses = [
     "nm-border-frame",
     clipClass,
     borderBeam ? "nm-beam" : "",
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const titleId = ariaLabel ? undefined : "nm-title";
 
   const modal = (
     <div
       className={backdropClasses}
-      onClick={(e) => { if (closeOnBackdrop && e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => {
+        if (closeOnBackdrop && e.target === e.currentTarget) onClose();
+      }}
     >
       <div
         className={wrapperClasses}
-        style={{
-          "--nm-color": resolvedColor,
-          "--nm-corner": `${cornerSize}px`,
-          "--nm-beam-speed": `${beamSpeed}s`,
-          "--nm-beam-length": `${beamLength}deg`,
-          width: "100%",
-          maxWidth: SIZE_MAP[size],
-        } as React.CSSProperties}
+        style={
+          {
+            "--nm-color": resolvedColor,
+            "--nm-corner": `${cornerSize}px`,
+            "--nm-beam-speed": `${beamSpeed}s`,
+            "--nm-beam-length": `${beamLength}deg`,
+            width: "100%",
+            maxWidth: SIZE_MAP[size],
+          } as React.CSSProperties
+        }
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
@@ -395,7 +431,11 @@ export const NeonModal: React.FC<NeonModalProps> = ({
         >
           {/* Header */}
           {header && (
-            <div className={["nm-header", dividers ? "nm-divider-header" : ""].filter(Boolean).join(" ")}>
+            <div
+              className={["nm-header", dividers ? "nm-divider-header" : ""]
+                .filter(Boolean)
+                .join(" ")}
+            >
               <div>
                 {header.label && (
                   <p className="nm-header-label">{header.label}</p>
@@ -420,10 +460,9 @@ export const NeonModal: React.FC<NeonModalProps> = ({
           {/* Body */}
           {children !== undefined && (
             <div
-              className={[
-                "nm-body",
-                scrollableBody ? "nm-body-scrollable" : "",
-              ].filter(Boolean).join(" ")}
+              className={["nm-body", scrollableBody ? "nm-body-scrollable" : ""]
+                .filter(Boolean)
+                .join(" ")}
             >
               {children}
             </div>
@@ -436,7 +475,9 @@ export const NeonModal: React.FC<NeonModalProps> = ({
                 "nm-footer",
                 dividers ? "nm-divider-footer" : "",
                 FOOTER_ALIGN_CLASSES[footer.align ?? "right"],
-              ].filter(Boolean).join(" ")}
+              ]
+                .filter(Boolean)
+                .join(" ")}
             >
               {footer.children}
             </div>

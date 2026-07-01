@@ -6,8 +6,8 @@
       "url": "https://neonbladeui-registry.vercel.app/components/neon-modal/index.tsx"
     },
     {
-      "path": "components/neonblade-ui/neon-modal/modal.css",
-      "url": "https://neonbladeui-registry.vercel.app/components/neon-modal/modal.css"
+      "path": "components/neonblade-ui/neon-modal/neon-modal.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-modal/neon-modal.css"
     }
   ],
   "dependencies": []
