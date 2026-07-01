@@ -1,0 +1,14 @@
+{
+  "name": "neon-modal",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-modal/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-modal/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/neon-modal/modal.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-modal/modal.css"
+    }
+  ],
+  "dependencies": []
+}

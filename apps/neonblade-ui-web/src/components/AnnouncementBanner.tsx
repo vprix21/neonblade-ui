@@ -6,38 +6,9 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New component: Arrow Loader",
+    text: "New template: Nexus - Analytics Dashboard",
   },
-  {
-    tag: "New",
-    color: "#39ff14",
-    text: "New component: Circular Progress",
-  },
-  {
-    tag: "Updated",
-    color: "#00f3ff",
-    text: "New component: Progress Bar",
-  },
-  {
-    tag: "Updated",
-    color: "#00f3ff",
-    text: "New component: Neon Toggle",
-  },
-  {
-    tag: "Updated",
-    color: "#00f3ff",
-    text: "New component: Neon Checkbox",
-  },
-  {
-    tag: "Updated",
-    color: "#00f3ff",
-    text: "New component: Neon Select",
-  },
-  {
-    tag: "Updated",
-    color: "#00f3ff",
-    text: "New component: Neon Table",
-  },
+
   {
     tag: "Announcement",
     color: "#00f3ff",

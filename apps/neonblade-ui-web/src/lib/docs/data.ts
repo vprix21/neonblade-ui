@@ -132,21 +132,21 @@ export const categories: CategoryData[] = [
         slug: "progress-bar",
         description:
           "Horizontal neon progress bar with solid, segmented, striped, and pulse variants. Supports size presets, glow, percentage label, and smooth fill transition.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Circular Progress",
         slug: "circular-progress",
         description:
           "SVG arc-based radial progress ring with neon glow filter, animated fill transition, tick mark at origin, center value display, and sub-label. Zero dependencies beyond React.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Arrow Loader",
         slug: "arrow-loader",
         description:
           "Full-width indeterminate loader with flowing SVG chevron arrows. Fully customizable arrow size, gap, thickness, speed, and color.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },
@@ -230,21 +230,21 @@ export const categories: CategoryData[] = [
         slug: "neon-toggle",
         description:
           "An accessible switch/toggle with a neon-glowing track, animated thumb slide, spark particle burst on activation, size presets, and full color control. Supports controlled and uncontrolled modes.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Checkbox",
         slug: "neon-checkbox",
         description:
           "Corner-cut cyberpunk checkbox with neon glow on check, animated SVG checkmark, indeterminate state (dash), size presets, and accessible aria-checked semantics.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Neon Select",
         slug: "neon-select",
         description:
           "Fully accessible custom dropdown with keyboard navigation (arrows/enter/esc), controlled and uncontrolled modes, neon glow trigger, animated clip-path listbox panel, and disabled option support.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },
@@ -284,7 +284,7 @@ export const categories: CategoryData[] = [
         slug: "neon-table",
         description:
           "Sortable, paginated data table with neon scan-line row hover, corner accent marks, animated sort indicators, custom cell renderers, striped rows, and cyberpunk pagination controls.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },
