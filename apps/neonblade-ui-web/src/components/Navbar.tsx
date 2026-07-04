@@ -6,12 +6,30 @@ import { cn } from "../lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { VscGithub } from "react-icons/vsc";
+import { RiTwitterXFill } from "react-icons/ri";
+
+function formatStars(count: number): string {
+  if (count >= 1000) return (count / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+  return count.toString();
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
+  const [stars, setStars] = useState<number | null>(null);
   const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/vprix21/neonblade-ui")
+      .then((res) => res.json())
+      .then((data) => {
+        if (typeof data.stargazers_count === "number") {
+          setStars(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,14 +117,33 @@ export function Navbar() {
             >
               Showcase
             </Link>
+
             <a
               href="https://github.com/vprix21/neonblade-ui"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-white/80 hover:text-[#00f3ff] hover:text-glow-cyan transition-all"
+              className="group/gh flex items-center gap-0 rounded-full border border-white/15 bg-white/5 hover:border-[#00f3ff]/50 hover:bg-[#00f3ff]/10 transition-all duration-200 overflow-hidden"
+              style={{ boxShadow: "0 0 0 0 rgba(0,243,255,0)" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.boxShadow =
+                  "0 0 10px rgba(0,243,255,0.15)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.boxShadow = "0 0 0 0 rgba(0,243,255,0)")
+              }
             >
-              <VscGithub size={18} />
+              <span className="flex items-center px-2.5 py-1 text-white/70 group-hover/gh:text-[#00f3ff] transition-colors">
+                <VscGithub size={16} />
+              </span>
+              {stars !== null && (
+                <>
+                  <span className="w-px h-4 bg-white/15 group-hover/gh:bg-[#00f3ff]/30 transition-colors" />
+                  <span className="flex items-center gap-0.5 px-2.5 py-1 text-xs font-mono text-white/70 group-hover/gh:text-[#00f3ff] transition-colors">
+                    ★ {formatStars(stars)}
+                  </span>
+                </>
+              )}
             </a>
           </div>
 
@@ -160,11 +197,22 @@ export function Navbar() {
               href="https://github.com/vprix21/neonblade-ui"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 px-2 flex items-center gap-2 text-white/70 hover:text-[#00f3ff] hover:bg-[#00f3ff]/5 rounded transition-all"
+              className="py-2 px-2 flex items-center transition-all"
               onClick={() => setMobileOpen(false)}
             >
-              <VscGithub size={16} />
-              GitHub
+              <span className="flex items-center gap-0 rounded-full border border-white/15 bg-white/5 hover:border-[#00f3ff]/50 hover:bg-[#00f3ff]/10 overflow-hidden transition-all">
+                <span className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-orbitron text-white/70 hover:text-[#00f3ff] transition-colors">
+                  <VscGithub size={16} />
+                </span>
+                {stars !== null && (
+                  <>
+                    <span className="w-px h-4 bg-white/15" />
+                    <span className="flex items-center gap-0.5 px-3 py-1.5 text-xs font-mono text-white/70 hover:text-[#00f3ff] transition-colors">
+                      ★ {formatStars(stars)}
+                    </span>
+                  </>
+                )}
+              </span>
             </a>
           </div>
         </div>

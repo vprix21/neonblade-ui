@@ -72,6 +72,20 @@ export function Footer() {
           </a>
         </div>
 
+        <p className="text-xs font-orbitron text-white/50 tracking-wider mb-6 text-center">
+          Don&apos;t miss a drop. follow on{" "}
+          <a
+            href="https://x.com/vi_x1x6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-1 align-middle justify-center"
+            aria-label="X (Twitter)"
+          >
+            <RiTwitterXFill size={12} />
+          </a>{" "}
+          for the latest updates &amp; releases.
+        </p>
+
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
         <div className="flex flex-col items-center gap-1 text-center">
