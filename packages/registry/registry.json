@@ -171,10 +171,15 @@
       "name": "neon-select",
       "category": "inputs",
       "description": "Accessible custom dropdown with keyboard navigation, controlled/uncontrolled modes, neon glow trigger, animated clip-path listbox, and disabled option support."
+    },
+    {
+      "name": "fox-cursor",
+      "category": "cursors",
+      "description": "Geometric fox face cursor. Customizable color, size, stroke width, glow, and fill opacity."
     }
   ],
   "stats": {
-    "totalComponents": 34,
+    "totalComponents": 35,
     "totalTemplates": 1
   }
 }

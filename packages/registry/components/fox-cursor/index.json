@@ -1,0 +1,10 @@
+{
+  "name": "fox-cursor",
+  "files": [
+    {
+      "path": "components/neonblade-ui/fox-cursor/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/fox-cursor/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

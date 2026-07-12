@@ -33,6 +33,7 @@ import CircularProgressDemo from "./components/circular-progress/demo";
 import NeonToggleDemo from "./components/neon-toggle/demo";
 import NeonCheckboxDemo from "./components/neon-checkbox/demo";
 import NeonSelectDemo from "./components/neon-select/demo";
+import FoxCursor from "./components/fox-cursor/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -70,6 +71,7 @@ const demoMap: Record<string, React.FC> = {
   "neon-toggle": NeonToggleDemo,
   "neon-checkbox": NeonCheckboxDemo,
   "neon-select": NeonSelectDemo,
+  "fox-cursor": FoxCursor,
 };
 
 export default demoMap;

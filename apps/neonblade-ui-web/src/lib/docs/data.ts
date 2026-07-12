@@ -273,6 +273,13 @@ export const categories: CategoryData[] = [
           "Animated crosshair cursor with two counter-rotating partial rings and a center crosshair. Fully customizable colors, sizes, ring thickness, arc gap, speed, and glow.",
         is_new: false,
       },
+      {
+        name: "Fox Cursor",
+        slug: "fox-cursor",
+        description:
+          "Geometric fox face cursor. Customizable color, size, stroke width, glow, and fill opacity.",
+        is_new: true,
+      },
     ],
   },
   {

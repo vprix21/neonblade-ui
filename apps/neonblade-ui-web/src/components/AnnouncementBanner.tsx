@@ -10,6 +10,12 @@ const ANNOUNCEMENTS = [
   },
 
   {
+    tag: "New",
+    color: "#39ff14",
+    text: "New Component: Fox Cursor",
+  },
+
+  {
     tag: "Announcement",
     color: "#00f3ff",
     text: "Showcase submissions are open!",

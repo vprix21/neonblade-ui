@@ -34,6 +34,7 @@ import circularProgressProps from "./components/circular-progress/props";
 import neonToggleProps from "./components/neon-toggle/props";
 import neonCheckboxProps from "./components/neon-checkbox/props";
 import neonSelectProps from "./components/neon-select/props";
+import foxCursor from "./components/fox-cursor/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -71,6 +72,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "neon-toggle": neonToggleProps,
   "neon-checkbox": neonCheckboxProps,
   "neon-select": neonSelectProps,
+  "fox-cursor": foxCursor,
 };
 
 export default propsMap;
