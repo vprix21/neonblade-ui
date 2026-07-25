@@ -148,6 +148,13 @@ export const categories: CategoryData[] = [
           "Full-width indeterminate loader with flowing SVG chevron arrows. Fully customizable arrow size, gap, thickness, speed, and color.",
         is_new: false,
       },
+      {
+        name: "Rain Loader",
+        slug: "rain-loader",
+        description:
+          "Four bars drop in one by one with staggered delay, hold together at the base, then fall away in sequence — a smooth, satisfying loop. Ideal for card, image, and section skeleton loaders.",
+        is_new: true,
+      },
     ],
   },
   {
@@ -278,7 +285,7 @@ export const categories: CategoryData[] = [
         slug: "fox-cursor",
         description:
           "Geometric fox face cursor. Customizable color, size, stroke width, glow, and fill opacity.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

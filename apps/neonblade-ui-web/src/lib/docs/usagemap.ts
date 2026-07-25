@@ -34,6 +34,7 @@ import neonToggleUsage from "./components/neon-toggle/usage";
 import neonCheckboxUsage from "./components/neon-checkbox/usage";
 import neonSelectUsage from "./components/neon-select/usage";
 import foxCursor from "./components/fox-cursor/usage";
+import rainLoaderUsage from "./components/rain-loader/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -72,6 +73,7 @@ const usageMap: Record<string, string> = {
   "neon-checkbox": neonCheckboxUsage,
   "neon-select": neonSelectUsage,
   "fox-cursor": foxCursor,
+  "rain-loader": rainLoaderUsage,
 };
 
 export default usageMap;

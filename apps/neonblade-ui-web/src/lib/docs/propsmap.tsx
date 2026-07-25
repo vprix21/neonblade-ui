@@ -35,6 +35,7 @@ import neonToggleProps from "./components/neon-toggle/props";
 import neonCheckboxProps from "./components/neon-checkbox/props";
 import neonSelectProps from "./components/neon-select/props";
 import foxCursor from "./components/fox-cursor/props";
+import rainLoaderProps from "./components/rain-loader/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -73,6 +74,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "neon-checkbox": neonCheckboxProps,
   "neon-select": neonSelectProps,
   "fox-cursor": foxCursor,
+  "rain-loader": rainLoaderProps,
 };
 
 export default propsMap;

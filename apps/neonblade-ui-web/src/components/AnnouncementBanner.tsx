@@ -6,13 +6,7 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New template: Nexus - Analytics Dashboard",
-  },
-
-  {
-    tag: "New",
-    color: "#39ff14",
-    text: "New Component: Fox Cursor",
+    text: "New Component: Rain Loader",
   },
 
   {

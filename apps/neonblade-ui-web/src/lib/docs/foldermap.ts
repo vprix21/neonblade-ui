@@ -36,5 +36,6 @@ const folderMap: Record<string, string> = {
   "neon-checkbox": "NeonCheckbox",
   "neon-select": "NeonSelect",
   "fox-cursor": "FoxCursor",
+  "rain-loader": "RainLoader",
 };
 export default folderMap;

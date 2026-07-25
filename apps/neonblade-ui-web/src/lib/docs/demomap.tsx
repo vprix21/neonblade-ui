@@ -34,6 +34,7 @@ import NeonToggleDemo from "./components/neon-toggle/demo";
 import NeonCheckboxDemo from "./components/neon-checkbox/demo";
 import NeonSelectDemo from "./components/neon-select/demo";
 import FoxCursor from "./components/fox-cursor/demo";
+import RainLoaderDemo from "./components/rain-loader/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -72,6 +73,7 @@ const demoMap: Record<string, React.FC> = {
   "neon-checkbox": NeonCheckboxDemo,
   "neon-select": NeonSelectDemo,
   "fox-cursor": FoxCursor,
+  "rain-loader": RainLoaderDemo,
 };
 
 export default demoMap;

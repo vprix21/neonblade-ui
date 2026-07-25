@@ -176,10 +176,15 @@
       "name": "fox-cursor",
       "category": "cursors",
       "description": "Geometric fox face cursor. Customizable color, size, stroke width, glow, and fill opacity."
+    },
+    {
+      "name": "rain-loader",
+      "category": "progress",
+      "description": "Four bars drop in one by one with staggered delay, hold together at the base, then fall away in sequence. Ideal for card, image, and section skeleton loaders."
     }
   ],
   "stats": {
-    "totalComponents": 35,
+    "totalComponents": 36,
     "totalTemplates": 1
   }
 }

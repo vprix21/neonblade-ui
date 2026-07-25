@@ -1,0 +1,10 @@
+{
+  "name": "rain-loader",
+  "files": [
+    {
+      "path": "components/neonblade-ui/rain-loader/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/rain-loader/index.tsx"
+    }
+  ],
+  "dependencies": []
+}
