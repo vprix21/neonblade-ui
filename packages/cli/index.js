@@ -119,12 +119,12 @@ function maybeShowTelemetryNotice() {
 }
 
 /**
- * Fire-and-forget: send a download event to the telemetry endpoint.
- * Uses Node's built-in https module — zero extra dependencies.
- * Never throws, never blocks, never prints anything on failure.
+ * Send a download event to the telemetry endpoint.
+ * Returns a promise that resolves when the request completes or times out.
+ * Always resolves (never rejects) — telemetry must never break the CLI.
  */
 function sendTelemetry(component) {
-  if (isTelemetryDisabled()) return;
+  if (isTelemetryDisabled()) return Promise.resolve();
 
   const payload = JSON.stringify({
     event_type: "download",
@@ -133,30 +133,47 @@ function sendTelemetry(component) {
     cli_version: CLI_VERSION,
   });
 
-  try {
-    const url = new URL(TELEMETRY_ENDPOINT);
-    const req = https.request(
-      {
-        hostname: url.hostname,
-        path: url.pathname,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Length": Buffer.byteLength(payload),
-          "User-Agent": `neonblade-cli/${CLI_VERSION}`,
-        },
-        timeout: 3000, // 3 s max — never block the user
-      },
-      () => {}, // response handler — we don't need to read it
-    );
+  const debug = process.env.NEONBLADE_DEBUG === "1";
 
-    req.on("error", () => {}); // silently ignore network errors
-    req.on("timeout", () => req.destroy());
-    req.write(payload);
-    req.end();
-  } catch {
-    // Silently ignore any synchronous errors
-  }
+  return new Promise((resolve) => {
+    try {
+      const url = new URL(TELEMETRY_ENDPOINT);
+      const req = https.request(
+        {
+          hostname: url.hostname,
+          path: url.pathname,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(payload),
+            "User-Agent": `neonblade-cli/${CLI_VERSION}`,
+          },
+          timeout: 3000,
+        },
+        (res) => {
+          if (debug) console.log(`  ${c.dim(`[telemetry] status: ${res.statusCode}`)}`);
+          resolve();
+        },
+      );
+
+      req.on("error", (err) => {
+        if (debug) console.log(`  ${c.dim(`[telemetry] error: ${err.message}`)}`);
+        resolve(); // never reject
+      });
+
+      req.on("timeout", () => {
+        if (debug) console.log(`  ${c.dim("[telemetry] timed out after 3s")}`);
+        req.destroy();
+        resolve();
+      });
+
+      req.write(payload);
+      req.end();
+    } catch (err) {
+      if (debug) console.log(`  ${c.dim(`[telemetry] threw: ${err.message}`)}`);
+      resolve();
+    }
+  });
 }
 
 // ── Entry point ────────────────────────────────────────────────────────────────
@@ -250,11 +267,11 @@ async function addComponent(component) {
 
   const manifest = await fetchManifest(component);
 
-  // ── Fire telemetry ping (non-blocking) ──────────────────────
+  // ── Fire telemetry ping (awaited with 3s timeout) ────────────────
   // Sent right after the manifest is confirmed valid, before files
-  // are written. If the download fails later, we've still counted
-  // the intent — consistent with how npm/pip count installs.
-  sendTelemetry(component);
+  // are written. Awaited so the process doesn't exit before the
+  // request completes.
+  await sendTelemetry(component);
 
   const componentsBase =
     path.basename(userBase) === "components"

@@ -82,8 +82,7 @@ export async function POST(req: NextRequest) {
       cli_version: body.cli_version ? String(body.cli_version).slice(0, 20) : undefined,
     };
 
-    // Fire insert — don't await if Supabase is slow; respond immediately
-    insertEvent(safe).catch(() => {});
+    await insertEvent(safe).catch(() => {});
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch {
