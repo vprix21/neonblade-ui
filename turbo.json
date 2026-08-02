@@ -6,7 +6,7 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["FIREBASE_SERVICE_ACCOUNT_KEY", "RESEND_API_KEY"]
+      "env": ["FIREBASE_SERVICE_ACCOUNT_KEY", "RESEND_API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"]
     },
     "lint": {
       "dependsOn": ["^lint"]
