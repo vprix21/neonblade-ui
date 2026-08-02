@@ -8,6 +8,7 @@ import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import NeonGlowCornerCutCard from "@/lib/components/ui/cards/NeonGlowCornerCutCard";
+import { telemetry } from "@/lib/telemetry/client";
 
 SyntaxHighlighter.registerLanguage("tsx", tsx);
 SyntaxHighlighter.registerLanguage("typescript", typescript);
@@ -19,6 +20,8 @@ interface ComponentTabsProps {
   cssSource?: string;
   usage: string;
   dependencies: string[];
+  /** Component slug for telemetry (e.g. "rain-loader"). */
+  component?: string;
 }
 
 export default function DocTabs({
@@ -27,6 +30,7 @@ export default function DocTabs({
   cssSource,
   usage,
   dependencies,
+  component = "",
 }: ComponentTabsProps) {
   const [activeTab, setActiveTab] = useState<"preview" | "usage" | "source">(
     "preview",
@@ -59,8 +63,14 @@ export default function DocTabs({
     setTimeout(() => setCopiedState(false), 2000);
   };
 
-  const handleCopy = (text: string) => copyToClipboard(text, setCopied);
-  const handleCopyCss = (text: string) => copyToClipboard(text, setCopiedCss);
+  const handleCopy = (text: string) => {
+    copyToClipboard(text, setCopied);
+    if (component) telemetry.copy(component, activeTab === "usage" ? "usage" : "source");
+  };
+  const handleCopyCss = (text: string) => {
+    copyToClipboard(text, setCopiedCss);
+    if (component) telemetry.copy(component, "css");
+  };
 
   return (
     <div className="space-y-4 pt-6">

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.111.0",
     "@types/three": "^0.184.1",
     "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",

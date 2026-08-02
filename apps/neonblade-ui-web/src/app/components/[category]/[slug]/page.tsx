@@ -12,6 +12,7 @@ import usageMap from "@/lib/docs/usagemap";
 import folderMap from "@/lib/docs/foldermap";
 import propsMap from "@/lib/docs/propsmap";
 import demoMap from "@/lib/docs/demomap";
+import { PageViewTracker } from "@/components/PageViewTracker";
 
 async function getComponentFiles(
   category: string,
@@ -90,6 +91,7 @@ export default async function ComponentPage({
 
   return (
     <div className="max-w-4xl mx-auto space-y-12 pb-24 animate-in fade-in duration-500 min-h-screen">
+      <PageViewTracker component={slug} />
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <h1 className="text-4xl font-bold font-orbitron text-white tracking-wide">
@@ -133,6 +135,7 @@ export default async function ComponentPage({
         cssSource={cssSource}
         usage={usageMap[slug]}
         dependencies={meta.dependencies || []}
+        component={slug}
       >
         <div
           className={`w-full flex items-center justify-center bg-[#050505] border border-white/10 relative ${slug === "navbar" ? "p-0 min-h-0 overflow-visible" : "p-8 min-h-[400px] overflow-hidden"}`}

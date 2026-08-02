@@ -2,9 +2,16 @@
 
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
+const os = require("os");
+const crypto = require("crypto");
 const { execSync } = require("child_process");
 
 const BASE_URL = "https://neonbladeui-registry.vercel.app";
+const TELEMETRY_ENDPOINT =
+  process.env.NEONBLADE_TELEMETRY_ENDPOINT ||
+  "https://neonbladeui.neuronrush.com/api/telemetry";
+const CLI_VERSION = require("./package.json").version;
 
 // ── ANSI color helpers ─────────────────────────────────────────────────────────
 const c = {
@@ -35,14 +42,137 @@ const log = {
   line: () => console.log(`  ${c.dim("─".repeat(46))}`),
 };
 
+// ── Telemetry ──────────────────────────────────────────────────────────────────
+// Config lives at ~/.neonblade/config.json
+// Telemetry is ON by default (opt-out). Users can disable with:
+//   npx neonblade telemetry disable
+// or by setting NEONBLADE_TELEMETRY=false in their environment.
+
+const CONFIG_DIR = path.join(os.homedir(), ".neonblade");
+const CONFIG_FILE = path.join(CONFIG_DIR, "config.json");
+
+function readConfig() {
+  try {
+    return JSON.parse(fs.readFileSync(CONFIG_FILE, "utf-8"));
+  } catch {
+    return {};
+  }
+}
+
+function writeConfig(data) {
+  try {
+    fs.mkdirSync(CONFIG_DIR, { recursive: true });
+    const current = readConfig();
+    fs.writeFileSync(
+      CONFIG_FILE,
+      JSON.stringify({ ...current, ...data }, null, 2),
+    );
+  } catch {
+    // Silently ignore — config write failures must never break the CLI
+  }
+}
+
+function isTelemetryDisabled() {
+  // Env var takes priority
+  if (process.env.NEONBLADE_TELEMETRY === "false") return true;
+  const cfg = readConfig();
+  return cfg.telemetry === false;
+}
+
+/** Returns a stable anonymous session ID for this machine. */
+function getAnonymousId() {
+  const cfg = readConfig();
+  if (cfg.anonymousId) return cfg.anonymousId;
+
+  // Generate once, hash machine hostname so it's not reversible
+  const raw = `${os.hostname()}-${Date.now()}-${Math.random()}`;
+  const id = crypto.createHash("sha256").update(raw).digest("hex").slice(0, 32);
+  writeConfig({ anonymousId: id });
+  return id;
+}
+
+/**
+ * Show the one-time telemetry notice (only on first ever run).
+ * Stored in ~/.neonblade/config.json as { noticeShown: true }.
+ */
+function maybeShowTelemetryNotice() {
+  const cfg = readConfig();
+  if (cfg.noticeShown) return;
+
+  console.log(`  ${c.dim("─".repeat(54))}`);
+  console.log();
+  console.log(`  ${c.bold(c.white("Telemetry Notice"))}`);
+  console.log();
+  console.log(`  ${c.dim("NeonBlade UI collects anonymous data about which")}`);
+  console.log(
+    `  ${c.dim("components are downloaded. No personal information")}`,
+  );
+  console.log(`  ${c.dim("is ever collected.")}`);
+  console.log();
+  console.log(`  To opt out:  ${c.cyan("npx neonblade telemetry disable")}`);
+  console.log(`  Learn more:  ${c.dim("https://neonbladeui.com/telemetry")}`);
+  console.log();
+  console.log(`  ${c.dim("─".repeat(54))}`);
+  console.log();
+
+  writeConfig({ noticeShown: true });
+}
+
+/**
+ * Fire-and-forget: send a download event to the telemetry endpoint.
+ * Uses Node's built-in https module — zero extra dependencies.
+ * Never throws, never blocks, never prints anything on failure.
+ */
+function sendTelemetry(component) {
+  if (isTelemetryDisabled()) return;
+
+  const payload = JSON.stringify({
+    event_type: "download",
+    component,
+    session_id: getAnonymousId(),
+    cli_version: CLI_VERSION,
+  });
+
+  try {
+    const url = new URL(TELEMETRY_ENDPOINT);
+    const req = https.request(
+      {
+        hostname: url.hostname,
+        path: url.pathname,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(payload),
+          "User-Agent": `neonblade-cli/${CLI_VERSION}`,
+        },
+        timeout: 3000, // 3 s max — never block the user
+      },
+      () => {}, // response handler — we don't need to read it
+    );
+
+    req.on("error", () => {}); // silently ignore network errors
+    req.on("timeout", () => req.destroy());
+    req.write(payload);
+    req.end();
+  } catch {
+    // Silently ignore any synchronous errors
+  }
+}
+
 // ── Entry point ────────────────────────────────────────────────────────────────
 async function main() {
-  const [command, component] = process.argv.slice(2);
+  const [command, subcommand] = process.argv.slice(2);
 
   banner();
 
   if (!command || command === "--help" || command === "-h") {
     printHelp();
+    return;
+  }
+
+  // ── Telemetry management commands ──────────────────────────────
+  if (command === "telemetry") {
+    handleTelemetryCommand(subcommand);
     return;
   }
 
@@ -54,16 +184,60 @@ async function main() {
   }
 
   // no component name → show available
-  if (!component) {
+  if (!subcommand) {
     await listComponents();
     return;
   }
 
-  await addComponent(component);
+  await addComponent(subcommand);
+}
+
+// ── Telemetry sub-commands ─────────────────────────────────────────────────────
+function handleTelemetryCommand(sub) {
+  switch (sub) {
+    case "disable":
+      writeConfig({ telemetry: false });
+      log.success("Telemetry disabled. No usage data will be collected.");
+      console.log(
+        `  ${c.dim("To re-enable: ")}${c.cyan("npx neonblade telemetry enable")}`,
+      );
+      console.log();
+      break;
+
+    case "enable":
+      writeConfig({ telemetry: true });
+      log.success(
+        "Telemetry enabled. Thank you for helping improve NeonBlade UI!",
+      );
+      console.log();
+      break;
+
+    case "status":
+      if (isTelemetryDisabled()) {
+        log.warn(`Telemetry is ${c.yellow("disabled")}.`);
+      } else {
+        log.success(`Telemetry is ${c.green("enabled")}.`);
+      }
+      console.log(`  ${c.dim("Anonymous ID:")} ${c.dim(getAnonymousId())}`);
+      console.log();
+      break;
+
+    default:
+      log.error(`Unknown telemetry sub-command: ${c.yellow(`"${sub || ""}"`)}`);
+      console.log();
+      console.log(
+        `  ${c.bold("Usage")}  ${c.cyan("npx neonblade telemetry")} ${c.yellow("<disable|enable|status>")}`,
+      );
+      console.log();
+      process.exit(1);
+  }
 }
 
 // ── Add component ──────────────────────────────────────────────────────────────
 async function addComponent(component) {
+  // Show notice on very first run (before anything else happens)
+  maybeShowTelemetryNotice();
+
   const projectRoot = process.cwd();
   const appRoot = findAppPath(projectRoot);
   const defaultBase = detectDefaultBase(appRoot);
@@ -75,6 +249,12 @@ async function addComponent(component) {
   console.log();
 
   const manifest = await fetchManifest(component);
+
+  // ── Fire telemetry ping (non-blocking) ──────────────────────
+  // Sent right after the manifest is confirmed valid, before files
+  // are written. If the download fails later, we've still counted
+  // the intent — consistent with how npm/pip count installs.
+  sendTelemetry(component);
 
   const componentsBase =
     path.basename(userBase) === "components"
@@ -170,6 +350,18 @@ function printHelp() {
   );
   console.log(
     `    ${c.cyan("npx neonblade add")}                 List all available components`,
+  );
+  console.log();
+  console.log(`  ${c.bold("Telemetry")}`);
+  console.log();
+  console.log(
+    `    ${c.cyan("npx neonblade telemetry disable")}   Stop sending anonymous usage data`,
+  );
+  console.log(
+    `    ${c.cyan("npx neonblade telemetry enable")}    Re-enable usage data collection`,
+  );
+  console.log(
+    `    ${c.cyan("npx neonblade telemetry status")}    Show current telemetry status`,
   );
   console.log();
   console.log(`  ${c.dim("Docs → https://neonbladeui.com")}`);
