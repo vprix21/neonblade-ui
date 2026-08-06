@@ -132,6 +132,54 @@ export default function GlitchTextDemo() {
           </div>
         </div>
       </div>
+
+      {/* Multi-colour palettes */}
+      <div className="space-y-3">
+        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+          Palettes — multi-colour stacks (active)
+        </p>
+        <div className="flex flex-wrap gap-10 items-center">
+          {(["anaglyph", "cmyk", "spectrum"] as const).map((p) => (
+            <div
+              key={p}
+              className="text-3xl font-bold font-orbitron uppercase text-white"
+            >
+              <GlitchText text={p} mode="active" palette={p} offset={3}>
+                {p}
+              </GlitchText>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Persistent split + custom layers */}
+      <div className="space-y-3">
+        <p className="text-xs font-orbitron text-white/40 uppercase tracking-widest">
+          Persistent split + custom layers
+        </p>
+        <div className="flex flex-wrap gap-10 items-center">
+          <div className="text-4xl font-bold font-orbitron uppercase italic text-white">
+            <GlitchText
+              text="Shine"
+              mode="active"
+              rest="split"
+              speed="fast"
+              layers={[
+                { color: "#fb40e9", x: -5, y: 2 },
+                { color: "#03c3ff", x: 3, y: -3 },
+                { color: "#000000", x: 2, y: -2 },
+              ]}
+            >
+              Shine
+            </GlitchText>
+          </div>
+          <div className="text-3xl font-bold font-orbitron uppercase text-white">
+            <GlitchText text="Split" mode="active" rest="split" palette="tiktok" offset={3}>
+              Split
+            </GlitchText>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

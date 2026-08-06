@@ -25,6 +25,25 @@ export type GTIntensity = "subtle" | "normal" | "heavy" | "chaos";
  */
 export type GTSpeed = "slow" | "normal" | "fast" | "frenzy";
 
+/** One extra colour channel: a colour plus its resting X/Y offset (px, or any
+ *  CSS length / custom-property string so it can be theme-swapped). */
+export type GTLayer = {
+  color: GTColor;
+  /** Resting horizontal offset. Number → px. @default 0 */
+  x?: number | string;
+  /** Resting vertical offset. Number → px (negative = up). @default 0 */
+  y?: number | string;
+};
+
+/** Curated multi-colour channel stacks. Each expands into `layers`, its spread
+ *  scaled by `offset`:
+ *  - `anaglyph`  cyan + red on opposite diagonals (the stereoscopic 3-D split)
+ *  - `tiktok`    cyan + red split horizontally (the logo)
+ *  - `cmyk`      cyan / magenta / yellow — where the channels overlap they
+ *                generate blue / red / green
+ *  - `spectrum`  six hues in spectral order, warm one way / cool the other */
+export type GTPalette = "anaglyph" | "tiktok" | "cmyk" | "spectrum";
+
 // ---- Maps --------------------------------------------------
 
 const COLOR_PRESETS: Record<string, string> = {
@@ -42,6 +61,35 @@ const SPEED_MAP: Record<GTSpeed, string> = {
 
 // For chaos the default speed is tighter; override if user doesn't set one.
 const CHAOS_DEFAULT_SPEED = "0.8s";
+
+// Each preset is a function of the base `offset` (px) — so `offset` is the
+// spread control. Channels are listed back → front (first paints farthest back).
+const PALETTES: Record<GTPalette, (o: number) => GTLayer[]> = {
+  anaglyph: (o) => [
+    { color: "#00f0ff", x: -o, y: -o },
+    { color: "#ff003c", x: o, y: o },
+  ],
+  tiktok: (o) => [
+    { color: "#00f2ea", x: -1.5 * o, y: 0 },
+    { color: "#ff0050", x: 1.5 * o, y: 0 },
+  ],
+  cmyk: (o) => [
+    { color: "#00aeef", x: -1.5 * o, y: 0 },
+    { color: "#ec008c", x: 0, y: 1.5 * o },
+    { color: "#fff200", x: 1.5 * o, y: 0 },
+  ],
+  spectrum: (o) => [
+    { color: "#ff00e5", x: -3 * o, y: o },
+    { color: "#2b4bff", x: -2 * o, y: 0.6 * o },
+    { color: "#00f0ff", x: -o, y: 0 },
+    { color: "#00ff66", x: o, y: 0 },
+    { color: "#ffe600", x: 2 * o, y: -0.6 * o },
+    { color: "#ff003c", x: 3 * o, y: -o },
+  ],
+};
+
+const len = (v: number | string | undefined): string =>
+  v === undefined ? "0" : typeof v === "number" ? `${v}px` : v;
 
 // ---- Props -------------------------------------------------
 
@@ -120,6 +168,28 @@ export interface GlitchTextProps extends HTMLAttributes<HTMLSpanElement> {
 
   /** @deprecated use glitchDuration or speed instead */
   glitchDuration?: number;
+
+  /**
+   * Whether the split is visible at rest.
+   * - `clean` — channels hide until the glitch plays (default)
+   * - `split` — channels stay shown as a frozen split that jitters in place
+   * @default "clean"
+   */
+  rest?: "clean" | "split";
+
+  /**
+   * Extra colour channels rendered as stacked clones, each with its own X/Y
+   * rest offset. When provided, REPLACES the `colorA` / `colorB` split — the way
+   * multi-colour wordmarks (3+ channels) are built.
+   */
+  layers?: GTLayer[];
+
+  /**
+   * A curated multi-colour preset (`anaglyph` / `tiktok` / `cmyk` / `spectrum`)
+   * whose spread scales with `offset`. Shorthand for `layers` — an explicit
+   * `layers` prop overrides it.
+   */
+  palette?: GTPalette;
 }
 
 // ---- Component ---------------------------------------------
@@ -138,6 +208,9 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
   neonFlicker = false,
   glowColor,
   glitchDuration, // legacy
+  rest = "clean",
+  layers,
+  palette,
   className = "",
   style,
   ...props
@@ -155,6 +228,15 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
   const resolvedGlow = glowColor
     ? (COLOR_PRESETS[glowColor] ?? glowColor)
     : resolvedB;
+
+  // explicit layers win; otherwise expand a palette preset (scaled by offset)
+  const resolvedLayers =
+    layers && layers.length > 0
+      ? layers
+      : palette
+        ? PALETTES[palette](offset)
+        : undefined;
+  const hasLayers = !!resolvedLayers && resolvedLayers.length > 0;
 
   // Speed resolution: customSpeed > legacy glitchDuration > speed preset
   let resolvedSpeed: string;
@@ -174,6 +256,8 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
     "relative inline-block",
     mode === "active" ? "activeglitch" : "hoverglitch",
     intensity !== "normal" ? `gt-${intensity}` : "",
+    rest === "split" ? "gt-rest-split" : "",
+    hasLayers ? "gt-layered" : "",
     neon ? "gt-neon" : "",
     neon && neonFlicker ? "gt-neon-flicker" : "",
     className,
@@ -197,8 +281,42 @@ export const GlitchText: React.FC<GlitchTextProps> = ({
       }
       {...props}
     >
-      {mounted ? children : <span className="invisible">{children}</span>}
-      {!mounted && <span className="absolute inset-0">{children}</span>}
+      {hasLayers ? (
+        <>
+          {resolvedLayers!.map((l, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="glitch-wrapper__layer"
+              data-text={resolvedText}
+              style={
+                {
+                  "--gt-lcolor": COLOR_PRESETS[l.color] ?? l.color,
+                  "--gt-lx": len(l.x),
+                  "--gt-ly": len(l.y),
+                } as React.CSSProperties
+              }
+            >
+              {children}
+            </span>
+          ))}
+<span className="glitch-wrapper__base">
+  {mounted ? (
+    children
+  ) : (
+    <>
+      <span className="invisible">{children}</span>
+      <span className="absolute inset-0">{children}</span>
+    </>
+  )}
+</span>
+        </>
+      ) : (
+        <>
+          {mounted ? children : <span className="invisible">{children}</span>}
+          {!mounted && <span className="absolute inset-0">{children}</span>}
+        </>
+      )}
     </span>
   );
 };
