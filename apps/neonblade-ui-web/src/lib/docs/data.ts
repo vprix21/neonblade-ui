@@ -153,7 +153,7 @@ export const categories: CategoryData[] = [
         slug: "rain-loader",
         description:
           "Four bars drop in one by one with staggered delay, hold together at the base, then fall away in sequence — a smooth, satisfying loop. Ideal for card, image, and section skeleton loaders.",
-        is_new: true,
+        is_new: false,
       },
       {
         name: "Turbine Loader",
