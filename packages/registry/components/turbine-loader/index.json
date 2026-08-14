@@ -1,0 +1,14 @@
+{
+  "name": "turbine-loader",
+  "files": [
+    {
+      "path": "components/neonblade-ui/turbine-loader/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/turbine-loader/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/turbine-loader/turbine-loader.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/turbine-loader/turbine-loader.css"
+    }
+  ],
+  "dependencies": []
+}

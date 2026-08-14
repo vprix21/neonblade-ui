@@ -181,10 +181,15 @@
       "name": "rain-loader",
       "category": "progress",
       "description": "Four bars drop in one by one with staggered delay, hold together at the base, then fall away in sequence. Ideal for card, image, and section skeleton loaders."
+    },
+    {
+      "name": "turbine-loader",
+      "category": "progress",
+      "description": "A mechanical turbine-style spinner with concentric counter-rotating rings, full color and glow control, and customizable blade count, speed, and proportions."
     }
   ],
   "stats": {
-    "totalComponents": 36,
+    "totalComponents": 37,
     "totalTemplates": 1
   }
 }

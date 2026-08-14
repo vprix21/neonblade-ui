@@ -155,6 +155,13 @@ export const categories: CategoryData[] = [
           "Four bars drop in one by one with staggered delay, hold together at the base, then fall away in sequence — a smooth, satisfying loop. Ideal for card, image, and section skeleton loaders.",
         is_new: true,
       },
+      {
+        name: "Turbine Loader",
+        slug: "turbine-loader",
+        description:
+          "A mechanical turbine-style spinner with one or more concentric rings, counter-rotating blades, and full control over color, size, blade count, speed, glow, and proportions.",
+        is_new: true,
+      },
     ],
   },
   {

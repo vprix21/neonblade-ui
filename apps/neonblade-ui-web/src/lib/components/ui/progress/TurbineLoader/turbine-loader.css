@@ -1,0 +1,34 @@
+/* ── TurbineLoader ───────────────────────────────────────────────────────── */
+
+.turbine-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.tl-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.tl-ring {
+  animation: tl-spin var(--tl-speed, 1800ms) linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  will-change: transform;
+}
+
+.tl-ring--reverse {
+  animation-direction: reverse;
+}
+
+@keyframes tl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
