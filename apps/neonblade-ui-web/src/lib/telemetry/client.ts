@@ -45,7 +45,7 @@ function isOptedOut(): boolean {
 }
 
 // ── Event types ────────────────────────────────────────────────
-export type TelemetryEventType = "page_view" | "copy" | "cli_copy";
+export type TelemetryEventType = "copy" | "cli_copy";
 
 export interface TelemetryPayload {
   event_type: TelemetryEventType;
@@ -81,16 +81,6 @@ function send(payload: TelemetryPayload): void {
 
 // ── Public API ─────────────────────────────────────────────────
 export const telemetry = {
-  /** Track a component doc page view. */
-  pageView(component: string): void {
-    send({
-      event_type: "page_view",
-      component,
-      referrer:
-        typeof document !== "undefined" ? document.referrer || "direct" : undefined,
-    });
-  },
-
   /** Track a copy button click on Usage / Source / CSS tab. */
   copy(component: string, tab: "usage" | "source" | "css"): void {
     send({ event_type: "copy", component, tab });

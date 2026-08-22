@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
  * is working before connecting the database.
  */
 
-const VALID_EVENTS = ["page_view", "copy", "download"] as const;
+const VALID_EVENTS = ["copy", "download"] as const;
 type EventType = (typeof VALID_EVENTS)[number];
 
 interface TelemetryBody {
