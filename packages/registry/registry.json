@@ -186,10 +186,15 @@
       "name": "turbine-loader",
       "category": "progress",
       "description": "A mechanical turbine-style spinner with concentric counter-rotating rings, full color and glow control, and customizable blade count, speed, and proportions."
+    },
+    {
+      "name": "grid-floor",
+      "category": "backgrounds",
+      "description": "Animated retro-futuristic perspective grid floor rendered on canvas. Customizable line color, glow, speed, columns, rows, horizon position, and opacity."
     }
   ],
   "stats": {
-    "totalComponents": 37,
+    "totalComponents": 38,
     "totalTemplates": 1
   }
 }

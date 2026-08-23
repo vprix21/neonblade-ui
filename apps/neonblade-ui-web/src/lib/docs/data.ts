@@ -67,6 +67,14 @@ export const categories: CategoryData[] = [
         is_new: false,
         demo: "/demo/holographic-terrain",
       },
+      {
+        name: "Grid Floor",
+        slug: "grid-floor",
+        description:
+          "Canvas-based perspective synthwave grid with scrolling horizontal lines, neon glow, and configurable horizon.",
+        is_new: true,
+        demo: "/demo/grid-floor",
+      },
     ],
   },
   {
@@ -160,7 +168,7 @@ export const categories: CategoryData[] = [
         slug: "turbine-loader",
         description:
           "A mechanical turbine-style spinner with one or more concentric rings, counter-rotating blades, and full control over color, size, blade count, speed, glow, and proportions.",
-        is_new: true,
+        is_new: false,
       },
     ],
   },

@@ -36,6 +36,7 @@ import NeonSelectDemo from "./components/neon-select/demo";
 import FoxCursor from "./components/fox-cursor/demo";
 import RainLoaderDemo from "./components/rain-loader/demo";
 import TurbineLoaderDemo from "./components/turbine-loader/demo";
+import GridFloorDemo from "./components/grid-floor/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -76,6 +77,7 @@ const demoMap: Record<string, React.FC> = {
   "fox-cursor": FoxCursor,
   "rain-loader": RainLoaderDemo,
   "turbine-loader": TurbineLoaderDemo,
+  "grid-floor": GridFloorDemo,
 };
 
 export default demoMap;

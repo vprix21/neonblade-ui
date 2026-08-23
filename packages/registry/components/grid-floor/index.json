@@ -1,0 +1,10 @@
+{
+  "name": "grid-floor",
+  "files": [
+    {
+      "path": "components/neonblade-ui/grid-floor/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/grid-floor/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

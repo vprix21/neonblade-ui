@@ -38,5 +38,6 @@ const folderMap: Record<string, string> = {
   "fox-cursor": "FoxCursor",
   "rain-loader": "RainLoader",
   "turbine-loader": "TurbineLoader",
+  "grid-floor": "GridFloor",
 };
 export default folderMap;
