@@ -72,8 +72,17 @@ export const categories: CategoryData[] = [
         slug: "grid-floor",
         description:
           "Canvas-based perspective synthwave grid with scrolling horizontal lines, neon glow, and configurable horizon.",
-        is_new: true,
+        is_new: false,
+        is_updated: true,
         demo: "/demo/grid-floor",
+      },
+      {
+        name: "Grid Scene",
+        slug: "grid-scene",
+        description:
+          "Canvas-based perspective grid with both a floor and a mirrored ceiling meeting at a shared glowing horizon — classic synthwave room effect.",
+        is_new: true,
+        demo: "/demo/grid-scene",
       },
     ],
   },

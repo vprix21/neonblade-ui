@@ -1,0 +1,10 @@
+{
+  "name": "grid-scene",
+  "files": [
+    {
+      "path": "components/neonblade-ui/grid-scene/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/grid-scene/index.tsx"
+    }
+  ],
+  "dependencies": []
+}

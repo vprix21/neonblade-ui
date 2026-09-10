@@ -191,10 +191,15 @@
       "name": "grid-floor",
       "category": "backgrounds",
       "description": "Animated retro-futuristic perspective grid floor rendered on canvas. Customizable line color, glow, speed, columns, rows, horizon position, and opacity."
+    },
+    {
+      "name": "grid-scene",
+      "category": "backgrounds",
+      "description": "Canvas-based perspective grid with a floor and mirrored ceiling meeting at a shared horizon — classic synthwave room effect. Configurable gap, line color, glow, speed, columns, rows, and opacity."
     }
   ],
   "stats": {
-    "totalComponents": 38,
+    "totalComponents": 39,
     "totalTemplates": 1
   }
 }

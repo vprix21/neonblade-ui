@@ -39,5 +39,6 @@ const folderMap: Record<string, string> = {
   "rain-loader": "RainLoader",
   "turbine-loader": "TurbineLoader",
   "grid-floor": "GridFloor",
+  "grid-scene": "GridScene",
 };
 export default folderMap;

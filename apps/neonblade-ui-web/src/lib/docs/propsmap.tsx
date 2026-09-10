@@ -38,6 +38,7 @@ import foxCursor from "./components/fox-cursor/props";
 import rainLoaderProps from "./components/rain-loader/props";
 import turbineLoaderProps from "./components/turbine-loader/props";
 import gridFloorProps from "./components/grid-floor/props";
+import gridSceneProps from "./components/grid-scene/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -79,6 +80,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "rain-loader": rainLoaderProps,
   "turbine-loader": turbineLoaderProps,
   "grid-floor": gridFloorProps,
+  "grid-scene": gridSceneProps,
 };
 
 export default propsMap;

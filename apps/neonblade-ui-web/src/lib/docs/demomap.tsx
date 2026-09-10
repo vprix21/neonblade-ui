@@ -37,6 +37,7 @@ import FoxCursor from "./components/fox-cursor/demo";
 import RainLoaderDemo from "./components/rain-loader/demo";
 import TurbineLoaderDemo from "./components/turbine-loader/demo";
 import GridFloorDemo from "./components/grid-floor/demo";
+import GridSceneDemo from "./components/grid-scene/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -78,6 +79,7 @@ const demoMap: Record<string, React.FC> = {
   "rain-loader": RainLoaderDemo,
   "turbine-loader": TurbineLoaderDemo,
   "grid-floor": GridFloorDemo,
+  "grid-scene": GridSceneDemo,
 };
 
 export default demoMap;

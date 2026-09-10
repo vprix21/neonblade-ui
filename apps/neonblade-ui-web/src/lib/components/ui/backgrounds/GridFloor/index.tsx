@@ -73,11 +73,8 @@ export function GridFloor({
       ctx.fillRect(0, 0, width, height);
 
       ctx.shadowBlur = 0;
-      ctx.lineWidth = lineWidth;
-      ctx.strokeStyle = lineColor;
-      ctx.globalAlpha = opacity;
 
-      // Vertical perspective lines — spread at horizon, fan to 2× width at bottom
+      // Vertical perspective lines — gradient stroke: transparent at horizon, opaque further down
       const spread = width * 2;
       const bottomStep = spread / columns;
       const topSpread = width;
@@ -85,28 +82,45 @@ export function GridFloor({
       for (let i = -columns / 2; i <= columns / 2; i++) {
         const xBottom = centerX + i * bottomStep;
         const xTop = centerX + i * topStep;
+
+        // Fade in from horizon: transparent at top, opaque by ~35% depth
+        const grad = ctx.createLinearGradient(0, horizonY, 0, height);
+        grad.addColorStop(0, lineColor + "00");
+        grad.addColorStop(0.35, lineColor);
+        grad.addColorStop(1, lineColor);
+
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = grad;
+        ctx.globalAlpha = opacity;
+
         ctx.beginPath();
         ctx.moveTo(xTop, horizonY);
         ctx.lineTo(xBottom, height);
         ctx.stroke();
       }
 
-      // Horizontal receding lines — full width, canvas clips the excess
+      // Horizontal receding lines — fade in from horizon, fully opaque further down
+      const planeHeight = height - horizonY;
       const maxDepth = rows * 2;
       const progress = offsetRef.current % 1;
       for (let i = 0; i < maxDepth + 1; i++) {
         const rawT = i / rows + progress / rows;
         if (rawT <= 0) continue;
 
-        // Perspective mapping: t=0 at horizon, t=1 at bottom
         const t = rawT;
-        const y = horizonY + (height - horizonY) * (t * t); // quadratic easing for depth
+        const y = horizonY + planeHeight * (t * t); // quadratic depth
         if (y > height) continue;
 
-        const lineOpacity = Math.max(0, 1 - (t - 0.5) * 1.2);
-        ctx.globalAlpha = opacity * lineOpacity;
+        // normalised: 0 = at horizon, 1 = at bottom edge
+        const normalised = Math.min((y - horizonY) / planeHeight, 1);
+        // fade in: transparent at horizon → fully opaque after 35% depth
+        const fadeIn = Math.min(normalised / 0.35, 1);
+
+        ctx.globalAlpha = opacity * fadeIn;
         ctx.shadowColor = glowColor;
         ctx.shadowBlur = lineWidth * 3;
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = lineWidth;
 
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -117,14 +131,6 @@ export function GridFloor({
       ctx.globalAlpha = 1;
       ctx.shadowBlur = 0;
 
-      // Horizon glow line
-      const grad = ctx.createLinearGradient(0, horizonY - 2, 0, horizonY + 40);
-      grad.addColorStop(0, lineColor);
-      grad.addColorStop(1, "transparent");
-      ctx.fillStyle = grad;
-      ctx.globalAlpha = opacity * 0.6;
-      ctx.fillRect(0, horizonY - 2, width, 42);
-      ctx.globalAlpha = 1;
     };
 
     let last = performance.now();
