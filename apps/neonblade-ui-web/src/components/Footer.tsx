@@ -72,7 +72,7 @@ export function Footer() {
           </a>
         </div>
 
-        <p className="text-xs font-orbitron text-white/50 tracking-wider mb-6 text-center">
+        {/* <p className="text-xs font-orbitron text-white/50 tracking-wider mb-6 text-center">
           Don&apos;t miss a drop. follow on{" "}
           <a
             href="https://x.com/vi_x1x6"
@@ -84,7 +84,7 @@ export function Footer() {
             <RiTwitterXFill size={12} />
           </a>{" "}
           for the latest updates &amp; releases.
-        </p>
+        </p> */}
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
 
