@@ -78,7 +78,7 @@ export function CommunityFeedback() {
       >
         <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused]">
           {marqueeItems.map((item, i) => (
-            <div key={i} className="w-[300px] sm:w-[360px] h-64 shrink-0">
+            <div key={i} className="w-[300px] sm:w-[360px] min-h-64 shrink-0 self-stretch">
               <FeedbackCard item={item} />
             </div>
           ))}
@@ -110,7 +110,7 @@ function FeedbackCard({ item }: { item: FeedbackItem }) {
       </div>
 
       {/* Quote text */}
-      <p className="text-white/80 text-md leading-relaxed mb-6 flex-1 line-clamp-4">
+      <p className="text-white/80 text-md leading-relaxed mb-6 flex-1">
         {item.quote}
       </p>
 
