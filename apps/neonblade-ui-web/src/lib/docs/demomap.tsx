@@ -25,6 +25,7 @@ import CrosshairDemo from "./components/crosshair/demo";
 import OutlineTextDemo from "./components/outline-text/demo";
 import PluviophileDemo from "./components/pluviophile/demo";
 import HolographicTerrainDemo from "./components/holographic-terrain/demo";
+import NeonTideDemo from "./components/neon-tide/demo";
 import NeonModalDemo from "./components/modal/demo";
 import NeonTableDemo from "./components/neon-table/demo";
 import ProgressBarDemo from "./components/progress-bar/demo";
@@ -62,6 +63,7 @@ const demoMap: Record<string, React.FC> = {
   "outline-text": OutlineTextDemo,
   pluviophile: PluviophileDemo,
   "holographic-terrain": HolographicTerrainDemo,
+  "neon-tide": NeonTideDemo,
   "neon-modal": NeonModalDemo,
   "neon-line-chart": NeonLineChartDemo,
   "neon-bar-chart": NeonBarChartDemo,

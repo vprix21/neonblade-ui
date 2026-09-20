@@ -68,6 +68,14 @@ export const categories: CategoryData[] = [
         demo: "/demo/holographic-terrain",
       },
       {
+        name: "Neon Tide",
+        slug: "neon-tide",
+        description:
+          "Cinematic 3D wave surface flowing diagonally between screen corners with real depth. Single or dual-color gradients, glow/gloss lighting, and cursor-reactive ripples.",
+        is_new: true,
+        demo: "/demo/neon-tide",
+      },
+      {
         name: "Grid Floor",
         slug: "grid-floor",
         description:

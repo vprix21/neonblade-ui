@@ -26,6 +26,7 @@ import crosshairProps from "./components/crosshair/props";
 import outlineTextProps from "./components/outline-text/props";
 import pluviophileProps from "./components/pluviophile/props";
 import holographicTerrainProps from "./components/holographic-terrain/props";
+import neonTideProps from "./components/neon-tide/props";
 import neonModalProps from "./components/modal/props";
 import neonTableProps from "./components/neon-table/props";
 import progressBarProps from "./components/progress-bar/props";
@@ -63,6 +64,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "outline-text": outlineTextProps,
   pluviophile: pluviophileProps,
   "holographic-terrain": holographicTerrainProps,
+  "neon-tide": neonTideProps,
   "neon-modal": neonModalProps,
   "neon-line-chart": neonLineChartProps,
   "neon-bar-chart": neonBarChartProps,

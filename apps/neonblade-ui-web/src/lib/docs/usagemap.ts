@@ -25,6 +25,7 @@ import crosshairUsage from "./components/crosshair/usage";
 import outlineTextUsage from "./components/outline-text/usage";
 import pluviophileUsage from "./components/pluviophile/usage";
 import holographicTerrainUsage from "./components/holographic-terrain/usage";
+import neonTideUsage from "./components/neon-tide/usage";
 import neonModalUsage from "./components/modal/usage";
 import neonTableUsage from "./components/neon-table/usage";
 import progressBarUsage from "./components/progress-bar/usage";
@@ -62,6 +63,7 @@ const usageMap: Record<string, string> = {
   "outline-text": outlineTextUsage,
   pluviophile: pluviophileUsage,
   "holographic-terrain": holographicTerrainUsage,
+  "neon-tide": neonTideUsage,
   "neon-modal": neonModalUsage,
   "neon-line-chart": neonLineChartUsage,
   "neon-bar-chart": neonBarChartUsage,

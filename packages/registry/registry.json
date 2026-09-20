@@ -18,6 +18,12 @@
     },
 
     {
+      "name": "neon-tide",
+      "category": "backgrounds",
+      "description": "Three.js cinematic 3D wave surface flowing diagonally between screen corners, with single or dual-color gradients, glow/gloss lighting, and cursor-reactive ripples."
+    },
+
+    {
       "name": "glyph-city",
       "category": "backgrounds",
       "description": "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles. Multiple variants"
@@ -199,7 +205,7 @@
     }
   ],
   "stats": {
-    "totalComponents": 39,
+    "totalComponents": 40,
     "totalTemplates": 1
   }
 }

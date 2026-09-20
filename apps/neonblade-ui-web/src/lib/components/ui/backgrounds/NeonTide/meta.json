@@ -1,0 +1,5 @@
+{
+  "name": "NeonTide",
+  "category": "backgrounds",
+  "dependencies": ["react", "three"]
+}

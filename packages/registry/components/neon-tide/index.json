@@ -1,0 +1,10 @@
+{
+  "name": "neon-tide",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-tide/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-tide/index.tsx"
+    }
+  ],
+  "dependencies": ["three"]
+}
