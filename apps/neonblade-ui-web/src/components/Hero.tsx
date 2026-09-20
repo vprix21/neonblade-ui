@@ -1,44 +1,29 @@
 import Link from "next/link";
-import { DatalinesWithGrid } from "../lib/components/ui/backgrounds/DatalinesWithGrid";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 import { AnnouncementBanner } from "./AnnouncementBanner";
+import { NeonTide } from "@/lib/components/ui/backgrounds/NeonTide";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100svh] flex flex-col pt-20 sm:pt-24">
       {/* Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <DatalinesWithGrid overlay={true} />
-
-        {/* Neon glow orbs — rendered after DatalinesWithGrid so they are visible over the dark overlay */}
-        <div className="absolute inset-0 mix-blend-screen opacity-12">
-          {/* Cyan Orb */}
-          <div
-            className="absolute rounded-full bg-[#00f3ff]"
-            style={{
-              width: "20vmax",
-              height: "20vmax",
-              top: "5vmax",
-              left: "1vmax",
-              filter: "blur(8vmax)",
-            }}
-          />
-          {/* Magenta Orb */}
-          <div
-            className="absolute rounded-full bg-[#ff00ff]"
-            style={{
-              width: "20vmax",
-              height: "20vmax",
-              bottom: "1vmax",
-              right: "1vmax",
-              filter: "blur(8vmax)",
-            }}
-          />
-        </div>
+      <div className="absolute inset-0 overflow-hidden">
+        <NeonTide
+          colorA="#00f3ff"
+          colorB="#ff00e6"
+          origin="bottom-left"
+          speed={0.5}
+          planeDepth={100}
+          amplitude={1.1}
+          planeWidth={44}
+          hoverEffect={true}
+          cameraHeight={9}
+          hoverStrength={1}
+        />
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 pointer-events-none">
         <div className="container mx-auto max-w-7xl flex flex-col items-center text-center">
           <AnnouncementBanner />
 
@@ -56,7 +41,7 @@ export function Hero() {
             control.
           </p>
 
-          <div className="flex items-center">
+          <div className="flex items-center pointer-events-auto">
             <Link href="/components">
               <CornerCutButton color="cyan" hoverEffect="shift" showArrow>
                 Explore Components

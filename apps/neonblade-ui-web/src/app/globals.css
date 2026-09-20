@@ -136,6 +136,27 @@ body {
   animation: flicker 4s linear infinite;
 }
 
+/* Infinite horizontal scroll — content must be duplicated so translating
+   to -50% loops seamlessly back to the start. */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-x 35s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
 /* Hero title — clamp() gives smooth, reliable scaling on every device width.
    min: 2.75rem (44px) keeps it readable on small phones (≤440px)
    fluid: 10vw scales naturally from ~440px upward

@@ -36,7 +36,10 @@ export function Features() {
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="flex flex-col items-center mb-16 text-center">
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron mb-4">
-            Forged in the Future
+            Forged in the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
+              Future
+            </span>
           </h2>
           <p className="text-white/80 max-w-2xl text-lg mb-4">
             Futuristic by design, highly customizable by default, NeonBlade UI

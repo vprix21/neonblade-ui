@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CornerCutButton from "@/lib/components/ui/buttons/CornerCutButton";
 import Badge from "@/lib/components/ui/elements/Badge";
+import GlitchText from "@/lib/components/ui/text/GlitchText";
 
 export function CTA() {
   return (
@@ -40,7 +41,18 @@ export function CTA() {
           </Badge>
 
           <h2 className="text-4xl md:text-6xl font-bold font-orbitron tracking-tighter mb-8 relative leading-tight min-h-[1.2em]">
-            Ready to upgrade your interface?
+            Ready to upgrade your{" "}
+            <GlitchText
+              mode="active"
+              intensity="subtle"
+              speed="slow"
+              colorA="pink"
+              colorB="cyan"
+              neon
+              glowColor="cyan"
+            >
+              interface?
+            </GlitchText>
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full justify-center items-center">

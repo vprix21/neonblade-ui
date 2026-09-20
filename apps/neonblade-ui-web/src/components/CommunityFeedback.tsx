@@ -23,46 +23,64 @@ const FEEDBACK: FeedbackItem[] = [
   {
     quote: "I dig this. Reminds me of the cyberpunk vibes",
     author: "r/reactjs community member",
-    color: "green",
+    color: "cyan",
   },
   {
     quote:
       "Looks really nice. It fits the aesthetic of something I'm gonna be building well :)",
     author: "r/reactjs community member",
-    color: "cyan",
+    color: "pink",
   },
   {
     quote:
       "I thought for sure it was going to be some trash from someone that just discovered shadows, but thats actually super cool",
     author: "r/react community member",
-    color: "pink",
+    color: "cyan",
   },
   {
     quote: "It's just so sick",
     author: "r/reactjs community member",
-    color: "green",
+    color: "pink",
   },
 ];
 
 export function CommunityFeedback() {
+  // Duplicated so the track can loop seamlessly at -50% translation
+  const marqueeItems = [...FEEDBACK, ...FEEDBACK];
+
   return (
     <section className="relative py-24 bg-black border-t border-white/5 overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Heading */}
         <div className="flex flex-col items-center mb-14 text-center">
           <h2 className="text-3xl md:text-5xl font-bold font-orbitron tracking-tighter mb-4">
-            Loved by the React Community
+            Loved by the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f3ff] to-[#ff00ff]">
+              React Community
+            </span>
           </h2>
           <p className="text-white/80 max-w-xl text-base">
             Real feedback from developers across Reddit who found NeonBlade in
             the wild.
           </p>
         </div>
+      </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEEDBACK.map((item, i) => (
-            <FeedbackCard key={i} item={item} />
+      {/* Infinite horizontal scroll — edges fade via mask, pauses on hover */}
+      <div
+        className="relative w-full"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        }}
+      >
+        <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused]">
+          {marqueeItems.map((item, i) => (
+            <div key={i} className="w-[300px] sm:w-[360px] h-64 shrink-0">
+              <FeedbackCard item={item} />
+            </div>
           ))}
         </div>
       </div>
@@ -92,7 +110,7 @@ function FeedbackCard({ item }: { item: FeedbackItem }) {
       </div>
 
       {/* Quote text */}
-      <p className="text-white/80 text-md leading-relaxed mb-6 flex-1">
+      <p className="text-white/80 text-md leading-relaxed mb-6 flex-1 line-clamp-4">
         {item.quote}
       </p>
 
