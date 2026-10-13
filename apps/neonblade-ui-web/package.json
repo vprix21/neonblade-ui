@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.111.0",
-    "@types/three": "^0.184.1",
+    "@types/three": "^0.185.4",
     "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "firebase": "^12.13.0",
