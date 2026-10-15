@@ -24,6 +24,12 @@
     },
 
     {
+      "name": "void-vortex",
+      "category": "backgrounds",
+      "description": "Three.js accretion-disk particle vortex with Keplerian rotation, inward spiral, glowing singularity core, and a cursor-reactive gravity well."
+    },
+
+    {
       "name": "glyph-city",
       "category": "backgrounds",
       "description": "Animated glyph cityscape with neon buildings, antennas, blinking peak lights, and flying vehicles. Multiple variants"
@@ -205,7 +211,7 @@
     }
   ],
   "stats": {
-    "totalComponents": 40,
-    "totalTemplates": 1
+    "totalComponents": 41,
+    "totalTemplates": 2
   }
 }

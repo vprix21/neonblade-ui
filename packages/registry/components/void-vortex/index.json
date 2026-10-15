@@ -1,0 +1,10 @@
+{
+  "name": "void-vortex",
+  "files": [
+    {
+      "path": "components/neonblade-ui/void-vortex/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/void-vortex/index.tsx"
+    }
+  ],
+  "dependencies": ["three"]
+}

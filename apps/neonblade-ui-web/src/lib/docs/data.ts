@@ -72,8 +72,16 @@ export const categories: CategoryData[] = [
         slug: "neon-tide",
         description:
           "Cinematic 3D wave surface flowing diagonally between screen corners with real depth. Single or dual-color gradients, glow/gloss lighting, and cursor-reactive ripples.",
-        is_new: true,
+        is_new: false,
         demo: "/demo/neon-tide",
+      },
+      {
+        name: "Void Vortex",
+        slug: "void-vortex",
+        description:
+          "Three.js accretion-disk particle vortex with Keplerian rotation, an inward spiral, a glowing singularity core, and a cursor-reactive gravity well.",
+        is_new: true,
+        demo: "/demo/void-vortex",
       },
       {
         name: "Grid Floor",

@@ -40,6 +40,7 @@ import rainLoaderProps from "./components/rain-loader/props";
 import turbineLoaderProps from "./components/turbine-loader/props";
 import gridFloorProps from "./components/grid-floor/props";
 import gridSceneProps from "./components/grid-scene/props";
+import voidVortexProps from "./components/void-vortex/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -83,6 +84,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "turbine-loader": turbineLoaderProps,
   "grid-floor": gridFloorProps,
   "grid-scene": gridSceneProps,
+  "void-vortex": voidVortexProps,
 };
 
 export default propsMap;
