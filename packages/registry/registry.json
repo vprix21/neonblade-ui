@@ -55,6 +55,11 @@
       "description": "Futuristic card with customizable rectangular notch indentations on any sides, animated beam border, gradient border, hover effects, and full color control"
     },
     {
+      "name": "lightning-button",
+      "category": "buttons",
+      "description": "A button with crackling lightning tendrils that connect its border to the cursor when it's within range"
+    },
+    {
       "name": "corner-cut-button",
       "category": "buttons",
       "description": "A Button with clipped polygon corner with high customizability"
@@ -211,7 +216,7 @@
     }
   ],
   "stats": {
-    "totalComponents": 41,
+    "totalComponents": 42,
     "totalTemplates": 2
   }
 }

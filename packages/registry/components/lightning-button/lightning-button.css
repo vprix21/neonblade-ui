@@ -1,0 +1,290 @@
+/* ============================================================
+   LightningButton — lightning-button.css
+   Layout / typography / base colors live in Tailwind (index.tsx).
+
+   Retained:
+     • clip-path corner cut geometry
+     • idle + active glow (uses filter: drop-shadow, which — unlike
+       box-shadow — follows the clipped polygon shape, including the
+       diagonal corner cut)
+   ============================================================ */
+
+.lb-clip-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--lb-corner-size, 16px)),
+    calc(100% - var(--lb-corner-size, 16px)) 100%,
+    0 100%
+  );
+}
+
+.lb-btn {
+  transition:
+    filter 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.lb-btn[data-lightning-active="true"] {
+  filter: brightness(1.08)
+    drop-shadow(0 0 14px color-mix(in srgb, var(--lb-color) 70%, transparent));
+}
+
+.lb-idle-glow {
+  filter: drop-shadow(
+    0 0 5px color-mix(in srgb, var(--lb-color) 35%, transparent)
+  );
+}
+
+.lb-idle-glow[data-lightning-active="true"] {
+  filter: brightness(1.08)
+    drop-shadow(0 0 14px color-mix(in srgb, var(--lb-color) 70%, transparent));
+}
+
+/* ---- Press effect: ripple ---------------------------------- */
+
+.lb-ripple {
+  position: absolute;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--lb-color) 55%, white 15%);
+  opacity: 0.55;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 0;
+  animation: lb-ripple-expand 0.6s ease-out forwards;
+}
+
+@keyframes lb-ripple-expand {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ---- Press effect: shine (one-shot sweep) ------------------ */
+
+.lb-shine-burst {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lb-shine-burst::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 35%;
+  height: 140%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, white 70%, transparent),
+    transparent
+  );
+  transform: translateX(-220%) skewX(-20deg);
+  animation: lb-shine-sweep 0.5s ease forwards;
+}
+
+@keyframes lb-shine-sweep {
+  to {
+    transform: translateX(320%) skewX(-20deg);
+  }
+}
+
+/* ---- Press effect: mechanical (physical switch feel) ------- */
+
+.lb-mechanical {
+  transition:
+    transform 0.08s ease,
+    filter 0.08s ease;
+}
+
+.lb-mechanical:active {
+  transform: scale(0.95) translateY(2px);
+  filter: brightness(0.85);
+}
+
+/* ---- Press effect: destroy (crack, then violent blast) ------ */
+
+.lb-frame-destroying {
+  animation: lb-frame-vanish 0.22s ease-out forwards;
+}
+
+@keyframes lb-frame-vanish {
+  to {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+.lb-cracking {
+  animation: lb-crack-shake 0.26s ease-in-out;
+}
+
+@keyframes lb-crack-shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    filter: brightness(1);
+  }
+  10% {
+    transform: translate(-2px, 1px);
+    filter: brightness(1.7);
+  }
+  22% {
+    transform: translate(2px, -2px);
+    filter: brightness(1.1);
+  }
+  36% {
+    transform: translate(-2px, 2px);
+    filter: brightness(1.8);
+  }
+  50% {
+    transform: translate(2px, 1px);
+    filter: brightness(1.15);
+  }
+  65% {
+    transform: translate(-1px, -2px);
+    filter: brightness(1.9);
+  }
+  80% {
+    transform: translate(1px, 1px);
+    filter: brightness(1.2);
+  }
+}
+
+.lb-cracks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.lb-cracks path {
+  fill: none;
+  stroke: #0a0a0a;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 3px var(--lb-color));
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: lb-crack-draw 0.16s ease-out forwards;
+}
+
+@keyframes lb-crack-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.lb-destroying {
+  animation: lb-destroy-vanish 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97)
+    forwards;
+}
+
+@keyframes lb-destroy-vanish {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  10% {
+    transform: scale(1.25) rotate(-5deg);
+    filter: brightness(2.6);
+    opacity: 1;
+  }
+  28% {
+    transform: scale(0.7) rotate(6deg);
+    filter: blur(1px) brightness(1.4);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0) rotate(30deg);
+    filter: blur(3px) brightness(2.2);
+    opacity: 0;
+  }
+}
+
+.lb-flash {
+  position: absolute;
+  inset: -40%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    var(--lb-color) 40%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 26;
+  animation: lb-flash-burst 0.28s ease-out forwards;
+}
+
+@keyframes lb-flash-burst {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.25);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+.lb-shockwave {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--lb-color);
+  box-shadow: 0 0 16px var(--lb-color);
+  pointer-events: none;
+  z-index: 24;
+  animation: lb-shockwave-expand 0.55s ease-out forwards;
+}
+
+@keyframes lb-shockwave-expand {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}
+
+.lb-shard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: var(--lb-color);
+  box-shadow:
+    0 0 8px var(--lb-color),
+    0 0 2px #ffffff;
+  pointer-events: none;
+  animation: lb-shard-fly 0.85s cubic-bezier(0.15, 0.85, 0.25, 1) forwards;
+  animation-delay: var(--lb-shard-delay, 0ms);
+}
+
+@keyframes lb-shard-fly {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+        calc(-50% + var(--lb-shard-tx)),
+        calc(-50% + var(--lb-shard-ty))
+      )
+      rotate(var(--lb-shard-rot)) scale(0.15);
+    opacity: 0;
+  }
+}

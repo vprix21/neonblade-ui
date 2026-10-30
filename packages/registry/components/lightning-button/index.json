@@ -1,0 +1,14 @@
+{
+  "name": "lightning-button",
+  "files": [
+    {
+      "path": "components/neonblade-ui/lightning-button/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/lightning-button/index.tsx"
+    },
+    {
+      "path": "components/neonblade-ui/lightning-button/lightning-button.css",
+      "url": "https://neonbladeui-registry.vercel.app/components/lightning-button/lightning-button.css"
+    }
+  ],
+  "dependencies": []
+}

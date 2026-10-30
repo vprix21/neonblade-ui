@@ -80,7 +80,7 @@ export const categories: CategoryData[] = [
         slug: "void-vortex",
         description:
           "Three.js accretion-disk particle vortex with Keplerian rotation, an inward spiral, a glowing singularity core, and a cursor-reactive gravity well.",
-        is_new: true,
+        is_new: false,
         demo: "/demo/void-vortex",
       },
       {
@@ -232,6 +232,14 @@ export const categories: CategoryData[] = [
         description:
           "A button with a diagonal corner cut, multiple variants, colors, sizes and hover effects.",
         is_updated: false,
+      },
+      {
+        name: "Lightning Button",
+        slug: "lightning-button",
+        description:
+          "A button that spawns crackling lightning tendrils connecting its border to the cursor whenever it's within range. Fully customizable colors, bolt count, jitter, and glow.",
+        is_new: true,
+        demo: "/demo/lightning-button",
       },
     ],
   },

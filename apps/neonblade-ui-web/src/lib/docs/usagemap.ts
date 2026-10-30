@@ -9,6 +9,7 @@ import borderBeamUsage from "./components/border-beam-corner-cut-card/usage";
 import accentFrameUsage from "./components/accent-frame/usage";
 import glitchTextUsage from "./components/glitch-text/usage";
 import cornerCutButtonUsage from "./components/corner-cut-button/usage";
+import lightningButtonUsage from "./components/lightning-button/usage";
 import neonGlowCornerCutCardUsage from "./components/neon-glow-corner-cut-card/usage";
 import badgeUsage from "./components/badge/usage";
 import navbarUsage from "./components/navbar/usage";
@@ -48,6 +49,7 @@ const usageMap: Record<string, string> = {
   "accent-frame": accentFrameUsage,
   "glitch-text": glitchTextUsage,
   "corner-cut-button": cornerCutButtonUsage,
+  "lightning-button": lightningButtonUsage,
   "neon-glow-corner-cut-card": neonGlowCornerCutCardUsage,
   badge: badgeUsage,
   navbar: navbarUsage,

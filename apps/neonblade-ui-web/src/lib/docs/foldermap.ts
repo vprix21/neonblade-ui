@@ -6,6 +6,7 @@ const folderMap: Record<string, string> = {
   "accent-frame": "AccentFrame",
   "glitch-text": "GlitchText",
   "corner-cut-button": "CornerCutButton",
+  "lightning-button": "LightningButton",
   "neon-glow-corner-cut-card": "NeonGlowCornerCutCard",
   badge: "Badge",
   navbar: "NavBar",

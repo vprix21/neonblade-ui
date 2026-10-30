@@ -6,7 +6,7 @@ const ANNOUNCEMENTS = [
   {
     tag: "New",
     color: "#39ff14",
-    text: "New Component: Void Vortex",
+    text: "New Component: Lightning Button",
   },
 
   {

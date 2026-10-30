@@ -10,6 +10,7 @@ import borderBeamProps from "./components/border-beam-corner-cut-card/props";
 import accentFrameProps from "./components/accent-frame/props";
 import glitchTextProps from "./components/glitch-text/props";
 import cornerCutButtonProps from "./components/corner-cut-button/props";
+import lightningButtonProps from "./components/lightning-button/props";
 import neonGlowProps from "./components/neon-glow-corner-cut-card/props";
 import badgeProps from "./components/badge/props";
 import navbarProps from "./components/navbar/props";
@@ -49,6 +50,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "accent-frame": accentFrameProps,
   "glitch-text": glitchTextProps,
   "corner-cut-button": cornerCutButtonProps,
+  "lightning-button": lightningButtonProps,
   "neon-glow-corner-cut-card": neonGlowProps,
   badge: badgeProps,
   navbar: navbarProps,

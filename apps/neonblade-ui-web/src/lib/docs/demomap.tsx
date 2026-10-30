@@ -9,6 +9,7 @@ import BorderBeamCornerCutCardDemo from "./components/border-beam-corner-cut-car
 import AccentFrameDemo from "./components/accent-frame/demo";
 import GlitchTextDemo from "./components/glitch-text/demo";
 import CornerCutButtonDemo from "./components/corner-cut-button/demo";
+import LightningButtonDemo from "./components/lightning-button/demo";
 import NeonGlowCornerCutCardDemo from "./components/neon-glow-corner-cut-card/demo";
 import BadgeDemo from "./components/badge/demo";
 import NavBarDemo from "./components/navbar/demo";
@@ -48,6 +49,7 @@ const demoMap: Record<string, React.FC> = {
   "accent-frame": AccentFrameDemo,
   "glitch-text": GlitchTextDemo,
   "corner-cut-button": CornerCutButtonDemo,
+  "lightning-button": LightningButtonDemo,
   "neon-glow-corner-cut-card": NeonGlowCornerCutCardDemo,
   badge: BadgeDemo,
   navbar: NavBarDemo,
