@@ -24,6 +24,12 @@
     },
 
     {
+      "name": "neon-cascade",
+      "category": "backgrounds",
+      "description": "Three.js field of vertical light lines that bend forward into the camera as they fall. Flowing or static, with quarter-arc depth, tip colour, sway, glow, and pointer parallax."
+    },
+
+    {
       "name": "void-vortex",
       "category": "backgrounds",
       "description": "Three.js accretion-disk particle vortex with Keplerian rotation, inward spiral, glowing singularity core, and a cursor-reactive gravity well."
@@ -216,7 +222,7 @@
     }
   ],
   "stats": {
-    "totalComponents": 42,
+    "totalComponents": 43,
     "totalTemplates": 2
   }
 }

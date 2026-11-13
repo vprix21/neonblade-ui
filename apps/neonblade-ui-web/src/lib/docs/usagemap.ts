@@ -41,6 +41,7 @@ import turbineLoaderUsage from "./components/turbine-loader/usage";
 import gridFloorUsage from "./components/grid-floor/usage";
 import gridSceneUsage from "./components/grid-scene/usage";
 import voidVortexUsage from "./components/void-vortex/usage";
+import neonCascadeUsage from "./components/neon-cascade/usage";
 
 const usageMap: Record<string, string> = {
   "datalines-with-grid": datalinesUsage,
@@ -86,6 +87,7 @@ const usageMap: Record<string, string> = {
   "grid-floor": gridFloorUsage,
   "grid-scene": gridSceneUsage,
   "void-vortex": voidVortexUsage,
+  "neon-cascade": neonCascadeUsage,
 };
 
 export default usageMap;

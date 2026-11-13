@@ -43,5 +43,6 @@ const folderMap: Record<string, string> = {
   "grid-floor": "GridFloor",
   "grid-scene": "GridScene",
   "void-vortex": "VoidVortex",
+  "neon-cascade": "NeonCascade",
 };
 export default folderMap;

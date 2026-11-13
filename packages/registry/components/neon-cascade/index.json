@@ -1,0 +1,10 @@
+{
+  "name": "neon-cascade",
+  "files": [
+    {
+      "path": "components/neonblade-ui/neon-cascade/index.tsx",
+      "url": "https://neonbladeui-registry.vercel.app/components/neon-cascade/index.tsx"
+    }
+  ],
+  "dependencies": ["three"]
+}

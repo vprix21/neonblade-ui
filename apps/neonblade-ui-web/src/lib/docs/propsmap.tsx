@@ -42,6 +42,7 @@ import turbineLoaderProps from "./components/turbine-loader/props";
 import gridFloorProps from "./components/grid-floor/props";
 import gridSceneProps from "./components/grid-scene/props";
 import voidVortexProps from "./components/void-vortex/props";
+import neonCascadeProps from "./components/neon-cascade/props";
 
 const propsMap: Record<string, PropDefinition[]> = {
   "datalines-with-grid": datalinesProps,
@@ -87,6 +88,7 @@ const propsMap: Record<string, PropDefinition[]> = {
   "grid-floor": gridFloorProps,
   "grid-scene": gridSceneProps,
   "void-vortex": voidVortexProps,
+  "neon-cascade": neonCascadeProps,
 };
 
 export default propsMap;

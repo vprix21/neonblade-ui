@@ -41,6 +41,7 @@ import TurbineLoaderDemo from "./components/turbine-loader/demo";
 import GridFloorDemo from "./components/grid-floor/demo";
 import GridSceneDemo from "./components/grid-scene/demo";
 import VoidVortexDemo from "./components/void-vortex/demo";
+import NeonCascadeDemo from "./components/neon-cascade/demo";
 
 const demoMap: Record<string, React.FC> = {
   "datalines-with-grid": DatalinesWithGridDemo,
@@ -86,6 +87,7 @@ const demoMap: Record<string, React.FC> = {
   "grid-floor": GridFloorDemo,
   "grid-scene": GridSceneDemo,
   "void-vortex": VoidVortexDemo,
+  "neon-cascade": NeonCascadeDemo,
 };
 
 export default demoMap;

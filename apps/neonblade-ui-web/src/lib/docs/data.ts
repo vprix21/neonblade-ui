@@ -76,6 +76,14 @@ export const categories: CategoryData[] = [
         demo: "/demo/neon-tide",
       },
       {
+        name: "Neon Cascade",
+        slug: "neon-cascade",
+        description:
+          "Three.js field of vertical light lines that bend forward into the camera as they fall. Flowing or static, with a quarter-arc bend, tip colour, sway, glow, and pointer parallax.",
+        is_new: true,
+        demo: "/demo/neon-cascade",
+      },
+      {
         name: "Void Vortex",
         slug: "void-vortex",
         description:
@@ -238,7 +246,7 @@ export const categories: CategoryData[] = [
         slug: "lightning-button",
         description:
           "A button that spawns crackling lightning tendrils connecting its border to the cursor whenever it's within range. Fully customizable colors, bolt count, jitter, and glow.",
-        is_new: true,
+        is_new: false,
         demo: "/demo/lightning-button",
       },
     ],
