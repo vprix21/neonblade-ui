@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { VscMail, VscGithub } from "react-icons/vsc";
 import { RiTwitterXFill } from "react-icons/ri";
+import { FaHeart } from "react-icons/fa";
+
+import { BuyMeACoffeeButton } from "@/components/BuyMeACoffeeButton";
 
 const footerLinks = [
   { label: "Components", href: "/components" },
@@ -70,6 +73,15 @@ export function Footer() {
           >
             <VscMail size={20} />
           </a>
+        </div>
+
+        {/* Support the project */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+          <p className="text-sm text-white/65 text-center sm:text-left tracking-wide">
+            Enjoying NeonBlade UI? Your support helps keep the project growing
+            and open source. <FaHeart color={"red"} className="inline" />
+          </p>
+          <BuyMeACoffeeButton />
         </div>
 
         {/* <p className="text-xs font-orbitron text-white/50 tracking-wider mb-6 text-center">
