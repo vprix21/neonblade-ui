@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { HolographicTerrain } from "../../../lib/components/ui/backgrounds/HolographicTerrain";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 
 /* ── types ──────────────────────────────────────────────────────────────── */
 interface Controls {
@@ -191,6 +193,22 @@ export default function HolographicTerrainDemo() {
 
   const accent = ctrl.lineColor;
 
+  const code = buildDemoCode("HolographicTerrain", {
+    lineColor: ctrl.lineColor,
+    bgColor: ctrl.bgColor,
+    waveAmplitude: ctrl.waveAmplitude,
+    waveFrequency: ctrl.waveFrequency,
+    waveSpeed: ctrl.waveSpeed,
+    bumpRadius: ctrl.bumpRadius,
+    bumpStrength: ctrl.bumpStrength,
+    gridSegments: ctrl.gridSegments,
+    planeWidth: ctrl.planeWidth,
+    planeDepth: ctrl.planeDepth,
+    cameraHeight: ctrl.cameraHeight,
+    fog: ctrl.fog,
+    opacity: ctrl.opacity,
+  });
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -278,7 +296,7 @@ export default function HolographicTerrainDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -287,6 +305,7 @@ export default function HolographicTerrainDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}

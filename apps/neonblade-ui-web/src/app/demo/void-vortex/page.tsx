@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { VoidVortex } from "../../../lib/components/ui/backgrounds/VoidVortex";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 
 /* ── types ──────────────────────────────────────────────────────────────── */
 interface Controls {
@@ -226,6 +228,22 @@ export default function VoidVortexDemo() {
 
   const accent = ctrl.primaryColor;
 
+  const code = buildDemoCode("VoidVortex", {
+    primaryColor: ctrl.primaryColor,
+    coreColor: ctrl.coreColor,
+    bgColor: ctrl.bgColor,
+    particleCount: ctrl.particleCount,
+    rotationSpeed: ctrl.rotationSpeed,
+    accretionRate: ctrl.accretionRate,
+    diskRadius: ctrl.diskRadius,
+    diskDepth: ctrl.diskDepth,
+    hoverGravity: ctrl.hoverGravity,
+    hoverIntensity: ctrl.hoverIntensity,
+    showCore: ctrl.showCore,
+    fog: ctrl.fog,
+    opacity: ctrl.opacity,
+  });
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -300,7 +318,7 @@ export default function VoidVortexDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -309,6 +327,7 @@ export default function VoidVortexDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}

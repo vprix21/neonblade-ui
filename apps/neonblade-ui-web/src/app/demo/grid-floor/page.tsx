@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { GridFloor } from "../../../lib/components/ui/backgrounds/GridFloor";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 
 /* ── types ──────────────────────────────────────────────────────────────── */
 interface Controls {
@@ -167,6 +169,18 @@ export default function GridFloorDemo() {
 
   const accent = ctrl.lineColor;
 
+  const code = buildDemoCode("GridFloor", {
+    lineColor: ctrl.lineColor,
+    glowColor: ctrl.glowColor,
+    bgColor: ctrl.bgColor,
+    horizon: ctrl.horizon,
+    columns: ctrl.columns,
+    rows: ctrl.rows,
+    speed: ctrl.speed,
+    opacity: ctrl.opacity,
+    lineWidth: ctrl.lineWidth,
+  });
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -250,7 +264,7 @@ export default function GridFloorDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -259,6 +273,7 @@ export default function GridFloorDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}

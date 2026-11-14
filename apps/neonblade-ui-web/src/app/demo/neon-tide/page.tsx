@@ -7,6 +7,8 @@ import {
   type NeonTideOrigin,
 } from "../../../lib/components/ui/backgrounds/NeonTide";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 
 /* ── types ──────────────────────────────────────────────────────────────── */
 interface Controls {
@@ -243,6 +245,28 @@ export default function NeonTideDemo() {
 
   const accent = ctrl.colorA;
 
+  const code = buildDemoCode("NeonTide", {
+    colorA: ctrl.colorA,
+    ...(ctrl.dualColor ? { colorB: ctrl.colorB } : {}),
+    bgColor: ctrl.bgColor,
+    origin: ctrl.origin,
+    speed: ctrl.speed,
+    amplitude: ctrl.amplitude,
+    frequency: ctrl.frequency,
+    glow: ctrl.glow,
+    gloss: ctrl.gloss,
+    gridSegments: ctrl.gridSegments,
+    planeWidth: ctrl.planeWidth,
+    planeDepth: ctrl.planeDepth,
+    cameraHeight: ctrl.cameraHeight,
+    cameraTilt: ctrl.cameraTilt,
+    fog: ctrl.fog,
+    opacity: ctrl.opacity,
+    hoverEffect: ctrl.hoverEffect,
+    hoverRadius: ctrl.hoverRadius,
+    hoverStrength: ctrl.hoverStrength,
+  });
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -336,7 +360,7 @@ export default function NeonTideDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -345,6 +369,7 @@ export default function NeonTideDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}

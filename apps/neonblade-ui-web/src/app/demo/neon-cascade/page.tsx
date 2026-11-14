@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { NeonCascade } from "../../../lib/components/ui/backgrounds/NeonCascade";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 
 /* ── types ──────────────────────────────────────────────────────────────── */
 interface Controls {
@@ -286,6 +288,32 @@ export default function NeonCascadeDemo() {
 
   const accent = ctrl.color;
 
+  const code = buildDemoCode("NeonCascade", {
+    color: ctrl.color,
+    tipColor: ctrl.tipColor,
+    bgColor: ctrl.bgColor,
+    lineWidth: ctrl.lineWidth,
+    span: ctrl.span,
+    lineHeight: ctrl.lineHeight,
+    sway: ctrl.sway,
+    lineCount: ctrl.lineCount,
+    swayFrequency: ctrl.swayFrequency,
+    swaySpeed: ctrl.swaySpeed,
+    curveHeight: ctrl.curveHeight,
+    curveAmount: ctrl.curveAmount,
+    flowLength: ctrl.flowLength,
+    flowDensity: ctrl.flowDensity,
+    flowSpeed: ctrl.flowSpeed,
+    curvePower: ctrl.curvePower,
+    flow: ctrl.flow,
+    glow: ctrl.glow,
+    opacity: ctrl.opacity,
+    cameraDistance: ctrl.cameraDistance,
+    cameraFov: ctrl.cameraFov,
+    parallax: ctrl.parallax,
+    parallaxStrength: ctrl.parallaxStrength,
+  });
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -386,7 +414,7 @@ export default function NeonCascadeDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -395,6 +423,7 @@ export default function NeonCascadeDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}

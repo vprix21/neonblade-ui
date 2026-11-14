@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { LightningButton } from "../../../lib/components/ui/buttons/LightningButton";
 import { CornerCutButton } from "../../../lib/components/ui/buttons/CornerCutButton";
+import { CopyPropsButton } from "../../../components/CopyPropsButton";
+import { buildDemoCode } from "../../../lib/demo-code";
 import type {
   LBSize,
   LBVariant,
@@ -309,6 +311,29 @@ export default function LightningButtonDemo() {
 
   const accent = ctrl.color;
 
+  const code = buildDemoCode(
+    "LightningButton",
+    {
+      color: ctrl.color,
+      lightningColor: ctrl.lightningColor,
+      coreColor: ctrl.coreColor,
+      size: ctrl.size,
+      variant: ctrl.variant,
+      cut: ctrl.cut,
+      cornerSize: ctrl.cornerSize,
+      radius: ctrl.radius,
+      boltCount: ctrl.boltCount,
+      segments: ctrl.segments,
+      jitter: ctrl.jitter,
+      thickness: ctrl.thickness,
+      glowIntensity: ctrl.glowIntensity,
+      flickerSpeed: ctrl.flickerSpeed,
+      idleGlow: ctrl.idleGlow,
+      pressEffect: ctrl.pressEffect,
+    },
+    ctrl.text,
+  );
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-orbitron overflow-x-hidden">
       {/* ── Hero / live preview ─────────────────────────────────────────── */}
@@ -421,7 +446,7 @@ export default function LightningButtonDemo() {
           >
             {/* header */}
             <div
-              className="flex items-center justify-between border-b pb-2"
+              className="flex items-center justify-between gap-2 flex-wrap border-b pb-2"
               style={{ borderColor: `${accent}22` }}
             >
               <span
@@ -430,6 +455,7 @@ export default function LightningButtonDemo() {
               >
                 Live Controls
               </span>
+              <CopyPropsButton code={code} color={accent} />
             </div>
 
             {/* presets */}
