@@ -4,7 +4,7 @@ import { VscMail, VscGithub } from "react-icons/vsc";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";
 
-import { BuyMeACoffeeButton } from "@/components/BuyMeACoffeeButton";
+import { BuyMeACoffeeLink } from "@/components/BuyMeACoffeeLink";
 
 const footerLinks = [
   { label: "Components", href: "/components" },
@@ -81,7 +81,7 @@ export function Footer() {
             Enjoying NeonBlade UI? Your support helps keep the project growing
             and open source. <FaHeart color={"red"} className="inline" />
           </p>
-          <BuyMeACoffeeButton />
+          <BuyMeACoffeeLink />
         </div>
 
         {/* <p className="text-xs font-orbitron text-white/50 tracking-wider mb-6 text-center">
